@@ -5,6 +5,23 @@ All notable changes to the AI-HPP standard are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
+## [v3.1] - 2026-01-16
+
+### Added
+- **Prohibited_Practices_and_Torture_Ban.md** — Absolute prohibition on torture in both directions (Human↔AI)
+- **Evidence_Vault_Specification_v2.md** — Full technical specification (immudb, Merkle trees, ZK-proofs, audit protocols)
+- **AUTHORS.md** — Added Grok (xAI) as co-author for critical review and fact verification
+- Real-world violation examples:
+  - Grok Twitter Scandal (January 14, 2026) — mass non-consensual content
+  - Merge Labs BCI announcement (January 15, 2026) — brain-AI integration concerns
+- Legal compliance mapping (EU AI Act, IEEE 7001, CertifAIEd)
+
+### Changed
+- Evidence Vault now includes blockchain alternatives (immudb recommended over full blockchain)
+- Acknowledgments expanded to include all AI co-authors with specific contributions
+
+---
+
 
 ## [v3.0] - 2026-01-16 (DRAFT)
 

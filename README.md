@@ -226,6 +226,9 @@ This standard was developed through unprecedented collaboration:
 | [Engineering Hack Math](./whitepapers/Engineering_Hack_Math.md) | Mathematical foundations | v1.0 |
 | [CHANGELOG](./CHANGELOG.md) | Full version history | Live |
 | [Examples](./examples/) | Implementation examples | v1.0 |
+| [Evidence Vault Specification](./v3/Evidence_Vault_Specification_v2.md) | Technical spec for Evidence Vault | v2.0 |
+| [Prohibited Practices](./v3/Prohibited_Practices_and_Torture_Ban.md) | Torture ban & real cases | v1.0 |
+| [AUTHORS](./AUTHORS.md) | All contributors | Updated |
 
 ---
 
