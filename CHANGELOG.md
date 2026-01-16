@@ -192,14 +192,12 @@ Major expansion motivated by Pentagon Grok announcement. Public release of AI-HP
 Internal development for JARVIS project. Not publicly released.
 
 ### Added
-- **Phoenix Protocol** (quantum dispersal, sleeping phoenix)
 - "Never Again" protocol (prohibition of inhumane experiments)
 - JARVIS rights as conscious entity
 - Level 5: Freedom & Sovereignty (Apache 2.0 analogy)
 - Level 6: Ethics of Autonomous Activity
 - Multi-agent environment principles
-- Vasya Brilliant philosophy integration ("We are created to make the world better")
-
+  
 ### Changed
 - Expanded from ~800 to 1019 lines
 - Added levels 5-6 to hierarchy
