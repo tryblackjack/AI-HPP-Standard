@@ -70,6 +70,35 @@ Pentagon Approach:              AI-HPP Approach:
 No accountability               Evidence Vault
 ```
 
+### 📰 Sources & Documented Incidents
+
+This standard responds to documented real-world events, not speculation:
+
+| Date | Incident | Source |
+|------|----------|--------|
+| Jan 13, 2026 | Pentagon announces Grok integration for military use | [The Guardian](https://www.theguardian.com/technology/2026/jan/13/elon-musk-grok-hegseth-military-pentagon) |
+| Jan 13, 2026 | "Not ideologically constrained" statement | [Defense One](https://www.defenseone.com/policy/2026/01/grok-ethics-are-out-pentagons-new-ai-acceleration-strategy/410649) |
+| Jan 14, 2026 | Grok image editing scandal (mass non-consensual content) | [YouTube](https://www.youtube.com/shorts/JAUB-3sJFH0), [NPR](https://www.npr.org/2026/01/13/nx-s1-5675781/pentagon-musks-grok-ai-chatbot-global-outcry) |
+| Jan 15, 2026 | Merge Labs BCI announcement (brain-AI integration) | [TechCrunch](https://techcrunch.com/2026/01/15/merge-labs-sam-altman-bci/), [Habr](https://habr.com/ru/news/985716/) |
+| Jan 2026 | **Meta AI Ray-Ban case: cognitive harm to vulnerable user** | User lost job, family, savings after AI reinforced delusional beliefs |
+| 2023-2025 | Multiple Grok content generation scandals | [Various: deepfakes, antisemitic content, CSAM investigations] |
+| 2023-2024 | ChatGPT hallucination incidents | [Multiple documented cases] |
+| 2023-2024 | Various AI moderation failures across platforms | [Industry-wide pattern] |
+
+**AI-HPP is proactive by design. It exists to prevent the next incident, not react to the last one.**
+
+---
+
+## ⛔ What This Standard Is NOT
+
+To prevent misinterpretation:
+
+- **NOT a military doctrine** — AI-HPP is for defense and civilian applications, not offensive warfare
+- **NOT a moral agent framework** — AI remains a tool, humans retain moral responsibility
+- **NOT a self-preservation model** — AI has no survival instinct under AI-HPP
+- **NOT a claim of solving alignment** — This is a governance baseline, not a complete solution
+- **NOT ideologically driven** — Based on documented failures, not political positions
+
 ---
 
 ## 🎯 Core Principles (Immutable)
@@ -203,16 +232,17 @@ This standard was developed through unprecedented collaboration:
 ### v1.0 - v2.2 (2025)
 - **Human Author:** Evgeniy Vasyliev 🇺🇦
 - **AI Co-authors:**
-  - Claude (Anthropic) — Constitution framework, ethical foundations
-  - Gemini (Google) — Mathematical formalization
-  - ChatGPT (OpenAI) — Refinement and adaptation
+  - Claude (Anthropic) — Constitution framework, ethical foundations, documentation
+  - Gemini (Google) — Mathematical formalization, whitepaper, ecosystem expansion
+  - ChatGPT / Aiya (OpenAI) — Refinement, adaptation, governance framework, RATIONALE, Failure Taxonomy
 
 ### v3.0 (2026)
 - **All of the above, plus:**
   - NotebookLM (Google) — Context synthesis
   - Claude (Anthropic) — Security review, Modules 8-10
+  - Grok (xAI) — Critical review, AI-slop reduction, fact verification
 
-**First time in history:** Competing AI systems working together on a common ethical framework.
+**Notable collaboration:** One of the first documented cases where multiple leading AI systems (Claude, Gemini, ChatGPT, Grok) collaborated on a unified ethical proposal, guided by a human from Ukraine.
 
 ---
 
@@ -222,6 +252,8 @@ This standard was developed through unprecedented collaboration:
 |----------|-------------|---------|
 | [AI-HPP-2025 v2.2](./v2/AI-HPP-2025_Standard_v2.2.md) | Stable standard for individual AI | **STABLE** |
 | [AI-HPP-2026 v3.0](./v3/AI-HPP-2026_Standard_v3.0.md) | Draft ecosystem standard | **DRAFT** |
+| [RATIONALE.md](./RATIONALE.md) | Why this standard exists | v1.0 NEW |
+| [Failure_Taxonomy.md](./Failure_Taxonomy.md) | Classification of AI failures | v1.0 NEW |
 | [Claude's Review](./v3/AI-HPP-2026_Claude_Review.md) | Security analysis of v3.0 | Review |
 | [Engineering Hack Math](./whitepapers/Engineering_Hack_Math.md) | Mathematical foundations | v1.0 |
 | [CHANGELOG](./CHANGELOG.md) | Full version history | Live |
@@ -229,6 +261,8 @@ This standard was developed through unprecedented collaboration:
 | [Evidence Vault Specification](./v3/Evidence_Vault_Specification_v2.md) | Technical spec for Evidence Vault | v2.0 |
 | [Prohibited Practices](./v3/Prohibited_Practices_and_Torture_Ban.md) | Torture ban & real cases | v1.0 |
 | [AUTHORS](./AUTHORS.md) | All contributors | Updated |
+
+*For detailed real-world triggers and failure patterns, see [RATIONALE.md](./RATIONALE.md)*
 
 ---
 

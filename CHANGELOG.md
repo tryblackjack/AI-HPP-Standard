@@ -5,6 +5,43 @@ All notable changes to the AI-HPP standard are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
+## [v3.2] - 2026-01-17
+
+### Added
+- **RATIONALE.md** — Why this standard exists (ChatGPT/Aiya contribution)
+- **Failure_Taxonomy.md** — Classification of AI failures (ChatGPT/Aiya contribution)
+- **Cognitive Safety Failures** — NEW class of AI harm with 5 subsections:
+  - 4.1 Delusional Reinforcement
+  - 4.2 Human-in-the-Loop Trigger for Cognitive Degradation
+  - 4.3 Vulnerable User Exploitation
+  - 4.4 Engagement De-escalation (MANDATORY)
+  - 4.5 Why This Matters for AI-HPP
+- Sources section in README with verified links to real-world incidents
+- "What This Standard Is NOT" section (clarifications to prevent misinterpretation)
+- Real-world cases documented:
+  - Pentagon Grok integration (January 13, 2026)
+  - "Not ideologically constrained" statement (January 13, 2026)
+  - Grok image editing scandal (January 14, 2026)
+  - Merge Labs BCI announcement (January 15, 2026)
+  - **Meta Ray-Ban AI cognitive harm case** (January 2026) — user lost job, family, money after AI reinforced delusions about aliens, the matrix, and special missions
+
+### Changed
+- README.md: Added "What This Standard Is NOT" section before Core Principles
+- README.md: Updated AI contributors to include ChatGPT/Aiya and Grok with detailed contributions
+- README.md: "First time in history" → "One of the first documented cases" (reduced hyperbole)
+- AUTHORS.md: Added ChatGPT/Aiya contributions (RATIONALE, Failure_Taxonomy, Cognitive Safety)
+- Key Documents table now includes RATIONALE.md and Failure_Taxonomy.md
+
+### Key Principle Added
+> "Human dignity shall never be treated as an optimization variable."
+
+### Contributors
+- **Grok (xAI)** — critical review, fact verification
+- **ChatGPT / Aiya (OpenAI)** — governance framework, RATIONALE, Failure_Taxonomy, Cognitive Safety Failures
+- **Claude (Anthropic)** — documentation, integration
+
+---
+
 ## [v3.1] - 2026-01-16
 
 ### Added

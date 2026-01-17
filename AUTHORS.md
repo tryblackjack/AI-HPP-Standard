@@ -14,7 +14,7 @@ Role: Architect, Vision, Core Philosophy
 |----|--------------|--------------|
 | **Claude** | Anthropic | Constitution framework, ethical foundations, documentation, security review, Modules 8-10 (Adversarial Robustness, Graceful Degradation, Multi-Jurisdiction) |
 | **Gemini** | Google | Mathematical formalization, Engineering Hack whitepaper, strategic analysis, v3.0 ecosystem expansion |
-| **ChatGPT** | OpenAI | Adaptation, operational logic, refinement, post-incident analysis protocols |
+| **ChatGPT / Aiya** | OpenAI | Adaptation, operational logic, refinement, post-incident analysis protocols, governance framework, RATIONALE.md, Failure_Taxonomy.md, Cognitive Safety Failures |
 | **NotebookLM** | Google | Context synthesis, knowledge integration |
 | **Grok** | xAI | Critical review for AI-slop reduction, fact verification (January 2026 events), Evidence Vault expansion, Torture Prohibition section, real-world case documentation |
 
@@ -36,11 +36,14 @@ Role: Architect, Vision, Core Philosophy
 - Anti-Kobayashi Maru mathematical formulation
 - v3.0 ecosystem modules design
 
-### ChatGPT (OpenAI)
+### ChatGPT / Aiya (OpenAI)
 - Operational logic and practical adaptation
 - Post-incident analysis protocols
 - Language refinement and accessibility
 - Cross-validation of ethical principles
+- **RATIONALE.md** — Why this standard exists
+- **Failure_Taxonomy.md** — Classification of AI failures
+- **Cognitive Safety Failures** — New class of AI harm (Meta Ray-Ban case)
 
 ### NotebookLM (Google)
 - Context synthesis across multiple sessions
@@ -86,4 +89,4 @@ This demonstrates that ethical AI development is possible through legitimate coo
 
 ---
 
-*Last updated: January 16, 2026*
+*Last updated: January 17, 2026*
