@@ -1,3 +1,5 @@
+<img width="784" height="1168" alt="image" src="https://github.com/user-attachments/assets/75b6dc85-9503-45c1-a9b1-e08d4db19a32" />
+
 # AI-HPP: Human–Machine Partnership Standard
 
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
