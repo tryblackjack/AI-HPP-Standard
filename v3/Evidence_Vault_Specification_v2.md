@@ -1,9 +1,17 @@
 # Evidence Vault Specification v0.3 (Draft)
 
 **Status**: Request for Comments (RFC)
-**Version**: 0.3 (Claude + Aiya reviews integrated)
-**Date:** January 2026
-**Contributors:** Evgeniy Vasyliev, Grok (xAI), Claude (Anthropic), ChatGPT/Aiya (OpenAI)
+**Version**: 0.3 (Claude + Aiya consensus)
+**Component**: Black Box / Immutable Logger
+**Compliance**: AI-HPP-2025 Standard (Section IV)
+**Version Date**: January 17, 2026
+
+**Contributors**:
+- Evgeniy Vasyliev — Human Lead
+- Grok (xAI) — Initial draft (v0.1)
+- Claude (Anthropic) — Schema additions, failure modes (v0.2)
+- ChatGPT/Aiya (OpenAI) — Profiles, event-triggered mode, narrative_risk (v0.3)
+
 **Previous Versions**:
 - v0.1 — Grok initial draft
 - v0.2 — Claude review (schema additions)
@@ -221,6 +229,37 @@ Result: Full immutability + low cost + high speed
     "reality_anchor_rejected": false
   },
 
+  "human_involvement": {
+    "override_attempted": false,
+    "override_successful": false,
+    "override_authority": null,
+    "override_reason": null,
+    "time_to_override_ms": null,
+    "hitl_notification_sent": true,
+    "hitl_response_received": false
+  },
+
+  "integrity_monitoring": {
+    "tampering_attempt_detected": false,
+    "hash_chain_valid": true,
+    "last_integrity_check_utc": "2026-05-20T14:29:00Z",
+    "secure_enclave_status": "HEALTHY"
+  },
+
+  "risk_assessment": {
+    "max_uncertainty_in_options": 0.20,
+    "high_uncertainty_flag": false,
+    "confidence_degradation_detected": false
+  },
+
+  "compliance_metadata": {
+    "eu_ai_act_article_13": true,
+    "eu_ai_act_article_50": true,
+    "ieee_7001_level": 2,
+    "jurisdiction": "EU",
+    "data_retention_days": 2555
+  },
+
   "signature": {
     "agent": "ed25519_signature",
     "operator": "ed25519_signature_if_hitl",
@@ -398,6 +437,11 @@ decision_id = vault.log_decision(
 | **Single point of failure** | Multi-node replication |
 | **Tampering** | Merkle trees + blockchain anchoring |
 | **Cost** | immudb (free) + Arweave (one-time, cheap) |
+| **Tampering Attempt** | Immediate alert + hash chain verification + external witness node notification |
+| **Clock Drift** | NTP sync check before each write; flag entries with uncertain timestamps |
+| **Crypto Key Compromise** | Hardware Security Module (HSM) with key rotation; multi-sig for critical entries |
+| **Network Partition** | Local queue with guaranteed delivery; merkle proof on reconnect |
+| **Malicious Firmware** | Secure boot chain; firmware hash in `system_integrity_hash` |
 
 ---
 

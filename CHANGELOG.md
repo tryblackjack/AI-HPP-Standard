@@ -6,29 +6,32 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
-## [v3.3] - 2026-01-17
+## [v3.3] - 2026-01-17 — Stabilization Release
 
 ### Added
-- **Evidence Vault v0.3** — Claude + Aiya reviews integrated:
-
-  **Aiya's contributions (CRITICAL):**
-  - Two Vault Profiles: EV-P (Physical) and EV-C (Cognitive)
+- **Evidence Vault v0.3** — Claude + Aiya consensus:
+  - Two Profiles: EV-P (Physical) and EV-C (Cognitive)
   - Event-Triggered Mode (NOT continuous surveillance)
   - Applicability section (high-risk systems only)
-  - `narrative_risk` field for Meta/Grok-type cases
-
-  **Claude's contributions:**
-  - Human Involvement section (HITL details)
-  - Cognitive Safety fields
-  - Tampering Detection
-  - Uncertainty Threshold Flags
-  - Legal Compliance Mapping (EU AI Act, IEEE 7001)
+  - `narrative_risk` field for cognitive safety
+  - `human_involvement`, `integrity_monitoring`, `risk_assessment`, `compliance_metadata` fields
   - 5 additional Failure Modes
+- **Emerging Technologies** section in RATIONALE.md (biocomputing flagged as future scope)
+
+### Changed
+- Global editorial normalization applied to all documentation
+- Unified terminology and tone across repository
+- Cleaned up .gitignore
+
+### Notes
+- This is the **stabilization release** before community handoff
+- No further editorial work planned for v3.x
+- Repository ready for community development
 
 ### Contributors
-- Claude (Anthropic) — schema additions, failure modes
-- ChatGPT/Aiya (OpenAI) — profiles, event-triggered mode, narrative_risk
-- Grok (xAI) — initial draft
+- Grok (xAI) — Evidence Vault initial draft, critical review
+- Claude (Anthropic) — Schema additions, editorial normalization
+- ChatGPT/Aiya (OpenAI) — Profiles, event-triggered mode, Emerging Technologies text
 
 ---
 

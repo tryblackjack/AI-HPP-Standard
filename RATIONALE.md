@@ -6,7 +6,7 @@ AI-HPP-2025 was initiated in response to recurring patterns observed in the depl
 
 The purpose of AI-HPP is to establish a governance baseline for AI systems that possess decision-making authority with real-world consequences. The standard exists to define boundaries, responsibilities, and non-negotiable principles before such systems become irreversibly embedded into critical human processes.
 
-**AI-HPP is not a reaction to individual headlines. It is a response to recurring classes of failure.**
+**AI-HPP addresses recurring, documented failure patterns, not singular incidents.**
 
 ---
 
@@ -31,8 +31,7 @@ AI-HPP is:
 
 > AI-HPP-2025 is written from the perspective of **observed and anticipated failures**, not idealized system behavior.
 
-We do not describe how AI should behave in perfect conditions.
-We describe what happens when things go wrong — and what safeguards must exist.
+AI-HPP specifies operational constraints for documented failure modes rather than idealized behavior.
 
 This approach is:
 - Testable (failures are observable)
@@ -125,9 +124,33 @@ These exclusions are not limitations. They are safeguards.
 
 ## Proactive, Not Reactive
 
-AI-HPP is proactive by design. It is intended to exist **before** the next incident, not after it.
+AI-HPP applies to systems during specification phase, informed by historical failure analysis.
 
-The goal is not to respond to headlines, but to establish a language and framework that prevents the conditions leading to those headlines.
+The standard establishes governance requirements before deployment rather than incident-triggered regulation.
+
+---
+
+## Emerging Technologies (Future Scope)
+
+AI-HPP v3.x is intentionally scoped to silicon-based AI systems with decision-making capability and observable, auditable failure modes.
+
+However, early-stage experiments with alternative intelligence substrates indicate potential future governance challenges that cannot be addressed through the current framework without speculative assumptions.
+
+These include, but are not limited to:
+
+- **Biocomputing systems**, such as brain organoids controlling robotic platforms (e.g., MetaBOC, DishBrain, 2024)
+- **Hybrid biological–silicon intelligence**
+- Other non-silicon substrates with potential cognitive or sensory properties
+
+Such systems raise unresolved questions that currently lack operational definitions, measurable indicators, or auditable mechanisms, including:
+
+- Applicability of the W_life → ∞ invariant to non-human biological substrates
+- Ethical handling of potentially sensitive biological components (e.g., shutdown, prolonged stimulation, consent)
+- Feasibility of dedicated audit or Evidence Vault profiles (e.g., EV-B: Biocomputing Safety)
+
+In the absence of reliable metrics, failure taxonomies, and verification pipelines, these domains are explicitly **OUT OF SCOPE** for AI-HPP v3.x.
+
+They are recorded here solely to prevent governance blind spots and are flagged as **emerging risks** for consideration in future major versions (e.g., v4.0+), contingent on sufficient empirical maturity and engineering-grade observability.
 
 ---
 

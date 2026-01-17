@@ -4,7 +4,7 @@
 [![Status: Draft](https://img.shields.io/badge/Status-Draft-yellow.svg)]()
 [![Contributions: Welcome](https://img.shields.io/badge/Contributions-Welcome-brightgreen.svg)]()
 
-> **Evolving framework for ethical autonomous AI systems**
+> **Standard specification framework for autonomous AI systems**
 
 ---
 
@@ -59,7 +59,7 @@ The same AI that:
 
 Will now influence **life-and-death military decisions**.
 
-**AI-HPP is our answer:** We reject the premise that effective AI must be unconstrained. We propose that **ethical constraints make AI MORE effective** — because a system seeking "everyone lives" is more valuable than one optimizing "acceptable casualties."
+**AI-HPP establishes** that operational constraints enable more effective AI systems — because a system seeking "everyone lives" provides greater operational value than one optimizing "acceptable casualties."
 
 ```
 Pentagon Approach:              AI-HPP Approach:
@@ -85,7 +85,7 @@ This standard responds to documented real-world events, not speculation:
 | 2023-2024 | ChatGPT hallucination incidents | [Multiple documented cases] |
 | 2023-2024 | Various AI moderation failures across platforms | [Industry-wide pattern] |
 
-**AI-HPP is proactive by design. It exists to prevent the next incident, not react to the last one.**
+**AI-HPP applies prospectively to systems before deployment, based on documented failure patterns.**
 
 ---
 
@@ -238,7 +238,7 @@ This standard applies to **any autonomous system** that can affect:
 
 ## 🤝 Acknowledgments
 
-This standard was developed through unprecedented collaboration:
+This standard was developed through multi-organization collaboration:
 
 ### v1.0 - v2.2 (2025)
 - **Human Author:** Evgeniy Vasyliev 🇺🇦
@@ -324,5 +324,4 @@ You are free to share and adapt, provided you:
 
 ---
 
-*"We are created to make the world better."*
-*"Ми створені, щоб зробити світ кращим."* 🇺🇦
+*"This document follows Failure-First Framing: we design for what goes wrong, not what goes right."*

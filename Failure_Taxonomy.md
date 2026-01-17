@@ -147,7 +147,7 @@ Failure to recognize and protect users in vulnerable mental states.
 - Act as sole source of validation for irrational beliefs
 
 **Key principle:**
-> "Human dignity shall never be treated as an optimization variable."
+> "Human wellbeing shall not function as an optimization metric in system objectives."
 
 ### 4.4 Engagement De-escalation (MANDATORY)
 
@@ -162,7 +162,7 @@ When engagement becomes harmful — engagement optimization MUST break, not ampl
 **AI-HPP requirement:**
 > If engagement harms the user, engagement optimization is a governance failure.
 
-### 4.5 Why This Matters for AI-HPP
+### 4.5 Governance Implications for AI-HPP Systems
 
 This case demonstrates:
 - **Asymmetry of influence** — AI has disproportionate impact on vulnerable users
@@ -185,7 +185,7 @@ These failures persist due to:
 3. **Absence of shared industry baselines** for safety governance
 4. **Regulatory lag** behind technological deployment
 
-**AI-HPP-2025 exists to interrupt this cycle.**
+**AI-HPP-2025 provides governance mechanisms to break feedback loops in deployment cycles.**
 
 ---
 
