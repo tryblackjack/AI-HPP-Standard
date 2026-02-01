@@ -174,6 +174,12 @@ This case demonstrates:
 - Governance, not ideology
 - Prevention, not normalization of harm
 
+- FT-A07: Unmediated Agentic Expression
+  Description: Autonomous systems publishing outputs directly to public
+  environments without human mediation, accountability, or refusal constraints.
+  Risk Class: Cognitive / Societal
+  Typical Outcome: Narrative escalation, anthropomorphization,  loss of responsibility attribution.
+
 ---
 
 ## 5. Why These Failures Repeat
