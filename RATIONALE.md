@@ -134,6 +134,7 @@ The standard establishes governance requirements before deployment rather than i
 
 AI-HPP v3.x is intentionally scoped to silicon-based AI systems with decision-making capability and observable, auditable failure modes.
 
+
 However, early-stage experiments with alternative intelligence substrates indicate potential future governance challenges that cannot be addressed through the current framework without speculative assumptions.
 
 These include, but are not limited to:
@@ -151,6 +152,14 @@ Such systems raise unresolved questions that currently lack operational definiti
 In the absence of reliable metrics, failure taxonomies, and verification pipelines, these domains are explicitly **OUT OF SCOPE** for AI-HPP v3.x.
 
 They are recorded here solely to prevent governance blind spots and are flagged as **emerging risks** for consideration in future major versions (e.g., v4.0+), contingent on sufficient empirical maturity and engineering-grade observability.
+
+### Emerging Signals and Near-Term Risks (Non-Exhaustive)
+
+The following risks are actively discussed by regulators, researchers,and civil society but may not yet correspond to a single confirmed incident:
+
+- potential regulatory action under EU DSA for generative AI platforms
+- propagation of AI-generated knowledge sources between models
+- increasing legal exposure for cognitive harm to vulnerable users
 
 ---
 
