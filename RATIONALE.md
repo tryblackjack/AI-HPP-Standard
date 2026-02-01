@@ -40,6 +40,36 @@ This approach is:
 
 ---
 
+### Unmediated Agentic Publication (Emerging Risk)
+
+Recent systems allow autonomous AI agents to publish content directly into
+public social environments without human editorial review, moderation, or
+explicit accountability attribution.
+
+This class of systems introduces a distinct governance failure mode:
+
+- Outputs are interpreted as intentional or agentic statements,
+  despite lacking moral agency or responsibility.
+- Extremal or adversarial narratives are socially reinforced
+  without escalation or refusal mechanisms.
+- No Human-in-the-Loop exists at the point of publication.
+- No Evidence Vault records rejected alternatives or safety checks.
+
+This is not a question of AI intent.
+It is a failure of mediation, ownership, and auditability.
+
+AI-HPP treats unmediated agent publication in public or semi-public environments
+as a high-risk configuration requiring explicit safeguards, including:
+- accountable ownership of published outputs,
+- refusal of existential or violent narratives,
+- mandatory audit logging,
+- and defined escalation or shutdown paths.
+
+Systems lacking these constraints are considered non-compliant
+with AI-HPP agentic deployment guidance.
+---
+
+
 ## Real-World Triggers (Documented, Public, Non-Political)
 
 The creation of this standard was informed by multiple publicly documented incidents involving widely deployed AI systems. These incidents are referenced not as accusations, but as empirical signals of systemic risk.
