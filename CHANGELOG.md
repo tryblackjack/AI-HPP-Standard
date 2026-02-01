@@ -5,6 +5,9 @@ All notable changes to the AI-HPP standard are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
+## v3.3.1 (2026-02-01)
+- Added illustrative failure cases from Black Mirror and other series in examples/
+- Expanded Westworld case with detailed failure modes and relevance to AI-HPP
 
 ## [v3.3] - 2026-01-17 — Stabilization Release
 
