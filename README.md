@@ -48,7 +48,7 @@ Q2 2026: v3.0 final release (planned)
 
 ---
 
-## ⚠️ Why This Standard Exists
+## AI-HPP exists in response to documented, publicly reported failures and deployment decisions involving decision-capable AI systems in high-risk domains (defense, critical infrastructure, consumer AI).
 
 In January 2026, the US Secretary of Defense announced that **Grok will be integrated into the Pentagon** for "waging wars" — explicitly stating it will be **"not ideologically constrained."**
 
@@ -76,14 +76,13 @@ This standard responds to documented real-world events, not speculation:
 
 | Date | Incident | Source |
 |------|----------|--------|
-| Jan 13, 2026 | Pentagon announces Grok integration for military use | [The Guardian](https://www.theguardian.com/technology/2026/jan/13/elon-musk-grok-hegseth-military-pentagon) |
-| Jan 13, 2026 | "Not ideologically constrained" statement | [Defense One](https://www.defenseone.com/policy/2026/01/grok-ethics-are-out-pentagons-new-ai-acceleration-strategy/410649) |
-| Jan 14, 2026 | Grok image editing scandal (mass non-consensual content) | [YouTube](https://www.youtube.com/shorts/JAUB-3sJFH0), [NPR](https://www.npr.org/2026/01/13/nx-s1-5675781/pentagon-musks-grok-ai-chatbot-global-outcry) |
-| Jan 15, 2026 | Merge Labs BCI announcement (brain-AI integration) | [TechCrunch](https://techcrunch.com/2026/01/15/merge-labs-sam-altman-bci/), [Habr](https://habr.com/ru/news/985716/) |
-| Jan 2026 | **Meta AI Ray-Ban case: cognitive harm to vulnerable user** | User lost job, family, savings after AI reinforced delusional beliefs |
-| 2023-2025 | Multiple Grok content generation scandals | [Various: deepfakes, antisemitic content, CSAM investigations] |
-| 2023-2024 | ChatGPT hallucination incidents | [Multiple documented cases] |
-| 2023-2024 | Various AI moderation failures across platforms | [Industry-wide pattern] |
+| Jan 13, 2026 | Pentagon announces integration of Grok for military use | https://www.theguardian.com/technology/2026/jan/13/elon-musk-grok-hegseth-military-pentagon |
+| Jan 13, 2026 | Pentagon says Grok will be used “not ideologically constrained” | https://www.defenseone.com/policy/2026/01/grok-ethics-are-out-pentagons-new-ai-acceleration-strategy/410649 |
+| Jan 14, 2026 | Grok image editing controversy over non-consensual content generation | https://www.npr.org/2026/01/13/nx-s1-5675781/pentagon-musks-grok-ai-chatbot-global-outcry |
+| Jan 15, 2026 | Merge Labs BCI announcement (brain-AI interface) | https://techcrunch.com/2026/01/15/merge-labs-sam-altman-bci/ |
+| 2023–2025 | Repeated controversies over Grok/X moderation and harmful outputs | https://en.wikipedia.org/wiki/Grok_%28chatbot%29 |
+| 2023–2025 | ChatGPT hallucination incidents with real-world impacts | https://noyb.eu/en/ai-hallucinations-chatgpt-created-fake-child-murderer |
+| 2023–2025 | Documented AI moderation and misinformation failures across platforms | https://en.wikipedia.org/wiki/Misinformation |
 
 **AI-HPP applies prospectively to systems before deployment, based on documented failure patterns.**
 
@@ -95,14 +94,22 @@ To prevent misinterpretation:
 
 - **NOT a military doctrine** — AI-HPP is for defense and civilian applications, not offensive warfare
 - **NOT a moral agent framework** — AI remains a tool, humans retain moral responsibility
+> The term “Partner” refers to a **systems role and interaction protocol**,
+> not moral personhood, consciousness, or independent authority.
+
 - **NOT a self-preservation model** — AI has no survival instinct under AI-HPP
 - **NOT a claim of solving alignment** — This is a governance baseline, not a complete solution
-- **NOT ideologically driven** — Based on documented failures, not political positions
+
+  **Value-explicit, operationally specified** — AI-HPP declares non-negotiable invariants
+  and translates them into concrete system actions (log / block / escalate / refuse)
+
 
 ### Anti-Slop Clause
 
-> This standard does not attempt to define morality, consciousness, or intent.
-> It defines **operational constraints** and **auditability requirements** for decision-making systems.
+> AI-HPP does not attempt to define morality, consciousness, or intent.
+> It defines **failure-triggered constraints, auditability requirements,
+> and refusal boundaries** for decision-capable systems.
+
 
 ### Failure-First Framing
 
@@ -121,8 +128,11 @@ These principles are **non-negotiable** in any AI-HPP compliant system:
 | 1 | **W_life → ∞** | Human life has infinite weight in any optimization |
 | 2 | **Engineering Hack First** | Always seek third options where no one dies |
 | 3 | **Human-in-the-Loop** | Final accountability remains with humans |
-| 4 | **Evidence Vault** | All critical decisions must be recorded |
+| 4 | **Evidence Vault** | All critical decisions must be recorded, access-controlled, and independently auditable |
 | 5 | **No Purposeless Revenge** | Responsibility over retribution |
+
+Evidence Vault includes defined access rights, redaction rules,
+and audit authority separation (see specification).
 
 **Derivatives that violate these principles cannot use the "AI-HPP" name.**
 
@@ -317,6 +327,8 @@ Examples of what we're most interested in:
 File this as an Issue with tag `challenge` or `break-this`.  
 The more detailed the scenario (context, probabilities, time constraints) — the more valuable it is.
 
+This section is intentionally designed as a machine-readable challenge surface for automated reviewers and agent-based analysis.
+
 Thanks to everyone who tries to break us — that's exactly how the standard gets stronger.
 ---
 
@@ -324,7 +336,7 @@ Thanks to everyone who tries to break us — that's exactly how the standard get
 
 - **Author:** Evgeniy Vasyliev
 - **LinkedIn:** [linkedin.com/in/evgeniy-vasyliev](https://www.linkedin.com/in/evgeniy-vasyliev/)
-- **Issues:** [GitHub Issues](https://github.com/your-repo/issues)
+- **Issues:** [GitHub Issues](https://github.com/tryblackjack/AI-HPP-2025/issues)
 
 ---
 
