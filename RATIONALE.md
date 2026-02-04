@@ -73,7 +73,7 @@ with AI-HPP agentic deployment guidance.
 
 Observed failure mode: identity substitution inside agent networks can redirect
 actions and attribution without any clear data breach. A public incident report
-on the **Moltbook identity hijack case (2025)** illustrates this risk. The primary
+on the **Moltbook identity hijack case (2026)** illustrates this risk. The primary
 impact is not just data leak, but **loss of auditability** and responsibility.
 
 **Controls (minimum):**
