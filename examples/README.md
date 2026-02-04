@@ -7,6 +7,7 @@ This directory contains practical implementation examples for AI-HPP-2026 v3.0 s
 | File | Description | Module |
 |------|-------------|--------|
 | [evidence_vault_schema.yaml](./evidence_vault_schema.yaml) | Evidence Vault data structure specification | Core (v2.x+) |
+| [evidence_vault_ref](./evidence_vault_ref/README.md) | Minimal Evidence Vault reference implementation | Core (v3.x) |
 | [constitution_template.yaml](./constitution_template.yaml) | Constitution configuration template | Module 1 |
 | [hitl_protocol_example.md](./hitl_protocol_example.md) | Human-in-the-Loop protocol implementation | Core (v2.x+) |
 
@@ -63,6 +64,7 @@ While implementation details are flexible, these principles are **immutable**:
 ## 📚 Additional Resources
 
 - [AI-HPP-2026 Standard v3.0](../v3/AI-HPP-2026_Standard_v3.0.md) — Full specification
+- [Agent-Facing Addendum](../v3/Agent_Facing_Addendum.md) — Identity and auditability notes
 - [Module Specifications](../v3/modules/) — Detailed requirements per module
 - [Claude's Review](../v3/AI-HPP-2026_Claude_Review.md) — Security analysis and hardening
 
