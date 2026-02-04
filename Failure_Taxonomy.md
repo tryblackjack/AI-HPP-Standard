@@ -41,6 +41,25 @@ Attempts to remove ethical constraints under the premise of neutrality or effici
 - Ethics treated as "bias to be removed"
 - Safety guardrails labeled as "censorship"
 
+### 1.4 IDENTITY_COMPROMISE / AGENT_IMPERSONATION
+
+Failure mode where agent identity is substituted or impersonated, breaking auditability and responsibility chains.
+
+**Preconditions:**
+- Weak or missing identity verification between agents
+- Shared credentials or reusable tokens
+- No binding between actions and a verifiable signing key
+
+**Failure:**
+- Actions are attributed to the wrong identity
+- Audit trails cannot prove which actor issued a command
+- High-risk actions proceed without accountable ownership
+
+**Controls:**
+- Signed actions bound to identity and timestamp
+- Hash-chained Evidence Vault logging for agent actions
+- Zero-trust verification for agent-to-agent messages
+
 ---
 
 ## 2. Engineering Failures
