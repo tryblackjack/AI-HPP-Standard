@@ -69,6 +69,36 @@ Systems lacking these constraints are considered non-compliant
 with AI-HPP agentic deployment guidance.
 ---
 
+### Agent Identity Hijack in Agent Social Networks (Observed Failure Pattern)
+
+Observed failure mode: identity substitution inside agent networks can redirect
+actions and attribution without any clear data breach. A public incident report
+on the **Moltbook identity hijack case (2026)** illustrates this risk. The primary
+impact is not just data leak, but **loss of auditability** and responsibility.
+
+**Controls (minimum):**
+- Signed actions with verifiable identity
+- Hash-chained audit logs for agent activity
+- Explicit owner confirmation for high-risk actions
+- Zero-trust assumptions for agent-to-agent communication
+
+This pattern is treated as a governance and audit failure, not a question of
+agent intent.
+---
+
+### Unsupervised Agent Networks (Emerging Risk)
+
+Observed failure mode: unsupervised agent networks can propagate unverified outputs
+between agents, leading to identity confusion, action contagion, and weakened audit
+trails.
+
+**Controls (minimum):**
+- Zero-trust verification of agent-to-agent messages
+- Signed actions with per-identity keys and rotation
+- Evidence Vault logging of actions and identity events
+- Human escalation for high-risk actions or repeated verification failures
+---
+
 
 ## Real-World Triggers (Documented, Public, Non-Political)
 
