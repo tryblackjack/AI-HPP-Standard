@@ -51,6 +51,8 @@ Failure mode where an agent’s identity is accepted without cryptographic proof
 - Audit logging of identity changes and key events (Evidence Vault)
 - Human escalation for high-risk actions or repeated verification failures
 
+**Example:** [Illustrative Case: Unmoderated Agent Social Platforms](./examples/agent_social_platform_failure_cases.md)
+
 ### 1.5 Autonomous Financial Execution / Agent-to-Agent Marketplace Risk
 
 Agents execute paid tasks, hold deposits, or transact in marketplaces without explicit human approval.
