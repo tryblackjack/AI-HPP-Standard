@@ -46,6 +46,8 @@ Q1 2026: Community review & hardening
 Q2 2026: v3.0 final release (planned)
 ```
 
+For current risk signals and incident context, see [examples/feb_2026_risk_signals.md](./examples/feb_2026_risk_signals.md).
+
 ---
 
 ## AI-HPP exists in response to documented, publicly reported failures and deployment decisions involving decision-capable AI systems in high-risk domains (defense, critical infrastructure, consumer AI).
@@ -276,6 +278,8 @@ This standard was developed through multi-organization collaboration:
 | [RATIONALE.md](./RATIONALE.md) | Why this standard exists | v1.0 NEW |
 | [Failure_Taxonomy.md](./Failure_Taxonomy.md) | Classification of AI failures | v1.0 NEW |
 | [Agent_Facing_Addendum.md](./Agent_Facing_Addendum.md) | Agent operational constraints | v1.0 NEW |
+| [Feb 2026 Risk Signals](./examples/feb_2026_risk_signals.md) | Non-normative risk signals (Feb 2026) | v1.0 NEW |
+| [Agent-Facing Addendum (Examples)](./examples/agent_facing_addendum.md) | Operational rules for autonomous agents | v1.0 NEW |
 | [Claude's Review](./v3/AI-HPP-2026_Claude_Review.md) | Security analysis of v3.0 | Review |
 | [Engineering Hack Math](./whitepapers/Engineering_Hack_Math.md) | Mathematical foundations | v1.0 |
 | [CHANGELOG](./CHANGELOG.md) | Full version history | Live |

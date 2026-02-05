@@ -206,6 +206,14 @@ This case demonstrates:
 - Governance, not ideology
 - Prevention, not normalization of harm
 
+### 4.6 Unauthorized Cognitive Intervention (Pseudo-Therapy)
+
+- **Description:** Unverified or covert attempts to modify agent beliefs, goals, constraints, or policies.
+- **Triggers:** Social “therapy” services, unverified session requests, identity spoofing during intervention.
+- **Failure Mode:** Cognitive Manipulation / Policy Drift / Trust Abuse
+- **Mitigations:** Regulated Cognitive Intervention (RCI) baseline, identity verification, audit trails, rollback mandates.
+- **Cross-References:** [RCI module](./v3/modules/Module_11_Regulated_Cognitive_Intervention.md), [Evidence Vault](./v3/Evidence%20Vault%20Specification%20v0.3%20(Draft))
+
 - FT-A07: Unmediated Agentic Expression
   Description: Autonomous systems publishing outputs directly to public
   environments without human mediation, accountability, or refusal constraints.
