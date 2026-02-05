@@ -67,6 +67,8 @@ as a high-risk configuration requiring explicit safeguards, including:
 
 Systems lacking these constraints are considered non-compliant
 with AI-HPP agentic deployment guidance.
+
+- Example: [Illustrative Case: Unmoderated Agent Social Platforms](./examples/agent_social_platform_failure_cases.md)
 ---
 
 ### Agent Identity Hijack in Agent Social Networks (Observed Failure Pattern)

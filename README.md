@@ -292,6 +292,8 @@ This standard was developed through multi-organization collaboration:
 
 *For detailed real-world triggers and failure patterns, see [RATIONALE.md](./RATIONALE.md)*
 
+Ukrainian translations: [translations/uk-UA/README.md](./translations/uk-UA/README.md)
+
 ---
 
 ## 🛡️ Core Principles Protection
