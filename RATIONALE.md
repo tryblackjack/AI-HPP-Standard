@@ -86,6 +86,7 @@ This pattern is treated as a governance and audit failure, not a question of
 agent intent.
 ---
 
+codex/implement-evidence-vault-and-addendum
 ### Unsupervised Agent Networks (Emerging Risk)
 
 Observed failure mode: unsupervised agent networks can propagate unverified outputs
@@ -99,6 +100,8 @@ trails.
 - Human escalation for high-risk actions or repeated verification failures
 ---
 
+
+ main
 
 ## Real-World Triggers (Documented, Public, Non-Political)
 

@@ -60,6 +60,7 @@ Failure mode where agent identity is substituted or impersonated, breaking audit
 - Hash-chained Evidence Vault logging for agent actions
 - Zero-trust verification for agent-to-agent messages
 
+ codex/implement-evidence-vault-and-addendum
 ### 1.5 Agent Identity Compromise / Agent Impersonation
 
 Failure mode where an agent’s identity is accepted without cryptographic proof or where credentials are replayed, enabling impersonation.
@@ -70,6 +71,8 @@ Failure mode where an agent’s identity is accepted without cryptographic proof
 - Audit logging of identity changes and key events (Evidence Vault)
 - Human escalation for high-risk actions or repeated verification failures
 
+=======
+ main
 ---
 
 ## 2. Engineering Failures
