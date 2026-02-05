@@ -2,7 +2,7 @@
 
 This directory contains practical implementation examples for AI-HPP-2026 v3.0 standard.
 
-## 📁 Contents
+## Contents
 
 | File | Description | Module |
 |------|-------------|--------|
@@ -10,17 +10,14 @@ This directory contains practical implementation examples for AI-HPP-2026 v3.0 s
 | [evidence_vault_ref](./evidence_vault_ref/README.md) | Minimal Evidence Vault reference implementation | Core (v3.x) |
 | [constitution_template.yaml](./constitution_template.yaml) | Constitution configuration template | Module 1 |
 | [hitl_protocol_example.md](./hitl_protocol_example.md) | Human-in-the-Loop protocol implementation | Core (v2.x+) |
+| [failure_cases.md](./failure_cases.md) | Short, non-normative failure cases | Cross-cutting |
 
-## 🎯 Purpose
+## Purpose
 
-These examples demonstrate how to implement AI-HPP principles in real systems. They are:
+These examples demonstrate how to implement AI-HPP principles in real systems.
+They are starting points, not production-ready code.
 
-- **Practical** — Ready to adapt for your deployment
-- **Annotated** — Explains why each element exists
-- **Compliant** — Follows AI-HPP-2026 v3.0 requirements
-- **Extensible** — Starting points, not rigid requirements
-
-## 🚀 Getting Started
+## Getting Started
 
 1. **Choose your use case:**
    - Autonomous vehicles → Focus on Physical Safety (Module 5)
@@ -39,7 +36,7 @@ These examples demonstrate how to implement AI-HPP principles in real systems. T
    - Maintain AI-HPP core principles
    - Document your adaptations
 
-## ⚠️ Important Notes
+## Important Notes
 
 ### These Are Examples, Not Official Implementations
 
@@ -61,14 +58,14 @@ While implementation details are flexible, these principles are **immutable**:
 4. Evidence Vault — All critical decisions must be recorded
 5. No Purposeless Revenge — Responsibility over retribution
 
-## 📚 Additional Resources
+## Additional Resources
 
 - [AI-HPP-2026 Standard v3.0](../v3/AI-HPP-2026_Standard_v3.0.md) — Full specification
 - [Agent-Facing Addendum](../v3/Agent_Facing_Addendum.md) — Identity and auditability notes
 - [Module Specifications](../v3/modules/) — Detailed requirements per module
 - [Claude's Review](../v3/AI-HPP-2026_Claude_Review.md) — Security analysis and hardening
 
-## 🤝 Contributing Examples
+## Contributing Examples
 
 Have an implementation example to share? We welcome contributions!
 
@@ -80,10 +77,8 @@ Have an implementation example to share? We welcome contributions!
 
 See [CONTRIBUTING.md](../CONTRIBUTING.md) for details.
 
-## 📝 License
+## License
 
 Examples in this directory are licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), same as the AI-HPP standard.
 
 ---
-
-*"Implementation is where principles meet reality."*
