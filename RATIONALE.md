@@ -191,6 +191,12 @@ AI-HPP applies to systems during specification phase, informed by historical fai
 
 The standard establishes governance requirements before deployment rather than incident-triggered regulation.
 
+## Feb 2026 Risk Signals (Failure-First Update)
+
+Observed early-2026 risk signals include deepfake and synthetic media escalation, broad-access assistant credential risks (Moltbot-style), AI companion dependency harms, agentic code acceleration with supply-chain exposure, and compute arms race safety debt. This is an **observed failure surface inventory**, not a normative standard by itself; see [examples/feb_2026_risk_signals.md](./examples/feb_2026_risk_signals.md) for the illustrative list.
+
+Failure-first updates treat emerging incidents as signals to refine governance baselines before harms scale, preserving auditability and human oversight as deployment velocity increases.
+
 ---
 
 ## Emerging Technologies (Future Scope)
