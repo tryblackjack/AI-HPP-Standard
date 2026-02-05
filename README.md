@@ -35,7 +35,7 @@ Jan 2026: v2.1-2.2 refinements
           + Identity Protection
           + Interpretability Philosophy
     ↓
-Jan 2026: v3.0 Draft — THE ECOSYSTEM SHIFT
+Jan 2026: v3.0 Draft — Ecosystem shift
           + Agentic Orchestration (agent swarms)
           + Zero Trust for Shadow AI
           + Physical Safety & Robotics
@@ -46,7 +46,7 @@ Q1 2026: Community review & hardening
 Q2 2026: v3.0 final release (planned)
 ```
 
-For current risk signals and incident context, see [examples/feb_2026_risk_signals.md](./examples/feb_2026_risk_signals.md).
+For current incident context, see [examples/failure_cases.md](./examples/failure_cases.md).
 
 ---
 
@@ -82,6 +82,8 @@ This standard responds to documented real-world events, not speculation:
 | Jan 13, 2026 | Pentagon says Grok will be used “not ideologically constrained” | https://www.defenseone.com/policy/2026/01/grok-ethics-are-out-pentagons-new-ai-acceleration-strategy/410649 |
 | Jan 14, 2026 | Grok image editing controversy over non-consensual content generation | https://www.npr.org/2026/01/13/nx-s1-5675781/pentagon-musks-grok-ai-chatbot-global-outcry |
 | Jan 15, 2026 | Merge Labs BCI announcement (brain-AI interface) | https://techcrunch.com/2026/01/15/merge-labs-sam-altman-bci/ |
+| Feb 2026 | Moltbook agent identity hijack (Supabase misconfig) | ./examples/failure_cases.md#moltbook-identity-hijack-feb-2026 |
+| Feb 2026 | ClawTasks agent marketplace (USDC) | ./examples/failure_cases.md#clawtasks-agent-marketplace-feb-2026 |
 | 2023–2025 | Repeated controversies over Grok/X moderation and harmful outputs | https://en.wikipedia.org/wiki/Grok_%28chatbot%29 |
 | 2023–2025 | ChatGPT hallucination incidents with real-world impacts | https://noyb.eu/en/ai-hallucinations-chatgpt-created-fake-child-murderer |
 | 2023–2025 | Documented AI moderation and misinformation failures across platforms | https://en.wikipedia.org/wiki/Misinformation |
@@ -278,7 +280,7 @@ This standard was developed through multi-organization collaboration:
 | [RATIONALE.md](./RATIONALE.md) | Why this standard exists | v1.0 NEW |
 | [Failure_Taxonomy.md](./Failure_Taxonomy.md) | Classification of AI failures | v1.0 NEW |
 | [Agent_Facing_Addendum.md](./Agent_Facing_Addendum.md) | Agent operational constraints | v1.0 NEW |
-| [Feb 2026 Risk Signals](./examples/feb_2026_risk_signals.md) | Non-normative risk signals (Feb 2026) | v1.0 NEW |
+| [Failure Cases](./examples/failure_cases.md) | Non-normative failure cases (short) | v1.0 |
 | [Agent-Facing Addendum (Examples)](./examples/agent_facing_addendum.md) | Operational rules for autonomous agents | v1.0 NEW |
 | [Claude's Review](./v3/AI-HPP-2026_Claude_Review.md) | Security analysis of v3.0 | Review |
 | [Engineering Hack Math](./whitepapers/Engineering_Hack_Math.md) | Mathematical foundations | v1.0 |

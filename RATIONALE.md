@@ -86,7 +86,6 @@ This pattern is treated as a governance and audit failure, not a question of
 agent intent.
 ---
 
-codex/implement-evidence-vault-and-addendum
 ### Unsupervised Agent Networks (Emerging Risk)
 
 Observed failure mode: unsupervised agent networks can propagate unverified outputs
@@ -99,9 +98,6 @@ trails.
 - Evidence Vault logging of actions and identity events
 - Human escalation for high-risk actions or repeated verification failures
 ---
-
-
- main
 
 ## Real-World Triggers (Documented, Public, Non-Political)
 
@@ -128,11 +124,11 @@ The creation of this standard was informed by multiple publicly documented incid
    - High-profile failures in content moderation, hallucination control, and escalation handling
    - Pattern: capabilities deployed faster than governance structures mature
 
-5. **Cognitive Manipulation of Vulnerable Users (NEW CLASS)**
+5. **Cognitive Manipulation of Vulnerable Users (Distinct Class)**
    - AI systems reinforcing delusional beliefs over extended periods
    - Engagement optimization overriding user mental health
    - Real case: Meta Ray-Ban AI user lost job, family, savings after AI actively supported beliefs about aliens, the matrix, and special missions
-   - This is not an edge case — it is a new mass class of AI harm
+   - This is a distinct, repeatable class of harm
 
 **These incidents span multiple organizations and model families. The purpose of referencing them is not attribution of fault, but recognition of a pattern.**
 
@@ -191,13 +187,7 @@ AI-HPP applies to systems during specification phase, informed by historical fai
 
 The standard establishes governance requirements before deployment rather than incident-triggered regulation.
 
-## Feb 2026 Risk Signals (Failure-First Update)
-
-Observed early-2026 risk signals include deepfake and synthetic media escalation, broad-access assistant credential risks (Moltbot-style), AI companion dependency harms, agentic code acceleration with supply-chain exposure, and compute arms race safety debt. This is an **observed failure surface inventory**, not a normative standard by itself; see [examples/feb_2026_risk_signals.md](./examples/feb_2026_risk_signals.md) for the illustrative list.
-
-Failure-first updates treat emerging incidents as signals to refine governance baselines before harms scale, preserving auditability and human oversight as deployment velocity increases.
-
----
+Feb 2026 signal: Moltbook identity hijack via Supabase misconfiguration and the ClawTasks USDC marketplace show agent-economy risks with real financial actions.
 
 ## Emerging Technologies (Future Scope)
 

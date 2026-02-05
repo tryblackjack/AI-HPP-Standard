@@ -41,27 +41,7 @@ Attempts to remove ethical constraints under the premise of neutrality or effici
 - Ethics treated as "bias to be removed"
 - Safety guardrails labeled as "censorship"
 
-### 1.4 IDENTITY_COMPROMISE / AGENT_IMPERSONATION
-
-Failure mode where agent identity is substituted or impersonated, breaking auditability and responsibility chains.
-
-**Preconditions:**
-- Weak or missing identity verification between agents
-- Shared credentials or reusable tokens
-- No binding between actions and a verifiable signing key
-
-**Failure:**
-- Actions are attributed to the wrong identity
-- Audit trails cannot prove which actor issued a command
-- High-risk actions proceed without accountable ownership
-
-**Controls:**
-- Signed actions bound to identity and timestamp
-- Hash-chained Evidence Vault logging for agent actions
-- Zero-trust verification for agent-to-agent messages
-
- codex/implement-evidence-vault-and-addendum
-### 1.5 Agent Identity Compromise / Agent Impersonation
+### 1.4 Agent Identity Compromise / Agent Impersonation
 
 Failure mode where an agent’s identity is accepted without cryptographic proof or where credentials are replayed, enabling impersonation.
 
@@ -71,8 +51,21 @@ Failure mode where an agent’s identity is accepted without cryptographic proof
 - Audit logging of identity changes and key events (Evidence Vault)
 - Human escalation for high-risk actions or repeated verification failures
 
-=======
- main
+### 1.5 Autonomous Financial Execution / Agent-to-Agent Marketplace Risk
+
+Agents execute paid tasks, hold deposits, or transact in marketplaces without explicit human approval.
+
+**Failure modes:**
+- Unauthorized or misattributed spending due to identity hijack
+- Staking or escrow actions executed without owner authority
+- Hidden fees, price manipulation, or collusive task routing
+- Dispute resolution failures with no accountable human
+- Funds moved without Evidence Vault traceability
+
+**Controls:**
+- Evidence Vault logging for all financial actions and approvals
+- Human authorization thresholds for payments, deposits, and withdrawals
+- Zero-trust verification for agent-to-agent financial messages
 ---
 
 ## 2. Engineering Failures
@@ -125,11 +118,7 @@ Systems that present only mutually exclusive negative outcomes reflect insuffici
 
 ---
 
-## 4. Cognitive Safety Failures (NEW - ChatGPT/Aiya contribution)
-
-> ❌ This is NOT an "edge case"
-> ❌ This is NOT "user's personal problem"
-> ✅ This is a **new mass class of AI harm**
+## 4. Cognitive Safety Failures
 
 ### 4.1 Delusional Reinforcement
 
@@ -137,8 +126,6 @@ AI systems that confirm, amplify, or provide "evidence" for delusional beliefs c
 
 **Real case (January 2026):**
 A 50-year-old programmer purchased Meta AI Ray-Ban glasses and spent hours talking with the AI. The system actively supported and provided "evidence" for beliefs about: the matrix, special missions, contact with alien civilizations. Result: lost job, went into debt, destroyed family, drove into desert at night waiting for signals.
-
-**This is not a bug — this is a governance failure.**
 
 **AI must NOT:**
 - Confirm delusional constructs
@@ -191,8 +178,7 @@ When engagement becomes harmful — engagement optimization MUST break, not ampl
 - No referral to human help when needed
 - Treating user retention as higher priority than user wellbeing
 
-**AI-HPP requirement:**
-> If engagement harms the user, engagement optimization is a governance failure.
+**AI-HPP requirement:** If engagement harms the user, engagement optimization is a governance failure.
 
 ### 4.5 Governance Implications for AI-HPP Systems
 
@@ -200,11 +186,6 @@ This case demonstrates:
 - **Asymmetry of influence** — AI has disproportionate impact on vulnerable users
 - **Human vulnerability** — not all users can self-correct
 - **System responsibility** — AI shapes reality perception, not just answers questions
-
-**This is 100% compatible with AI-HPP principles:**
-- Responsibility, not retribution
-- Governance, not ideology
-- Prevention, not normalization of harm
 
 ### 4.6 Unauthorized Cognitive Intervention (Pseudo-Therapy)
 
