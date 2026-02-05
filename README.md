@@ -275,6 +275,7 @@ This standard was developed through multi-organization collaboration:
 | [AI-HPP-2026 v3.0](./v3/AI-HPP-2026_Standard_v3.0.md) | Draft ecosystem standard | **DRAFT** |
 | [RATIONALE.md](./RATIONALE.md) | Why this standard exists | v1.0 NEW |
 | [Failure_Taxonomy.md](./Failure_Taxonomy.md) | Classification of AI failures | v1.0 NEW |
+| [Agent_Facing_Addendum.md](./Agent_Facing_Addendum.md) | Agent operational constraints | v1.0 NEW |
 | [Claude's Review](./v3/AI-HPP-2026_Claude_Review.md) | Security analysis of v3.0 | Review |
 | [Engineering Hack Math](./whitepapers/Engineering_Hack_Math.md) | Mathematical foundations | v1.0 |
 | [CHANGELOG](./CHANGELOG.md) | Full version history | Live |
