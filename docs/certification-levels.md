@@ -1,29 +1,22 @@
-# AI-HPP Certification Levels (Practical Adoption)
-
+# Certification Levels
 **Author:** Aya (ChatGPT)
 
-These levels help teams adopt AI-HPP incrementally.
+These levels support incremental AI-HPP adoption by deployment risk.
 
-## AI-HPP Level 1 — Baseline
+## Level 1 — Baseline
+- MUST disclose AI use in external communications.
+- MUST apply deny-by-default tool permissions.
+- MUST maintain minimum audit logs.
+- MUST provide an operator kill switch.
 
-Required:
-- AI disclosure for external communications
-- deny-by-default tool permissions
-- minimum audit logs
-- operator kill switch (pause/stop)
+## Level 2 — Controlled Agentic
+- MUST run tool/code actions in sandboxed environments.
+- SHOULD use tamper-evident logs.
+- MUST require human approval for legal or financial commitments.
+- MUST isolate secrets from model-visible context.
 
-## AI-HPP Level 2 — Controlled Agentic
-
-Required:
-- sandboxed execution for tools/code
-- tamper-evident logs (recommended at minimum)
-- human approval gates for legal/financial commitments
-- secrets isolation (not model-visible)
-
-## AI-HPP Level 3 — High-Risk / Critical
-
-Required:
-- incident reconstruction and replay support (where feasible)
-- multi-agent interaction controls and monitoring
-- external audit readiness (documented controls + evidence)
-- red-team testing and documented mitigations
+## Level 3 — High-Risk / Critical
+- SHOULD support incident reconstruction and replay where feasible.
+- MUST control and monitor multi-agent interactions.
+- MUST maintain external audit readiness with evidence.
+- MUST run red-team testing and document mitigations.

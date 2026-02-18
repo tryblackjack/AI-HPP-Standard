@@ -6,18 +6,10 @@
 
 > **Standard specification framework for autonomous AI systems**
 
-## Agentic Systems Addendum
+## Docs
 
-AI-HPP applies to interactive AI systems, including **agentic systems** that can plan, execute, and coordinate tasks using tools, APIs, and other agents.
-
-See:
-- `docs/agentic-systems.md`
-- `docs/legal-accountability.md`
-- `docs/audit-logging.md`
-- `docs/multi-agent-risk.md`
-- `docs/certification-levels.md`
-- `docs/compliance-mapping.md` (informative)
-- `docs/case-studies.md`
+- [docs/index.md](./docs/index.md) (primary)
+- [docs/case-studies.md](./docs/case-studies.md) (secondary)
 
 ---
 
