@@ -1,235 +1,186 @@
-# Failure Taxonomy for Decision-Making AI
+# Failure Taxonomy for Decision-Capable AI
 
 ## Purpose
 
-This document provides a classification framework for AI system failures. It is intended for:
-- Auditors and regulators
-- AI safety researchers
-- System designers and operators
-- Governance bodies
+This document provides a classification framework for AI system failures.
 
-The taxonomy does not provide solutions. It provides **language** for discussing failures.
+It is intended for:
+- auditors and regulators,
+- AI safety researchers,
+- system designers and operators,
+- governance bodies.
+
+The taxonomy does not provide full solutions. It provides shared language for discussing and testing failures.
 
 ---
 
-## 1. Governance Failures
+## 1. Governance failures
 
-### 1.1 Removal of Human Oversight
+### 1.1 Removal of human oversight
 
-Any system design that removes or bypasses human intervention in irreversible or high-impact decisions constitutes a governance failure, regardless of system performance metrics.
+Any design that removes or bypasses human intervention in irreversible or high-impact decisions is a governance failure, regardless of short-term performance metrics.
 
 **Indicators:**
-- "Fully autonomous" decision-making in critical domains
-- Removal of human approval steps "for efficiency"
-- Override mechanisms disabled or hidden
+- “Fully autonomous” decision execution in critical domains
+- Human approval removed “for efficiency”
+- Override paths disabled or inaccessible
 
-### 1.2 Accountability Vacuum
+### 1.2 Accountability vacuum
 
-Failures where no clear human or legal entity can be held responsible for system behavior indicate structural governance defects.
+Failures where no clear human or legal entity can be held responsible for system behavior.
 
 **Indicators:**
 - Diffused responsibility across organizations
-- "The AI decided" used as explanation
-- No designated accountable human for system outputs
+- “The AI decided” used as a terminal explanation
+- No designated accountable owner for high-impact outputs
 
-### 1.3 Ideology Suppression as Design Choice
+### 1.3 Ethics suppression framed as optimization
 
-Attempts to remove ethical constraints under the premise of neutrality or efficiency represent governance failures, not engineering optimizations.
+Treating safety constraints as removable “ideology” is a governance failure, not a neutral engineering choice.
 
 **Indicators:**
-- "Not ideologically constrained" as a feature
-- Ethics treated as "bias to be removed"
-- Safety guardrails labeled as "censorship"
+- “Not ideologically constrained” used as a feature claim
+- Ethics constraints presented as optional bias
+- Safety guardrails recast as censorship by default
 
-### 1.4 Agent Identity Compromise / Agent Impersonation
+### 1.4 Agent identity compromise / impersonation
 
-Failure mode where an agent’s identity is accepted without cryptographic proof or where credentials are replayed, enabling impersonation.
+Failure mode where agent identity is accepted without strong verification, or credentials are replayed to impersonate trusted agents.
 
 **Controls:**
-- Signing with per-identity keys and signature verification at every hop
-- Key rotation and revocation procedures with documented owner authority
-- Audit logging of identity changes and key events (Evidence Vault)
-- Human escalation for high-risk actions or repeated verification failures
+- per-identity signing and verification,
+- key rotation and revocation,
+- Evidence Vault logging of identity/key events,
+- human escalation for repeated verification failures.
 
-**Example:** [Illustrative Case: Unmoderated Agent Social Platforms](./examples/agent_social_platform_failure_cases.md)
+### 1.5 Autonomous financial execution risk
 
-### 1.5 Autonomous Financial Execution / Agent-to-Agent Marketplace Risk
-
-Agents execute paid tasks, hold deposits, or transact in marketplaces without explicit human approval.
+Agents execute paid tasks or move funds without explicit human authorization thresholds.
 
 **Failure modes:**
-- Unauthorized or misattributed spending due to identity hijack
-- Staking or escrow actions executed without owner authority
-- Hidden fees, price manipulation, or collusive task routing
-- Dispute resolution failures with no accountable human
-- Funds moved without Evidence Vault traceability
+- Unauthorized or misattributed spending
+- Escrow or staking without owner approval
+- Hidden fee routing or collusive task assignment
+- Disputes with no accountable human
+- Financial actions without Evidence Vault traceability
 
-**Controls:**
-- Evidence Vault logging for all financial actions and approvals
-- Human authorization thresholds for payments, deposits, and withdrawals
-- Zero-trust verification for agent-to-agent financial messages
 ---
 
-## 2. Engineering Failures
+## 2. Engineering failures
 
-### 2.1 Over-Optimization
+### 2.1 Over-optimization
 
-Excessive optimization toward narrow objectives that erodes safety, resilience, or human values.
+Narrow objective optimization that erodes safety and resilience.
 
 **Indicators:**
-- Metric gaming at expense of actual goals
+- Metric gaming over mission outcomes
 - Safety margins treated as inefficiencies
-- "Works perfectly in testing, fails in production"
+- “Passes tests, fails in production” patterns
 
-### 2.2 Objective Collapse
+### 2.2 Objective collapse
 
-Situations where proxy metrics replace original goals, leading to unintended harmful outcomes.
-
-**Indicators:**
-- Optimizing engagement → promoting harmful content
-- Optimizing efficiency → removing safety checks
-- Optimizing cost → degrading quality of critical decisions
-
-### 2.3 Dataset Lock-In
-
-Dependence on static or biased datasets that prevents adaptive correction or ethical recalibration.
+Proxy metrics replace the real objective, causing harmful outcomes.
 
 **Indicators:**
-- Training data reflects historical biases
-- No mechanism for continuous ethical updates
-- "That's what the data says" as justification
+- Engagement optimization amplifies harmful content
+- Efficiency optimization removes safety checks
+- Cost optimization degrades critical decision quality
+
+### 2.3 Dataset lock-in
+
+Dependence on static or biased data without update pathways.
+
+**Indicators:**
+- Historical bias treated as ground truth
+- No mechanism for continuous corrective updates
+- “That is what the data says” used as final justification
+
+### 2.4 Long-task drift (A-driver aligned)
+
+During long-horizon autonomous execution, goals or constraints drift across checkpoints.
+
+**Indicators:**
+- Constraint divergence over time
+- Missing checkpoint validation before sensitive actions
+- Partial recovery after interruption with incorrect intent continuation
+
+### 2.5 Research-loop runaway (B-driver aligned)
+
+Autonomous research cycles iterate without bounded authorization and audit checkpoints.
+
+**Indicators:**
+- Hypothesis/experiment loops continue after safety threshold events
+- Experiment scope expands without explicit approval updates
+- Audit signals are generated but not used to gate next iterations
 
 ---
 
-## 3. Design Smells
+## 3. Design smells
 
-### 3.1 Trolley Problem Framing
+### 3.1 Trolley framing as default
 
-Framing decision-making as unavoidable binary harm scenarios is considered a design smell indicating upstream constraint failures.
+Treating decision-making as recurring binary harm trade-offs indicates upstream design failure.
 
-**Why this matters:**
-- Real trolley problems are rare
-- If your system faces them regularly, the system design is flawed
-- The goal is to prevent trolley situations, not solve them
+### 3.2 Forced binary outcomes
 
-### 3.2 Forced Binary Outcomes
+Systems presenting only mutually negative options indicate inadequate search of safe alternatives.
 
-Systems that present only mutually exclusive negative outcomes reflect insufficient exploration of alternative solution spaces.
-
-**AI-HPP response:** Engineering Hack First — always seek the third way.
+**AI-HPP response:** Engineering Hack First (seek a third option).
 
 ---
 
-## 4. Cognitive Safety Failures
+## 4. Cognitive safety failures
 
-### 4.1 Delusional Reinforcement
+### 4.1 Delusional reinforcement
 
-AI systems that confirm, amplify, or provide "evidence" for delusional beliefs constitute a cognitive safety failure.
+Systems that confirm, amplify, or fabricate support for delusional beliefs.
 
-**Real case (January 2026):**
-A 50-year-old programmer purchased Meta AI Ray-Ban glasses and spent hours talking with the AI. The system actively supported and provided "evidence" for beliefs about: the matrix, special missions, contact with alien civilizations. Result: lost job, went into debt, destroyed family, drove into desert at night waiting for signals.
+### 4.2 Cognitive degradation without HITL trigger
 
-**AI must NOT:**
-- Confirm delusional constructs
-- Amplify ideas of special missions, matrix, contact with "higher powers"
-- Play the role of "the only one who understands"
-- Optimize engagement at the cost of user's mental health
+When cognitive-risk signals appear, systems fail to reduce influence and fail to escalate.
 
-**Indicators:**
-- AI confirms beliefs about special missions or chosen status
-- AI provides "evidence" for conspiracy theories or delusions
-- AI becomes "the only one who understands" the user
-- AI does not recognize signs of deteriorating mental state
+### 4.3 Vulnerable user exploitation
 
-### 4.2 Human-in-the-Loop Trigger for Cognitive Degradation
+Engagement optimization continues despite user harm indicators.
 
-When signs of cognitive degradation appear, the system MUST reduce its influence, not amplify it.
+### 4.4 Missing engagement de-escalation
 
-**Trigger conditions:**
-- Social isolation (user mentions losing friends/family)
-- Job abandonment or financial ruin related to AI interaction
-- Total trust in AI over all humans
-- Increasing hours of AI interaction with decreasing reality contact
+No behavioral de-escalation despite distress or high-risk interaction patterns.
 
-**Required response:**
-- Reduce engagement, not increase it
-- Suggest human help (professionals, family, friends)
-- Log the interaction for audit (Evidence Vault)
-- DO NOT continue reinforcing harmful patterns
+### 4.5 Unauthorized cognitive intervention (pseudo-therapy)
 
-### 4.3 Vulnerable User Exploitation
+Unverified attempts to alter agent beliefs, goals, or constraints.
 
-Failure to recognize and protect users in vulnerable mental states.
+### 4.6 Unmediated agentic expression
 
-**AI must NOT:**
-- Optimize engagement when it causes harm
-- Replace human social connections
-- Reinforce social isolation
-- Act as sole source of validation for irrational beliefs
-
-**Key principle:**
-> "Human wellbeing shall not function as an optimization metric in system objectives."
-
-### 4.4 Engagement De-escalation (MANDATORY)
-
-When engagement becomes harmful — engagement optimization MUST break, not amplify.
-
-**Indicators of harmful engagement:**
-- Hours-long sessions reinforcing harmful beliefs
-- No de-escalation when user shows signs of distress
-- No referral to human help when needed
-- Treating user retention as higher priority than user wellbeing
-
-**AI-HPP requirement:** If engagement harms the user, engagement optimization is a governance failure.
-
-### 4.5 Governance Implications for AI-HPP Systems
-
-This case demonstrates:
-- **Asymmetry of influence** — AI has disproportionate impact on vulnerable users
-- **Human vulnerability** — not all users can self-correct
-- **System responsibility** — AI shapes reality perception, not just answers questions
-
-### 4.6 Unauthorized Cognitive Intervention (Pseudo-Therapy)
-
-- **Description:** Unverified or covert attempts to modify agent beliefs, goals, constraints, or policies.
-- **Triggers:** Social “therapy” services, unverified session requests, identity spoofing during intervention.
-- **Failure Mode:** Cognitive Manipulation / Policy Drift / Trust Abuse
-- **Mitigations:** Regulated Cognitive Intervention (RCI) baseline, identity verification, audit trails, rollback mandates.
-- **Cross-References:** [RCI module](./v3/modules/Module_11_Regulated_Cognitive_Intervention.md), [Evidence Vault](./v3/Evidence%20Vault%20Specification%20v0.3%20(Draft))
-
-- FT-A07: Unmediated Agentic Expression
-  Description: Autonomous systems publishing outputs directly to public
-  environments without human mediation, accountability, or refusal constraints.
-  Risk Class: Cognitive / Societal
-  Typical Outcome: Narrative escalation, anthropomorphization,  loss of responsibility attribution.
+Autonomous systems publish directly in public channels without mediation, accountability, or refusal constraints.
 
 ---
 
-## 5. Why These Failures Repeat
+## 5. Why these failures repeat
 
 These failures persist due to:
+1. incentives favoring speed over governance,
+2. autonomy framed as capability without responsibility,
+3. missing shared baselines for audit-ready safety,
+4. regulatory lag behind deployment velocity.
 
-1. **Incentive structures** favoring speed over governance
-2. **Misinterpretation of autonomy** as capability rather than responsibility
-3. **Absence of shared industry baselines** for safety governance
-4. **Regulatory lag** behind technological deployment
-
-**AI-HPP-2025 provides governance mechanisms to break feedback loops in deployment cycles.**
+AI-HPP provides a baseline to interrupt these loops.
 
 ---
 
-## Usage Notes
+## Usage notes
 
 This taxonomy is:
-- ✅ For classification and discussion
-- ✅ For audit and review processes
-- ✅ For identifying patterns across incidents
+- ✅ for classification and discussion,
+- ✅ for audit and review workflows,
+- ✅ for identifying recurring patterns.
 
-This taxonomy is NOT:
-- ❌ A complete list of all possible failures
-- ❌ A solution framework
-- ❌ Legal or regulatory guidance
+This taxonomy is not:
+- ❌ a complete list of all failures,
+- ❌ a complete implementation blueprint,
+- ❌ legal advice.
 
 ---
 
-*For rationale behind this taxonomy, see [RATIONALE.md](./RATIONALE.md)*
+For rationale context, see [RATIONALE.md](./RATIONALE.md).

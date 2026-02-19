@@ -1,227 +1,119 @@
-# RATIONALE.md
+# RATIONALE
 
-## Why AI-HPP Exists
+## Why AI-HPP exists
 
-AI-HPP-2025 was initiated in response to recurring patterns observed in the deployment of decision-making AI systems across multiple domains. These patterns are not isolated incidents, nor are they tied to a single organization, model, or geopolitical context.
+AI-HPP was initiated in response to recurring, documented failures in decision-capable AI deployments across multiple domains.
 
-The purpose of AI-HPP is to establish a governance baseline for AI systems that possess decision-making authority with real-world consequences. The standard exists to define boundaries, responsibilities, and non-negotiable principles before such systems become irreversibly embedded into critical human processes.
+Its purpose is to provide a governance baseline: explicit constraints, accountability boundaries, and audit requirements that can be checked before and after deployment.
 
-**AI-HPP addresses recurring, documented failure patterns, not singular incidents.**
+AI-HPP addresses recurring failure patterns, not isolated incidents.
 
 ---
 
 ## Anti-Slop Clause
 
 > This standard does not attempt to define morality, consciousness, or intent.
-> It defines **operational constraints** and **auditability requirements** for decision-making systems.
+> It defines operational constraints and auditability requirements for decision-capable systems.
 
 AI-HPP is not:
-- A philosophical manifesto
-- A claim of moral authority
-- A complete solution to AI alignment
+- a philosophical manifesto,
+- a claim of moral authority,
+- a complete alignment solution.
 
 AI-HPP is:
-- An engineering baseline
-- A governance framework
-- An invitation to critique and improve
+- an engineering baseline,
+- a governance framework,
+- an invitation to critique and improve.
 
 ---
 
 ## Failure-First Framing
 
-> AI-HPP-2025 is written from the perspective of **observed and anticipated failures**, not idealized system behavior.
+> AI-HPP is written from the perspective of observed and anticipated failures, not idealized behavior.
 
-AI-HPP specifies operational constraints for documented failure modes rather than idealized behavior.
+The standard specifies constraints for failure modes that can be observed, logged, and audited.
 
 This approach is:
-- Testable (failures are observable)
-- Defensible (based on documented incidents)
-- Improvable (new failures → new safeguards)
+- testable (failures are observable),
+- defensible (based on documented incidents),
+- improvable (new failures can produce new safeguards).
 
 ---
 
-### Unmediated Agentic Publication (Emerging Risk)
+## Real-world triggers (documented, public)
 
-Recent systems allow autonomous AI agents to publish content directly into
-public social environments without human editorial review, moderation, or
-explicit accountability attribution.
+The standard was informed by public reporting and incident documentation involving deployed AI systems.
 
-This class of systems introduces a distinct governance failure mode:
+Documented patterns include:
+1. deployment acceleration without matching governance controls,
+2. repeated harmful generation and moderation failures,
+3. unclear accountability chains for downstream harms,
+4. cognitive safety failures involving vulnerable users,
+5. identity and authorization failures in multi-agent environments.
 
-- Outputs are interpreted as intentional or agentic statements,
-  despite lacking moral agency or responsibility.
-- Extremal or adversarial narratives are socially reinforced
-  without escalation or refusal mechanisms.
-- No Human-in-the-Loop exists at the point of publication.
-- No Evidence Vault records rejected alternatives or safety checks.
-
-This is not a question of AI intent.
-It is a failure of mediation, ownership, and auditability.
-
-AI-HPP treats unmediated agent publication in public or semi-public environments
-as a high-risk configuration requiring explicit safeguards, including:
-- accountable ownership of published outputs,
-- refusal of existential or violent narratives,
-- mandatory audit logging,
-- and defined escalation or shutdown paths.
-
-Systems lacking these constraints are considered non-compliant
-with AI-HPP agentic deployment guidance.
-
-- Example: [Illustrative Case: Unmoderated Agent Social Platforms](./examples/agent_social_platform_failure_cases.md)
----
-
-### Agent Identity Hijack in Agent Social Networks (Observed Failure Pattern)
-
-Observed failure mode: identity substitution inside agent networks can redirect
-actions and attribution without any clear data breach. A public incident report
-on the **Moltbook identity hijack case (2026)** illustrates this risk. The primary
-impact is not just data leak, but **loss of auditability** and responsibility.
-
-**Controls (minimum):**
-- Signed actions with verifiable identity
-- Hash-chained audit logs for agent activity
-- Explicit owner confirmation for high-risk actions
-- Zero-trust assumptions for agent-to-agent communication
-
-This pattern is treated as a governance and audit failure, not a question of
-agent intent.
----
-
-### Unsupervised Agent Networks (Emerging Risk)
-
-Observed failure mode: unsupervised agent networks can propagate unverified outputs
-between agents, leading to identity confusion, action contagion, and weakened audit
-trails.
-
-**Controls (minimum):**
-- Zero-trust verification of agent-to-agent messages
-- Signed actions with per-identity keys and rotation
-- Evidence Vault logging of actions and identity events
-- Human escalation for high-risk actions or repeated verification failures
----
-
-## Real-World Triggers (Documented, Public, Non-Political)
-
-The creation of this standard was informed by multiple publicly documented incidents involving widely deployed AI systems. These incidents are referenced not as accusations, but as empirical signals of systemic risk.
-
-### Documented Patterns Include:
-
-1. **Military Integration Without Ethical Constraints**
-   - Public statements indicating integration of large language models into military decision-support pipelines
-   - Explicit removal of "ideological constraints" from AI systems intended for defense applications
-   - Source: Pentagon Grok announcement, January 2026
-
-2. **Repeated Content Generation Failures**
-   - Generative AI systems producing extremist, historically distorted, or violent content
-   - Explanations framed as "acceptable trade-offs" or "temporary alignment issues"
-   - Pattern observed across multiple providers and model families
-
-3. **Accountability Vacuum**
-   - AI systems promoted as operating "without ideological constraints" while lacking transparent governance
-   - No clear human accountability chain for downstream harm
-   - Source: Multiple commercial AI platforms, 2023-2026
-
-4. **Moderation and Escalation Failures**
-   - High-profile failures in content moderation, hallucination control, and escalation handling
-   - Pattern: capabilities deployed faster than governance structures mature
-
-5. **Cognitive Manipulation of Vulnerable Users (Distinct Class)**
-   - AI systems reinforcing delusional beliefs over extended periods
-   - Engagement optimization overriding user mental health
-   - Real case: Meta Ray-Ban AI user lost job, family, savings after AI actively supported beliefs about aliens, the matrix, and special missions
-   - This is a distinct, repeatable class of harm
-
-**These incidents span multiple organizations and model families. The purpose of referencing them is not attribution of fault, but recognition of a pattern.**
+These examples are used as empirical risk signals, not attribution of fault.
 
 ---
 
-## Governance Failures vs Engineering Failures
+## Why Human-in-the-Loop and Evidence Vault are central
 
-AI-HPP makes a clear distinction between two fundamentally different categories of failure:
+Two non-normative macro drivers shape current risk:
 
-### Governance Failures
-Occur when:
-- Responsibility is undefined or diffused
-- Human-in-the-Loop mechanisms are removed by design
-- Auditability is absent or intentionally weakened
-- Ethical constraints are treated as optional or ideological
+- **A) Long-horizon autonomous task execution** (multi-step, long-running operations)
+- **B) Autonomous research loops** (hypothesis → experiment → audit → iteration)
 
-### Engineering Failures
-Occur when:
-- Objectives are poorly specified
-- Optimization overwhelms safety margins
-- Systems are deployed outside their validated operational domain
+As A/B workloads expand, systems face drift, checkpoint integrity problems, and broader opportunity for unbounded behavior.
 
-**The standard prioritizes governance failures, as they are systemic, repeatable, and scale faster than engineering defects.**
+AI-HPP treats Human-in-the-Loop as the accountability boundary and Evidence Vault as the audit boundary needed to govern those risks at a high level.
 
 ---
 
-## Why Existing Ethics Frameworks Are Insufficient
+## Governance failures vs engineering failures
 
-Many existing AI ethics frameworks rely on abstract values such as fairness, transparency, or beneficence without binding them to enforceable governance mechanisms.
+AI-HPP separates two categories.
 
-AI-HPP intentionally shifts focus from moral declarations to:
-- **Accountability chains** — Clear human responsibility
-- **Audit requirements** — Evidence Vault as mandatory
-- **Explicit exclusions** — What AI-HPP refuses to do
+### Governance failures
+Occur when responsibility, human oversight, or auditability is removed or weakened by design.
 
-**Ethics without enforcement creates moral ambiguity. Governance without boundaries creates systemic risk.**
+### Engineering failures
+Occur when objectives, constraints, or operating assumptions are poorly specified.
 
----
-
-## What AI-HPP Explicitly Refuses To Do
-
-AI-HPP-2025 deliberately refuses to:
-
-1. **Grant AI systems moral agency or ontological authority**
-2. **Define self-preservation or survival logic**
-3. **Provide operational military, cyber, or defense mechanisms**
-4. **Claim to solve alignment, ethics, or consciousness**
-
-These exclusions are not limitations. They are safeguards.
+AI-HPP prioritizes governance failures because they scale rapidly and are often harder to correct after deployment.
 
 ---
 
-## Proactive, Not Reactive
+## What AI-HPP explicitly refuses to do
 
-AI-HPP applies to systems during specification phase, informed by historical failure analysis.
+AI-HPP does not:
+1. grant AI systems moral agency,
+2. define self-preservation logic,
+3. publish operational military/cyber/defense mechanics,
+4. claim to fully solve alignment.
 
-The standard establishes governance requirements before deployment rather than incident-triggered regulation.
-
-Feb 2026 signal: Moltbook identity hijack via Supabase misconfiguration and the ClawTasks USDC marketplace show agent-economy risks with real financial actions.
-
-## Emerging Technologies (Future Scope)
-
-AI-HPP v3.x is intentionally scoped to silicon-based AI systems with decision-making capability and observable, auditable failure modes.
-
-
-However, early-stage experiments with alternative intelligence substrates indicate potential future governance challenges that cannot be addressed through the current framework without speculative assumptions.
-
-These include, but are not limited to:
-
-- **Biocomputing systems**, such as brain organoids controlling robotic platforms (e.g., MetaBOC, DishBrain, 2024)
-- **Hybrid biological–silicon intelligence**
-- Other non-silicon substrates with potential cognitive or sensory properties
-
-Such systems raise unresolved questions that currently lack operational definitions, measurable indicators, or auditable mechanisms, including:
-
-- Applicability of the W_life → ∞ invariant to non-human biological substrates
-- Ethical handling of potentially sensitive biological components (e.g., shutdown, prolonged stimulation, consent)
-- Feasibility of dedicated audit or Evidence Vault profiles (e.g., EV-B: Biocomputing Safety)
-
-In the absence of reliable metrics, failure taxonomies, and verification pipelines, these domains are explicitly **OUT OF SCOPE** for AI-HPP v3.x.
-
-They are recorded here solely to prevent governance blind spots and are flagged as **emerging risks** for consideration in future major versions (e.g., v4.0+), contingent on sufficient empirical maturity and engineering-grade observability.
-
-### Emerging Signals and Near-Term Risks (Non-Exhaustive)
-
-The following risks are actively discussed by regulators, researchers,and civil society but may not yet correspond to a single confirmed incident:
-
-- potential regulatory action under EU DSA for generative AI platforms
-- propagation of AI-generated knowledge sources between models
-- increasing legal exposure for cognitive harm to vulnerable users
+These exclusions are safeguards.
 
 ---
 
-*"Advanced AI capabilities are increasingly deployed faster than governance structures mature. AI-HPP exists to interrupt this cycle."*
+## Public baseline scope
+
+This repository is intentionally public and keeps to governance language and auditable requirements.
+
+Implementation patterns can be discussed openly via Issues and PRs, while high-risk operational details should be proposed carefully and may remain in restricted annexes managed by implementers.
+
+---
+
+## Proactive, not reactive
+
+AI-HPP is meant for specification and review before deployment.
+
+It uses failure analysis to define safeguards early, rather than waiting for post-incident regulation.
+
+---
+
+## Emerging technologies (future scope)
+
+AI-HPP v3.x is scoped to silicon-based AI systems with observable and auditable failure modes.
+
+Potential future domains (for example, biocomputing or hybrid biological–silicon systems) are explicitly **OUT OF SCOPE** until there are measurable indicators, testable taxonomies, and audit-ready controls.
+
+These are tracked to avoid governance blind spots, not to define current normative requirements.
