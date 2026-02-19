@@ -5,6 +5,20 @@ All notable changes to the AI-HPP standard are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
+## [v3.3.2] - 2026-02-19 — Documentation tightening (README/RATIONALE/Taxonomy)
+
+### Changed
+- Rewrote top-level README for agent-first and engineer-first navigation (scope, version map, contribution path).
+- Added non-normative A/B macro drivers framing (long-horizon autonomy and autonomous research loops) without implementation protocol details.
+- Standardized terminology around Human-in-the-Loop and Evidence Vault across key governance docs.
+- Reduced redundant and promotional phrasing in rationale-facing documentation.
+- Updated representative incident/source links in README and removed placeholder/non-rendering link targets.
+
+### Safety Notes
+- No restricted annex content was added.
+- No proprietary or high-risk operational protocol details were introduced.
+
+---
 ## [v3.3.1] (2026-02-01)
 - Added illustrative failure cases from Black Mirror and other series in examples/
 - Expanded Westworld case with detailed failure modes and relevance to AI-HPP
