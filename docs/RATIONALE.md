@@ -1,3 +1,7 @@
+> **Canonical location:** `docs/RATIONALE.md`  
+> This document was moved to keep the repository root clean.  
+> Backward-compatible stubs remain in the repository root.
+
 # RATIONALE
 
 ## Why AI-HPP exists

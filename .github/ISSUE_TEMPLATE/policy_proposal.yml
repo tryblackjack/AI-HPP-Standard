@@ -1,0 +1,29 @@
+name: Policy proposal
+about: Propose a new enforceable policy or change to existing policies
+title: "[Policy] "
+labels: policy
+assignees: ""
+body:
+  - type: textarea
+    attributes:
+      label: Policy goal
+      description: What risk/failure does this policy mitigate?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Proposed requirements (MUST/SHALL)
+      description: Write the normative requirements.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Audit evidence checklist
+      description: What would prove compliance?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Non-goals / out of scope
+    validations:
+      required: false

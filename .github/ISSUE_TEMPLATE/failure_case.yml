@@ -1,0 +1,32 @@
+name: Failure case
+about: Add a real-world incident / failure case
+title: "[Case] "
+labels: case
+assignees: ""
+body:
+  - type: input
+    attributes:
+      label: Date (YYYY-MM-DD)
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: System / product
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: What happened (short)
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Failure mode (taxonomy tags)
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Mitigation mapping
+      description: Which module/policy would have prevented/limited it?
+    validations:
+      required: true

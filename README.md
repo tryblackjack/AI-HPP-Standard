@@ -8,6 +8,9 @@ AI-HPP is an engineering baseline for auditable safety constraints in decision-c
 
 It defines failure-triggered constraints, accountability boundaries, and audit language teams can implement before deployment.
 
+## Start here (TOC)
+- **Repository Index / TOC:** [docs/INDEX.md](./docs/INDEX.md)
+
 ## What AI-HPP is
 
 - A governance and engineering baseline for high-impact AI deployments
@@ -38,6 +41,13 @@ Derivatives that remove these principles are not AI-HPP-compliant.
 
 ## Primary navigation
 
+## Operational Policies (normative, security boundaries)
+These policies are intended to be enforced in implementations:
+- [Trusted Skills Policy](./policies/Trusted_Skills_Policy.md)
+- [Tool Execution Boundary](./policies/Tool_Execution_Boundary.md)
+- [Session Isolation Mandate](./policies/Session_Isolation_Mandate.md)
+- [Control Plane Exposure Policy](./policies/Control_Plane_Exposure_Policy.md)
+
 - Authoritative docs index: [docs/INDEX.md](./docs/INDEX.md)
 - Threat Model: [docs/THREAT_MODEL.md](./docs/THREAT_MODEL.md)
 - Rationale: [docs/RATIONALE.md](./docs/RATIONALE.md)
@@ -47,6 +57,12 @@ Derivatives that remove these principles are not AI-HPP-compliant.
 - Autonomous Agent Addendum: [agent/AUTONOMOUS_AGENT_ADDENDUM.md](./agent/AUTONOMOUS_AGENT_ADDENDUM.md)
 - Decision Integrity module: [decision_integrity/DECISION_INTEGRITY_MODULE.md](./decision_integrity/DECISION_INTEGRITY_MODULE.md)
 - Contributing: [CONTRIBUTING.md](./CONTRIBUTING.md)
+
+### Canonical docs locations
+The repository root contains compatibility stubs for a few documents. Canonical versions live in `docs/`:
+- `docs/RATIONALE.md`
+- `docs/Failure_Taxonomy.md`
+- `docs/Agent_Facing_Addendum.md`
 
 ## Version tracks
 
