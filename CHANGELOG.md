@@ -9,10 +9,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 - Public compliance toolkit:
-  - `COMPLIANCE_BADGE_POLICY.md`
-  - `BADGES.md`
-  - `COMPLIANCE_DECLARATION_TEMPLATE.md`
-  - `COMPLIANCE_CHECKLIST.md`
+  - `governance/compliance/COMPLIANCE_BADGE_POLICY.md`
+  - `governance/compliance/BADGES.md`
+  - `governance/compliance/COMPLIANCE_DECLARATION_TEMPLATE.md`
+  - `governance/compliance/COMPLIANCE_CHECKLIST.md`
   - `registry/README.md`
   - `registry/COMPLIANT_SYSTEMS.md`
   - `.github/ISSUE_TEMPLATE/registry_submission.yml`
@@ -39,8 +39,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [v3.5] - 2026-02-xx
 
 ### Added
-- GitHub badge snippets (`BADGES.md`)
-- Public compliance declaration template (`COMPLIANCE_DECLARATION_TEMPLATE.md`)
+- GitHub badge snippets (`governance/compliance/BADGES.md`)
+- Public compliance declaration template (`governance/compliance/COMPLIANCE_DECLARATION_TEMPLATE.md`)
 - Public registry submission form workflow (GitHub issue form)
 
 ## [v3.4] - 2026-02-20 — Dual-layer governance architecture

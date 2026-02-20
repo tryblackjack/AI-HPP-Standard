@@ -22,10 +22,10 @@ This is the authoritative navigation entry for detailed documentation.
 - [Safety & Observability Metrics](../agent_safety/SAFETY_METRICS_OBSERVABILITY.md)
 
 ## Compliance
-- [Compliance Badge Policy](../COMPLIANCE_BADGE_POLICY.md)
-- [Badge Snippets](../BADGES.md)
-- [Declaration Template](../COMPLIANCE_DECLARATION_TEMPLATE.md)
-- [Compliance Checklist](../COMPLIANCE_CHECKLIST.md)
+- [Compliance Badge Policy](../governance/compliance/COMPLIANCE_BADGE_POLICY.md)
+- [Badge Snippets](../governance/compliance/BADGES.md)
+- [Declaration Template](../governance/compliance/COMPLIANCE_DECLARATION_TEMPLATE.md)
+- [Compliance Checklist](../governance/compliance/COMPLIANCE_CHECKLIST.md)
 - [Registry Guide](../registry/README.md)
 - [Compliant Systems Registry](../registry/COMPLIANT_SYSTEMS.md)
 

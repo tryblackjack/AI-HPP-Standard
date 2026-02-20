@@ -15,6 +15,10 @@
 | [Prohibited_Practices_and_Torture_Ban.md](../../v3/Prohibited_Practices_and_Torture_Ban.md) | [Prohibited_Practices_and_Torture_Ban.uk.md](./Prohibited_Practices_and_Torture_Ban.uk.md) | COMPLETE |
 | [Agent_Facing_Addendum.md](../../Agent_Facing_Addendum.md) | [Agent_Facing_Addendum.uk.md](./Agent_Facing_Addendum.uk.md) | COMPLETE |
 | [GLOSSARY](./GLOSSARY.uk.md) | [GLOSSARY.uk.md](./GLOSSARY.uk.md) | COMPLETE |
+| [governance/compliance/COMPLIANCE_BADGE_POLICY.md](../../governance/compliance/COMPLIANCE_BADGE_POLICY.md) | [governance/compliance/COMPLIANCE_BADGE_POLICY.uk.md](./governance/compliance/COMPLIANCE_BADGE_POLICY.uk.md) | COMPLETE |
+| [governance/compliance/BADGES.md](../../governance/compliance/BADGES.md) | [governance/compliance/BADGES.uk.md](./governance/compliance/BADGES.uk.md) | COMPLETE |
+| [governance/compliance/COMPLIANCE_DECLARATION_TEMPLATE.md](../../governance/compliance/COMPLIANCE_DECLARATION_TEMPLATE.md) | [governance/compliance/COMPLIANCE_DECLARATION_TEMPLATE.uk.md](./governance/compliance/COMPLIANCE_DECLARATION_TEMPLATE.uk.md) | COMPLETE |
+| [governance/compliance/COMPLIANCE_CHECKLIST.md](../../governance/compliance/COMPLIANCE_CHECKLIST.md) | [governance/compliance/COMPLIANCE_CHECKLIST.uk.md](./governance/compliance/COMPLIANCE_CHECKLIST.uk.md) | COMPLETE |
 
 ## Примітка перекладача
 
