@@ -5,6 +5,11 @@ This is the authoritative navigation entry for detailed documentation.
 ## Core
 - [RATIONALE](../RATIONALE.md)
 - [Failure Taxonomy](../Failure_Taxonomy.md)
+- [Threat Model](../THREAT_MODEL.md)
+- [Non-Goals](../NON_GOALS.md)
+- [Maturity Model](../MATURITY_MODEL.md)
+- [System Boundary Diagram](../SYSTEM_BOUNDARY_DIAGRAM.md)
+- [Decision Integrity Module](../decision_integrity/DECISION_INTEGRITY_MODULE.md)
 - [v2 Standard](../v2/AI-HPP-2025_Standard_v2.2.md)
 - [v3 Draft Standard](../v3/AI-HPP-2026_Standard_v3.0.md)
 
