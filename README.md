@@ -112,6 +112,12 @@ This repository is a public governance baseline and shared audit language; imple
 
 ---
 
+## Autonomous Agent Addendum
+
+- [AUTONOMOUS_AGENT_ADDENDUM.md](./AUTONOMOUS_AGENT_ADDENDUM.md)
+
+---
+
 ## License
 
 Licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
