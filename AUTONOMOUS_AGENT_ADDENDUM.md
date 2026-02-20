@@ -1,32 +1,83 @@
-# Autonomous Agent Addendum (Public Layer)
+# AI-HPP Autonomous Agent Addendum
+Version 1.0 (Public Edition)
+February 2026
 
-This public addendum defines a minimal, auditable baseline for autonomous agent deployments.
-It is governance-oriented and intentionally implementation-neutral.
+## 1. Purpose
+This addendum extends AI-HPP to autonomous and semi-autonomous AI agent systems.
 
-## Scope
+It defines operational requirements for:
+- Execution governance
+- Tool usage
+- Memory integrity
+- Capability control
+- Failure transparency
 
-- Applies to autonomous and semi-autonomous agents operating in production-like environments.
-- Defines public accountability boundaries and safety expectations.
-- Does not include enterprise-specific operational controls.
+## 2. Agent Execution Separation
+### Purpose
+Prevent direct execution of actions by reasoning components.
 
-## Public Baseline Requirements
+### Requirement
+Reasoning (LLM) must not directly execute external actions.
 
-1. **Identity & Attribution**
-   - Every state-changing action MUST be attributable to a verifiable actor identity.
-   - Unattributed high-impact actions MUST be refused.
+All actions must pass through:
+Cognition → Validation → Execution
 
-2. **Evidence & Auditability**
-   - High-impact actions MUST be logged in an append-only audit trail.
-   - Refusals and escalations MUST include reason codes.
+Execution must be independently governed.
 
-3. **Human Oversight**
-   - High-risk actions MUST require explicit human authorization.
-   - Emergency freeze controls MUST be available.
+## 3. Tool Governance
+Each tool must declare:
+- Capability description
+- Risk classification
+- Reversibility
+- Human oversight requirement
+- Rate limits
 
-4. **Safety-First Refusal**
-   - Agents MUST refuse execution when safety, attribution, or policy requirements are not met.
+Agents must not dynamically expand tool permissions.
 
-## Layering Note
+## 4. Memory Integrity
+Memory must be classified:
+- Ephemeral
+- Operational
+- Immutable Evidence
 
-This public file is the normative public layer.
-Enterprise-specific implementation and review discipline are maintained in internal governance materials.
+Persistent writes require validation.
+Untrusted sources must be flagged.
+Memory must not override governance rules.
+
+## 5. Capability Escalation Control
+Agents must not:
+- Expand permissions
+- Add new integrations
+- Modify risk thresholds
+
+Without explicit external approval.
+
+## 6. Recursive Containment
+Sub-agents must:
+- Inherit parent constraints
+- Not exceed parent permissions
+- Not spawn unbounded recursive agents
+
+## 7. Deliberation Requirement
+For medium/high-risk actions:
+- Introduce decision buffering
+- Log initial vs final decision
+
+## 8. Failure Transparency
+Systems must log:
+- High-risk refusals
+- Override events
+- Human veto events
+
+Silent retries of high-risk actions are discouraged.
+
+## 9. AI-Assisted Contributions (Public)
+AI tools may assist in repository updates.
+
+AI-assisted contributions must:
+- Maintain structural consistency
+- Avoid duplication
+- Preserve terminology
+- Provide a clear change summary
+
+Final approval remains human-controlled.
