@@ -8,32 +8,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [v3.6] - 2026-02-20
 
 ### Added
-- Public compliance toolkit:
-  - `governance/compliance/COMPLIANCE_BADGE_POLICY.md`
-  - `governance/compliance/BADGES.md`
-  - `governance/compliance/COMPLIANCE_DECLARATION_TEMPLATE.md`
-  - `governance/compliance/COMPLIANCE_CHECKLIST.md`
-  - `registry/README.md`
-  - `registry/COMPLIANT_SYSTEMS.md`
-  - `.github/ISSUE_TEMPLATE/registry_submission.yml`
-- `AUTONOMOUS_AGENT_ADDENDUM.md` standardized to public operational requirements.
-- New `agent_safety/` module set:
-  - `AUTONOMY_SCOPE_DECLARATION.md`
-  - `AUTONOMY_EVIDENCE_REQUIREMENT.md`
-  - `ECONOMIC_SAFETY_CONSTRAINT.md`
-  - `SKILL_PLUGIN_TRUST_LEVELS.md`
-  - `EXTERNAL_AGENT_INTERACTION_POLICY.md`
-  - `SAFETY_METRICS_OBSERVABILITY.md`
-- Documentation discipline documents:
-  - `DOCUMENTATION_STYLE_GUIDE.md`
-  - `GLOSSARY.md`
-  - `CONTRIBUTING.md`
-  - `docs/INDEX.md`
+- Decision Integrity Module
+- Threat Model
+- Non-Goals definition
+- Maturity Model
+- System Boundary Diagram
+- Agent safety modules
+- Compliance toolkit
+- Public registry workflow
 
 ### Improved
-- README navigation: added compliance levels, public toolkit links, addendum link, and agent safety module links.
-- Documentation entrypoint hygiene: `docs/INDEX.md` made authoritative; `docs/index.md` retained as a compatibility pointer.
-- Reduced duplication by standardizing public compliance language and contribution discipline in canonical files.
+- Documentation structure normalized
+- Clear module separation
+- Navigation clarified
 
 ---
 ## [v3.5] - 2026-02-xx

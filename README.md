@@ -88,6 +88,25 @@ Derivatives that remove these principles are not AI-HPP-compliant.
 - **Agent** — Core + autonomous-agent execution and control requirements
 - **Enterprise** — Agent + enterprise operational governance controls
 
+## Decision Integrity Module
+
+AI-HPP includes a Decision Integrity layer addressing:
+- Irreversible actions
+- Ambiguous interpretation risks
+- High-impact decisions
+
+See: [decision_integrity/DECISION_INTEGRITY_MODULE.md](./decision_integrity/DECISION_INTEGRITY_MODULE.md)
+
+## Threat Model
+
+AI-HPP defines a layered threat model covering:
+- Injection risks
+- Tool abuse
+- Economic runaway
+- Governance failures
+
+See: [THREAT_MODEL.md](./THREAT_MODEL.md)
+
 ## Repository map
 
 - [RATIONALE.md](./RATIONALE.md) — Why this baseline exists
