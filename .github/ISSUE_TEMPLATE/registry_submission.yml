@@ -1,0 +1,92 @@
+name: "AI-HPP Registry Submission"
+description: "Request inclusion in the AI-HPP Public Compliance Registry"
+title: "[Registry] <System Name> — <Core/Agent/Enterprise>"
+labels: ["registry-submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for submitting your system to the AI-HPP Public Compliance Registry.
+        AI-HPP uses a public self-declaration model (not centralized certification).
+        Please provide links to public documentation supporting your declared level.
+
+  - type: input
+    id: system_name
+    attributes:
+      label: System name
+      placeholder: "ExampleAgent"
+    validations:
+      required: true
+
+  - type: input
+    id: org
+    attributes:
+      label: Organization / owner
+      placeholder: "Example Org"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: level
+    attributes:
+      label: Declared compliance level
+      options:
+        - Core
+        - Agent
+        - Enterprise
+    validations:
+      required: true
+
+  - type: input
+    id: public_link
+    attributes:
+      label: Public link (repo / website)
+      placeholder: "https://github.com/your/repo"
+    validations:
+      required: true
+
+  - type: input
+    id: declaration_link
+    attributes:
+      label: Link to your AI-HPP Compliance Declaration (public)
+      placeholder: "https://github.com/your/repo/blob/main/COMPLIANCE_DECLARATION.md"
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope (in/out, limitations)
+      description: "Briefly define what is covered by your declaration."
+      placeholder: |
+        In scope: ...
+        Out of scope: ...
+        Limitations: ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence Vault summary
+      placeholder: "How decisions are logged, what is immutable, what is captured."
+    validations:
+      required: true
+
+  - type: textarea
+    id: injection
+    attributes:
+      label: Prompt injection mitigations summary
+      placeholder: "Key defenses and how untrusted input is handled."
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirmation
+      options:
+        - label: "I confirm this is a public self-declaration and does not imply AI-HPP certification."
+          required: true
+        - label: "I confirm the provided documentation is publicly accessible."
+          required: true

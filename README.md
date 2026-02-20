@@ -118,6 +118,16 @@ This repository is a public governance baseline and shared audit language; imple
 
 ---
 
+
+## Badges & Public Registry
+
+- Badge snippets: [BADGES.md](./BADGES.md)
+- Compliance declaration template: [COMPLIANCE_DECLARATION_TEMPLATE.md](./COMPLIANCE_DECLARATION_TEMPLATE.md)
+- Public registry: [registry/COMPLIANT_SYSTEMS.md](./registry/COMPLIANT_SYSTEMS.md)
+- Registry submissions: open an issue using **AI-HPP Registry Submission**
+
+---
+
 ## License
 
 Licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
