@@ -5,6 +5,13 @@ All notable changes to the AI-HPP standard are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
+## [v3.5] - 2026-02-xx
+
+### Added
+- GitHub badge snippets (`BADGES.md`)
+- Public compliance declaration template (`COMPLIANCE_DECLARATION_TEMPLATE.md`)
+- Public registry submission form workflow (GitHub issue form)
+
 ## [v3.4] - 2026-02-20 — Dual-layer governance architecture
 
 ### Added
