@@ -1,17 +1,15 @@
 # Contributing
 
-Thank you for contributing to AI-HPP.
+## Purpose
+Define contribution discipline for a standards-oriented repository.
 
-## Documentation rules
-- `docs/index.md` is the primary entry point.
-- `README.md` MUST stay short and link to `docs/index.md`.
-- New policy documents SHOULD follow `docs/templates/doc-template.md`.
-- New case studies MUST follow `docs/templates/case-study-template.md`.
-- Contributors MUST avoid duplicates; refine existing case entries instead of adding duplicate cases.
-- `docs/case-studies.md` is not a news feed; keep cases compact, standardized, and policy-relevant.
-- Use requirement keywords consistently: MUST, SHOULD, MUST NOT.
+## Scope
+Applies to all pull requests and issue-driven documentation changes.
 
-## For AI agents
-- Start at `docs/index.md`.
-- Follow linked documents in the docs tree.
-- Do not scrape `README.md` for full project content.
+## Requirements
+- Single-scope PRs
+- Update `CHANGELOG.md` for material changes
+- Avoid mass reformatting
+- Preserve canonical terminology from `GLOSSARY.md`
+- Keep `README.md` concise and route deep navigation through `docs/INDEX.md`
+- Human review required before merge

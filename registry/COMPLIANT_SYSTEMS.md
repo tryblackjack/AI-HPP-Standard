@@ -1,6 +1,6 @@
 # AI-HPP Public Compliance Registry
 
-This list tracks public self-declarations submitted through the AI-HPP registry issue workflow.
+This registry tracks public self-declarations submitted through the AI-HPP workflow.
 
 | System | Organization | Level | Declaration | Link | Status | Last Updated |
 |---|---|---|---|---|---|---|

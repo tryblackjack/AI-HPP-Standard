@@ -81,6 +81,13 @@ Derivatives that remove these principles are not AI-HPP-compliant.
 
 ---
 
+
+## Compliance Levels
+
+- **Core** — baseline auditable controls for decision-capable systems
+- **Agent** — Core + autonomous-agent execution and control requirements
+- **Enterprise** — Agent + enterprise operational governance controls
+
 ## Repository map
 
 - [RATIONALE.md](./RATIONALE.md) — Why this baseline exists
@@ -88,7 +95,7 @@ Derivatives that remove these principles are not AI-HPP-compliant.
 - [v2/](./v2/) — Stable specification track
 - [v3/](./v3/) — Draft specification track and modules
 - [examples/](./examples/) — Non-normative implementation examples
-- [docs/index.md](./docs/index.md) — Additional policy docs
+- [docs/INDEX.md](./docs/INDEX.md) — Authoritative documentation navigation
 
 ---
 
@@ -112,21 +119,29 @@ This repository is a public governance baseline and shared audit language; imple
 
 ---
 
+## Public Compliance Toolkit
+
+- Compliance badge policy: [COMPLIANCE_BADGE_POLICY.md](./COMPLIANCE_BADGE_POLICY.md)
+- Badge snippets: [BADGES.md](./BADGES.md)
+- Compliance declaration template: [COMPLIANCE_DECLARATION_TEMPLATE.md](./COMPLIANCE_DECLARATION_TEMPLATE.md)
+- Compliance checklist: [COMPLIANCE_CHECKLIST.md](./COMPLIANCE_CHECKLIST.md)
+- Registry guide: [registry/README.md](./registry/README.md)
+- Public registry: [registry/COMPLIANT_SYSTEMS.md](./registry/COMPLIANT_SYSTEMS.md)
+- Registry submission issue form: [registry_submission.yml](./.github/ISSUE_TEMPLATE/registry_submission.yml)
+
 ## Autonomous Agent Addendum
 
 - [AUTONOMOUS_AGENT_ADDENDUM.md](./AUTONOMOUS_AGENT_ADDENDUM.md)
 
----
+## Agent Safety Modules
 
+- [AUTONOMY_SCOPE_DECLARATION.md](./agent_safety/AUTONOMY_SCOPE_DECLARATION.md)
+- [AUTONOMY_EVIDENCE_REQUIREMENT.md](./agent_safety/AUTONOMY_EVIDENCE_REQUIREMENT.md)
+- [ECONOMIC_SAFETY_CONSTRAINT.md](./agent_safety/ECONOMIC_SAFETY_CONSTRAINT.md)
+- [SKILL_PLUGIN_TRUST_LEVELS.md](./agent_safety/SKILL_PLUGIN_TRUST_LEVELS.md)
+- [EXTERNAL_AGENT_INTERACTION_POLICY.md](./agent_safety/EXTERNAL_AGENT_INTERACTION_POLICY.md)
+- [SAFETY_METRICS_OBSERVABILITY.md](./agent_safety/SAFETY_METRICS_OBSERVABILITY.md)
 
-## Badges & Public Registry
-
-- Badge snippets: [BADGES.md](./BADGES.md)
-- Compliance declaration template: [COMPLIANCE_DECLARATION_TEMPLATE.md](./COMPLIANCE_DECLARATION_TEMPLATE.md)
-- Public registry: [registry/COMPLIANT_SYSTEMS.md](./registry/COMPLIANT_SYSTEMS.md)
-- Registry submissions: open an issue using **AI-HPP Registry Submission**
-
----
 
 ## License
 

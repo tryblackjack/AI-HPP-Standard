@@ -5,6 +5,37 @@ All notable changes to the AI-HPP standard are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
+## [v3.6] - 2026-02-20
+
+### Added
+- Public compliance toolkit:
+  - `COMPLIANCE_BADGE_POLICY.md`
+  - `BADGES.md`
+  - `COMPLIANCE_DECLARATION_TEMPLATE.md`
+  - `COMPLIANCE_CHECKLIST.md`
+  - `registry/README.md`
+  - `registry/COMPLIANT_SYSTEMS.md`
+  - `.github/ISSUE_TEMPLATE/registry_submission.yml`
+- `AUTONOMOUS_AGENT_ADDENDUM.md` standardized to public operational requirements.
+- New `agent_safety/` module set:
+  - `AUTONOMY_SCOPE_DECLARATION.md`
+  - `AUTONOMY_EVIDENCE_REQUIREMENT.md`
+  - `ECONOMIC_SAFETY_CONSTRAINT.md`
+  - `SKILL_PLUGIN_TRUST_LEVELS.md`
+  - `EXTERNAL_AGENT_INTERACTION_POLICY.md`
+  - `SAFETY_METRICS_OBSERVABILITY.md`
+- Documentation discipline documents:
+  - `DOCUMENTATION_STYLE_GUIDE.md`
+  - `GLOSSARY.md`
+  - `CONTRIBUTING.md`
+  - `docs/INDEX.md`
+
+### Improved
+- README navigation: added compliance levels, public toolkit links, addendum link, and agent safety module links.
+- Documentation entrypoint hygiene: `docs/INDEX.md` made authoritative; `docs/index.md` retained as a compatibility pointer.
+- Reduced duplication by standardizing public compliance language and contribution discipline in canonical files.
+
+---
 ## [v3.5] - 2026-02-xx
 
 ### Added

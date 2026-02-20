@@ -1,14 +1,15 @@
 # Registry Process
 
-To request inclusion in the AI-HPP Public Compliance Registry:
+## Purpose
+Define a consistent process for listing public AI-HPP compliance declarations.
 
-1) Publish your compliance declaration in your repository:
-- Copy `COMPLIANCE_DECLARATION_TEMPLATE.md` → `COMPLIANCE_DECLARATION.md`
-- Fill it with concrete implementation details
+## Scope
+Applies to submissions for `registry/COMPLIANT_SYSTEMS.md`.
 
-2) Open an issue using the template:
-- "AI-HPP Registry Submission"
+## Requirements
+1. Publish `COMPLIANCE_DECLARATION.md` based on `COMPLIANCE_DECLARATION_TEMPLATE.md`.
+2. Submit a GitHub issue using **AI-HPP Registry Submission**.
+3. Include public links for declaration and supporting materials.
 
-3) Maintainers will:
-- Verify the links are public and complete
-- Add an entry to `registry/COMPLIANT_SYSTEMS.md`
+## Maintainer Process
+Maintainers verify completeness and then add or update an entry in `registry/COMPLIANT_SYSTEMS.md`.
