@@ -47,6 +47,8 @@ These policies are intended to be enforced in implementations:
 - [Tool Execution Boundary](./policies/Tool_Execution_Boundary.md)
 - [Session Isolation Mandate](./policies/Session_Isolation_Mandate.md)
 - [Control Plane Exposure Policy](./policies/Control_Plane_Exposure_Policy.md)
+- [Multi-Agent Consensus Requirements](./policies/Multi_Agent_Consensus_Requirements.md)
+- [Regulatory Interface Requirement](./policies/Regulatory_Interface_Requirement.md)
 
 - Authoritative docs index: [docs/INDEX.md](./docs/INDEX.md)
 - Threat Model: [docs/THREAT_MODEL.md](./docs/THREAT_MODEL.md)
@@ -68,6 +70,7 @@ The repository root contains compatibility stubs for a few documents. Canonical 
 
 - Stable baseline: [v2/AI-HPP-2025_Standard_v2.2.md](./v2/AI-HPP-2025_Standard_v2.2.md)
 - Draft evolution: [v3/AI-HPP-2026_Standard_v3.0.md](./v3/AI-HPP-2026_Standard_v3.0.md)
+- [Module 11 — Multi-Agent Governance](./v3/modules/Module_11_Multi_Agent_Governance.md)
 
 ## License
 

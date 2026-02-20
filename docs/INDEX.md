@@ -12,6 +12,8 @@ This is the primary navigation entrypoint for humans and AI agents.
    - `policies/Tool_Execution_Boundary.md`
    - `policies/Session_Isolation_Mandate.md`
    - `policies/Control_Plane_Exposure_Policy.md`
+   - `policies/Multi_Agent_Consensus_Requirements.md`
+   - `policies/Regulatory_Interface_Requirement.md`
 3) Add Evidence Vault + HITL:
    - `examples/` (schemas + patterns)
 
@@ -29,6 +31,7 @@ This is the primary navigation entrypoint for humans and AI agents.
 ## Versions
 - v2 (stable): `v2/`
 - v3 (draft): `v3/`
+- v3 module: `v3/modules/Module_11_Multi_Agent_Governance.md`
 
 ## Examples & cases
 - Failure cases: `examples/failure_cases.md`
