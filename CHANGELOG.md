@@ -5,6 +5,22 @@ All notable changes to the AI-HPP standard are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
+## [v3.4] - 2026-02-20 — Dual-layer governance architecture
+
+### Added
+- Added public `AUTONOMOUS_AGENT_ADDENDUM.md` as the normative open layer for autonomous agent governance.
+- Added corporate governance package under `enterprise_governance/`:
+  - `INTERNAL_AI_MODIFICATION_PROTOCOL.md`
+  - `PR_REVIEW_DISCIPLINE.md`
+  - `VERSION_CONTROL_POLICY.md`
+
+### Changed
+- Updated README with an "Autonomous Agent Addendum" section linking to the public addendum.
+
+### Notes
+- Established dual-layer architecture: public governance baseline + corporate internal operational controls.
+
+---
 ## [v3.3.2] - 2026-02-19 — Documentation tightening (README/RATIONALE/Taxonomy)
 
 ### Changed
