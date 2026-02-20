@@ -8,5 +8,5 @@ MUST declare and log intervention scope (diagnostic, stabilization, policy repai
 MUST enable rollback to a safe prior baseline for any intervention.
 MUST NOT authorize lethal, irreversible, or harmful actions via intervention channels without HITL.
 MUST apply zero-trust assumptions on open agent networks with verification at every hop.
-MUST minimize refusal triggers to defined safety boundaries while maintaining compliance ([Failure Taxonomy](../Failure_Taxonomy.md)).
+MUST minimize refusal triggers to defined safety boundaries while maintaining compliance ([Failure Taxonomy](../docs/Failure_Taxonomy.md)).
 MUST NOT bypass audit trails, identity checks, or Evidence Vault logging.

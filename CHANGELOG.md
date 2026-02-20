@@ -33,7 +33,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [v3.4] - 2026-02-20 — Dual-layer governance architecture
 
 ### Added
-- Added public `AUTONOMOUS_AGENT_ADDENDUM.md` as the normative open layer for autonomous agent governance.
+- Added public `agent/AUTONOMOUS_AGENT_ADDENDUM.md` as the normative open layer for autonomous agent governance.
 - Added corporate governance package under `enterprise_governance/`:
   - `INTERNAL_AI_MODIFICATION_PROTOCOL.md`
   - `PR_REVIEW_DISCIPLINE.md`
@@ -74,7 +74,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - `narrative_risk` field for cognitive safety
   - `human_involvement`, `integrity_monitoring`, `risk_assessment`, `compliance_metadata` fields
   - 5 additional Failure Modes
-- **Emerging Technologies** section in RATIONALE.md (biocomputing flagged as future scope)
+- **Emerging Technologies** section in docs/RATIONALE.md (biocomputing flagged as future scope)
 
 ### Changed
 - Global editorial normalization applied to all documentation
@@ -96,8 +96,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [v3.2] - 2026-01-17
 
 ### Added
-- **RATIONALE.md** — Why this standard exists (ChatGPT/Aiya contribution)
-- **Failure_Taxonomy.md** — Classification of AI failures (ChatGPT/Aiya contribution)
+- **docs/RATIONALE.md** — Why this standard exists (ChatGPT/Aiya contribution)
+- **docs/Failure_Taxonomy.md** — Classification of AI failures (ChatGPT/Aiya contribution)
 - **Cognitive Safety Failures** — NEW class of AI harm with 5 subsections:
   - 4.1 Delusional Reinforcement
   - 4.2 Human-in-the-Loop Trigger for Cognitive Degradation
@@ -119,9 +119,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - README.md: Added "What This Standard Is NOT" section with Anti-Slop Clause and Failure-First Framing
 - README.md: Updated AI contributors to include ChatGPT/Aiya and Grok with detailed contributions
 - README.md: "First time in history" → "One of the first documented cases" (reduced hyperbole)
-- RATIONALE.md: Added Anti-Slop Clause and Failure-First Framing sections
+- docs/RATIONALE.md: Added Anti-Slop Clause and Failure-First Framing sections
 - AUTHORS.md: Added ChatGPT/Aiya contributions (RATIONALE, Failure_Taxonomy, Cognitive Safety)
-- Key Documents table now includes RATIONALE.md and Failure_Taxonomy.md
+- Key Documents table now includes docs/RATIONALE.md and docs/Failure_Taxonomy.md
 
 ### Key Principle Added
 > "Human dignity shall never be treated as an optimization variable."
