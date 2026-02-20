@@ -1,0 +1,27 @@
+name: Bug report
+about: Report a problem with repo structure, links, or content
+title: "[Bug] "
+labels: bug
+assignees: ""
+body:
+  - type: textarea
+    attributes:
+      label: What happened?
+      description: Describe the bug clearly.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Expected behavior
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: Additional context
+    validations:
+      required: false

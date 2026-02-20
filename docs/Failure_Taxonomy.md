@@ -1,3 +1,7 @@
+> **Canonical location:** `docs/Failure_Taxonomy.md`  
+> This document was moved to keep the repository root clean.  
+> Backward-compatible stubs remain in the repository root.
+
 # Failure Taxonomy for Decision-Capable AI
 
 ## Purpose

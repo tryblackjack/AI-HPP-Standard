@@ -1,25 +1,42 @@
-# AI-HPP Documentation Index
+# AI-HPP Repository Index (TOC)
 
-## Core Standard
-- [v2 (Stable)](../v2/AI-HPP-2025_Standard_v2.2.md)
-- [v3 (Draft)](../v3/AI-HPP-2026_Standard_v3.0.md)
+This is the primary navigation entrypoint for humans and AI agents.
 
-## Foundational Context
-- [Rationale](./RATIONALE.md)
-- [Failure Taxonomy](./Failure_Taxonomy.md)
-- [Threat Model](./THREAT_MODEL.md)
-- [Non-Goals](./NON_GOALS.md)
+## Read paths
 
-## Architecture & Governance
-- [Maturity Model](./MATURITY_MODEL.md)
-- [System Boundary Diagram](./SYSTEM_BOUNDARY_DIAGRAM.md)
+### Implementers (recommended path)
+1) Start with **v2.2 (stable)**:
+   - Standard: `v2/AI-HPP-2025_Standard_v2.2.md`
+2) Review operational enforcement patterns:
+   - `policies/Trusted_Skills_Policy.md`
+   - `policies/Tool_Execution_Boundary.md`
+   - `policies/Session_Isolation_Mandate.md`
+   - `policies/Control_Plane_Exposure_Policy.md`
+3) Add Evidence Vault + HITL:
+   - `examples/` (schemas + patterns)
 
-## Agent Extensions
-- [Autonomous Agent Addendum](../agent/AUTONOMOUS_AGENT_ADDENDUM.md)
-- [Decision Integrity Module](../decision_integrity/DECISION_INTEGRITY_MODULE.md)
-- [Agent Safety Modules](../agent_safety/)
+### Researchers / Auditors
+- Rationale (canonical): `docs/RATIONALE.md`
+- Failure taxonomy (canonical): `docs/Failure_Taxonomy.md`
+- Agent-facing addendum (canonical): `docs/Agent_Facing_Addendum.md`
+- Changelog: `CHANGELOG.md`
+- Whitepapers: `whitepapers/`
 
-## Compliance & Registry
-- [Compliance Toolkit](../governance/compliance/)
-- [Registry Guide](../registry/README.md)
-- [Public Registry](../registry/COMPLIANT_SYSTEMS.md)
+### Contributors
+- Contribution guide: `CONTRIBUTING.md`
+- Repo layout rules: `docs/REPO_LAYOUT.md`
+
+## Versions
+- v2 (stable): `v2/`
+- v3 (draft): `v3/`
+
+## Examples & cases
+- Failure cases: `examples/failure_cases.md`
+- Implementations & schemas: `examples/`
+
+## Quick map (what goes where)
+- **Normative rules that must be enforced** → `policies/`
+- **Standards by version** → `v2/`, `v3/`
+- **Non-normative analysis / essays** → `docs/` (or legacy root stubs)
+- **Schemas / templates / sample configs** → `examples/`
+- **Long-form technical research** → `whitepapers/`
