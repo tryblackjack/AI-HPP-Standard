@@ -121,10 +121,10 @@ This repository is a public governance baseline and shared audit language; imple
 
 ## Public Compliance Toolkit
 
-- Compliance badge policy: [COMPLIANCE_BADGE_POLICY.md](./COMPLIANCE_BADGE_POLICY.md)
-- Badge snippets: [BADGES.md](./BADGES.md)
-- Compliance declaration template: [COMPLIANCE_DECLARATION_TEMPLATE.md](./COMPLIANCE_DECLARATION_TEMPLATE.md)
-- Compliance checklist: [COMPLIANCE_CHECKLIST.md](./COMPLIANCE_CHECKLIST.md)
+- Compliance badge policy: [COMPLIANCE_BADGE_POLICY.md](./governance/compliance/COMPLIANCE_BADGE_POLICY.md)
+- Badge snippets: [BADGES.md](./governance/compliance/BADGES.md)
+- Compliance declaration template: [COMPLIANCE_DECLARATION_TEMPLATE.md](./governance/compliance/COMPLIANCE_DECLARATION_TEMPLATE.md)
+- Compliance checklist: [COMPLIANCE_CHECKLIST.md](./governance/compliance/COMPLIANCE_CHECKLIST.md)
 - Registry guide: [registry/README.md](./registry/README.md)
 - Public registry: [registry/COMPLIANT_SYSTEMS.md](./registry/COMPLIANT_SYSTEMS.md)
 - Registry submission issue form: [registry_submission.yml](./.github/ISSUE_TEMPLATE/registry_submission.yml)
