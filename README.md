@@ -39,10 +39,14 @@ Derivatives that remove these principles are not AI-HPP-compliant.
 ## Primary navigation
 
 - Authoritative docs index: [docs/INDEX.md](./docs/INDEX.md)
+- Threat Model: [docs/THREAT_MODEL.md](./docs/THREAT_MODEL.md)
+- Rationale: [docs/RATIONALE.md](./docs/RATIONALE.md)
+- Maturity Model: [docs/MATURITY_MODEL.md](./docs/MATURITY_MODEL.md)
+- System Boundary Diagram: [docs/SYSTEM_BOUNDARY_DIAGRAM.md](./docs/SYSTEM_BOUNDARY_DIAGRAM.md)
+- Non-Goals: [docs/NON_GOALS.md](./docs/NON_GOALS.md)
+- Autonomous Agent Addendum: [agent/AUTONOMOUS_AGENT_ADDENDUM.md](./agent/AUTONOMOUS_AGENT_ADDENDUM.md)
 - Decision Integrity module: [decision_integrity/DECISION_INTEGRITY_MODULE.md](./decision_integrity/DECISION_INTEGRITY_MODULE.md)
-- Threat Model: [THREAT_MODEL.md](./THREAT_MODEL.md)
 - Contributing: [CONTRIBUTING.md](./CONTRIBUTING.md)
-- Rationale and incident context: [RATIONALE.md](./RATIONALE.md)
 
 ## Version tracks
 
