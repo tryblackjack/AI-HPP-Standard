@@ -129,7 +129,7 @@ On January 15, 2026, Merge Labs (co-founded by Sam Altman) announced non-invasiv
 **What happened:**
 - US Secretary of Defense announced Grok integration into Pentagon networks (including classified)
 - Explicitly stated: "not ideologically constrained," "not woke"
-- Same AI that caused deepfake/CSAM scandals now influences life-and-death decisions
+- A previously publicized consumer AI system with reported deepfake/CSAM issues was later considered for life-and-death decision environments
 
 **AI-HPP response:**
 This case motivated the creation of AI-HPP-2025 as an alternative ethical baseline.

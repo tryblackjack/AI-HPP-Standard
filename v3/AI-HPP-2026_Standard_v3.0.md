@@ -37,6 +37,42 @@ While AI-HPP-2025 established the ethical core for individual decision-making ($
 
 ---
 
+## Neutrality & Documentation Principle
+
+AI-HPP is an architectural governance framework.
+
+It does not:
+- assert wrongdoing by any specific vendor,
+- provide legal conclusions,
+- engage in competitive positioning,
+- or target individual companies.
+
+All real-world examples included in this standard are:
+
+- illustrative,
+- non-normative,
+- based on publicly discussed scenarios,
+- used solely to clarify architectural boundaries and failure patterns.
+
+The purpose of documenting such cases is:
+
+- to identify recurring technical failure modes,
+- to improve system design before deployment,
+- to prevent foreseeable harm,
+- and to strengthen accountability mechanisms.
+
+AI-HPP operates under a **preventive engineering philosophy**:
+We do not wage conflict against systems.
+We document, model, and mitigate systemic risk.
+
+This principle ensures:
+- neutrality,
+- vendor-independence,
+- regulatory credibility,
+- long-term institutional viability.
+
+---
+
 ## 2. The Immutable Core (Inherited from v2.0)
 
 These principles are **non-negotiable** and propagate to all sub-agents:

@@ -72,6 +72,15 @@ The repository root contains compatibility stubs for a few documents. Canonical 
 - Draft evolution: [v3/AI-HPP-2026_Standard_v3.0.md](./v3/AI-HPP-2026_Standard_v3.0.md)
 - [Module 11 — Multi-Agent Governance](./v3/modules/Module_11_Multi_Agent_Governance.md)
 
+---
+
+## Neutrality & Non-Affiliation Notice
+
+AI-HPP is an independent architectural framework.  
+All illustrative cases are provided for engineering analysis and do not assert wrongdoing by any specific vendor, company, or platform.  
+References to real-world events are framed in neutral, public-information context.
+
+
 ## License
 
 Licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).

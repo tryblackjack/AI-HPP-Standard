@@ -16,6 +16,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Agent safety modules
 - Compliance toolkit
 - Public registry workflow
+- Neutral illustrative case: Source Contamination & Rapid Fact Propagation (Feb 2026)
+- Clarified language in cognitive safety examples to avoid vendor-specific references
 
 ### Improved
 - Documentation structure normalized
