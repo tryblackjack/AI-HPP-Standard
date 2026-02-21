@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI-HPP Evidence Bundle",
+  "type": "object",
+  "required": ["bundle_id", "timestamp", "actor", "context", "policy_decisions", "tool_calls", "approvals", "redactions"],
+  "properties": {
+    "bundle_id": { "type": "string" },
+    "timestamp": { "type": "string" },
+    "actor": {
+      "type": "object",
+      "required": ["actor_id"],
+      "properties": {
+        "actor_id": { "type": "string" },
+        "tenant_id": { "type": "string" }
+      }
+    },
+    "context": {
+      "type": "object",
+      "required": ["session_id", "trust_level"],
+      "properties": {
+        "session_id": { "type": "string" },
+        "trust_level": { "type": "string", "enum": ["main_dm", "group", "external_content", "unknown_sender"] }
+      }
+    },
+    "policy_decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["policy_id", "decision", "reason_codes"],
+        "properties": {
+          "policy_id": { "type": "string" },
+          "decision": { "type": "string", "enum": ["ALLOW", "DENY", "REQUIRE_APPROVAL"] },
+          "reason_codes": { "type": "array", "items": { "type": "string" } },
+          "constraints": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "tool_calls": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["tool_id", "args_hash", "result_hash", "environment"],
+        "properties": {
+          "tool_id": { "type": "string" },
+          "environment": { "type": "string", "enum": ["host", "sandbox", "none"] },
+          "args_hash": { "type": "string" },
+          "result_hash": { "type": "string" },
+          "domain_allowlist": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "approvals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "status"],
+        "properties": {
+          "type": { "type": "string", "enum": ["human", "dual_control"] },
+          "status": { "type": "string", "enum": ["approved", "denied", "not_required"] },
+          "approver_ids": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "redactions": {
+      "type": "object",
+      "required": ["profile"],
+      "properties": {
+        "profile": { "type": "string" },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}

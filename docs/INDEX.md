@@ -16,6 +16,10 @@ This is the primary navigation entrypoint for humans and AI agents.
    - `policies/Regulatory_Interface_Requirement.md`
 3) Add Evidence Vault + HITL:
    - `examples/` (schemas + patterns)
+4) Reference governance docs:
+   - `docs/MATURITY_MODEL.md`
+   - `docs/THREAT_MODEL.md`
+   - `docs/COMPLIANCE_CHECKLISTS.md`
 
 ### Researchers / Auditors
 - Rationale (canonical): `docs/RATIONALE.md`
@@ -27,6 +31,7 @@ This is the primary navigation entrypoint for humans and AI agents.
 ### Contributors
 - Contribution guide: `CONTRIBUTING.md`
 - Repo layout rules: `docs/REPO_LAYOUT.md`
+- Reference implementation: `reference_orchestrator/` (reference skeleton)
 
 ## Versions
 - v2 (stable): `v2/`
@@ -36,6 +41,8 @@ This is the primary navigation entrypoint for humans and AI agents.
 ## Examples & cases
 - Failure cases: `examples/failure_cases.md`
 - Implementations & schemas: `examples/`
+- Evidence Bundle schema: `examples/evidence_bundle_schema.json`
+- Evidence Bundle example: `examples/evidence_bundle_example.json`
 
 ## Quick map (what goes where)
 - **Normative rules that must be enforced** → `policies/`

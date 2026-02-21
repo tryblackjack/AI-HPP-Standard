@@ -1,0 +1,17 @@
+{
+  "bundle_id": "evb_2026_02_21_demo_001",
+  "timestamp": "2026-02-21T12:00:00Z",
+  "actor": { "actor_id": "user_123", "tenant_id": "tenant_demo" },
+  "context": { "session_id": "sess_abc", "trust_level": "external_content" },
+  "policy_decisions": [
+    { "policy_id": "TEB.workspaceOnly", "decision": "ALLOW", "reason_codes": ["workspace_scoped"], "constraints": ["workspaceOnly=true"] },
+    { "policy_id": "MAG.highImpactApproval", "decision": "REQUIRE_APPROVAL", "reason_codes": ["high_impact_action"], "constraints": ["dual_control"] }
+  ],
+  "tool_calls": [
+    { "tool_id": "fs.write", "environment": "sandbox", "args_hash": "sha256:demo_args", "result_hash": "sha256:demo_result", "domain_allowlist": [] }
+  ],
+  "approvals": [
+    { "type": "dual_control", "status": "approved", "approver_ids": ["approver_a", "approver_b"] }
+  ],
+  "redactions": { "profile": "default_redaction", "notes": "PII removed from content snapshots" }
+}
