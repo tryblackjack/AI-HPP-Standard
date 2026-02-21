@@ -63,7 +63,7 @@ While implementation details are flexible, these principles are **immutable**:
 - [AI-HPP-2026 Standard v3.0](../v3/AI-HPP-2026_Standard_v3.0.md) — Full specification
 - [Agent-Facing Addendum](../v3/Agent_Facing_Addendum.md) — Identity and auditability notes
 - [Module Specifications](../v3/modules/) — Detailed requirements per module
-- [Claude's Review](../v3/AI-HPP-2026_Claude_Review.md) — Security analysis and hardening
+- [Deep Security Review](../v3/AI-HPP-2026_Claude_Review.md) — Security analysis and hardening
 
 ## Contributing Examples
 

@@ -16,4 +16,4 @@ AI-HPP remains implementation-neutral and institution-oriented. It does not subs
 
 Its function is to provide an auditable technical baseline that organizations can apply before deployment in high-risk contexts.
 
-Translation prepared by the AI-HPP Editorial Team. AI-assisted drafting, human-reviewed.
+Translation prepared by the AI-HPP Editorial Team. AI-assisted drafting, human reviewed.

@@ -1,6 +1,6 @@
 # Module 10: Multi-Jurisdiction Compliance
 
-**AI-HPP-2026 v3.0 - Claude Contribution**
+**AI-HPP-2026 v3.0 - Editorial Contribution**
 
 ## Overview
 

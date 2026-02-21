@@ -1,6 +1,6 @@
 # Module 8: Adversarial Robustness Protocol
 
-**AI-HPP-2026 v3.0 - Claude Contribution**
+**AI-HPP-2026 v3.0 - Editorial Contribution**
 
 ## Overview
 

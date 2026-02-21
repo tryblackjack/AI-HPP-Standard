@@ -69,7 +69,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [v3.3] - 2026-01-17 — Stabilization Release
 
 ### Added
-- **Evidence Vault v0.3** — Claude + Aiya consensus:
+- **Evidence Vault v0.3** — Editorial consensus review:
   - Two Profiles: EV-P (Physical) and EV-C (Cognitive)
   - Event-Triggered Mode (NOT continuous surveillance)
   - Applicability section (high-risk systems only)
@@ -148,7 +148,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 - Evidence Vault now includes blockchain alternatives (immudb recommended over full blockchain)
-- Acknowledgments expanded to include all AI co-authors with specific contributions
+- Acknowledgments updated to institutional editorial attribution with role-specific contributions
 
 ---
 
@@ -206,19 +206,19 @@ Version 3.0 transforms AI-HPP from a decision framework for individual AI agents
   - Carbon Transparency (energy and CO2 logging)
   - Optimization strategies (caching, cascades, quantization)
 
-- **Module 8: Adversarial Robustness Protocol** (NEW - Claude contribution)
+- **Module 8: Adversarial Robustness Protocol** (NEW - editorial contribution)
   - Constitution integrity protection (cryptographic hash verification)
   - Value drift detection (periodic ethical benchmarks)
   - Multi-party authorization (minimum 3, 72h cooling period)
   - Supply chain attack defenses
 
-- **Module 9: Graceful Degradation Protocol** (NEW - Claude contribution)
+- **Module 9: Graceful Degradation Protocol** (NEW - editorial contribution)
   - Four degradation levels (Nominal → Degraded → Minimal → Safe Stop)
   - Failure mode responses (interpretability, vault, network, sanitizer)
   - Automatic and manual recovery protocols
   - State transition logic
 
-- **Module 10: Multi-Jurisdiction Compliance** (NEW - Claude contribution)
+- **Module 10: Multi-Jurisdiction Compliance** (NEW - editorial contribution)
   - Three compliance layers (Universal → Regional → Local)
   - Conflict resolution ("most protective rule wins")
   - EU AI Act alignment
@@ -238,7 +238,7 @@ Version 3.0 transforms AI-HPP from a decision framework for individual AI agents
 #### Documentation
 - Full YAML specifications for each module
 - Implementation checklists per module
-- Attack vector analysis (Claude's security review)
+- Attack vector analysis (editorial security review)
 - Compliance matrices (EU AI Act, NIST RMF)
 
 ### Changed

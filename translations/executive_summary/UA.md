@@ -16,4 +16,4 @@ AI-HPP зберігає нейтральність щодо реалізації
 
 Його функція — надати аудитопридатний технічний базис, який організації можуть застосовувати до розгортання у високоризикових контекстах.
 
-Translation prepared by the AI-HPP Editorial Team. AI-assisted drafting, human-reviewed.
+Translation prepared by the AI-HPP Editorial Team. AI-assisted drafting, human reviewed.

@@ -629,7 +629,7 @@ It is NOT required for:
 - Low-risk automation
 ```
 
-### ⚠️ Aiya's Risk Assessment
+### ⚠️ Editorial Risk Assessment
 
 | Risk | Mitigation |
 |------|------------|
@@ -638,7 +638,7 @@ It is NOT required for:
 | "Mixing everything" criticism | Two profiles (EV-P / EV-C) |
 | Startup accessibility | Tiered implementation guide (future) |
 
-### ✅ Aiya's Verdict
+### ✅ Editorial Verdict
 
 > "Evidence Vault — один з найсильніших і найпрактичніших компонентів AI-HPP-2025. Він не філософський, не реактивний, не декларативний — а інженерний і перевіряємий."
 
@@ -648,11 +648,11 @@ It is NOT required for:
 
 ## Consensus Version v0.3
 
-**Status:** Draft — Claude + Aiya reviews integrated
+**Status:** Draft — editorial reviews integrated
 **Version Evolution:**
 - v0.1 — Editorial initial draft
-- v0.2 — Claude review (schema additions, failure modes)
-- v0.3 — Aiya review (profiles, narrative_risk, event-triggered)
+- v0.2 — editorial review (schema additions, failure modes)
+- v0.3 — editorial review (profiles, narrative_risk, event-triggered)
 
 ---
 

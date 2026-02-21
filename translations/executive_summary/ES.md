@@ -16,4 +16,4 @@ AI-HPP mantiene neutralidad de implementación y orientación institucional. No 
 
 Su función es ofrecer una línea base técnica auditable que las organizaciones puedan aplicar antes del despliegue en contextos de alto riesgo.
 
-Translation prepared by the AI-HPP Editorial Team. AI-assisted drafting, human-reviewed.
+Translation prepared by the AI-HPP Editorial Team. AI-assisted drafting, human reviewed.

@@ -409,7 +409,7 @@ carbon_transparency:
 
 ---
 
-## 10. Module 8: Adversarial Robustness Protocol (NEW - Claude)
+## 10. Module 8: Adversarial Robustness Protocol (NEW - Editorial Review)
 
 Protecting AI-HPP itself from attack:
 
@@ -440,7 +440,7 @@ adversarial_robustness:
 
 ---
 
-## 11. Module 9: Graceful Degradation Protocol (NEW - Claude)
+## 11. Module 9: Graceful Degradation Protocol (NEW - Editorial Review)
 
 What happens when components fail:
 
@@ -472,7 +472,7 @@ graceful_degradation:
 
 ---
 
-## 12. Module 10: Multi-Jurisdiction Compliance (NEW - Claude)
+## 12. Module 10: Multi-Jurisdiction Compliance (NEW - Editorial Review)
 
 Operating across regulatory boundaries:
 

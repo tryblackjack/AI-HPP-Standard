@@ -16,4 +16,4 @@ AI-HPP bleibt implementierungsneutral und institutionell ausgerichtet. Es ersetz
 
 Seine Funktion besteht darin, eine auditierbare technische Basis bereitzustellen, die Organisationen vor dem Einsatz in Hochrisikokontexten anwenden können.
 
-Translation prepared by the AI-HPP Editorial Team. AI-assisted drafting, human-reviewed.
+Translation prepared by the AI-HPP Editorial Team. AI-assisted drafting, human reviewed.
