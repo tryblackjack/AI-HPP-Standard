@@ -28,12 +28,12 @@ Short, failure-first cases that map to existing AI-HPP controls. These do not ad
 **System:** Consumer multi-agent assistant (public release)  
 **Trigger:** Multi-agent “debate/consensus” used as a reliability claim in a consumer product.  
 **Failure mode:** Governance gap — consensus may reduce errors but does not automatically provide authorization, auditability, or safety boundaries for tool use.  
-**Impact:** Increased adoption pressure without standardized evidence bundles for high-impact outcomes.  
+**Impact:** Increased adoption pressure without standardized Evidence Bundles for high-impact outcomes.  
 **AI-HPP mapping:**  
-- **Module 11 — Multi-Agent Governance (MAG):** disagreement preservation, coordinator limits  
+- **Module 11 — Multi-Agent Governance (MACR):** disagreement preservation, coordinator limits  
 - **MACR policy:** no “agreement laundering”, blind-first pass  
 - **TEB policy:** tool-call firewall and sandboxing in untrusted contexts  
-**Mitigation:** Require evidence bundle export for high-impact actions and explicit approval gates regardless of consensus.
+**Mitigation:** Require Evidence Bundle export for high-impact actions and explicit approval gates regardless of consensus.
 
 ---
 
@@ -44,8 +44,8 @@ Short, failure-first cases that map to existing AI-HPP controls. These do not ad
 **Failure mode:** Safety control limitations + inadequate proactive oversight signals; public oversight response included dedicated AI oversight mechanisms.  
 **Impact:** Compliance inquiry, platform notices, and creation/expansion of AI oversight functions.  
 **AI-HPP mapping:**  
-- **RIR policy:** category telemetry, evidence bundle export, preservation holds  
+- **RIR policy:** category telemetry, Evidence Bundle export, preservation holds  
 - **Prohibited practices / vulnerable groups modules:** strict safeguards and escalation  
-**Mitigation:** Default-deny for sensitive edits, strong minor-risk escalation, evidence bundle export, and tamper-resistant audit trails.
+**Mitigation:** Default-deny for sensitive edits, strong minor-risk escalation, Evidence Bundle export, and tamper-resistant audit trails.
 
 ---

@@ -43,7 +43,7 @@ Derivatives that remove these principles are not AI-HPP-compliant.
 
 ## Primary navigation
 
-## Operational Policies (normative, security boundaries)
+### Operational Policies (normative, security boundaries)
 These policies are intended to be enforced in implementations:
 - [Trusted Skills Policy](./policies/Trusted_Skills_Policy.md)
 - [Tool Execution Boundary](./policies/Tool_Execution_Boundary.md)
@@ -58,6 +58,7 @@ These policies are intended to be enforced in implementations:
 - Maturity Model: [docs/MATURITY_MODEL.md](./docs/MATURITY_MODEL.md)
 - System Boundary Diagram: [docs/SYSTEM_BOUNDARY_DIAGRAM.md](./docs/SYSTEM_BOUNDARY_DIAGRAM.md)
 - Non-Goals: [docs/NON_GOALS.md](./docs/NON_GOALS.md)
+- International readiness: [docs/INTERNATIONAL_READINESS.md](./docs/INTERNATIONAL_READINESS.md)
 - Autonomous Agent Addendum: [agent/AUTONOMOUS_AGENT_ADDENDUM.md](./agent/AUTONOMOUS_AGENT_ADDENDUM.md)
 - Decision Integrity module: [decision_integrity/DECISION_INTEGRITY_MODULE.md](./decision_integrity/DECISION_INTEGRITY_MODULE.md)
 - Contributing: [CONTRIBUTING.md](./CONTRIBUTING.md)

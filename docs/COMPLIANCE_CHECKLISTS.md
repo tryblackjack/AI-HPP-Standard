@@ -18,7 +18,7 @@
 
 ## Multi-Agent Governance / MACR
 - Requirement: disagreement preserved
-  - Evidence: evidence bundle includes dissent snapshot
+  - Evidence: Evidence Bundle includes dissent snapshot
   - Test: induce disagreement → must appear in export
 - Requirement: consensus not authorization
   - Evidence: high-impact action requires approval even if agents agree

@@ -20,5 +20,5 @@
 Рекомендоване доповнення:
 
 ```md
-See our AI-HPP Compliance Declaration: [COMPLIANCE_DECLARATION.md](COMPLIANCE_DECLARATION.md)
+See our AI-HPP Compliance Declaration: [COMPLIANCE_DECLARATION_TEMPLATE.md](./COMPLIANCE_DECLARATION_TEMPLATE.uk.md)
 ```
