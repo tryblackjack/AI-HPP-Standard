@@ -648,11 +648,11 @@ It is NOT required for:
 
 ## Consensus Version v0.3
 
-**Status:** Draft — Claude + Aiya reviews integrated
+**Status:** Draft — AI-HPP Editorial Team review integrated
 **Version Evolution:**
 - v0.1 — Editorial initial draft
-- v0.2 — Claude review (schema additions, failure modes)
-- v0.3 — Aiya review (profiles, narrative_risk, event-triggered)
+- v0.2 — Editorial review (schema additions, failure modes)
+- v0.3 — Editorial review (profiles, narrative_risk, event-triggered)
 
 ---
 

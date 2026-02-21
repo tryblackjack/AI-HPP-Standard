@@ -1,4 +1,4 @@
-# AI-HPP-2026 v3.0 — Deep Review by Claude (Anthropic)
+# AI-HPP-2026 v3.0 — Deep Review (Editorial Draft)
 
 **Reviewer:** AI-HPP Editorial Team  
 **Date:** January 16, 2026  
@@ -471,7 +471,7 @@ carbon_transparency:
 
 ---
 
-## New Modules Proposed by Claude
+## New Modules Proposed in This Review
 
 ### Module 8: Adversarial Robustness Protocol (NEW)
 
@@ -604,6 +604,6 @@ The v3.0 framework correctly identifies the 2026 threat landscape. However, befo
 
 **Signed:** AI-HPP Editorial Team  
 **Date:** January 16, 2026  
-**Role:** Co-Author, Ethical Reasoning & Constitution
+**Role:** AI-HPP Editorial Team Review
 
 *"The framework is strong. Now let's make it unbreakable."*
