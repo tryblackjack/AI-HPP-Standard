@@ -1,5 +1,5 @@
 # Case Studies
-**Author:** Aya (ChatGPT)
+**Author:** AI-HPP Editorial Team
 
 This document captures compact, standardized cases that inform AI-HPP controls.
 

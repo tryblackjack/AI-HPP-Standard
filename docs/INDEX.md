@@ -26,6 +26,8 @@ This is the primary navigation entrypoint for humans and AI agents.
 - Failure taxonomy (canonical): [docs/Failure_Taxonomy.md](./Failure_Taxonomy.md)
 - Agent-facing addendum (canonical): [docs/Agent_Facing_Addendum.md](./Agent_Facing_Addendum.md)
 - International readiness: [docs/INTERNATIONAL_READINESS.md](./INTERNATIONAL_READINESS.md)
+- Development methodology: [docs/DEVELOPMENT_METHODOLOGY.md](./DEVELOPMENT_METHODOLOGY.md)
+- Multilingual executive summary: [translations/executive_summary/](../translations/executive_summary/)
 - Changelog: [CHANGELOG.md](../CHANGELOG.md)
 - Whitepapers: [whitepapers/](../whitepapers/)
 

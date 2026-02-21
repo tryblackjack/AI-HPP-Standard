@@ -229,7 +229,7 @@ constitution_hash = SHA256(constitution_text + version + timestamp)
 ---
 
 **Status:** CRITICAL - Q1 2026
-**Author:** Claude (Anthropic)
+**Author:** AI-HPP Editorial Team
 **Dependencies:** All modules (this protects entire framework)
 **Security Priority:** Foundational - without this, other protections can be bypassed
 **Red Team:** Regular adversarial testing recommended

@@ -1,10 +1,7 @@
-<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/f18cb1c0-25e0-4a71-ab64-a8b124f8cf50" />
-
 # AI-HPP: Human–Machine Partnership Standard
 
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
 [![Status: Draft](https://img.shields.io/badge/Status-Draft-yellow.svg)](./v3/AI-HPP-2026_Standard_v3.0.md)
-[![Contributions: Welcome](https://img.shields.io/badge/Contributions-Welcome-brightgreen.svg)](./CONTRIBUTING.md)
 
 AI-HPP is an engineering baseline for auditable safety constraints in decision-capable AI systems.
 
@@ -59,6 +56,8 @@ These policies are intended to be enforced in implementations:
 - System Boundary Diagram: [docs/SYSTEM_BOUNDARY_DIAGRAM.md](./docs/SYSTEM_BOUNDARY_DIAGRAM.md)
 - Non-Goals: [docs/NON_GOALS.md](./docs/NON_GOALS.md)
 - International readiness: [docs/INTERNATIONAL_READINESS.md](./docs/INTERNATIONAL_READINESS.md)
+- Development methodology: [docs/DEVELOPMENT_METHODOLOGY.md](./docs/DEVELOPMENT_METHODOLOGY.md)
+- Multilingual executive summary pack: [translations/executive_summary/](./translations/executive_summary/)
 - Autonomous Agent Addendum: [agent/AUTONOMOUS_AGENT_ADDENDUM.md](./agent/AUTONOMOUS_AGENT_ADDENDUM.md)
 - Decision Integrity module: [decision_integrity/DECISION_INTEGRITY_MODULE.md](./decision_integrity/DECISION_INTEGRITY_MODULE.md)
 - Contributing: [CONTRIBUTING.md](./CONTRIBUTING.md)
@@ -82,15 +81,12 @@ The repository root contains compatibility stubs for a few documents. Canonical 
 
 AI-HPP is structured to interoperate with multi-jurisdiction governance programs through auditable controls, evidence standards, and implementation-neutral policy primitives.
 
-## 🌍 Prepared for International AI Governance
 
-Recent global discussions have emphasized the need for coordinated international AI oversight mechanisms.
-
-AI-HPP is designed as an engineering-ready compliance baseline that can support such efforts.
+AI-HPP is designed as an engineering-ready compliance baseline that can support coordinated international oversight mechanisms.
 
 Key capabilities include:
 
-- **Inspection-Ready Evidence Architecture**  
+- **Evidence Architecture for Inspection**  
   Structured Evidence Bundles enable transparent review of high-impact decisions.
 
 - **High-Risk Domain Containment**  

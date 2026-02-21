@@ -1,5 +1,5 @@
 # Certification Levels
-**Author:** Aya (ChatGPT)
+**Author:** AI-HPP Editorial Team
 
 These levels support incremental AI-HPP adoption by deployment risk.
 

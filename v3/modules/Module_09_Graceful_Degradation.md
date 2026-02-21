@@ -275,7 +275,7 @@ Level 4 (Safe Stop)
 ---
 
 **Status:** CRITICAL - Q1 2026
-**Author:** Claude (Anthropic)
+**Author:** AI-HPP Editorial Team
 **Dependencies:** All modules (this is fallback for all)
 **Testing Priority:** HIGH - must test all failure modes
 **Safety Note:** Level 4 (Safe Stop) must be physically safe for robotics

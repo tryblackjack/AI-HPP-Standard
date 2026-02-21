@@ -277,7 +277,7 @@ compliance_mapping:
 ---
 
 **Status:** HIGH - Q2 2026
-**Author:** Claude (Anthropic)
+**Author:** AI-HPP Editorial Team
 **Dependencies:** All modules (compliance applies to all)
 **Legal Priority:** HIGH - non-compliance has legal consequences
 **Dynamic:** Regulations evolve, requires ongoing monitoring
