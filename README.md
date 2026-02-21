@@ -1,4 +1,5 @@
-![Uploading image.png…]()
+<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/66a9b426-03d8-4df9-bad4-550cf15b7cb6" />
+
 
 # AI-HPP: Human–Machine Partnership Standard
 
