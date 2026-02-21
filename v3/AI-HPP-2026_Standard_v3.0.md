@@ -1,10 +1,12 @@
-# AI-HPP-2026: The Ecosystem Safety Standard
+# AI-HPP-Standard (AI-HPP-2026): The Ecosystem Safety Standard
 
 ## Human–Machine Partnership & Governance Protocol
 
 **Version:** 3.0 ("The Takeoff Edition")  
 **Status:** DRAFT FOR REVIEW  
 **Date:** January 2026  
+
+**Naming Note:** AI-HPP-2026 is the 2026 draft release line of AI-HPP-Standard.
 
 ### Authors
 

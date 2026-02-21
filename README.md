@@ -2,6 +2,7 @@
 
 AI-HPP-Standard is an inspection-oriented governance and engineering baseline for high-impact AI systems.
 It is intended to reduce operational risk, support auditability, and provide implementation-ready policy controls.
+In this repository, **AI-HPP-2026** denotes the current draft release line of **AI-HPP-Standard**.
 
 Start reading with the repository index: [docs/INDEX.md](./docs/INDEX.md).
 The current draft standard is: [v3/AI-HPP-2026_Standard_v3.0.md](./v3/AI-HPP-2026_Standard_v3.0.md).

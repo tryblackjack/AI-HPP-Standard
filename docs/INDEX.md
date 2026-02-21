@@ -2,6 +2,8 @@
 
 This index is the master table of contents for repository navigation and inspection.
 
+AI-HPP-2026 denotes the current draft release line of AI-HPP-Standard.
+
 ## Core entry points
 
 - Repository overview: [README.md](../README.md)
