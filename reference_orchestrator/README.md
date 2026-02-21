@@ -1,4 +1,4 @@
-# Jarvis (Reference Skeleton)
+# reference_orchestrator (Reference Skeleton)
 
 This folder contains a **reference implementation skeleton** aligned with AI-HPP.
 It is intentionally **non-operational** (no production integrations, no secrets).
