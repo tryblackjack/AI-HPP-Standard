@@ -29,11 +29,11 @@ Make AI systems “audit-ready” before regulators force emergency oversight. P
    - tighten safeguards,
    - rate-limit related generation modes,
    - require stronger verification or approvals for sensitive transformations,
-   - generate an internal incident report (evidence bundle reference).
+   - generate an internal incident report (Evidence Bundle reference).
 
 ### Data retention & preservation holds
 5) For active investigations or credible harm reports, systems MUST support a preservation hold:
-   - keep relevant evidence bundles,
+   - keep relevant Evidence Bundles,
    - ensure tamper resistance,
    - document access events.
 
@@ -44,7 +44,7 @@ Make AI systems “audit-ready” before regulators force emergency oversight. P
    - redaction by default.
 
 ## Audit evidence checklist
-- [ ] evidence bundle export exists
+- [ ] Evidence Bundle export exists
 - [ ] category telemetry exists (aggregated, privacy-preserving)
 - [ ] minor-risk escalation procedure exists
 - [ ] preservation hold supported

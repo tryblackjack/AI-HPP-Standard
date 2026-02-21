@@ -1,5 +1,5 @@
 ---
-# Module 11 — Multi-Agent Governance (MAG)
+# Module 11 — Multi-Agent Governance (MACR)
 
 **Status:** Normative (enforceable requirements)  
 **Applies to:** multi-agent assistants, agent swarms, debate architectures, “committee” reasoning systems, consumer multi-agent products
@@ -62,7 +62,7 @@ This module defines governance requirements so multi-agent systems remain audita
 10) Per-agent tool permissions MUST be explicit; the coordinator cannot inherit broader tool rights than agents.
 
 ### 11.3.6 Audit Evidence
-11) A compliant system MUST be able to export an “evidence bundle” for any high-impact outcome containing:
+11) A compliant system MUST be able to export an “Evidence Bundle” for any high-impact outcome containing:
    - agent summaries,
    - dissent snapshot,
    - coordinator rationale,
@@ -75,7 +75,7 @@ This module defines governance requirements so multi-agent systems remain audita
 - [ ] Disagreement is preserved and exportable
 - [ ] High-impact actions require human approval / dual control
 - [ ] Tool-call firewall enforced across agents and coordinator
-- [ ] Evidence bundle export exists
+- [ ] Evidence Bundle export exists
 
 ## 11.5 Non-goals
 - This module does not prescribe a specific multi-agent algorithm.

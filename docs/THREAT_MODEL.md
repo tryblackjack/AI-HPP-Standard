@@ -13,7 +13,7 @@
 - Fail-closed on ambiguity
 - Least privilege for tools
 - Isolation by tenant/session/task
-- Evidence bundles for high-impact outcomes
+- Evidence Bundles for high-impact outcomes
 
 
 ## Emerging Global Risk Domains
