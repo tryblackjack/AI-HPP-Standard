@@ -497,6 +497,23 @@ multi_jurisdiction:
 
 ---
 
+
+## Enterprise Level Compliance
+
+### Regulatory Interface Requirement (RIR)
+
+Enterprise-compliant systems SHOULD support:
+
+- Standardized, privacy-preserving audit exports
+- Structured Evidence Bundle retrieval
+- Capability manifest disclosure
+- Demonstration of high-risk gating mechanisms
+
+Audit access MUST remain controlled and authorization-based.
+AI-HPP does not mandate automatic external reporting.
+
+---
+
 ## 13. Implementation Roadmap
 
 | Quarter | Milestone | Priority |
