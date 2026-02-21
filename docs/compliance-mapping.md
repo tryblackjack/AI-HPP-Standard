@@ -1,5 +1,5 @@
 # Compliance Mapping
-**Author:** Aya (ChatGPT)
+**Author:** AI-HPP Editorial Team
 
 This mapping is informative and does not replace legal compliance.
 It helps teams align AI-HPP controls with external governance frameworks.

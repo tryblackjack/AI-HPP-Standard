@@ -89,17 +89,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Repository ready for community development
 
 ### Contributors
-- Grok (xAI) — Evidence Vault initial draft, critical review
-- Claude (Anthropic) — Schema additions, editorial normalization
-- ChatGPT/Aiya (OpenAI) — Profiles, event-triggered mode, Emerging Technologies text
+- AI-HPP Editorial Team — Evidence Vault initial draft, critical review
+- AI-HPP Editorial Team — Schema additions, editorial normalization
+- AI-HPP Editorial Team — Profiles, event-triggered mode, Emerging Technologies text
 
 ---
 
 ## [v3.2] - 2026-01-17
 
 ### Added
-- **docs/RATIONALE.md** — Why this standard exists (ChatGPT/Aiya contribution)
-- **docs/Failure_Taxonomy.md** — Classification of AI failures (ChatGPT/Aiya contribution)
+- **docs/RATIONALE.md** — Why this standard exists (AI-HPP Editorial Team contribution)
+- **docs/Failure_Taxonomy.md** — Classification of AI failures (AI-HPP Editorial Team contribution)
 - **Cognitive Safety Failures** — NEW class of AI harm with 5 subsections:
   - 4.1 Delusional Reinforcement
   - 4.2 Human-in-the-Loop Trigger for Cognitive Degradation
@@ -119,19 +119,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 - README.md: Added "What This Standard Is NOT" section with Anti-Slop Clause and Failure-First Framing
-- README.md: Updated AI contributors to include ChatGPT/Aiya and Grok with detailed contributions
+- README.md: Updated institutional AI-assisted attribution and contribution notes
 - README.md: "First time in history" → "One of the first documented cases" (reduced hyperbole)
 - docs/RATIONALE.md: Added Anti-Slop Clause and Failure-First Framing sections
-- AUTHORS.md: Added ChatGPT/Aiya contributions (RATIONALE, Failure_Taxonomy, Cognitive Safety)
+- AUTHORS.md: Added AI-HPP Editorial Team contributions (RATIONALE, Failure_Taxonomy, Cognitive Safety)
 - Key Documents table now includes docs/RATIONALE.md and docs/Failure_Taxonomy.md
 
 ### Key Principle Added
 > "Human dignity shall never be treated as an optimization variable."
 
 ### Contributors
-- **Grok (xAI)** — critical review, fact verification
-- **ChatGPT / Aiya (OpenAI)** — governance framework, RATIONALE, Failure_Taxonomy, Cognitive Safety Failures, Anti-Slop Clause
-- **Claude (Anthropic)** — documentation, integration
+- **AI-HPP Editorial Team** — critical review, fact verification
+- **AI-HPP Editorial Team** — governance framework, RATIONALE, Failure_Taxonomy, Cognitive Safety Failures, Anti-Slop Clause
+- **AI-HPP Editorial Team** — documentation, integration
 
 ---
 
@@ -140,7 +140,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - **Prohibited_Practices_and_Torture_Ban.md** — Absolute prohibition on torture in both directions (Human↔AI)
 - **Evidence_Vault_Specification_v2.md** — Full technical specification (immudb, Merkle trees, ZK-proofs, audit protocols)
-- **AUTHORS.md** — Added Grok (xAI) as co-author for critical review and fact verification
+- **AUTHORS.md** — Updated with institutional editorial attribution for review and verification
 - Real-world violation examples:
   - Grok Twitter Scandal (January 14, 2026) — mass non-consensual content
   - Merge Labs BCI announcement (January 15, 2026) — brain-AI integration concerns
@@ -226,8 +226,8 @@ Version 3.0 transforms AI-HPP from a decision framework for individual AI agents
   - Per-deployment compliance mapping
 
 #### Co-Authors
-- NotebookLM (Google) added as co-author for context synthesis
-- Claude (Anthropic) expanded role: Security review + Modules 8-10
+- AI-HPP Editorial Team attribution updated for context synthesis
+- AI-HPP Editorial Team role updated: security review + Modules 8-10
 
 #### Repository Structure
 - Created versioned structure (v2/, v3/)
@@ -380,12 +380,12 @@ Initial JARVIS Constitution. Foundation of AI-HPP principles.
 
 | Version | Primary Contributors |
 |---------|---------------------|
-| v1.0 | Evgeniy Vasyliev (Human), Claude (Constitution), Gemini (Formalization) |
-| v1.1 | + ChatGPT (Refinement), Vasya Brilliant philosophy |
-| v2.0 | + Mathematical whitepaper (Gemini), Engineering Hack formalization |
+| v1.0 | Evgeniy Vasyliev (Human), AI-HPP Editorial Team (Constitution + Formalization support) |
+| v1.1 | + AI-HPP Editorial Team (Refinement), Vasya Brilliant philosophy |
+| v2.0 | + Mathematical whitepaper (AI-HPP Editorial Team), Engineering Hack formalization |
 | v2.1 | + Interpretability philosophy (response to MIT research) |
 | v2.2 | + AI Identity Protection (inspired by McConaughey) |
-| **v3.0** | + **NotebookLM (Context Synthesis)**, Claude (Security Review + Modules 8-10) |
+| **v3.0** | + **AI-HPP Editorial Team (Context Synthesis, Security Review, Modules 8-10)** |
 
 ---
 

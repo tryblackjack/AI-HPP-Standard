@@ -12,9 +12,9 @@
 |---|---|---|
 | Людський лід і архітектор | Evgeniy Vasyliev | 🇺🇦 |
 | Етичне міркування та конституція | Claude | Anthropic |
-| Математична формалізація | Gemini | Google |
-| Адаптація та операційна логіка | ChatGPT | OpenAI |
-| Синтез контексту | NotebookLM | Google |
+| Математична формалізація | AI-HPP Editorial Team | Institutional collaboration |
+| Адаптація та операційна логіка | AI-HPP Editorial Team | Institutional collaboration |
+| Синтез контексту | AI-HPP Editorial Team | Institutional collaboration |
 
 ---
 

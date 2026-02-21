@@ -1,5 +1,5 @@
 # Case Study Template
-**Author:** Aya (ChatGPT)
+**Author:** AI-HPP Editorial Team
 
 Use this template for every new case study. Keep it compact and standard-like.
 

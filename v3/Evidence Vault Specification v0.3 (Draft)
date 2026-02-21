@@ -1,21 +1,21 @@
 # Evidence Vault Specification v0.3 (Draft)
 
 **Status**: Request for Comments (RFC)
-**Version**: 0.3 (Claude + Aiya consensus)
+**Version**: 0.3 (Editorial consensus)
 **Component**: Black Box / Immutable Logger
 **Compliance**: AI-HPP-2025 Standard (Section IV)
 **Version Date**: January 17, 2026
 
 **Contributors**:
 - Evgeniy Vasyliev — Human Lead
-- Grok (xAI) — Initial draft (v0.1)
-- Claude (Anthropic) — Schema additions, failure modes (v0.2)
-- ChatGPT/Aiya (OpenAI) — Profiles, event-triggered mode, narrative_risk (v0.3)
+- AI-HPP Editorial Team — Initial draft lineage (v0.1)
+- AI-HPP Editorial Team — Schema additions, failure modes (v0.2)
+- AI-HPP Editorial Team — Profiles, event-triggered mode, narrative_risk (v0.3)
 
 **Previous Versions**:
-- v0.1 — Grok initial draft
-- v0.2 — Claude review (schema additions)
-- v0.3 — Aiya review (profiles, event-triggered, narrative_risk)
+- v0.1 — Editorial initial draft
+- v0.2 — Editorial review (schema additions)
+- v0.3 — Editorial review (profiles, event-triggered, narrative_risk)
 
 ## Технічна специфікація Evidence Vault
 
@@ -445,10 +445,10 @@ decision_id = vault.log_decision(
 
 ---
 
-## Claude's Review (Anthropic)
+## Editorial Review A
 
 **Review Date:** January 17, 2026
-**Reviewer:** Claude (Anthropic)
+**Reviewer:** AI-HPP Editorial Team
 **Overall Score:** 8/10 — Ready for v0.2 with proposed additions
 
 ### ✅ Strengths
@@ -544,13 +544,13 @@ decision_id = vault.log_decision(
 
 ---
 
-## ChatGPT/Aiya Review
+## Editorial Review B
 
 **Review Date:** January 17, 2026
-**Reviewer:** ChatGPT/Aiya (OpenAI)
+**Reviewer:** AI-HPP Editorial Team
 **Verdict:** Strong foundation, critical additions needed
 
-### 🔧 Aiya's Proposed Changes
+### 🔧 Proposed Changes
 
 #### 1. Two Vault Profiles (CRITICAL)
 
@@ -650,7 +650,7 @@ It is NOT required for:
 
 **Status:** Draft — Claude + Aiya reviews integrated
 **Version Evolution:**
-- v0.1 — Grok initial draft
+- v0.1 — Editorial initial draft
 - v0.2 — Claude review (schema additions, failure modes)
 - v0.3 — Aiya review (profiles, narrative_risk, event-triggered)
 

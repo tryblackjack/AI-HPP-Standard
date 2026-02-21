@@ -1,6 +1,6 @@
 # Audit Logging, Forensics, and Replay
 
-**Author:** Aya (ChatGPT)
+**Author:** AI-HPP Editorial Team
 
 This document defines minimum audit and forensics requirements for AI-HPP compliant systems.
 

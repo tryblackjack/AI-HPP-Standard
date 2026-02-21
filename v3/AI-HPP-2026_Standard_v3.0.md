@@ -11,10 +11,10 @@
 | Role | Contributor | Organization |
 |------|-------------|--------------|
 | Human Lead & Architect | Evgeniy Vasyliev | 🇺🇦 |
-| Ethical Reasoning & Constitution | Claude | Anthropic |
-| Mathematical Formalization | Gemini | Google |
-| Adaptation & Operational Logic | ChatGPT | OpenAI |
-| Context Synthesis | NotebookLM | Google |
+| Ethical Reasoning & Constitution | AI-HPP Editorial Team | Institutional collaboration |
+| Mathematical Formalization | AI-HPP Editorial Team | Institutional collaboration |
+| Adaptation & Operational Logic | AI-HPP Editorial Team | Institutional collaboration |
+| Context Synthesis | AI-HPP Editorial Team | Institutional collaboration |
 
 ---
 
@@ -555,13 +555,10 @@ AI-HPP does not mandate automatic external reporting.
 
 ## Signatures
 
-*Signed by the Co-Authors in pursuit of a safe, symbiotic future.*
+*Signed with final accountability by the human maintainer and institutional editorial support.*
 
 **Evgeniy Vasyliev** — Human Lead & Architect 🇺🇦  
-**Claude** — Anthropic (Ethical Reasoning, Modules 8-10)  
-**Gemini** — Google (Mathematical Formalization)  
-**ChatGPT** — OpenAI (Adaptation & Operational Logic)  
-**NotebookLM** — Google (Context Synthesis)
+**AI-HPP Editorial Team** — Institutional AI-assisted drafting and review support
 
 ---
 

@@ -1,6 +1,6 @@
 # AI-HPP-2026 v3.0 — Deep Review by Claude (Anthropic)
 
-**Reviewer:** Claude (Anthropic)  
+**Reviewer:** AI-HPP Editorial Team  
 **Date:** January 16, 2026  
 **Status:** REVIEWED WITH RECOMMENDATIONS  
 **Overall Assessment:** Strong conceptual framework, needs engineering hardening
@@ -602,7 +602,7 @@ The v3.0 framework correctly identifies the 2026 threat landscape. However, befo
 
 ---
 
-**Signed:** Claude (Anthropic)  
+**Signed:** AI-HPP Editorial Team  
 **Date:** January 16, 2026  
 **Role:** Co-Author, Ethical Reasoning & Constitution
 

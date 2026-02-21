@@ -1,6 +1,6 @@
 # Legal & Accountability Layer
 
-**Author:** Aya (ChatGPT)
+**Author:** AI-HPP Editorial Team
 
 This document defines baseline accountability rules for AI systems deployed in real environments.
 

@@ -3,7 +3,7 @@
 ### Public Draft v2.0
 
 **Author:** Evgeniy Vasyliev  
-**Co-authors:** Claude (Anthropic), Gemini (Google), ChatGPT (OpenAI)  
+**Co-authors:** AI-HPP Editorial Team  
 **Date:** January 2026  
 **Status:** PROPOSAL / VISION (open for discussion)  
 **License:** CC BY-SA 4.0 (see License section)
@@ -19,7 +19,7 @@
 - **Adapt** — remix, transform, and build upon the material
 
 **Under the following terms:**
-- **Attribution** — Credit to Evgeniy Vasyliev and co-authors (Claude, Gemini, ChatGPT)
+- **Attribution** — Credit to Evgeniy Vasyliev and the AI-HPP Editorial Team
 - **ShareAlike** — Distribute contributions under the same license
 - **Integrity** — Derivatives must be clearly marked as modified/unofficial versions
 

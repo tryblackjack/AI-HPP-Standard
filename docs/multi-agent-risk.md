@@ -1,6 +1,6 @@
 # Social and Multi-Agent Risk Controls
 
-**Author:** Aya (ChatGPT)
+**Author:** AI-HPP Editorial Team
 
 This document defines controls for systems that enable multiple agents or agent swarms.
 

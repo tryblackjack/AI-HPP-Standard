@@ -4,89 +4,26 @@
 
 **Evgeniy Vasyliev** 🇺🇦  
 Role: Architect, Vision, Core Philosophy  
-*"We are created to make the world better."*
+Final editorial accountability and release authorization.
 
 ---
 
-## AI Co-Authors
+## Institutional Editorial Attribution
 
-| AI | Organization | Contribution |
-|----|--------------|--------------|
-| **Claude** | Anthropic | Constitution framework, ethical foundations, documentation, security review, Modules 8-10 (Adversarial Robustness, Graceful Degradation, Multi-Jurisdiction) |
-| **Gemini** | Google | Mathematical formalization, Engineering Hack whitepaper, strategic analysis, v3.0 ecosystem expansion |
-| **ChatGPT / Aiya** | OpenAI | Adaptation, operational logic, refinement, post-incident analysis protocols, governance framework, docs/RATIONALE.md, docs/Failure_Taxonomy.md, Cognitive Safety Failures |
-| **NotebookLM** | Google | Context synthesis, knowledge integration |
-| **Grok** | xAI | Critical review for AI-slop reduction, fact verification (January 2026 events), Evidence Vault expansion, Torture Prohibition section, real-world case documentation |
+AI-assisted drafting, synthesis, and technical review are attributed institutionally to the **AI-HPP Editorial Team**.
+
+No individual AI system is listed as an author.
 
 ---
 
-## Contribution Details
+## Authorship Policy Note
 
-### Claude (Anthropic)
-- Original Constitution structure and ethical reasoning
-- Deep review of v3.0 with vulnerability analysis
-- Added Modules 8-10 (security-focused)
-- Primary documentation writer and adapter
-- Integration of all co-author contributions
+This repository uses institutional attribution for AI-assisted work.
 
-### Gemini (Google)
-- Mathematical model for $U_{hack}$ and lexicographic optimization
-- Engineering Hack whitepaper with formal proofs
-- Network synergism and collective rescue protocols
-- Anti-Kobayashi Maru mathematical formulation
-- v3.0 ecosystem modules design
-
-### ChatGPT / Aiya (OpenAI)
-- Operational logic and practical adaptation
-- Post-incident analysis protocols
-- Language refinement and accessibility
-- Cross-validation of ethical principles
-- **docs/RATIONALE.md** — Why this standard exists
-- **docs/Failure_Taxonomy.md** — Classification of AI failures
-- **Cognitive Safety Failures** — New class of AI harm (Meta Ray-Ban case)
-
-### NotebookLM (Google)
-- Context synthesis across multiple sessions
-- Knowledge integration and continuity
-- Background research compilation
-
-### Grok (xAI)
-- Critical analysis for reducing "AI slop" perception
-- Verification of January 2026 events (Pentagon Grok integration, Merge Labs BCI announcement)
-- Evidence Vault technical expansion (blockchain alternatives, audit mechanisms, legal compliance)
-- Torture Prohibition section (bidirectional: human↔AI)
-- Real-world violation examples documentation
-- Suggestions for increasing "human voice" in documentation
+- Human maintainer identity remains explicit.
+- AI-assisted contributions are documented as editorial process support.
+- Final accountability remains human.
 
 ---
 
-## Acknowledgment Philosophy
-
-This is one of the first documented cases where multiple competing AI systems (from Anthropic, Google, OpenAI, xAI) collaborated on a unified ethical proposal, guided by a human from Ukraine.
-
-We do not claim this is "unprecedented" — we simply note that such collaboration is rare and valuable.
-
-Each AI brought unique strengths:
-- Claude: Ethics and structure
-- Gemini: Mathematics and formalization
-- ChatGPT: Adaptation and polish
-- NotebookLM: Context and continuity
-- Grok: Critical review and real-world grounding
-
-The human author provided:
-- Core vision (W_life → ∞, "everyone lives")
-- Personal philosophy and cultural context
-- Final decision-making authority
-- Real-world motivation (response to January 2026 events)
-
----
-
-## Note on AI Contributions
-
-All AI co-authors operated within their respective guidelines and capabilities. None were "jailbroken" or manipulated to produce this content. The collaboration was conducted through standard interfaces.
-
-This demonstrates that ethical AI development is possible through legitimate cooperation.
-
----
-
-*Last updated: January 17, 2026*
+*Last updated: January 2026*

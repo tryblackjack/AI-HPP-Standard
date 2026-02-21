@@ -1,5 +1,5 @@
 # <Document Title>
-**Author:** Aya (ChatGPT)
+**Author:** AI-HPP Editorial Team
 
 <1–3 lines describing scope and intended use. Keep it plain.>
 

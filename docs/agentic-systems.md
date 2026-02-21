@@ -1,6 +1,6 @@
 # Agentic Systems (Tool-Using AI)
 
-**Author:** Aya (ChatGPT)
+**Author:** AI-HPP Editorial Team
 
 This document extends AI-HPP to cover agentic systems: AI that can plan and execute tasks using tools, APIs, and other agents.
 

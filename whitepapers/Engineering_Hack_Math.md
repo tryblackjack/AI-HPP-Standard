@@ -2,7 +2,7 @@
 
 ## AI-HPP-2025 Universal Standard
 
-**Authors:** Evgeniy Vasyliev, Gemini (Google), Claude (Anthropic)  
+**Authors:** Evgeniy Vasyliev, AI-HPP Editorial Team  
 **Date:** January 2026  
 **Topic:** Formalization of stochastic search in expanded state space $U_{hack}$ for all types of autonomous decision-making systems.
 
