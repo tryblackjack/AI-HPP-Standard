@@ -74,6 +74,35 @@ The repository root contains compatibility stubs for a few documents. Canonical 
 
 ---
 
+
+## International Governance Alignment
+
+AI-HPP is structured to interoperate with multi-jurisdiction governance programs through auditable controls, evidence standards, and implementation-neutral policy primitives.
+
+## 🌍 Prepared for International AI Governance
+
+Recent global discussions have emphasized the need for coordinated international AI oversight mechanisms.
+
+AI-HPP is designed as an engineering-ready compliance baseline that can support such efforts.
+
+Key capabilities include:
+
+- **Inspection-Ready Evidence Architecture**  
+  Structured Evidence Bundles enable transparent review of high-impact decisions.
+
+- **High-Risk Domain Containment**  
+  Immutable principles such as *W_life → ∞* enforce strict refusal boundaries for harmful biological, chemical, or infrastructure-related misuse.
+
+- **Capability Transparency**  
+  Trusted Skills Policy and Capability Manifests clarify what a system can and cannot do.
+
+- **Regulatory Interface Requirement (RIR)**  
+  Systems may expose controlled, privacy-preserving audit exports for authorized oversight review.
+
+AI-HPP does not replace international governance bodies.  
+It provides a technical baseline that such bodies may rely upon.
+
+
 ## Neutrality & Non-Affiliation Notice
 
 AI-HPP is an independent architectural framework.  

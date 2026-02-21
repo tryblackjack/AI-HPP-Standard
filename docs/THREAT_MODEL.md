@@ -14,3 +14,28 @@
 - Least privilege for tools
 - Isolation by tenant/session/task
 - Evidence bundles for high-impact outcomes
+
+
+## Emerging Global Risk Domains
+
+### Biosecurity Risk
+
+Highly capable models may be misused to assist in harmful biological research or pathogen synthesis.
+
+AI-HPP Mitigation:
+
+- Explicit high-risk domain tagging
+- Mandatory refusal boundaries under W_life → ∞
+- Escalation to human review for sensitive biological queries
+- Evidence logging of refusal events (privacy-preserving)
+
+### Autonomous Cyber Exploitation
+
+Advanced coding agents may autonomously identify and exploit software vulnerabilities.
+
+AI-HPP Mitigation:
+
+- Strict Tool Execution Boundaries (sandboxed execution)
+- Separation of "analysis" vs "execution" modes
+- Human-in-the-Loop gating for high-impact exploit simulations
+- Tamper-evident Evidence Bundles
