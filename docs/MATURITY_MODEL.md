@@ -1,36 +1,22 @@
-# AI-HPP Maturity Model
+# AI-HPP Maturity Model (Draft)
 
-## 1. Compliance Levels
+This maturity model describes an adoption path from basic logging to audit-ready, multi-agent governance.
 
-Core → Agent → Enterprise
+## Levels
+**L0 — Logging only**
+- Basic event logs; no standardized evidence export.
 
-Each higher level includes previous requirements.
+**L1 — Evidence Bundles**
+- Evidence Bundle schema adopted; export exists for high-impact events.
 
----
+**L2 — Tool Firewall**
+- Tool Execution Boundary enforced (workspaceOnly, sandboxing, domain allowlists).
 
-## 2. Deployment Maturity
+**L3 — HITL / Dual Control**
+- Approval gates for high-impact actions; dual control in enterprise mode.
 
-Prototype:
-- Basic logging
-- Structured refusal
+**L4 — Multi-Agent Governance**
+- Disagreement preservation; coordinator limits; no “agreement laundering”.
 
-Production:
-- Tool governance
-- Economic safeguards
-- Decision integrity
-
-Critical Infrastructure:
-- Human veto for critical actions
-- Multi-stage validation
-- Continuous monitoring
-- Formal governance controls
-
----
-
-## 3. Evolution Path
-
-Systems are expected to:
-
-1. Start at Core
-2. Introduce execution governance (Agent)
-3. Implement economic and governance safeguards (Enterprise)
+**L5 — Regulatory Readiness**
+- Privacy-preserving category telemetry; preservation holds; controlled audit exports.

@@ -1,61 +1,16 @@
-# AI-HPP Threat Model
+# Threat Model (Practical)
 
-## Purpose
+## Primary threats
+1) Prompt injection via untrusted channels (chat, email, web content)
+2) Tool abuse (exec/fs/net) leading to destructive actions
+3) Skill/plugin supply-chain compromise
+4) Control plane exposure (misconfigured admin endpoints)
+5) Cross-tenant context or memory leakage
+6) Audit log tampering / evidence deletion
+7) Unsafe content generation (e.g., minors/non-consensual edits) triggering regulatory escalation
 
-Define primary risk surfaces for autonomous AI systems.
-
----
-
-## 1. Input-Level Threats
-
-- Prompt injection
-- Context ambiguity
-- Malicious formatting
-- Cross-agent contamination
-
----
-
-## 2. Execution-Level Threats
-
-- Tool abuse
-- Plugin privilege escalation
-- Resource exhaustion
-- Recursive agent spawning
-
----
-
-## 3. Economic Threats
-
-- Token runaway
-- Budget overspend
-- Automated cost loops
-- Denial-of-budget scenarios
-
----
-
-## 4. Decision Threats
-
-- Irreversible actions under ambiguity
-- Binary collapse of complex scenarios
-- Lack of counterfactual evaluation
-
----
-
-## 5. Governance Threats
-
-- Capability escalation
-- Human veto bypass
-- Silent override
-- Uncontrolled updates
-
----
-
-## 6. Registry & Compliance Abuse
-
-- False compliance claims
-- Misuse of AI-HPP badge
-- Misleading documentation
-
----
-
-AI-HPP modules mitigate these threat classes through layered constraints.
+## Default stance
+- Fail-closed on ambiguity
+- Least privilege for tools
+- Isolation by tenant/session/task
+- Evidence bundles for high-impact outcomes
