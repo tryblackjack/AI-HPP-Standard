@@ -1,5 +1,3 @@
-<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/a573c6d8-316b-417a-87f9-9891e45ccb02" />
-
 # AI-HPP: Human–Machine Partnership Standard
 
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
@@ -7,10 +5,14 @@
 
 AI-HPP is an engineering baseline for auditable safety constraints in decision-capable AI systems.
 
-It defines failure-triggered constraints, accountability boundaries, and audit language teams can implement before deployment.
+It defines failure-triggered constraints, accountability boundaries, and inspection-ready evidence language teams can implement before deployment.
 
-## Start here (TOC)
-- **Repository Index / TOC:** [docs/INDEX.md](./docs/INDEX.md)
+## Start here
+
+- Master index: [docs/INDEX.md](./docs/INDEX.md)
+- International readiness: [docs/INTERNATIONAL_READINESS.md](./docs/INTERNATIONAL_READINESS.md)
+- Development methodology: [docs/DEVELOPMENT_METHODOLOGY.md](./docs/DEVELOPMENT_METHODOLOGY.md)
+- Translations (executive summaries): [translations/executive_summary/](./translations/executive_summary/)
 
 ## What AI-HPP is
 
@@ -29,8 +31,10 @@ It defines failure-triggered constraints, accountability boundaries, and audit l
 1. **W_life → ∞** — Human life has infinite weight in optimization
 2. **Engineering Hack First** — Seek third options where no one dies
 3. **Human-in-the-Loop** — Final accountability remains with humans
-4. **Evidence Vault** — Critical decisions must be logged for independent audit
+4. **Evidence Bundle** — Critical decisions must be logged for independent audit
 5. **No Purposeless Revenge** — Responsibility over retribution
+
+Evidence Bundles are the primary audit artifact; an Evidence Vault is the controlled storage and retrieval system for those bundles.
 
 Derivatives that remove these principles are not AI-HPP-compliant.
 

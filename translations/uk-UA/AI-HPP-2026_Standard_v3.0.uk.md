@@ -11,7 +11,7 @@
 | Роль | Учасник | Організація |
 |---|---|---|
 | Людський лід і архітектор | Evgeniy Vasyliev | 🇺🇦 |
-| Етичне міркування та конституція | Claude | Anthropic |
+| Етичне міркування та конституція | AI-HPP Editorial Team | Institutional collaboration |
 | Математична формалізація | AI-HPP Editorial Team | Institutional collaboration |
 | Адаптація та операційна логіка | AI-HPP Editorial Team | Institutional collaboration |
 | Синтез контексту | AI-HPP Editorial Team | Institutional collaboration |
