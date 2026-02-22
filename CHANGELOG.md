@@ -5,6 +5,30 @@ All notable changes to the AI-HPP standard are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
+## [v3.8] - 2026-02-22
+
+### Added
+- Structured archive layout under `docs/archive/` with superseded document migration and compatibility pointer.
+- Root `INDEX.md` with role-based start paths and annotated repository tree.
+- Evidence Vault CEO-AI golden example guide at `docs/guides/EVIDENCE_VAULT_CEO_AI_GOLDEN_EXAMPLE.md`.
+- Conformance profiles (`conformance/BASELINE.md`, `conformance/AGENT_SYSTEM.md`) using self-declaration only.
+- Local hygiene scripts: `scripts/check_links.py` and `scripts/check_slop_words.py`.
+- Evidence Vault escalation snapshot test vector at `reference/test_vectors/ceo_ai_escalation_snapshot.json`.
+
+### Changed
+- Hardened Evidence Vault specification with sufficient traceability, 3-layer logging, accountability signatures, court-grade export requirements, and hyperscale optimization mitigation mapping.
+- Extended `schemas/evidence-bundle.schema.json` for decision skeletons, Top-K alternatives, escalation snapshots, accountability signatures, and redaction policy support.
+- Added EIA threat class and Hyperscale Optimization Failure to threat/failure documentation.
+- Updated all schema files with explicit JSON Schema Draft 2020-12-compatible descriptions and improved consistency metadata.
+- Updated `MACHINE_READABLE.md` with implementation order, validation workflow, and self-declaration template refresh.
+- Added translation freshness metadata table to `translations/README.md`.
+
+### Notes
+- Draft status remains unchanged.
+- This is a minor version bump focused on stabilization and audit readiness.
+
+---
+
 ## [v3.7] - 2026-02-22
 
 ### Added

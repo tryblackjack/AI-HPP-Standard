@@ -86,3 +86,32 @@ Mitigation:
 - Clear refusal boundaries for exploitative/sexualized child content
 - Immediate escalation path for concerning signals
 - Logging and audit boundaries aligned with Module 6 protections
+
+### Economically Incentivized Autonomy (EIA)
+
+Definition: Systemic financial pressure to remove human oversight for efficiency, margin compression, or credit stability.
+
+Subtypes:
+- Credit underwriting pressure
+- Margin compression
+- Speed arbitrage
+- Workforce removal pressure
+
+Mitigation:
+- Threshold-based HITL escalation
+- Bounded autonomy envelopes
+- Essential goods invariant interface
+- Graceful degradation triggers
+- Evidence Vault structural traceability
+
+## Failure Mode Addendum
+
+### Hyperscale Optimization Failure
+
+Definition: Objective optimization at scale produces socially destructive externalities due to incomplete constraint formalization.
+
+Mitigation:
+- Essential goods invariant interface
+- Threshold-based HITL escalation
+- Graceful degradation triggers
+- Evidence Vault structural traceability

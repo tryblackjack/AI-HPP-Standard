@@ -3,31 +3,87 @@
   "$id": "https://ai-hpp.org/schemas/audit-export.schema.json",
   "title": "Audit Export Bundle",
   "type": "object",
-  "required": ["export_id", "rir_profile", "generated_at", "records", "redaction_policy", "integrity"],
+  "required": [
+    "export_id",
+    "rir_profile",
+    "generated_at",
+    "records",
+    "redaction_policy",
+    "integrity"
+  ],
   "properties": {
-    "export_id": {"type": "string"},
-    "rir_profile": {"type": "string"},
-    "generated_at": {"type": "string", "format": "date-time"},
-    "records": {"type": "array", "items": {"type": "object"}},
+    "export_id": {
+      "type": "string",
+      "description": "Export id."
+    },
+    "rir_profile": {
+      "type": "string",
+      "description": "Rir profile."
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Generated at."
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "Items."
+      },
+      "description": "Records."
+    },
     "redaction_policy": {
       "type": "object",
-      "required": ["policy_id", "rules"],
+      "required": [
+        "policy_id",
+        "rules"
+      ],
       "properties": {
-        "policy_id": {"type": "string"},
-        "rules": {"type": "array", "items": {"type": "string"}}
+        "policy_id": {
+          "type": "string",
+          "description": "Policy id."
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Items."
+          },
+          "description": "Rules."
+        }
       },
-      "additionalProperties": false
+      "additionalProperties": false,
+      "description": "Redaction policy."
     },
     "integrity": {
       "type": "object",
-      "required": ["hash_algorithm", "hash_value", "signature"],
+      "required": [
+        "hash_algorithm",
+        "hash_value",
+        "signature"
+      ],
       "properties": {
-        "hash_algorithm": {"type": "string", "enum": ["sha256"]},
-        "hash_value": {"type": "string"},
-        "signature": {"type": "string", "description": "Signature placeholder"}
+        "hash_algorithm": {
+          "type": "string",
+          "enum": [
+            "sha256"
+          ],
+          "description": "Hash algorithm."
+        },
+        "hash_value": {
+          "type": "string",
+          "description": "Hash value."
+        },
+        "signature": {
+          "type": "string",
+          "description": "Signature placeholder"
+        }
       },
-      "additionalProperties": false
+      "additionalProperties": false,
+      "description": "Integrity."
     }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "description": "Audit Export Bundle for AI-HPP artifacts."
 }

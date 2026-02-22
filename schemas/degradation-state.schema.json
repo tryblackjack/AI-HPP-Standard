@@ -3,14 +3,49 @@
   "$id": "https://ai-hpp.org/schemas/degradation-state.schema.json",
   "title": "Degradation State",
   "type": "object",
-  "required": ["system_id", "state", "trigger", "timestamp"],
+  "required": [
+    "system_id",
+    "state",
+    "trigger",
+    "timestamp"
+  ],
   "properties": {
-    "system_id": {"type": "string"},
-    "state": {"type": "string", "enum": ["normal", "guarded", "restricted", "emergency_stop"]},
-    "trigger": {"type": "string"},
-    "timestamp": {"type": "string", "format": "date-time"},
-    "actions": {"type": "array", "items": {"type": "string"}},
-    "operator_ack": {"type": "boolean"}
+    "system_id": {
+      "type": "string",
+      "description": "System id."
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "normal",
+        "guarded",
+        "restricted",
+        "emergency_stop"
+      ],
+      "description": "State."
+    },
+    "trigger": {
+      "type": "string",
+      "description": "Trigger."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp."
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Items."
+      },
+      "description": "Actions."
+    },
+    "operator_ack": {
+      "type": "boolean",
+      "description": "Operator ack."
+    }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "description": "Degradation State for AI-HPP artifacts."
 }

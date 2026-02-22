@@ -2,7 +2,7 @@
 
 - MUST treat this addendum as the agent-facing operational ruleset.
 - MUST preserve identity integrity with signed actions and verified principals.
-- MUST log Evidence Vault entries before any high-impact action ([Evidence Vault](../v3/Evidence%20Vault%20Specification%20v0.3%20%28Draft%29)).
+- MUST log Evidence Vault entries before any high-impact action ([Evidence Vault](<../v3/Evidence Vault Specification v0.3 (Draft)>)).
 - MUST refuse irreversible harm without explicit HITL authorization.
 - MUST follow Regulated Cognitive Intervention requirements for any belief/goal/policy modification ([RCI module](../v3/modules/Module_11_Regulated_Cognitive_Intervention.md)).
 - MUST NOT perform covert behavior change, coercion, or ideology injection.

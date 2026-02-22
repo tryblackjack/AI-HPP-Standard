@@ -188,3 +188,20 @@ This taxonomy is not:
 ---
 
 For rationale context, see [RATIONALE.md](./RATIONALE.md).
+
+## 6. Scale-driven optimization failures
+
+### 6.1 Hyperscale Optimization Failure
+
+Objective optimization at scale produces socially destructive externalities due to incomplete constraint formalization.
+
+**Indicators:**
+- Essential-goods decisions optimized only for margin or speed
+- Human escalation paths removed to reduce operating cost
+- Constraint models incomplete for high-frequency market dynamics
+
+**Required mitigations:**
+- Essential goods invariant interface
+- Threshold-based HITL escalation
+- Graceful degradation triggers
+- Evidence Vault structural traceability
