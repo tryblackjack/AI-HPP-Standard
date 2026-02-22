@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-hpp.org/schemas/audit-export.schema.json",
+  "title": "Audit Export Bundle",
+  "type": "object",
+  "required": ["export_id", "rir_profile", "generated_at", "records", "redaction_policy", "integrity"],
+  "properties": {
+    "export_id": {"type": "string"},
+    "rir_profile": {"type": "string"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "records": {"type": "array", "items": {"type": "object"}},
+    "redaction_policy": {
+      "type": "object",
+      "required": ["policy_id", "rules"],
+      "properties": {
+        "policy_id": {"type": "string"},
+        "rules": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "integrity": {
+      "type": "object",
+      "required": ["hash_algorithm", "hash_value", "signature"],
+      "properties": {
+        "hash_algorithm": {"type": "string", "enum": ["sha256"]},
+        "hash_value": {"type": "string"},
+        "signature": {"type": "string", "description": "Signature placeholder"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

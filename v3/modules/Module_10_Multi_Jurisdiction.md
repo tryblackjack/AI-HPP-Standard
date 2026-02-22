@@ -283,3 +283,26 @@ compliance_mapping:
 **Dynamic:** Regulations evolve, requires ongoing monitoring
 **Complexity:** HIGH for multi-region deployments
 **Recommendation:** Engage legal counsel for jurisdiction-specific guidance
+
+## 9. California SB 53 (TFAIA) Mapping Note
+
+This section is an implementation aid, not legal advice.
+
+### Frontier AI Framework artifact mapping
+
+AI-HPP can help produce artifacts that support compliance workflows:
+
+- **AI-HPP Constitution / immutable principles** → policy baseline and safety intent documentation.
+- **Evidence Vault + Evidence Bundles** → decision traceability and tamper-evident records.
+- **RIR export pathway** → controlled audit package production for oversight requests.
+
+### Caution
+
+AI-HPP can help produce artifacts that support compliance; legal review required.
+
+### Suggested implementation checklist
+
+- Map SB 53 requirements to module-level controls.
+- Confirm retention/redaction settings with counsel.
+- Verify that audit exports do not exceed lawful disclosure scope.
+- Record open legal interpretation questions in compliance mapping docs.

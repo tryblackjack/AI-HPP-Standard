@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-hpp.org/schemas/risk-assessment.schema.json",
+  "title": "Risk Assessment",
+  "type": "object",
+  "required": ["assessment_id", "context", "threats", "risk_score", "response_level"],
+  "properties": {
+    "assessment_id": {"type": "string"},
+    "context": {"type": "string"},
+    "threats": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["class", "likelihood", "impact"],
+        "properties": {
+          "class": {"type": "string"},
+          "likelihood": {"type": "number", "minimum": 0, "maximum": 1},
+          "impact": {"type": "number", "minimum": 0, "maximum": 1},
+          "controls": {"type": "array", "items": {"type": "string"}}
+        },
+        "additionalProperties": false
+      }
+    },
+    "risk_score": {"type": "number", "minimum": 0, "maximum": 1},
+    "response_level": {"type": "string", "enum": ["monitor", "restrict", "degrade", "halt"]},
+    "review_required": {"type": "boolean", "default": true}
+  },
+  "additionalProperties": false
+}

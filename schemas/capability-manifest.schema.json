@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-hpp.org/schemas/capability-manifest.schema.json",
+  "title": "Capability Manifest",
+  "type": "object",
+  "required": ["system_id", "version", "declared_capabilities", "sandbox", "last_updated"],
+  "properties": {
+    "system_id": {"type": "string", "minLength": 1},
+    "version": {"type": "string", "pattern": "^v?\\d+\\.\\d+\\.\\d+$"},
+    "last_updated": {"type": "string", "format": "date-time"},
+    "declared_capabilities": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name", "risk_tier", "enabled"],
+        "properties": {
+          "name": {"type": "string"},
+          "description": {"type": "string"},
+          "risk_tier": {"type": "string", "enum": ["low", "medium", "high", "critical"]},
+          "enabled": {"type": "boolean"},
+          "requires_human_approval": {"type": "boolean", "default": false}
+        },
+        "additionalProperties": false
+      }
+    },
+    "sandbox": {
+      "type": "object",
+      "required": ["network_access", "filesystem_scope", "tool_allowlist"],
+      "properties": {
+        "network_access": {"type": "string", "enum": ["none", "restricted", "approved", "full"]},
+        "filesystem_scope": {"type": "string", "enum": ["read-only", "workspace", "restricted-write"]},
+        "tool_allowlist": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

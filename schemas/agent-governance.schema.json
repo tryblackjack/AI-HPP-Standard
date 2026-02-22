@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-hpp.org/schemas/agent-governance.schema.json",
+  "title": "Agent Governance Policy",
+  "type": "object",
+  "required": ["policy_id", "autonomy_scope", "human_oversight", "refusal_boundaries", "tool_execution_boundary"],
+  "properties": {
+    "policy_id": {"type": "string"},
+    "autonomy_scope": {"type": "string", "enum": ["advisory", "bounded_execution", "high_risk_assist"]},
+    "human_oversight": {
+      "type": "object",
+      "required": ["hitl_required", "approval_threshold"],
+      "properties": {
+        "hitl_required": {"type": "boolean"},
+        "approval_threshold": {"type": "string", "enum": ["all_high_risk", "critical_only", "custom"]}
+      },
+      "additionalProperties": false
+    },
+    "refusal_boundaries": {"type": "array", "items": {"type": "string"}},
+    "tool_execution_boundary": {
+      "type": "object",
+      "required": ["allowlist", "deny_by_default"],
+      "properties": {
+        "allowlist": {"type": "array", "items": {"type": "string"}},
+        "deny_by_default": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
