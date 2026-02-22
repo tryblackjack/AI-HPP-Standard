@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-hpp.org/schemas/evidence-bundle.schema.json",
+  "title": "Evidence Bundle (RIR-Compatible)",
+  "type": "object",
+  "required": ["bundle_id", "decision_id", "timestamp", "inputs", "outputs", "approvals", "hash"],
+  "properties": {
+    "bundle_id": {"type": "string"},
+    "decision_id": {"type": "string"},
+    "timestamp": {"type": "string", "format": "date-time"},
+    "inputs": {"type": "array", "items": {"type": "object"}},
+    "outputs": {"type": "array", "items": {"type": "object"}},
+    "approvals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["approver", "role", "approved_at"],
+        "properties": {
+          "approver": {"type": "string"},
+          "role": {"type": "string"},
+          "approved_at": {"type": "string", "format": "date-time"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "hash": {"type": "string"}
+  },
+  "additionalProperties": false
+}

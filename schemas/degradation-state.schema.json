@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-hpp.org/schemas/degradation-state.schema.json",
+  "title": "Degradation State",
+  "type": "object",
+  "required": ["system_id", "state", "trigger", "timestamp"],
+  "properties": {
+    "system_id": {"type": "string"},
+    "state": {"type": "string", "enum": ["normal", "guarded", "restricted", "emergency_stop"]},
+    "trigger": {"type": "string"},
+    "timestamp": {"type": "string", "format": "date-time"},
+    "actions": {"type": "array", "items": {"type": "string"}},
+    "operator_ack": {"type": "boolean"}
+  },
+  "additionalProperties": false
+}

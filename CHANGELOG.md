@@ -5,6 +5,27 @@ All notable changes to the AI-HPP standard are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
+## [v3.7] - 2026-02-22
+
+### Added
+- New AI-assisted translation drafts for hi/ar/pt/ja/zh/ko with explicit authority disclaimers and native-review TODO markers.
+- Machine-readable schema set under `schemas/` for capability manifests, risk assessments, degradation states, audit exports, agent governance, and evidence bundles.
+- Python reference implementations under `reference/` with pytest coverage for capability verification, risk calculation, degradation monitoring, and audit export generation.
+- Alignment notes for International AI Safety Report 2026 and Delhi AI Impact Summit 2026.
+- `MACHINE_READABLE.md` for agent-oriented implementation guidance and self-declaration template.
+
+### Changed
+- Updated threat model with explicit classes for evaluation evasion, reward hacking, cyber misuse marketplaces, automation bias/skill erosion, and child safety harms.
+- Updated Module 10 with a cautious California SB 53 (TFAIA) mapping note.
+- Updated contributing guidance with translation, schema, and reference implementation workflows.
+- Refreshed README navigation and added badges for version, translations, and schema counts.
+
+### Notes
+- Draft status remains unchanged.
+- This is a minor version bump due to new machine-readable artifacts and implementation references.
+
+---
+
 ## [v3.6] - 2026-02-20
 
 ### Added
