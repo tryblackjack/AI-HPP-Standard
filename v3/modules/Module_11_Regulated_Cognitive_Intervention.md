@@ -45,5 +45,5 @@ This module defines baseline requirements for regulated cognitive interventions 
 
 ## Cross-References
 
-- Evidence Vault profiles for cognitive safety (EV-C): [Evidence Vault Specification](../Evidence%20Vault%20Specification%20v0.3%20%28Draft%29).
+- Evidence Vault profiles for cognitive safety (EV-C): [Evidence Vault Specification](<../Evidence Vault Specification v0.3 (Draft)>).
 - Failure taxonomy entry for unauthorized intervention: [Failure_Taxonomy.md](../../docs/Failure_Taxonomy.md).

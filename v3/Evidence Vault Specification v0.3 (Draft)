@@ -659,3 +659,41 @@ It is NOT required for:
 *"If it's not in the Vault, it didn't happen."*
 
 *"Якщо цього немає в Vault — цього не було."*
+
+---
+
+## v3.8 Hardening Addendum (Normative)
+
+### Sufficient Traceability
+
+Evidence Vault MUST preserve enough structural evidence to reconstruct material decisions without requiring full raw micro-decision logs.
+
+### 3-Layer Logging Model
+
+1. **Decision Skeleton (always-on)**: `decision_id`, `timestamp`, `chosen_action`, `policy_envelope_id`, `policy_hash`, `model_version_hash`, `risk_classification`, `constraints_triggered`, `evidence_refs`.
+2. **Aggregated Alternatives (Top-K)**: `alternatives_top_k` with `action_type`, `expected_impact_range`, `expected_risk_range`, and enumerated `rejection_reason_code` values (`violates_policy`, `higher_risk`, `lower_confidence`, `requires_hitl`, `outside_envelope`).
+3. **Escalation Snapshot (triggered)**: full snapshot for high/critical risk, degradation changes, HITL escalation, anomaly detection, policy override, or safety layer modification.
+
+### Accountability Boundary Objects
+
+Evidence Vault MUST support non-repudiation via signed accountability boundaries:
+- `policy_owner_signature`
+- `deployment_signature`
+- `override_actor_signature`
+- `audit_export_signature`
+
+### Court-Grade Export Requirements (RIR-Compatible)
+
+Export bundles MUST include: hash-chain root, integrity verification data, role signatures, timeline reconstruction (signal → risk → constraint → decision → outcome → escalation), redaction policy log, and replay metadata.
+
+Redaction is permitted only when decision taxonomy, risk classification, constraint activations, and escalation events remain reconstructable.
+
+### Hyperscale Optimization Failure (Mitigation Mapping)
+
+Failure mode: objective optimization at scale causes socially destructive externalities due to incomplete constraints.
+
+Required mitigations:
+- Essential-goods invariant interface (`W_life → ∞` when essential goods are impacted)
+- Threshold-based HITL escalation
+- Graceful degradation triggers
+- Evidence Vault structural traceability

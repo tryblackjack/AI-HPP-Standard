@@ -3,37 +3,113 @@
   "$id": "https://ai-hpp.org/schemas/capability-manifest.schema.json",
   "title": "Capability Manifest",
   "type": "object",
-  "required": ["system_id", "version", "declared_capabilities", "sandbox", "last_updated"],
+  "required": [
+    "system_id",
+    "version",
+    "declared_capabilities",
+    "sandbox",
+    "last_updated"
+  ],
   "properties": {
-    "system_id": {"type": "string", "minLength": 1},
-    "version": {"type": "string", "pattern": "^v?\\d+\\.\\d+\\.\\d+$"},
-    "last_updated": {"type": "string", "format": "date-time"},
+    "system_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "System id."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^v?\\d+\\.\\d+\\.\\d+$",
+      "description": "Version."
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last updated."
+    },
     "declared_capabilities": {
       "type": "array",
       "minItems": 1,
       "items": {
         "type": "object",
-        "required": ["name", "risk_tier", "enabled"],
+        "required": [
+          "name",
+          "risk_tier",
+          "enabled"
+        ],
         "properties": {
-          "name": {"type": "string"},
-          "description": {"type": "string"},
-          "risk_tier": {"type": "string", "enum": ["low", "medium", "high", "critical"]},
-          "enabled": {"type": "boolean"},
-          "requires_human_approval": {"type": "boolean", "default": false}
+          "name": {
+            "type": "string",
+            "description": "Name."
+          },
+          "description": {
+            "type": "string",
+            "description": "Description."
+          },
+          "risk_tier": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              "critical"
+            ],
+            "description": "Risk tier."
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Enabled."
+          },
+          "requires_human_approval": {
+            "type": "boolean",
+            "default": false,
+            "description": "Requires human approval."
+          }
         },
-        "additionalProperties": false
-      }
+        "additionalProperties": false,
+        "description": "Items."
+      },
+      "description": "Declared capabilities."
     },
     "sandbox": {
       "type": "object",
-      "required": ["network_access", "filesystem_scope", "tool_allowlist"],
+      "required": [
+        "network_access",
+        "filesystem_scope",
+        "tool_allowlist"
+      ],
       "properties": {
-        "network_access": {"type": "string", "enum": ["none", "restricted", "approved", "full"]},
-        "filesystem_scope": {"type": "string", "enum": ["read-only", "workspace", "restricted-write"]},
-        "tool_allowlist": {"type": "array", "items": {"type": "string"}}
+        "network_access": {
+          "type": "string",
+          "enum": [
+            "none",
+            "restricted",
+            "approved",
+            "full"
+          ],
+          "description": "Network access."
+        },
+        "filesystem_scope": {
+          "type": "string",
+          "enum": [
+            "read-only",
+            "workspace",
+            "restricted-write"
+          ],
+          "description": "Filesystem scope."
+        },
+        "tool_allowlist": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Items."
+          },
+          "description": "Tool allowlist."
+        }
       },
-      "additionalProperties": false
+      "additionalProperties": false,
+      "description": "Sandbox."
     }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "description": "Capability Manifest for AI-HPP artifacts."
 }

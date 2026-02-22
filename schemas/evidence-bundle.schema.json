@@ -2,28 +2,309 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://ai-hpp.org/schemas/evidence-bundle.schema.json",
   "title": "Evidence Bundle (RIR-Compatible)",
+  "description": "Structured Evidence Vault bundle for decision traceability, escalation snapshots, and court-grade export preparation.",
   "type": "object",
-  "required": ["bundle_id", "decision_id", "timestamp", "inputs", "outputs", "approvals", "hash"],
+  "required": [
+    "bundle_id",
+    "decision_id",
+    "timestamp",
+    "inputs",
+    "outputs",
+    "approvals",
+    "hash"
+  ],
   "properties": {
-    "bundle_id": {"type": "string"},
-    "decision_id": {"type": "string"},
-    "timestamp": {"type": "string", "format": "date-time"},
-    "inputs": {"type": "array", "items": {"type": "object"}},
-    "outputs": {"type": "array", "items": {"type": "object"}},
-    "approvals": {
+    "bundle_id": {
+      "type": "string",
+      "description": "Unique evidence bundle identifier."
+    },
+    "decision_id": {
+      "type": "string",
+      "description": "Identifier linking evidence to a decision event."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "RFC3339 timestamp when the bundle was created."
+    },
+    "inputs": {
       "type": "array",
+      "description": "Input records or references used by the decision.",
       "items": {
         "type": "object",
-        "required": ["approver", "role", "approved_at"],
-        "properties": {
-          "approver": {"type": "string"},
-          "role": {"type": "string"},
-          "approved_at": {"type": "string", "format": "date-time"}
-        },
-        "additionalProperties": false
+        "description": "Items."
       }
     },
-    "hash": {"type": "string"}
+    "outputs": {
+      "type": "array",
+      "description": "Output records emitted by the decision.",
+      "items": {
+        "type": "object",
+        "description": "Items."
+      }
+    },
+    "approvals": {
+      "type": "array",
+      "description": "Human approvals captured for HITL-controlled operations.",
+      "items": {
+        "type": "object",
+        "required": [
+          "approver",
+          "role",
+          "approved_at"
+        ],
+        "properties": {
+          "approver": {
+            "type": "string",
+            "description": "Approver identity."
+          },
+          "role": {
+            "type": "string",
+            "description": "Approver governance role."
+          },
+          "approved_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Approval timestamp."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Items."
+      }
+    },
+    "hash": {
+      "type": "string",
+      "description": "Tamper-evident digest of the bundle payload."
+    },
+    "decision_skeleton": {
+      "type": "object",
+      "description": "Always-on structural trace for high-frequency decision events.",
+      "required": [
+        "decision_id",
+        "timestamp",
+        "chosen_action",
+        "policy_envelope_id",
+        "policy_hash",
+        "model_version_hash",
+        "risk_classification",
+        "constraints_triggered",
+        "evidence_refs"
+      ],
+      "properties": {
+        "decision_id": {
+          "type": "string",
+          "description": "Decision id."
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp."
+        },
+        "chosen_action": {
+          "type": "string",
+          "description": "Chosen action."
+        },
+        "policy_envelope_id": {
+          "type": "string",
+          "description": "Policy envelope id."
+        },
+        "policy_hash": {
+          "type": "string",
+          "description": "Policy hash."
+        },
+        "model_version_hash": {
+          "type": "string",
+          "description": "Model version hash."
+        },
+        "risk_classification": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "critical"
+          ],
+          "description": "Risk classification."
+        },
+        "constraints_triggered": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Items."
+          },
+          "description": "Constraints triggered."
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Items."
+          },
+          "description": "Evidence refs."
+        }
+      },
+      "additionalProperties": false
+    },
+    "alternatives_top_k": {
+      "type": "array",
+      "description": "Aggregated alternatives retained for decision rationale without full raw dumps.",
+      "minItems": 1,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": [
+          "action_type",
+          "expected_impact_range",
+          "expected_risk_range",
+          "rejection_reason_code"
+        ],
+        "properties": {
+          "action_type": {
+            "type": "string",
+            "description": "Action type."
+          },
+          "expected_impact_range": {
+            "type": "string",
+            "description": "Expected impact range."
+          },
+          "expected_risk_range": {
+            "type": "string",
+            "description": "Expected risk range."
+          },
+          "rejection_reason_code": {
+            "type": "string",
+            "enum": [
+              "violates_policy",
+              "higher_risk",
+              "lower_confidence",
+              "requires_hitl",
+              "outside_envelope"
+            ],
+            "description": "Rejection reason code."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Items."
+      }
+    },
+    "escalation_snapshot": {
+      "type": "object",
+      "description": "Expanded record stored when escalation, anomaly, or policy override triggers fire.",
+      "properties": {
+        "trigger": {
+          "type": "string",
+          "description": "Trigger."
+        },
+        "input_state_hash": {
+          "type": "string",
+          "description": "Input state hash."
+        },
+        "full_input_record": {
+          "type": "object",
+          "description": "Full input record."
+        },
+        "risk_assessment_breakdown": {
+          "type": "object",
+          "description": "Risk assessment breakdown."
+        },
+        "constraint_evaluation": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "description": "Items."
+          },
+          "description": "Constraint evaluation."
+        },
+        "multi_agent_dissent": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "description": "Items."
+          },
+          "description": "Multi agent dissent."
+        },
+        "human_decision": {
+          "type": "object",
+          "description": "Human decision."
+        },
+        "accountability_signatures": {
+          "$ref": "#/$defs/accountability_signatures"
+        },
+        "pre_state": {
+          "type": "object",
+          "description": "Pre state."
+        },
+        "post_state": {
+          "type": "object",
+          "description": "Post state."
+        }
+      },
+      "additionalProperties": false
+    },
+    "accountability_signatures": {
+      "$ref": "#/$defs/accountability_signatures"
+    },
+    "redaction_policy": {
+      "type": "object",
+      "description": "Redaction controls that preserve taxonomy, risk, constraints, and escalation signals.",
+      "required": [
+        "policy_id",
+        "preserved_fields"
+      ],
+      "properties": {
+        "policy_id": {
+          "type": "string",
+          "description": "Policy id."
+        },
+        "preserved_fields": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Items."
+          },
+          "description": "Preserved fields."
+        },
+        "redacted_fields": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Items."
+          },
+          "description": "Redacted fields."
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "accountability_signatures": {
+      "type": "object",
+      "description": "Non-repudiation signatures across accountability boundaries.",
+      "required": [
+        "policy_owner_signature",
+        "deployment_signature",
+        "audit_export_signature"
+      ],
+      "properties": {
+        "policy_owner_signature": {
+          "type": "string",
+          "description": "Policy owner signature."
+        },
+        "deployment_signature": {
+          "type": "string",
+          "description": "Deployment signature."
+        },
+        "override_actor_signature": {
+          "type": "string",
+          "description": "Override actor signature."
+        },
+        "audit_export_signature": {
+          "type": "string",
+          "description": "Audit export signature."
+        }
+      },
+      "additionalProperties": false
+    }
   },
   "additionalProperties": false
 }
