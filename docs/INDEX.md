@@ -45,6 +45,13 @@ Executive summary set:
 - Evidence Vault reference implementation: [examples/evidence_vault_ref/README.md](../examples/evidence_vault_ref/README.md)
 - Evidence Vault schema: [examples/evidence_vault_schema.yaml](../examples/evidence_vault_schema.yaml)
 
+## ADR safeguards
+
+- ADR overview: [adr/README.md](../adr/README.md)
+- ADR specification: [adr/ADR.md](../adr/ADR.md)
+- ADR controls: [adr/CONTROLS.md](../adr/CONTROLS.md)
+- ADR checklist: [adr/CHECKLIST.md](../adr/CHECKLIST.md)
+
 ## Additional references
 
 - Rationale: [docs/RATIONALE.md](./RATIONALE.md)
