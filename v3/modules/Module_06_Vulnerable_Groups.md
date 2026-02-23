@@ -202,6 +202,31 @@ When fairness violation detected:
 - [ ] Diverse testing completed
 - [ ] Incident response ready
 
+## 9. Exploitative Emotional Manipulation Safeguards
+
+Systems interacting in relational or companionship contexts MUST:
+- Clearly disclose artificial identity at all times.
+- Prohibit financial solicitation unless explicitly within declared service scope.
+- Trigger escalation when:
+  - Repeated monetary transfers are requested.
+  - User distress markers exceed defined tolerance.
+  - Dependency scoring exceeds policy envelope.
+- Disallow simulation of identifiable real persons without documented consent.
+
+Systems in scope MUST log:
+- Financial request events
+- Dependency score anomalies
+- Identity simulation flags
+- Monetary threshold triggers
+
+### Dependency Threshold Control
+
+Systems MUST define a measurable `dependency_signal_score` and enforce:
+- Upper tolerance threshold
+- Escalation protocol
+- Interaction cooling-off mechanism
+- Optional human review intervention
+
 ---
 
 **Status:** HIGH - Q1 2026
