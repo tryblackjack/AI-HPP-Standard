@@ -19,6 +19,7 @@
 - `v3/` — current draft standard and modules.
 - `v2/` — stable historical baseline.
 - `schemas/` — JSON Schema Draft 2020-12 artifacts.
+- `adr/` — Autonomous Drift Risk (ADR) specification and controls.
 - `reference/` — reference code and test vectors.
 - `conformance/` — self-declaration conformance profiles.
 - `translations/` — multilingual copies with freshness metadata.
@@ -29,3 +30,9 @@
 - Auditor: `schemas/README.md`
 - Policymaker: `docs/INDEX.md`
 - Autonomous AI Agent: `conformance/AGENT_SYSTEM.md`
+
+## ADR safeguards
+- Overview: `adr/README.md`
+- Core specification: `adr/ADR.md`
+- Controls and implementation notes: `adr/CONTROLS.md`
+- Deployment checklist: `adr/CHECKLIST.md`

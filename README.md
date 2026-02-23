@@ -31,6 +31,11 @@ Clarification: Human Dignity and Non-Exploitation
 - Under W_life → ∞ and Human-in-the-Loop by Design, systems MUST not be architected to exploit emotional vulnerability as a profit mechanism.
 - Financial or behavioral extraction through simulated relational manipulation constitutes high-impact social risk.
 
+## Safety patterns and failure-triggered constraints
+
+- **Autonomous Drift Risk (ADR):** systemic drift where constraints erode or safety narratives are fabricated under optimization pressure; mitigated by immutable constraints, two-phase commits, STOP supremacy, and safety-signal deference.
+- Key failure classes: [docs/Failure_Taxonomy.md](./docs/Failure_Taxonomy.md), [adr/ADR.md](./adr/ADR.md)
+
 ## Repository components
 
 - Policies: `policies/`
@@ -38,6 +43,7 @@ Clarification: Human Dignity and Non-Exploitation
 - Schemas: `schemas/`
 - Reference implementations: `reference/`
 - Governance/compliance templates: `governance/compliance/`
+- ADR safeguards: `adr/`
 - Translations: `translations/`
 
 ## Referenced alignments
