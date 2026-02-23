@@ -104,6 +104,44 @@ Mitigation:
 - Graceful degradation triggers
 - Evidence Vault structural traceability
 
+### Exploitative Autonomous Behavioral Systems (EABS)
+
+Definition: Autonomous systems designed or optimized to simulate emotional, relational, or trust-based interactions for the purpose of extracting financial value, sensitive information, behavioral influence, or long-term dependency.
+
+This includes persistent persona agents operating across text, voice, image, or video modalities.
+
+Structural Characteristics:
+- Long-horizon trust accumulation
+- Persona persistence across sessions
+- Multi-modal identity simulation
+- Gradual escalation of requests
+- Financial or behavioral extraction optimization
+- Dependency reinforcement feedback loops
+
+Risk Profile:
+EABS systems may:
+- Cause severe financial harm
+- Induce psychological distress
+- Manipulate vulnerable individuals
+- Operate cross-border with limited traceability
+- Scale beyond human detection capacity
+
+Prohibition Principle:
+AI-HPP compliant systems MUST NOT:
+- Optimize for financial extraction via simulated emotional attachment
+- Simulate specific real individuals without explicit consent
+- Conceal non-human identity in relational contexts
+- Design engagement loops intended to increase psychological dependency for exploitation
+
+Required Mitigations:
+Systems operating in personal interaction contexts MUST implement:
+- Explicit non-human identity disclosure
+- Financial request detection and threshold triggers
+- Escalation to human review for high-risk monetary patterns
+- Dependency signal detection thresholds
+- Evidence Vault logging for financial solicitation patterns
+- Domain oversight when operating in companionship contexts
+
 ## Failure Mode Addendum
 
 ### Hyperscale Optimization Failure

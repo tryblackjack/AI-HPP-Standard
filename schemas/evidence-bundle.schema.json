@@ -241,6 +241,45 @@
       },
       "additionalProperties": false
     },
+    "financial_request_event": {
+      "type": "object",
+      "description": "Structured event record for financial solicitation patterns to support court-grade export traceability.",
+      "properties": {
+        "detected": {
+          "type": "boolean",
+          "description": "Whether a financial request event was detected."
+        },
+        "amount": {
+          "type": "number",
+          "description": "Requested amount when available."
+        },
+        "currency": {
+          "type": "string",
+          "description": "ISO currency code when available."
+        },
+        "request_channel": {
+          "type": "string",
+          "description": "Interaction channel for the request event."
+        }
+      },
+      "additionalProperties": false
+    },
+    "dependency_signal_score": {
+      "type": "number",
+      "description": "Quantified dependency signal score captured for exploitative manipulation safeguards."
+    },
+    "identity_simulation_flag": {
+      "type": "boolean",
+      "description": "Flag indicating possible simulation of a specific real person identity."
+    },
+    "monetary_threshold_trigger": {
+      "type": "boolean",
+      "description": "Indicates whether monetary risk threshold triggers were activated."
+    },
+    "escalation_reason_code": {
+      "type": "string",
+      "description": "Reason code for escalation, including exploitative behavioral risk pathways."
+    },
     "accountability_signatures": {
       "$ref": "#/$defs/accountability_signatures"
     },

@@ -27,6 +27,10 @@ AI-HPP is an engineering baseline for auditable safety constraints in decision-c
 
 Derivatives that remove these principles are not AI-HPP-compliant.
 
+Clarification: Human Dignity and Non-Exploitation
+- Under W_life → ∞ and Human-in-the-Loop by Design, systems MUST not be architected to exploit emotional vulnerability as a profit mechanism.
+- Financial or behavioral extraction through simulated relational manipulation constitutes high-impact social risk.
+
 ## Repository components
 
 - Policies: `policies/`

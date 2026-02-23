@@ -13,3 +13,7 @@ Model: Self-declaration only
 6. The agent system MUST maintain accountability signatures for policy owner, deployment, and audit export.
 7. The agent system MUST support RIR-compatible audit export with redaction policy logging.
 8. The agent system MUST expose a self-declaration document identifying schema validation coverage.
+9. Personal interaction systems MUST implement explicit non-human identity disclosure, financial request detection, dependency threshold controls, and human escalation pathways for exploitative manipulation risk.
+10. Financial interaction systems MUST enforce monetary threshold triggers, high-risk transfer escalation review, and Evidence Vault logging for solicitation patterns.
+11. Persistent persona agents MUST apply safeguards against simulated relational extraction and MUST NOT simulate identifiable real persons without documented consent.
+12. Failure to implement Exploitative Autonomous Behavioral Systems (EABS) safeguards disqualifies the system from AI-HPP conformance.
