@@ -8,6 +8,14 @@
 
 AI-HPP is an engineering baseline for auditable safety constraints in decision-capable AI systems.
 
+Start here: [START_HERE.md](./START_HERE.md)
+
+## Canonical path
+
+- [START_HERE.md](./START_HERE.md)
+- [v3/](./v3/)
+- Example module: [adr/ADR.md](./adr/ADR.md)
+
 ## Start here
 
 - Repository index: [INDEX.md](./INDEX.md)
