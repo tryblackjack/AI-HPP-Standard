@@ -2,6 +2,8 @@
 
 This is the primary navigation entry point for implementers, auditors, and contributors.
 
+Start here: [../START_HERE.md](../START_HERE.md)
+
 ## Start here
 
 - Project overview: [README.md](../README.md)
@@ -25,6 +27,13 @@ This is the primary navigation entry point for implementers, auditors, and contr
 - Multi-Agent Consensus Requirements (MACR): [policies/Multi_Agent_Consensus_Requirements.md](../policies/Multi_Agent_Consensus_Requirements.md)
 - Regulatory Interface Requirement (RIR): [policies/Regulatory_Interface_Requirement.md](../policies/Regulatory_Interface_Requirement.md)
 
+## ADR safeguards
+
+- ADR overview: [../adr/README.md](../adr/README.md)
+- ADR specification: [../adr/ADR.md](../adr/ADR.md)
+- ADR controls: [../adr/CONTROLS.md](../adr/CONTROLS.md)
+- ADR checklist: [../adr/CHECKLIST.md](../adr/CHECKLIST.md)
+
 ## Translations
 
 Executive summary set:
@@ -44,13 +53,6 @@ Executive summary set:
 - Evidence Bundle example: [examples/evidence_bundle_example.json](../examples/evidence_bundle_example.json)
 - Evidence Vault reference implementation: [examples/evidence_vault_ref/README.md](../examples/evidence_vault_ref/README.md)
 - Evidence Vault schema: [examples/evidence_vault_schema.yaml](../examples/evidence_vault_schema.yaml)
-
-## ADR safeguards
-
-- ADR overview: [adr/README.md](../adr/README.md)
-- ADR specification: [adr/ADR.md](../adr/ADR.md)
-- ADR controls: [adr/CONTROLS.md](../adr/CONTROLS.md)
-- ADR checklist: [adr/CHECKLIST.md](../adr/CHECKLIST.md)
 
 ## Additional references
 

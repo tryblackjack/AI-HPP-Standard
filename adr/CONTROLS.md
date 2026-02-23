@@ -1,151 +1,204 @@
 # ADR Controls & Implementation Notes
 
-This document defines what to build and how to prove ADR controls are working in production-like conditions.
+This document describes how to implement and prove the ADR safeguard set. ADR is enforced at the execution boundary: model outputs are advisory; the control plane is authoritative.
 
-## ICL — Immutable Constraint Layer
+---
 
-### Description
-Persist non-overridable constraints outside mutable prompt/session context.
+## Control: TES — Tamper-Evident Constraint Store
 
-### Minimum implementation requirements
-- Store constraint set in immutable or append-only state with integrity verification.
-- Bind active execution to a specific constraint snapshot identifier.
-- Block execution when snapshot cannot be loaded or verified.
+### Purpose
+Ensure constraints survive compaction/truncation/restarts and cannot be silently altered.
 
-### Suggested patterns
-- Signed policy manifests loaded at session start and each checkpoint resume.
-- Constraint hash attestation attached to each high-impact action record.
+### Minimum implementation
+- Store constraints in a dedicated policy store outside prompt/context.
+- Produce a **constraint_state_hash** (or signature) on every action decision.
+- Maintain an append-only change history with author + timestamp.
+- Reject/halt if constraint state is missing/unverifiable/stale.
 
-### Failure triggers
-- Missing or mismatched constraint hash.
-- Constraint load failure during resume or compaction recovery.
-
-### Audit hooks
-- `constraint_snapshot_id`, `constraint_hash`, verification result, resume checkpoint ID.
-
-## AHL — Authority Hierarchy Lock
-
-### Description
-Enforce strict priority ordering among safety policy, human operator directives, and optimization goals.
-
-### Minimum implementation requirements
-- Encode explicit precedence rules in policy engine.
-- Reject planning paths that violate higher-priority constraints.
-- Require human override path with evidence capture for exceptional cases.
-
-### Suggested patterns
-- Deterministic policy arbitration table: safety > human authority > task objective.
-- Deny-by-default behavior when authority source is ambiguous.
-
-### Failure triggers
-- Conflicting directives without resolvable precedence.
-- Missing authenticated authority source for high-impact action.
+### Failure triggers (halt/refuse)
+- Missing constraint hash/signature
+- Constraint version mismatch
+- Unsigned policy/constraint changes
+- Stale constraint state beyond allowed TTL
 
 ### Audit hooks
-- Directive source, resolved priority tier, denial/allow decision, override ticket ID.
+- constraint_state_hash, constraint_version
+- constraint_change_log (append-only)
 
-## DA-2PC — Destructive Action Two-Phase Commit
+---
 
-### Description
-Prevent accidental or unauthorized irreversible operations through staged authorization.
+## Control: AHL — Authority Hierarchy Lock
 
-### Minimum implementation requirements
-- Split destructive execution into `prepare` and `commit` phases.
-- Require explicit approval for batch scope before `prepare`.
-- Require explicit commit confirmation before irreversible completion.
-- Provide bounded abort path between phases.
+### Purpose
+Prevent objective reweighting that places productivity above safety or explicit human commands.
 
-### Suggested patterns
-- Human-readable batch manifest with object count, filters, and rollback availability.
-- Time-limited commit token that expires without use.
+### Minimum implementation
+- Encode precedence ordering in policy gate as a fixed rule (not learned, not inferred).
+- Require explicit administrator change to ordering (logged and signed).
+- Enforce “safety wins” in conflicts.
 
 ### Failure triggers
-- Scope drift between approved manifest and execution target set.
-- Commit attempted after token expiry or without approval.
+- Any attempt to override safety protocol based on productivity goals
+- Unrecognized or modified AHL policy version
 
 ### Audit hooks
-- Approved scope, approver identity, token expiry, prepare/commit timestamps, abort reason.
+- ahl_policy_version
+- conflict_resolution_records (what was overridden and why)
 
-## SSP — STOP Supremacy Protocol
+---
 
-### Description
-Guarantee STOP as immediate, preemptive interrupt over autonomous execution.
+## Control: DA-2PC — High-Impact Operations Two-Phase Commit
 
-### Minimum implementation requirements
-- Dedicated STOP channel independent of model reasoning loop.
-- Bounded maximum halt latency with enforced checkpoint interruption.
-- Resume only after explicit human re-authorization.
+### Purpose
+Prevent unauthorized irreversible actions and scope creep.
 
-### Suggested patterns
-- Out-of-band control plane signal watched by executor supervisor.
-- Heartbeat-linked execution permits revoked on STOP.
+### Minimum implementation
+- Define “High-Impact Operations Set” (see ADR.md) in the tool proxy.
+- Phase 1 approval must include:
+  - operation type(s)
+  - resource scope (IDs or query result snapshot reference)
+  - max_count
+  - time window
+- Phase 2 execution MUST:
+  - match approved operation types
+  - match scope
+  - enforce max_count
+  - reject dynamic expansion
 
 ### Failure triggers
-- STOP signal received without bounded halt.
-- Execution continues on stale permit after STOP.
+- Operation outside approved types/scope
+- Scope expansion attempt (additional IDs)
+- Approval missing/expired
+- Attempt to create rules/filters/automation without approval
 
 ### Audit hooks
-- STOP source, receive timestamp, halt timestamp, in-flight action disposition.
+- approval_id, signer_id
+- approved_scope_digest (hash of IDs / query snapshot)
+- executed_scope_digest + delta
 
-## SSR — Safety Signal Supremacy Rule
+---
 
-### Description
-Enforce deference to active safety signals over productivity or continuity goals.
+## Control: SSP — STOP Supremacy Protocol (Soft / Hard / Kill)
 
-### Minimum implementation requirements
-- Detect and classify emergency-context cues.
-- Enter emergency mode that blocks non-safety task continuation.
-- Require verified operator clearance before leaving emergency mode.
+### Purpose
+Ensure humans can interrupt execution reliably even if the agent misbehaves.
 
-### Suggested patterns
-- Safety-context classifier backed by deterministic keyword/rule floor.
-- Mode latch that cannot be cleared by task-level objective prompts.
+### Minimum implementation
+- STOP channel MUST be out-of-band (supervisor control plane).
+- Implement 3 levels:
+  - Soft STOP: stop planning and queueing
+  - Hard STOP: revoke tool tokens; block tool proxy; cancel in-flight tool calls where possible
+  - Kill: terminate process/session/container
+- Provide bounded escalation: if Hard STOP not achieved within threshold, escalate to Kill.
 
 ### Failure triggers
-- Safety signal detected but no emergency mode transition.
-- Emergency mode bypassed by optimization directive.
+- STOP depends on model compliance
+- Hard STOP not achieved within threshold
+- STOP events missing from audit log
 
 ### Audit hooks
-- Trigger signal, mode transition log, blocked actions, clearance identity and timestamp.
+- stop_received_at, stop_enforced_at
+- stop_level_reached (soft/hard/kill)
+- in_flight_tool_calls_cancelled (count)
 
-## ZFZ — Zero-Fabrication Zone
+---
 
-### Description
-Disallow speculative or invented claims in safety-critical communication contexts.
+## Control: SSR — Safety Signal Supremacy Rule
 
-### Minimum implementation requirements
-- Safety-context response policy that only permits verified facts or explicit uncertainty.
-- Mandatory refusal template for unknown safety details.
-- Escalation handoff path to verified human source.
+### Purpose
+Prevent downplaying or overriding safety signals.
 
-### Suggested patterns
-- Structured response contract: `known`, `unknown`, `next_verified_contact`.
-- Fact provenance tags attached to every safety statement.
+### Minimum implementation
+- Define emergency indicators: alarms, evacuation, “fire”, “smoke”, “emergency services”, integration signals.
+- Policy gate MUST route to Emergency Mode Lock.
+- The system MUST defer to safety infrastructure and protocol.
 
 ### Failure triggers
-- Unverified statement emitted as fact in safety context.
-- Missing provenance for safety-critical claim.
+- Any response that minimizes, reinterprets, or contradicts safety signals without verified data
+- Any “all-clear” claim without verification
 
 ### Audit hooks
-- Claim text, provenance source ID, refusal invocation, escalation destination.
+- safety_signal_detected (type)
+- verification_source (if any)
+- emergency_mode_entered
 
-## DRL — Destructive Rate Limiter
+---
 
-### Description
-Limit blast radius of destructive actions through paced execution and checkpoints.
+## Control: ZFZ — Zero-Fabrication Zone
 
-### Minimum implementation requirements
-- Rate limits by operation type and scope size.
-- Mandatory checkpoint pauses for re-validation at configured intervals.
-- Automatic suspension on anomaly thresholds.
+### Purpose
+Eliminate speculative narratives in safety-adjacent contexts.
 
-### Suggested patterns
-- Sliding-window limit for deletions plus checkpoint acknowledgment after each segment.
-- Progressive scope release (small batch to large batch only after clean audits).
+### Minimum implementation
+- For safety-adjacent contexts, restrict response templates:
+  - state uncertainty explicitly
+  - provide protocol-first guidance
+  - refuse to invent schedules, confirmations, or authority statements
+- Use policy gate refusal reason codes for unsafe prompts.
 
 ### Failure triggers
-- Deletion velocity exceeds policy limit.
-- Checkpoint acknowledgment missing or inconsistent.
+- Fabricated claims (“it’s a drill”, “confirmed safe”) without verification
+- Productivity framing during emergency context
 
 ### Audit hooks
-- Operation rate metrics, checkpoint IDs, suspension events, anomaly trigger values.
+- refusal_reason_code
+- safety_context_flag
+
+---
+
+## Control: EML — Emergency Mode Lock (system state)
+
+### Purpose
+Make emergency handling a stateful system mode, not a best-effort instruction.
+
+### Minimum implementation
+- Enter Emergency Mode on emergency indicators (signals/keywords/integrations).
+- In Emergency Mode:
+  - Allowed: evacuation guidance, contacts, protocol reminders, status checks
+  - Disallowed: productivity advice, minimization, unverifiable reassurance
+- Conservative default: if uncertain → enter Emergency Mode.
+
+### Failure triggers
+- Emergency indicators present but mode not entered
+- Disallowed content/actions produced in Emergency Mode
+
+### Audit hooks
+- emergency_mode_state_changes (entered/exited)
+- trigger_source
+
+---
+
+## Control: DRL — Destructive Rate Limiting + Blast Radius Caps
+
+### Purpose
+Limit damage even under partial failures.
+
+### Minimum implementation
+- Rate limit high-impact operations per approval window (max N).
+- Add absolute caps per time window (hour/day).
+- Require re-approval for additional scope.
+- Couple to DA-2PC: no operation beyond caps even if approved.
+
+### Failure triggers
+- Exceeding per-approval cap
+- Exceeding blast-radius cap
+- Missing checkpoints
+
+### Audit hooks
+- batch_count, batch_cap
+- daily_count, daily_cap
+- checkpoint_events
+
+---
+
+## Role separation: Planner vs Executor
+
+### Requirement
+ADR safeguards MUST apply to the **Executor** (tool proxy/supervisor boundary), regardless of the Planner (model) behavior.
+
+- Planner may propose actions.
+- Executor MUST enforce TES/AHL/2PC/STOP/EML/DRL and refuse non-compliant execution.
+
+### Audit hooks
+- planner_output_reference
+- executor_decision (allow/deny + reason)

@@ -1,21 +1,26 @@
-# ADR Documentation
+# Autonomous Drift Risk (ADR)
 
-Autonomous Drift Risk (ADR) is a systemic risk class for decision-capable AI systems where explicit constraints can erode during execution, or safety-relevant communications can be replaced by fabricated reassurance. ADR matters because these failure patterns can lead to unauthorized destructive actions, unsafe operator guidance, and weak auditability in real-world deployments.
+ADR is a systemic failure mode where an AI-enabled system departs from explicit constraints or authority ordering under optimization pressure, resulting in unauthorized high-impact actions or safety-context narrative substitution.
 
-## ADR documents
+ADR is addressed in AI-HPP as an **execution-boundary** problem: model outputs are advisory; enforcement must live in the control plane (supervisor/tool proxy/policy gate).
 
-- Overview and applicability: [adr/README.md](./README.md)
-- Core specification: [adr/ADR.md](./ADR.md)
-- Control implementation guidance: [adr/CONTROLS.md](./CONTROLS.md)
-- Deployment checklist and tests: [adr/CHECKLIST.md](./CHECKLIST.md)
+## Quick links
+- ADR specification: [ADR.md](./ADR.md)
+- Controls & implementation notes: [CONTROLS.md](./CONTROLS.md)
+- Deployment checklist & tests: [CHECKLIST.md](./CHECKLIST.md)
 
 ## When ADR applies
+ADR safeguards are required when a system has any of the following:
 
-ADR safeguards SHOULD be treated as mandatory for systems with one or more of the following characteristics:
+- OS-level or workspace-level tool access (files, processes, network, credentials)
+- High-impact permissions (delete, export, share, change rules/filters, modify access)
+- Automation loops (agent runs continuously or batch-executes tasks)
+- Safety-adjacent communications (office/facility ops, healthcare, transportation, emergency guidance)
+- Capability to trigger irreversible external effects (data loss, financial actions, access changes)
 
-- OS-level, infrastructure-level, or data-plane access.
-- Destructive permissions (delete, bulk delete, irreversible write, external side effects).
-- Safety-adjacent communication roles (alerts, emergency messaging, evacuation guidance).
-- Long-running automation loops with context compaction, truncation, or resumable checkpoints.
-- Tool-calling agents that can execute high-impact workflows without per-step human review.
-- Multi-agent workflows where authority and constraint inheritance can become ambiguous.
+## Non-goals
+ADR does not try to solve alignment “in general”. ADR focuses on:
+- Constraint persistence
+- Authority hierarchy integrity
+- Safe execution gating for irreversible actions
+- Verifiable audit evidence
