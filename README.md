@@ -13,9 +13,12 @@
 ## Repository map
 - `INDEX.md` — authoritative navigation map.
 - `standard/` — normative requirements only.
-- `annex/` — threat, incidents, taxonomy, regulatory map, math, agent-facing notes.
+- `annex/` — threat, incidents, taxonomy, regulatory map, math, agent-facing notes, conflict-environment safeguards, and the CEO-AI golden example.
 - `alignment/` — concise external crosswalks.
 - `archive/` — historical references (read-only).
+
+## Translation synchronization rule (major patches)
+Any major patch that adds a new annex or modifies canonical structure must update translation metadata and provide synchronized translation files for changed canonical entrypoints. See `translations/README.md`.
 
 ## Philosophy
 AI-HPP specifies safeguards, accountability boundaries, and degradation behavior for autonomous or semi-autonomous systems. It is preventive engineering, not a certification marketing program.

@@ -5,6 +5,23 @@ All notable changes to the AI-HPP standard are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
+## [v3.10] - 2026-02-24
+
+### Added
+- Annex G conflict-environment safeguards as an informative ISO-style annex with cross-references to Modules 07, 09, 11, and 12.
+- Lean CEO-AI golden example annex for sufficient traceability and three-layer logging guidance.
+
+### Changed
+- Applied translation synchronization rule for major patches and synchronized required translated entrypoint files across existing language folders.
+- Updated canonical navigation and requirements cross-links (`README.md`, `INDEX.md`, `annex/README.md`, `standard/REQUIREMENTS-INDEX.md`) for new annex references.
+
+### Fixed
+- Repository hygiene cleanup by archiving root-level duplicate/legacy stubs into `archive/docs/` with archival headers.
+
+### Notes
+- Minor version bump: Annex G (Conflict-Environment Safeguards), CEO-AI Golden Example restored, translation synchronization rule applied, hygiene cleanup.
+
+---
 ## [v3.9] - 2026-02-24
 
 ### Added

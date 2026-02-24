@@ -32,6 +32,8 @@
 - `annex/D-REGULATORY-MAP.md`
 - `annex/E-MATHEMATICAL-FOUNDATIONS.md`
 - `annex/F-AGENT-FACING.md`
+- `annex/G-CONFLICT-ENVIRONMENT-SAFEGUARDS.md`
+- `annex/CEO-AI-GOLDEN-EXAMPLE.md`
 
 ## Alignment
 - `alignment/ISO-42001-CROSSWALK.md`
@@ -41,7 +43,3 @@
 
 ## Historical
 - `archive/`
-
-## TODO
-- TODO: translations coverage and update policy review.
-- TODO: evidence grade consensus workflow.
