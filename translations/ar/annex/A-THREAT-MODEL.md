@@ -1,7 +1,7 @@
 # AI Translation Notice
-This file is an AI-generated ar draft synchronized with AI-HPP v3.11.
+This file is an AI-generated ar draft synchronized with AI-HPP v3.12.
 TODO: Native-speaker review required before human-verified status.
 
 # Annex A — Threat Model
 
-AI-generated draft synchronized with AI-HPP v3.11. Includes T-NEW-XX Safety-Critical Notification Misclassification linked to INC-0XX.
+AI-generated draft synchronized with AI-HPP v3.12. Includes T-NEW-1 through T-NEW-5 systemic autonomy risks and existing threat classes.

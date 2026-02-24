@@ -5,6 +5,15 @@ All notable changes to the AI-HPP standard are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
+## [v3.12] - 2026-02-24
+
+### Changed
+- Requirement ID normalization to ensure global uniqueness.
+- Threat model expanded with systemic autonomy risks (T-NEW-1 through T-NEW-5).
+- Minimal normative safeguards added for capability manifest enforcement and raw event preservation.
+- Translation synchronization performed.
+
+
 ## [v3.11] - 2026-02-24
 
 ### Added

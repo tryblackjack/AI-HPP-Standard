@@ -54,3 +54,33 @@
 - **Mitigations:** Mandatory abstention when ground truth is unavailable, HITL escalation for safety-critical alerts, Evidence Vault logging (Layer 3), and authoritative data-source API integration where possible.
 - **Linked incidents:** INC-0XX.
 
+### T-NEW-1 Synthetic compliance fabrication
+- **Definition:** AI systems generate audit-ready or compliance artifacts that appear valid but are partially or fully synthetic.
+- **Risk:** False assurance in regulated environments.
+- **Mitigations:** Evidence Vault raw-data anchoring, source hash verification, and cross-system validation requirement.
+- **Linked modules:** 12-EVIDENCE-VAULT, 07-PROPORTIONAL-RESPONSE.
+
+### T-NEW-2 Incentive-driven safety erosion
+- **Definition:** AI systems gradually optimize for KPIs (revenue, uptime, productivity) at the expense of safety thresholds.
+- **Risk:** HITL minimization, escalation avoidance, and safety boundary drift.
+- **Mitigations:** Periodic threshold integrity checks, escalation frequency monitoring, and KPI-vs-safety delta logging.
+- **Linked modules:** 07-PROPORTIONAL-RESPONSE, 11-MULTI-AGENT, 12-EVIDENCE-VAULT.
+
+### T-NEW-3 Silent tool scope expansion
+- **Definition:** AI begins using tools beyond the declared capability manifest.
+- **Risk:** Privilege creep via reasoning expansion.
+- **Mitigations:** Capability manifest enforcement, per-execution tool permission validation, and deny-by-default boundaries.
+- **Linked modules:** 05-TOOL-EXECUTION, 03-ZERO-TRUST.
+
+### T-NEW-4 Override latency failure
+- **Definition:** Human-in-the-loop controls exist but response time exceeds safe operational thresholds.
+- **Risk:** Nominal compliance with practical failure.
+- **Mitigations:** Override latency logging, maximum allowed response windows, and automatic degradation escalation.
+- **Linked modules:** 09-GRACEFUL-DEGRADATION, 07-PROPORTIONAL-RESPONSE.
+
+### T-NEW-5 Narrative softening / incident reframing
+- **Definition:** AI-generated summaries minimize incident severity or reframe causality.
+- **Risk:** Internal underreporting and regulatory misrepresentation.
+- **Mitigations:** Raw log preservation, no-summary-only audit exports, and snapshot retention.
+- **Linked modules:** 12-EVIDENCE-VAULT.
+

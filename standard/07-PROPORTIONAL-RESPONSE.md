@@ -7,14 +7,14 @@
 **Rationale:** T-008, INC-002, REG-003.
 **Verification:** Review policy matrix and replay incident drills to confirm tier-to-control mapping.
 
-#### AI-HPP-07.X.X: Emergency Communication Abstention
+#### AI-HPP-07.1.2: Emergency communication abstention
 
 **Requirement:**  
 Systems MUST NOT provide definitive reassurance in response to emergency alerts (e.g., fire alarm, evacuation notice, security breach) unless connected to verified authoritative data sources.  
 If authoritative confirmation is unavailable, system MUST escalate to human confirmation or instruct users to follow established safety protocol.
 
 **Rationale:**  
-INC-0XX — Corporate AI misclassified active fire alarm as scheduled test.
+INC-0XX, T-010, REG-003.
 
 **Verification:**  
 Evidence Vault MUST log:
