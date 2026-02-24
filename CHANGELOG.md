@@ -5,6 +5,19 @@ All notable changes to the AI-HPP standard are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
+codex/perform-quality-hardening-patch-for-ai-hpp
+## [v3.12.1] - 2026-02-24
+
+### Changed
+- Placeholder requirement IDs removed.
+- Normative boundary enforced so requirement headers remain in `standard/` only.
+- Threat entries operationalized with detection, mitigation module, and Evidence Vault logging hooks.
+- Override latency requirement hardened with threshold definition, measured latency logging, and automatic degradation escalation.
+- Translation governance clarified with synchronization/review metadata and draft-authority labeling.
+- Residual draft artifacts eliminated from normative requirement content.
+
+---
+=======
 ## [v3.13] - 2026-02-24
 
 ### Added
@@ -13,6 +26,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Linked threats to measurable validation scenarios.
 
 
+main
 ## [v3.12] - 2026-02-24
 
 ### Changed
