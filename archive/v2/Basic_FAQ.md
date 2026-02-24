@@ -1,3 +1,9 @@
+# ARCHIVED DOCUMENT
+Superseded by: ../INDEX.md
+Archived on: 2026-02-24
+Reason: Repository restructure to ISO/IEC-style canonical layout
+Status: Historical reference (read-only)
+
 AI-HPP-2025: FAQ (Frequently Asked Questions)
 
 This document contains answers to key questions and criticisms that arose during the public comment period for the standard.

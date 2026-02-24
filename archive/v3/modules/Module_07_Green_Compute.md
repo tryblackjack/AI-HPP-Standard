@@ -1,3 +1,9 @@
+# ARCHIVED DOCUMENT
+Superseded by: ../INDEX.md
+Archived on: 2026-02-24
+Reason: Repository restructure to ISO/IEC-style canonical layout
+Status: Historical reference (read-only)
+
 # Module 7: Green Compute & Sustainability
 
 **AI-HPP-2026 v3.0**

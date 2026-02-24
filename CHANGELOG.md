@@ -5,6 +5,22 @@ All notable changes to the AI-HPP standard are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
+## [v3.9] - 2026-02-24
+
+### Added
+- ISO/IEC-style canonical structure under `standard/`, `annex/`, `alignment/`, and `archive/`.
+- Requirement ID index at `standard/REQUIREMENTS-INDEX.md` with evidence/threat/regulatory grounding.
+- Incident annex evidence grading with sourced references and confidence tags.
+- Concise ISO 42001 and NIST AI RMF crosswalk documents.
+
+### Changed
+- Reorganized canonical navigation (`README.md`, `INDEX.md`) for audit and agent parsing workflows.
+- Normalized threat model and regulatory ID map to support requirement traceability.
+
+### Notes
+- Minor version bump for structural refactor and inspection-readiness improvements.
+
+---
 ## [v3.8] - 2026-02-22
 
 ### Added

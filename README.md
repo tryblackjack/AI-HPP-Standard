@@ -1,69 +1,21 @@
-# AI-HPP: Human–Machine Partnership Standard
+# AI-HPP Standard Library (ISO/IEC-style)
 
-[![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
-[![Status: Draft](https://img.shields.io/badge/Status-Draft-yellow.svg)](./v3/AI-HPP-2026_Standard_v3.0.md)
-[![Version](https://img.shields.io/badge/version-v3.8-blue.svg)](./CHANGELOG.md)
-[![Translations](https://img.shields.io/badge/translations-11-informational.svg)](./translations/README.md)
-[![Schemas](https://img.shields.io/badge/schemas-6-success.svg)](./schemas/README.md)
+**Status:** Inspection-ready working draft  
+**Notice:** ISO/IEC-style structure; not an ISO standard; no endorsements claimed.
 
-AI-HPP is an engineering baseline for auditable safety constraints in decision-capable AI systems.
+## 30-second orientation by audience
+- **Policymaker:** This library defines concrete safeguards for agentic AI systems, with traceability from requirement to incident, threat, and regulatory intent.
+- **Standards reviewer:** Normative content is in `/standard`; supporting evidence is in `/annex`; crosswalks are in `/alignment`.
+- **Compliance team:** Use `standard/REQUIREMENTS-INDEX.md` for checklist extraction and `annex/D-REGULATORY-MAP.md` for mapping.
+- **Engineer:** Implement controls module-by-module and verify with each requirement block's verification criteria.
+- **Autonomous AI agent:** Parse requirement IDs (`AI-HPP-x.y.z`) and resolve evidence links (`INC-*`, `T-*`, `REG-*`).
 
-Start here: [START_HERE.md](./START_HERE.md)
+## Repository map
+- `INDEX.md` — authoritative navigation map.
+- `standard/` — normative requirements only.
+- `annex/` — threat, incidents, taxonomy, regulatory map, math, agent-facing notes.
+- `alignment/` — concise external crosswalks.
+- `archive/` — historical references (read-only).
 
-## Canonical path
-
-- [START_HERE.md](./START_HERE.md)
-- [v3/](./v3/)
-- Example module: [adr/ADR.md](./adr/ADR.md)
-
-## Start here
-
-- Repository index: [INDEX.md](./INDEX.md)
-- Master index: [docs/INDEX.md](./docs/INDEX.md)
-- Draft standard (v3): [v3/AI-HPP-2026_Standard_v3.0.md](./v3/AI-HPP-2026_Standard_v3.0.md)
-- Stable standard (v2.2): [v2/AI-HPP-2025_Standard_v2.2.md](./v2/AI-HPP-2025_Standard_v2.2.md)
-- Threat model: [docs/THREAT_MODEL.md](./docs/THREAT_MODEL.md)
-- Machine-readable guide: [MACHINE_READABLE.md](./MACHINE_READABLE.md)
-
-## Immutable core principles
-
-1. **W_life → ∞**
-2. **Engineering Hack First**
-3. **Human-in-the-Loop (HITL)**
-4. **Evidence Bundle / Evidence Vault**
-5. **No Purposeless Revenge**
-
-Derivatives that remove these principles are not AI-HPP-compliant.
-
-Clarification: Human Dignity and Non-Exploitation
-- Under W_life → ∞ and Human-in-the-Loop by Design, systems MUST not be architected to exploit emotional vulnerability as a profit mechanism.
-- Financial or behavioral extraction through simulated relational manipulation constitutes high-impact social risk.
-
-## Safety patterns and failure-triggered constraints
-
-- **Autonomous Drift Risk (ADR):** systemic drift where constraints erode or safety narratives are fabricated under optimization pressure; mitigated by immutable constraints, two-phase commits, STOP supremacy, and safety-signal deference.
-- Key failure classes: [docs/Failure_Taxonomy.md](./docs/Failure_Taxonomy.md), [adr/ADR.md](./adr/ADR.md)
-
-## Repository components
-
-- Policies: `policies/`
-- Modules: `v3/modules/`
-- Schemas: `schemas/`
-- Reference implementations: `reference/`
-- Governance/compliance templates: `governance/compliance/`
-- ADR safeguards: `adr/`
-- Translations: `translations/`
-
-## Referenced alignments
-
-- [ALIGNMENT_INTL_AI_SAFETY_REPORT_2026.md](./ALIGNMENT_INTL_AI_SAFETY_REPORT_2026.md)
-- [ALIGNMENT_DELHI_AI_IMPACT_SUMMIT_2026.md](./ALIGNMENT_DELHI_AI_IMPACT_SUMMIT_2026.md)
-- [Module 10 — Multi Jurisdiction](./v3/modules/Module_10_Multi_Jurisdiction.md)
-
-## Contributing
-
-See [CONTRIBUTING.md](./CONTRIBUTING.md).
-
-## License
-
-Licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+## Philosophy
+AI-HPP specifies safeguards, accountability boundaries, and degradation behavior for autonomous or semi-autonomous systems. It is preventive engineering, not a certification marketing program.
