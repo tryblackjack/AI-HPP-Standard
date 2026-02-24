@@ -6,3 +6,5 @@
 **Requirement:** Systems MUST implement tested degradation levels that reduce autonomy before shutdown when confidence, integrity, or safety thresholds fail.
 **Rationale:** INC-002, INC-004, T-010, REG-003.
 **Verification:** Trigger threshold breaches in staging and confirm deterministic level transitions.
+
+**Annex reference:** See `annex/G-CONFLICT-ENVIRONMENT-SAFEGUARDS.md` for communications-loss and bounded-mode guidance in conflict environments.

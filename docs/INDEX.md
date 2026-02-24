@@ -2,7 +2,7 @@
 
 This is the primary navigation entry point for implementers, auditors, and contributors.
 
-Start here: [../START_HERE.md](../START_HERE.md)
+Start here: [../README.md](../README.md)
 
 ## Start here
 

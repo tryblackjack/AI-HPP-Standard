@@ -6,3 +6,5 @@
 **Requirement:** Multi-agent workflows MUST preserve parent-child accountability links, capability boundaries, and revoke controls across all spawned agents.
 **Rationale:** INC-003, T-009, REG-003.
 **Verification:** Inspect run graph for complete lineage and validate emergency revoke behavior.
+
+**Annex reference:** See `annex/G-CONFLICT-ENVIRONMENT-SAFEGUARDS.md` for distributed responsibility traceability in contested deployments.

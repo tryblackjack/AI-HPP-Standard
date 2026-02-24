@@ -7,3 +7,5 @@ Informative material supporting normative requirements:
 - Regulatory mapping
 - Mathematical notes
 - Agent-facing interpretation
+- Conflict-environment safeguards (Annex G)
+- CEO-AI golden example (lean evidence pattern)

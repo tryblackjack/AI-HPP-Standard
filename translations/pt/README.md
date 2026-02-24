@@ -1,5 +1,5 @@
 # AI Translation Notice
-This file is an AI-generated Ukrainian draft synchronized with AI-HPP v3.10.
+This file is an AI-generated Portuguese draft synchronized with AI-HPP v3.10.
 TODO: Native-speaker review required before human-verified status.
 
 # README (translation sync draft)
