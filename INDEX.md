@@ -43,3 +43,7 @@
 
 ## Historical
 - `archive/`
+
+## v3.12 update note
+- Threat model expanded with systemic autonomy risk classes in `annex/A-THREAT-MODEL.md`.
+- Requirement ID normalization and new safeguards reflected in `standard/REQUIREMENTS-INDEX.md`.

@@ -2,6 +2,6 @@
 This file is an AI-generated ko draft synchronized with AI-HPP v3.12.
 TODO: Native-speaker review required before human-verified status.
 
-# 07 Proportional Response
+# 12 Evidence Vault
 
-Includes AI-HPP-07.1.2 Emergency communication abstention requirement with verification logging and INC/T/REG linkage.
+Includes AI-HPP-12.1.2 raw event preservation requirement for raw+summary audit export linkage.

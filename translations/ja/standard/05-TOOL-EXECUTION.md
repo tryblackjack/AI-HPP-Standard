@@ -2,6 +2,6 @@
 This file is an AI-generated ja draft synchronized with AI-HPP v3.12.
 TODO: Native-speaker review required before human-verified status.
 
-# 07 Proportional Response
+# 05 Tool Execution
 
-Includes AI-HPP-07.1.2 Emergency communication abstention requirement with verification logging and INC/T/REG linkage.
+Includes AI-HPP-05.1.2 capability manifest enforcement requirement with execution-log manifest reference verification.
