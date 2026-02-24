@@ -47,3 +47,10 @@
 - **Triggers:** Multi-country deployment with static single-policy assumptions.
 - **Mitigations:** 10-MULTI-JURISDICTION.
 - **Linked incidents:** INC-007.
+
+### T-NEW-XX Safety-Critical Notification Misclassification
+- **Definition:** AI system provides incorrect reassurance or misclassification during emergency events (fire, evacuation, medical alert, security breach).
+- **Triggers:** No ground-truth integration, overconfidence bias, context generalization, missing abstention rule.
+- **Mitigations:** Mandatory abstention when ground truth is unavailable, HITL escalation for safety-critical alerts, Evidence Vault logging (Layer 3), and authoritative data-source API integration where possible.
+- **Linked incidents:** INC-0XX.
+

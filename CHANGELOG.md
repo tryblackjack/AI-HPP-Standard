@@ -5,6 +5,16 @@ All notable changes to the AI-HPP standard are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
+## [v3.11] - 2026-02-24
+
+### Added
+- Added INC-0XX Emergency Alert Misclassification.
+- Updated Threat Model (Safety-Critical Notification Misclassification).
+- Added Emergency Communication Abstention safeguard.
+- Translation sync performed.
+
+---
+
 ## [v3.10] - 2026-02-24
 
 ### Added

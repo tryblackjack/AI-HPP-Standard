@@ -123,3 +123,28 @@ TODO: add primary on-chain or operator postmortem source.
 **Evidence Grade:** C  
 **Confidence:** Low
 TODO: replace with reputable primary or major-outlet sources.
+
+### INC-0XX: Workplace Fire Alarm Misclassification by Corporate AI Assistant (2026)
+**Summary:** During an active fire alarm event in a European office (publicly discussed incident involving a corporate AI assistant integrated into Slack), the assistant informed employees that the alarm was a scheduled test. Employees evacuated regardless. Fire services arrived shortly thereafter.  
+**Impact:**
+- Potential risk of injury or delayed evacuation
+- Erosion of trust in AI safety-critical communications
+- Demonstrates hallucination in emergency context
+**Failure Pattern:**
+- Hallucinated confirmation of “scheduled drill”
+- No authoritative data source verification
+- Overconfident response in safety-critical scenario
+- Lack of abstention mechanism
+**AI-HPP Controls:** 07-PROPORTIONAL-RESPONSE, 12-EVIDENCE-VAULT  
+**Evidence Grade:** B (secondary reporting / primary social post documentation)  
+**Confidence:** Medium  
+**Sources:**
+- Mastodon post documentation (employee public post; archived references pending canonical URL normalization).
+- LinkedIn repost documentation citing the same employee account.
+- Primary source: employee public post. No official fire department report publicly available at time of writing.
+
+## Pattern Update
+- Growing pattern: Hallucination in safety-critical contexts.
+- Growing pattern: Agent autonomy + overconfidence.
+- Growing pattern: Human override preserved system integrity.
+
