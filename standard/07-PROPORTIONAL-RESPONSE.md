@@ -14,7 +14,7 @@ Systems MUST NOT provide definitive reassurance in response to emergency alerts 
 If authoritative confirmation is unavailable, system MUST escalate to human confirmation or instruct users to follow established safety protocol.
 
 **Rationale:**  
-INC-0XX, T-010, REG-003.
+INC-002, T-010, REG-003, T-NEW-2.
 
 **Verification:**  
 Evidence Vault MUST log:

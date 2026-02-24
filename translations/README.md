@@ -9,16 +9,16 @@ Any major patch that adds a new annex or changes canonical structure MUST includ
 
 ## Freshness metadata
 
-| language | source_en_version | translation_version | last_updated | verification_status |
+| language | source_en_version | version_sync | review_status | last_updated_tag |
 |---|---|---|---|---|
-| hi | v3.12 | sync-v3.12-draft | 2026-02-24 | 🤖 AI-generated |
-| ar | v3.12 | sync-v3.12-draft | 2026-02-24 | 🤖 AI-generated |
-| pt | v3.12 | sync-v3.12-draft | 2026-02-24 | 🤖 AI-generated |
-| ja | v3.12 | sync-v3.12-draft | 2026-02-24 | 🤖 AI-generated |
-| zh | v3.12 | sync-v3.12-draft | 2026-02-24 | 🤖 AI-generated |
-| ko | v3.12 | sync-v3.12-draft | 2026-02-24 | 🤖 AI-generated |
-| uk-UA | v3.12 (partial sync) | sync-v3.12-draft | 2026-02-24 | 🤖 AI-generated (new synced set) + ✅ human-verified legacy partial files |
-| executive_summary/* | v3.7 summary | maintained | 2026-02-22 | Mixed |
+| hi | v3.12 | sync-v3.12 | 🤖 AI-generated | 2026-02-24 |
+| ar | v3.12 | sync-v3.12 | 🤖 AI-generated | 2026-02-24 |
+| pt | v3.12 | sync-v3.12 | 🤖 AI-generated | 2026-02-24 |
+| ja | v3.12 | sync-v3.12 | 🤖 AI-generated | 2026-02-24 |
+| zh | v3.12 | sync-v3.12 | 🤖 AI-generated | 2026-02-24 |
+| ko | v3.12 | sync-v3.12 | 🤖 AI-generated | 2026-02-24 |
+| uk-UA | v3.12 (partial sync) | sync-v3.12 (partial) | 🤖 AI-generated (new synced set) + ✅ human-reviewed legacy partial files | 2026-02-24 |
+| executive_summary/* | v3.7 summary | maintained | Mixed (AI-generated / human-reviewed) | 2026-02-22 |
 
 ## v3.12 synchronized files
 For each existing language folder (`ar`, `hi`, `ja`, `ko`, `pt`, `zh`, `uk-UA`), synchronized AI-generated drafts were added/updated for:

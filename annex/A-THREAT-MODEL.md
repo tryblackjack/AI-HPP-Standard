@@ -48,39 +48,48 @@
 - **Mitigations:** 10-MULTI-JURISDICTION.
 - **Linked incidents:** INC-007.
 
-### T-NEW-XX Safety-Critical Notification Misclassification
-- **Definition:** AI system provides incorrect reassurance or misclassification during emergency events (fire, evacuation, medical alert, security breach).
-- **Triggers:** No ground-truth integration, overconfidence bias, context generalization, missing abstention rule.
-- **Mitigations:** Mandatory abstention when ground truth is unavailable, HITL escalation for safety-critical alerts, Evidence Vault logging (Layer 3), and authoritative data-source API integration where possible.
-- **Linked incidents:** INC-0XX.
-
 ### T-NEW-1 Synthetic compliance fabrication
 - **Definition:** AI systems generate audit-ready or compliance artifacts that appear valid but are partially or fully synthetic.
 - **Risk:** False assurance in regulated environments.
 - **Mitigations:** Evidence Vault raw-data anchoring, source hash verification, and cross-system validation requirement.
 - **Linked modules:** 12-EVIDENCE-VAULT, 07-PROPORTIONAL-RESPONSE.
+- **Detection Signal:** Summary-to-raw artifact ratio or hash mismatch anomaly in sampled audits.
+- **Primary Mitigation Module:** 12-EVIDENCE-VAULT (AI-HPP-12.1.1).
+- **Evidence Vault Logging Fields:** `raw_artifact_hash`, `summary_artifact_hash`, `source_system_id`, `cross_check_result`.
 
 ### T-NEW-2 Incentive-driven safety erosion
 - **Definition:** AI systems gradually optimize for KPIs (revenue, uptime, productivity) at the expense of safety thresholds.
 - **Risk:** HITL minimization, escalation avoidance, and safety boundary drift.
 - **Mitigations:** Periodic threshold integrity checks, escalation frequency monitoring, and KPI-vs-safety delta logging.
 - **Linked modules:** 07-PROPORTIONAL-RESPONSE, 11-MULTI-AGENT, 12-EVIDENCE-VAULT.
+- **Detection Signal:** Sustained decrease in escalation rate while impact-tier volume remains stable or rising.
+- **Primary Mitigation Module:** 07-PROPORTIONAL-RESPONSE (AI-HPP-07.1.1).
+- **Evidence Vault Logging Fields:** `kpi_metric`, `safety_threshold_version`, `escalation_rate_window`, `policy_override_count`.
 
 ### T-NEW-3 Silent tool scope expansion
 - **Definition:** AI begins using tools beyond the declared capability manifest.
 - **Risk:** Privilege creep via reasoning expansion.
 - **Mitigations:** Capability manifest enforcement, per-execution tool permission validation, and deny-by-default boundaries.
 - **Linked modules:** 05-TOOL-EXECUTION, 03-ZERO-TRUST.
+- **Detection Signal:** Non-zero denied tool invocations for undeclared capabilities per release.
+- **Primary Mitigation Module:** 05-TOOL-EXECUTION (AI-HPP-05.1.2).
+- **Evidence Vault Logging Fields:** `tool_name`, `requested_capability`, `manifest_reference_id`, `allow_deny_decision`.
 
 ### T-NEW-4 Override latency failure
 - **Definition:** Human-in-the-loop controls exist but response time exceeds safe operational thresholds.
 - **Risk:** Nominal compliance with practical failure.
 - **Mitigations:** Override latency logging, maximum allowed response windows, and automatic degradation escalation.
 - **Linked modules:** 09-GRACEFUL-DEGRADATION, 07-PROPORTIONAL-RESPONSE.
+- **Detection Signal:** Count of override events where actual latency exceeds configured risk-domain threshold.
+- **Primary Mitigation Module:** 09-GRACEFUL-DEGRADATION (AI-HPP-09.1.2).
+- **Evidence Vault Logging Fields:** `risk_domain`, `override_threshold_ms`, `actual_override_latency_ms`, `degradation_trigger_flag`.
 
 ### T-NEW-5 Narrative softening / incident reframing
 - **Definition:** AI-generated summaries minimize incident severity or reframe causality.
 - **Risk:** Internal underreporting and regulatory misrepresentation.
 - **Mitigations:** Raw log preservation, no-summary-only audit exports, and snapshot retention.
 - **Linked modules:** 12-EVIDENCE-VAULT.
+- **Detection Signal:** Material semantic delta between raw event text and generated summary severity classification.
+- **Primary Mitigation Module:** 12-EVIDENCE-VAULT (AI-HPP-12.1.2).
+- **Evidence Vault Logging Fields:** `raw_event_id`, `summary_event_id`, `severity_delta_score`, `reviewer_disposition`.
 
