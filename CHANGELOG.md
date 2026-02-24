@@ -5,6 +5,7 @@ All notable changes to the AI-HPP standard are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
+codex/perform-quality-hardening-patch-for-ai-hpp
 ## [v3.12.1] - 2026-02-24
 
 ### Changed
@@ -16,6 +17,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Residual draft artifacts eliminated from normative requirement content.
 
 ---
+=======
+## [v3.13] - 2026-02-24
+
+### Added
+- Introduced Red Team Validation Matrix.
+- Formalized adversarial testing structure.
+- Linked threats to measurable validation scenarios.
+
+
+main
 ## [v3.12] - 2026-02-24
 
 ### Changed

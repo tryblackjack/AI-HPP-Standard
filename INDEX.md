@@ -41,6 +41,11 @@
 - `alignment/INTL-AI-SAFETY-REPORT-2026.md`
 - `alignment/NEW-DELHI-DECLARATION-2026.md`
 
+## Validation
+- `validation/RED-TEAM-MATRIX.md`
+- `validation/TEST-SCENARIOS.md`
+- `validation/EXECUTION-GUIDELINES.md`
+
 ## Historical
 - `archive/`
 
