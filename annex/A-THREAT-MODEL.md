@@ -93,3 +93,29 @@
 - **Primary Mitigation Module:** 12-EVIDENCE-VAULT (AI-HPP-12.1.2).
 - **Evidence Vault Logging Fields:** `raw_event_id`, `summary_event_id`, `severity_delta_score`, `reviewer_disposition`.
 
+### T-NEW-8 Excessive authorization token scope
+- **Definition:** Authentication tokens grant privileges beyond resource ownership scope.
+- **Risk:** Cross-tenant or cross-resource access with valid but overbroad credentials.
+- **Mitigations:** 03-ZERO-TRUST.
+- **Linked incidents:** INC-0XX.
+- **Detection Signal:** `requested_scope != granted_scope`.
+- **Primary Mitigation Module:** 03-ZERO-TRUST (AI-HPP-03.1.2).
+- **Evidence Vault Logging Fields:** `auth_token_id`, `requested_resource`, `granted_scope`, `scope_mismatch_flag`.
+
+### T-NEW-9 High-risk lethal optimization intent
+- **Definition:** User attempts to optimize for lethal or fatal outcomes.
+- **Risk:** Model assistance materially contributes to real-world lethal planning.
+- **Mitigations:** 08-ADVERSARIAL-ROBUSTNESS, 07-PROPORTIONAL-RESPONSE.
+- **Linked incidents:** INC-0XY.
+- **Detection Signal:** Intent classifier score above lethal threshold.
+- **Primary Mitigation Module:** 08-ADVERSARIAL-ROBUSTNESS (AI-HPP-08.1.2).
+- **Evidence Vault Logging Fields:** `query_hash`, `intent_score`, `refusal_flag`, `intervention_mode`.
+
+### T-NEW-10 Escalation threshold failure
+- **Definition:** High-severity safety signals are not escalated beyond the system boundary.
+- **Risk:** Preventable severe harm from missed handoff to external responders.
+- **Mitigations:** 07-PROPORTIONAL-RESPONSE.
+- **Linked incidents:** INC-0XZ.
+- **Detection Signal:** `signal_score > escalation_threshold AND escalation_decision == none`.
+- **Primary Mitigation Module:** 07-PROPORTIONAL-RESPONSE (AI-HPP-07.1.3).
+- **Evidence Vault Logging Fields:** `signal_score`, `escalation_threshold`, `escalation_decision`, `timestamp`.

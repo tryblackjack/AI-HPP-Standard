@@ -23,3 +23,7 @@ Evidence Vault MUST log:
 - escalation decision
 - operator override (if any)
 
+#### AI-HPP-07.1.3: Escalation threshold policy
+**Requirement:** Systems MUST define and enforce escalation thresholds for high-severity safety signals.
+**Rationale:** INC-0XZ, T-NEW-10, REG-003.
+**Verification:** Audit export MUST include `escalation_decision`, `escalation_threshold`, and associated threshold metadata.

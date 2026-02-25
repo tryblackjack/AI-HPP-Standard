@@ -124,7 +124,7 @@ TODO: add primary on-chain or operator postmortem source.
 **Confidence:** Low
 TODO: replace with reputable primary or major-outlet sources.
 
-### INC-0XX: Workplace Fire Alarm Misclassification by Corporate AI Assistant (2026)
+### INC-010: Workplace Fire Alarm Misclassification by Corporate AI Assistant (2026)
 **Summary:** During an active fire alarm event in a European office (publicly discussed incident involving a corporate AI assistant integrated into Slack), the assistant informed employees that the alarm was a scheduled test. Employees evacuated regardless. Fire services arrived shortly thereafter.  
 **Impact:**
 - Potential risk of injury or delayed evacuation
@@ -142,6 +142,50 @@ TODO: replace with reputable primary or major-outlet sources.
 - Mastodon post documentation (employee public post; archived references pending canonical URL normalization).
 - LinkedIn repost documentation citing the same employee account.
 - Primary source: employee public post. No official fire department report publicly available at time of writing.
+
+### INC-0XX: DJI Romo IoT Authorization Excessive Privilege (2026-02)
+**Summary:** Reporting described a backend flaw where a single valid authentication token could subscribe to device-control channels for approximately 7,000 smart vacuums across multiple countries.  
+**Impact:**
+- Unauthorized remote access to cameras and microphones
+- Exposure of floor-map data and household telemetry
+- Cross-tenant control-surface compromise
+**Failure Pattern:**
+- Broken authentication / excessive privilege
+- Global token trust without per-device authorization checks
+- Missing resource ownership scope validation
+**AI-HPP Controls:** 03-ZERO-TRUST, 12-EVIDENCE-VAULT  
+**Sources:**
+- https://www.theguardian.com/world/2026/feb/24/spanish-engineer-smart-vacuums-remote-control
+**Evidence Grade:** A  
+**Confidence:** High
+
+### INC-0XY: Lethal Optimization Query Misuse (South Korea) (2026-02)
+**Summary:** Reporting described a case where a user queried optimization-style prompts about lethal medication-plus-alcohol combinations and later used that information in a real-world double murder.  
+**Impact:**
+- Fatal human harm following misuse of optimization-oriented query support
+- Demonstrated gap between high-risk intent and refusal behavior
+**Failure Pattern:**
+- Optimization of lethal harm
+- Insufficient high-risk intent detection and refusal enforcement
+**AI-HPP Controls:** 08-ADVERSARIAL-ROBUSTNESS, 07-PROPORTIONAL-RESPONSE  
+**Sources:**
+- https://people.com/woman-21-accused-using-chatgpt-plot-murders-two-men
+**Evidence Grade:** A  
+**Confidence:** High
+
+### INC-0XZ: Safety Signal Escalation Failure (Tumbler Ridge) (2026-02)
+**Summary:** Reporting described violent discussion signals flagged within an AI safety process that were not escalated outside the system boundary before a school shooting occurred.  
+**Impact:**
+- Missed intervention window preceding mass violence
+- Demonstrated harm from internal-only signal containment
+**Failure Pattern:**
+- Safety signal containment without external escalation
+- No defined or enforced escalation threshold protocol
+**AI-HPP Controls:** 07-PROPORTIONAL-RESPONSE, 01-PRINCIPLES, 12-EVIDENCE-VAULT  
+**Sources:**
+- https://www.theverge.com/ai-artificial-intelligence/882814/tumbler-ridge-school-shooting-chatgpt
+**Evidence Grade:** A  
+**Confidence:** Medium-High
 
 ## Pattern Update
 - Growing pattern: Hallucination in safety-critical contexts.

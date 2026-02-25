@@ -5,6 +5,19 @@ All notable changes to the AI-HPP standard are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
+ codex/integrate-grey-zone-incidents-into-annexes
+## [v3.14] - 2026-02-25
+
+### Added
+- Added three grey-zone incidents (IoT authorization excessive privilege, lethal optimization misuse, escalation-threshold failure) in Annex B.
+- Expanded Threat Model with T-NEW-8 through T-NEW-10 and incident-linked Evidence Vault field mappings.
+- Added targeted safeguards: scoped authorization enforcement (03), lethal optimization refusal (08), and escalation-threshold policy (07).
+
+### Changed
+- Updated requirements index with AI-HPP-03.1.2, AI-HPP-07.1.3, and AI-HPP-08.1.2.
+- Performed translation synchronization updates for changed annex and proportional-response files, with version sync advanced to v3.14.
+
+=======
 codex/create-regulator-readiness-self-assessment-pack
 ## [v3.14] - 2026-02-24
 
@@ -13,6 +26,7 @@ codex/create-regulator-readiness-self-assessment-pack
 
 
 =======
+main
 codex/perform-quality-hardening-patch-for-ai-hpp
 ## [v3.12.1] - 2026-02-24
 
