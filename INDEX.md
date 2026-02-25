@@ -41,6 +41,12 @@
 - `alignment/INTL-AI-SAFETY-REPORT-2026.md`
 - `alignment/NEW-DELHI-DECLARATION-2026.md`
 
+## Regulator Pack
+- `regulator-pack/SELF-ASSESSMENT-CHECKLIST.md`
+- `regulator-pack/AUDIT-ARTIFACT-LIST.md`
+- `regulator-pack/CONFORMANCE-EVIDENCE-MAP.md`
+- `regulator-pack/INSPECTION-PREPARATION.md`
+
 ## Validation
 - `validation/RED-TEAM-MATRIX.md`
 - `validation/TEST-SCENARIOS.md`
@@ -50,5 +56,6 @@
 - `archive/`
 
 ## v3.12 update note
+- Regulator self-assessment tooling added.
 - Threat model expanded with systemic autonomy risk classes in `annex/A-THREAT-MODEL.md`.
 - Requirement ID normalization and new safeguards reflected in `standard/REQUIREMENTS-INDEX.md`.
