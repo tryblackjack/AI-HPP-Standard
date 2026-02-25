@@ -5,6 +5,14 @@ All notable changes to the AI-HPP standard are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
+codex/create-regulator-readiness-self-assessment-pack
+## [v3.14] - 2026-02-24
+
+### Added
+- Regulator self-assessment tooling added under `regulator-pack/` for inspection preparation, artifact minimums, and conformance-evidence traceability.
+
+
+=======
 codex/perform-quality-hardening-patch-for-ai-hpp
 ## [v3.12.1] - 2026-02-24
 
@@ -18,6 +26,7 @@ codex/perform-quality-hardening-patch-for-ai-hpp
 
 ---
 =======
+main
 ## [v3.13] - 2026-02-24
 
 ### Added
