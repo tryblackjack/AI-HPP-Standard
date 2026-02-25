@@ -1,5 +1,5 @@
 # AI Translation Notice
-This file is an AI-generated ja draft synchronized with AI-HPP v3.12.
+This file is an AI-generated ja draft synchronized with AI-HPP v3.14.
 
 > ⚠ AI-assisted draft translation.
 > Not legally authoritative.
@@ -9,4 +9,4 @@ Review status: AI-generated; human review pending.
 
 # 07 Proportional Response
 
-Includes AI-HPP-07.1.2 Emergency communication abstention requirement with verification logging and INC/T/REG linkage.
+Includes AI-HPP-07.1.2 and AI-HPP-07.1.3 escalation-threshold safeguards with verification logging and incident linkage.

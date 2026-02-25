@@ -16,3 +16,8 @@
 **Annex references:**
 - See `annex/G-CONFLICT-ENVIRONMENT-SAFEGUARDS.md` for conflict-environment evidence continuity patterns.
 - See Annex CEO-AI Golden Example for a lean sufficient-traceability example.
+
+## v3.14 incident-linked logging extensions
+- Authorization scope enforcement events SHOULD capture `auth_token_id`, `requested_resource`, `granted_scope`, and `scope_mismatch_flag` when access is denied.
+- Lethal-intent refusal events SHOULD capture `query_hash`, `intent_score`, `refusal_flag`, and `intervention_mode`.
+- Escalation-threshold evaluations SHOULD capture `signal_score`, `escalation_threshold`, `escalation_decision`, and `timestamp`.

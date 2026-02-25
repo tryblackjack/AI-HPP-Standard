@@ -1,5 +1,5 @@
 # AI Translation Notice
-This file is an AI-generated uk-UA draft synchronized with AI-HPP v3.12.
+This file is an AI-generated uk-UA draft synchronized with AI-HPP v3.14.
 
 > ⚠ AI-assisted draft translation.
 > Not legally authoritative.
@@ -9,4 +9,4 @@ Review status: AI-generated; human review pending.
 
 # Annex A — Threat Model
 
-AI-generated draft synchronized with AI-HPP v3.12. Includes T-NEW-1 through T-NEW-5 systemic autonomy risks and existing threat classes.
+AI-generated draft synchronized with AI-HPP v3.14. Includes T-NEW-1 through T-NEW-5 and T-NEW-8 through T-NEW-10 with incident-linked detection and Evidence Vault fields.
