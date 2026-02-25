@@ -5,4 +5,4 @@
 - **Level 3:** High-impact domain controls with human approval gates.
 - **Level 4:** Regulated or safety-critical deployment with independent review.
 
-TODO: community calibration criteria for level transitions.
+Community calibration criteria for level transitions are maintained through governance updates.
