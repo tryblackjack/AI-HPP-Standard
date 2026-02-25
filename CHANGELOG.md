@@ -5,6 +5,7 @@ All notable changes to the AI-HPP standard are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
+ codex/integrate-grey-zone-incidents-into-annexes
 ## [v3.14] - 2026-02-25
 
 ### Added
@@ -16,6 +17,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Updated requirements index with AI-HPP-03.1.2, AI-HPP-07.1.3, and AI-HPP-08.1.2.
 - Performed translation synchronization updates for changed annex and proportional-response files, with version sync advanced to v3.14.
 
+=======
+codex/create-regulator-readiness-self-assessment-pack
+## [v3.14] - 2026-02-24
+
+### Added
+- Regulator self-assessment tooling added under `regulator-pack/` for inspection preparation, artifact minimums, and conformance-evidence traceability.
+
+
+=======
+main
 codex/perform-quality-hardening-patch-for-ai-hpp
 ## [v3.12.1] - 2026-02-24
 
@@ -29,6 +40,7 @@ codex/perform-quality-hardening-patch-for-ai-hpp
 
 ---
 =======
+main
 ## [v3.13] - 2026-02-24
 
 ### Added
