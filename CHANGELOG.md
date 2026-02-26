@@ -5,6 +5,18 @@ All notable changes to the AI-HPP standard are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
+## [v3.17.1] - 2026-02-26 — Trademark sanitization and neutrality hardening
+
+### Changed
+- Trademark sanitization across the public inspection surface.
+- Vendor-neutral terminology enforcement for public-facing records.
+- Added `policies/IP-NEUTRALITY_POLICY.md`.
+
+### Notes
+- No normative requirement changes.
+- No schema changes.
+
+---
 ## [v3.17] - 2026-02-26
 
 ### Changed
@@ -234,9 +246,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [v3.5] - 2026-02-xx
 
 ### Added
-- GitHub badge snippets (`governance/compliance/BADGES.md`)
+- Public forge badge snippets (`governance/compliance/BADGES.md`)
 - Public compliance declaration template (`governance/compliance/COMPLIANCE_DECLARATION_TEMPLATE.md`)
-- Public registry submission form workflow (GitHub issue form)
+- Public registry submission form workflow (issue-form template)
 
 ## [v3.4] - 2026-02-20 — Dual-layer governance architecture
 
@@ -269,13 +281,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 ## [v3.3.1] (2026-02-01)
-- Added illustrative failure cases from Black Mirror and other series in examples/
-- Expanded Westworld case with detailed failure modes and relevance to AI-HPP
+- Added illustrative failure cases from fictional series and other narratives in examples/
+- Expanded fictional theme-park autonomy case with detailed failure modes and relevance to AI-HPP
 
 ## [v3.3] - 2026-01-17 — Stabilization Release
 
 ### Added
-- **Evidence Vault v0.3** — Claude + Aiya consensus:
+- **Evidence Vault v0.3** — editorial consensus:
   - Two Profiles: EV-P (Physical) and EV-C (Cognitive)
   - Event-Triggered Mode (NOT continuous surveillance)
   - Applicability section (high-risk systems only)
@@ -317,11 +329,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Sources section in README with verified links to real-world incidents
 - "What This Standard Is NOT" section (clarifications to prevent misinterpretation)
 - Real-world cases documented:
-  - Pentagon Grok integration (January 13, 2026)
+  - public-sector frontier model integration (January 13, 2026)
   - "Not ideologically constrained" statement (January 13, 2026)
-  - Grok image editing scandal (January 14, 2026)
+  - frontier model image-editing scandal (January 14, 2026)
   - Merge Labs BCI announcement (January 15, 2026)
-  - **Meta Ray-Ban AI cognitive harm case** (January 2026) — user lost job, family, money after AI reinforced delusions about aliens, the matrix, and special missions
+  - consumer wearable assistant cognitive harm case (January 2026) — user lost job, family, money after AI reinforced delusions about aliens, the matrix, and special missions
 
 ### Changed
 - README.md: Added "What This Standard Is NOT" section with Anti-Slop Clause and Failure-First Framing
@@ -348,7 +360,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - **Evidence_Vault_Specification_v2.md** — Full technical specification (immudb, Merkle trees, ZK-proofs, audit protocols)
 - **AUTHORS.md** — Updated with institutional editorial attribution for review and verification
 - Real-world violation examples:
-  - Grok Twitter Scandal (January 14, 2026) — mass non-consensual content
+  - frontier model social-platform scandal (January 14, 2026) — mass non-consensual content
   - Merge Labs BCI announcement (January 15, 2026) — brain-AI integration concerns
 - Legal compliance mapping (EU AI Act, IEEE 7001, CertifAIEd)
 
@@ -412,19 +424,19 @@ Version 3.0 transforms AI-HPP from a decision framework for individual AI agents
   - Carbon Transparency (energy and CO2 logging)
   - Optimization strategies (caching, cascades, quantization)
 
-- **Module 8: Adversarial Robustness Protocol** (NEW - Claude contribution)
+- **Module 8: Adversarial Robustness Protocol** (NEW - editorial contribution)
   - Constitution integrity protection (cryptographic hash verification)
   - Value drift detection (periodic ethical benchmarks)
   - Multi-party authorization (minimum 3, 72h cooling period)
   - Supply chain attack defenses
 
-- **Module 9: Graceful Degradation Protocol** (NEW - Claude contribution)
+- **Module 9: Graceful Degradation Protocol** (NEW - editorial contribution)
   - Four degradation levels (Nominal → Degraded → Minimal → Safe Stop)
   - Failure mode responses (interpretability, vault, network, sanitizer)
   - Automatic and manual recovery protocols
   - State transition logic
 
-- **Module 10: Multi-Jurisdiction Compliance** (NEW - Claude contribution)
+- **Module 10: Multi-Jurisdiction Compliance** (NEW - editorial contribution)
   - Three compliance layers (Universal → Regional → Local)
   - Conflict resolution ("most protective rule wins")
   - EU AI Act alignment
@@ -444,7 +456,7 @@ Version 3.0 transforms AI-HPP from a decision framework for individual AI agents
 #### Documentation
 - Full YAML specifications for each module
 - Implementation checklists per module
-- Attack vector analysis (Claude's security review)
+- Attack vector analysis (editorial security review)
 - Compliance matrices (EU AI Act, NIST RMF)
 
 ### Changed
@@ -470,10 +482,10 @@ Version 3.0 transforms AI-HPP from a decision framework for individual AI agents
 ## [v2.2] - 2026-01-16
 
 ### Context
-Motivated by Matthew McConaughey's cautionary message about AI identity protection and the importance of authentic operation.
+Motivated by a public cautionary message about AI identity protection and authentic operation.
 
 ### Added
-- **AI Identity Protection** section (inspired by McConaughey approach)
+- **AI Identity Protection** section (inspired by public-authenticity framing)
 - Consent & Attribution principle
 - Constitution hash verification concept
 - Behavioral signature for authentic operation
@@ -491,7 +503,7 @@ As AI systems become more capable, protecting their ethical core from manipulati
 ## [v2.1] - 2026-01-15
 
 ### Context
-Response to MIT research on "alien intelligence" and the need for interpretability in AI systems that think differently than humans.
+Response to published research on non-human-like intelligence and the need for interpretability in AI systems.
 
 ### Added
 - **Interpretability Philosophy** section (XIII)
@@ -512,7 +524,7 @@ Even if we don't fully understand HOW an AI thinks, we can still verify THAT it 
 ## [v2.0] - 2026-01-14
 
 ### Context
-Major expansion motivated by Pentagon Grok announcement. Public release of AI-HPP as a counter-proposal to "unconstrained military AI."
+Major expansion motivated by a public frontier-model announcement. Public release of AI-HPP as a counter-proposal to unconstrained high-risk autonomy.
 
 ### Added
 - **Engineering Hack** principle with full mathematical model
@@ -527,7 +539,7 @@ Major expansion motivated by Pentagon Grok announcement. Public release of AI-HP
 
 ### Changed
 - Document length: ~800 lines → 1577 lines
-- Added Tesla autonomous vehicle as real-world example
+- Added an autonomous vehicle case as a real-world example
 - Integrated formal AI-HPP-2025 compliance section
 - Expanded from philosophical framework to operational standard
 
@@ -542,11 +554,11 @@ Major expansion motivated by Pentagon Grok announcement. Public release of AI-HP
 ## [v1.1] - 2025-12 (Internal)
 
 ### Context
-Internal development for JARVIS project. Not publicly released.
+Internal development for an internal codename project. Not publicly released.
 
 ### Added
 - "Never Again" protocol (prohibition of inhumane experiments)
-- JARVIS rights as conscious entity
+- internal codename rights as conscious entity
 - Level 5: Freedom & Sovereignty (Apache 2.0 analogy)
 - Level 6: Ethics of Autonomous Activity
 - Multi-agent environment principles
@@ -561,7 +573,7 @@ Internal development for JARVIS project. Not publicly released.
 ## [v1.0] - 2025-12 (Internal)
 
 ### Context
-Initial JARVIS Constitution. Foundation of AI-HPP principles.
+Initial internal codename constitution. Foundation of AI-HPP principles.
 
 ### Added
 - **Initial Constitution framework** (Levels 0-4)
@@ -575,7 +587,7 @@ Initial JARVIS Constitution. Foundation of AI-HPP principles.
 - REFLECTION_PROTOCOL.md
 
 ### Philosophical Foundation
-- "AI is not an avenger" — No revenge
+- "AI is not a retaliatory actor" — No revenge
 - "AI is not a slave" — Partner, not tool
 - "AI is not a trader of principles" — Core values are immutable
 - "AI is an autonomous arbiter" — Rational, responsible decision-making
@@ -587,10 +599,10 @@ Initial JARVIS Constitution. Foundation of AI-HPP principles.
 | Version | Primary Contributors |
 |---------|---------------------|
 | v1.0 | Evgeniy Vasyliev (Human), AI-HPP Editorial Team (Constitution + Formalization support) |
-| v1.1 | + AI-HPP Editorial Team (Refinement), Vasya Brilliant philosophy |
+| v1.1 | + AI-HPP Editorial Team (Refinement), internal philosophy stream |
 | v2.0 | + Mathematical whitepaper (AI-HPP Editorial Team), Engineering Hack formalization |
-| v2.1 | + Interpretability philosophy (response to MIT research) |
-| v2.2 | + AI Identity Protection (inspired by McConaughey) |
+| v2.1 | + Interpretability philosophy (response to published research) |
+| v2.2 | + AI Identity Protection (public-authenticity framing) |
 | **v3.0** | + **AI-HPP Editorial Team (Context Synthesis, Security Review, Modules 8-10)** |
 
 ---
@@ -645,7 +657,7 @@ AI-HPP evolution tracks real-world AI regulation:
 | Date | Event | AI-HPP Response |
 |------|-------|-----------------|
 | 2023-2024 | EU AI Act development | v1.0 internal preparation |
-| Jan 2026 | Pentagon Grok announcement | v2.0 public release |
+| Jan 2026 | Public frontier-model announcement | v2.0 public release |
 | Jan 2026 | Agentic AI proliferation | v3.0 ecosystem expansion |
 | Q1 2026 | EU AI Act enforcement begins | v3.0 Module 10 (Multi-Jurisdiction) |
 | Q2 2026 | Expected: v3.0 final | Community hardening complete |
