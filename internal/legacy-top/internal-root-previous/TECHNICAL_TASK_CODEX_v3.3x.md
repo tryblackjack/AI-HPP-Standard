@@ -1,3 +1,6 @@
+SAFE_FOR_PUBLIC_REPO: YES
+NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
+
 # Technical Task for Codex: AI-HPP-2025 v3.3.x Content & Structure Update
 
 ## Context

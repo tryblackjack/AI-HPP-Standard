@@ -5,7 +5,7 @@
 
 ## 30-second orientation by audience
 - **Policymaker:** This library defines concrete safeguards for agentic AI systems, with traceability from requirement to incident, threat, and regulatory intent.
-- **Standards reviewer:** Normative content is in `standard/`; supporting evidence is in `annex/`; crosswalks are in `alignment/`.
+- **Standards reviewer:** Normative content is in `standard/`; supporting evidence is in `annex/`; machine contracts are in `schemas/`.
 - **Compliance team:** Use `standard/REQUIREMENTS-INDEX.md` for checklist extraction and `annex/D-REGULATORY-MAP.md` for mapping.
 - **Engineer:** Implement controls module-by-module and verify with each requirement block's verification criteria.
 - **Autonomous AI agent:** Parse requirement IDs (`AI-HPP-x.y.z`) and resolve evidence links (`INC-*`, `T-*`, `REG-*`).
@@ -14,19 +14,16 @@
 
 AI-HPP is structured in two layers:
 
-### Public Inspection Baseline
+### Public Inspection Baseline (normative + inspection-facing)
 - `BASELINE-v3.17.md` — inspection entry point
 - `standard/` — normative engineering requirements
 - `annex/` — threat model and incident registry
 - `schemas/` — machine-verifiable logging schemas
-- `validation/` — conformance and validation artifacts
-- `regulator-pack/` — structured inspection materials
-- `policies/` — implementer-facing enforcement policies
 - `translations/` — language variants
 - `archive/` — historical versions
 
-### Internal Maintainer Layer
-- `internal/` — non-normative maintainer artifacts (ADR, governance, audit reports, legacy stubs)
+### Internal Maintainer Layer (public, non-normative)
+- `internal/` — maintainer artifacts (ADR, governance, audit reports, legacy-top relocation stubs); policy+CI sanitized for public repo safety
 
 Canonical normative text exists only in `standard/` and `annex/`.
 Internal materials do not override normative modules.
@@ -36,7 +33,7 @@ Internal materials do not override normative modules.
 2. `standard/01-PRINCIPLES.md`
 3. `annex/B-INCIDENTS.md`
 4. `standard/REQUIREMENTS-INDEX.md`
-5. `schemas/` and `validation/`
+5. `schemas/`
 
 - CES safeguards are covered in `standard/07-PROPORTIONAL-RESPONSE.md`, `standard/12-EVIDENCE-VAULT.md`, and `annex/G-CONFLICT-ENVIRONMENT-SAFEGUARDS.md`.
 - Adaptive governance guidance is available in `annex/H-ADAPTIVE-GOVERNANCE.md` (AGL + HSDF; informative only).

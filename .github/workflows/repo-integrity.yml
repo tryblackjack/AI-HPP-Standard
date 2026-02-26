@@ -29,3 +29,7 @@ jobs:
         run: |
           python scripts/regulator_sim_check.py
 
+
+      - name: Run public repo anti-leak guard
+        run: |
+          python scripts/public_repo_leak_guard.py

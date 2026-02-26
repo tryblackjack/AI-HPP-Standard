@@ -1,3 +1,6 @@
+SAFE_FOR_PUBLIC_REPO: YES
+NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
+
 # Human-in-the-Loop (HITL) Protocol Example
 
 **AI-HPP-2026 v3.0**

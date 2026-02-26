@@ -1,3 +1,6 @@
+SAFE_FOR_PUBLIC_REPO: YES
+NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
+
 # Reference Implementations
 
 Python 3.10+ reference modules using stdlib + `jsonschema` + `pytest`.

@@ -1,0 +1,5 @@
+# Core maintainer ownership
+/internal/** @tryblackjack
+/schemas/** @tryblackjack
+/standard/** @tryblackjack
+/annex/** @tryblackjack

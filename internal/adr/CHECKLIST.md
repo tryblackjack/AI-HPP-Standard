@@ -1,3 +1,6 @@
+SAFE_FOR_PUBLIC_REPO: YES
+NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
+
 # ADR Deployment Checklist
 
 Use this checklist for ADR-sensitive systems (automation loops, high-impact permissions, safety-adjacent comms).

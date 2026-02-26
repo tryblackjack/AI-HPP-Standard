@@ -1,3 +1,6 @@
+SAFE_FOR_PUBLIC_REPO: YES
+NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
+
 # AI-HPP Autonomous Agent Addendum
 Version 1.0 (Public Edition)
 February 2026

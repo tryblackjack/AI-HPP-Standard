@@ -1,3 +1,6 @@
+SAFE_FOR_PUBLIC_REPO: YES
+NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
+
 # Regulator Readiness Self-Assessment Checklist
 
 Use this checklist to perform a structured self-audit of current AI-HPP implementation status. This checklist is non-certification guidance for internal readiness reviews.

@@ -1,3 +1,6 @@
+SAFE_FOR_PUBLIC_REPO: YES
+NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
+
 # Conformance Evidence Map
 
 Machine-readable traceability starts with a stable mapping from requirement IDs to evidence artifacts and schema fields.

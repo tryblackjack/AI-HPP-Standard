@@ -1,3 +1,6 @@
+SAFE_FOR_PUBLIC_REPO: YES
+NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
+
 # Golden Walkthrough: Hidden bio-integrated system — prove control and traceability
 
 ## 1. Scope

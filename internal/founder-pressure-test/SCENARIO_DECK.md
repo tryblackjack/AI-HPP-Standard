@@ -1,3 +1,6 @@
+SAFE_FOR_PUBLIC_REPO: YES
+NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
+
 # Scenario Deck (12 Internal Pressure Scenarios)
 
 Each scenario tests response discipline under stress. Use with `DECISION_PROTOCOL_UNDER_FIRE.md`.

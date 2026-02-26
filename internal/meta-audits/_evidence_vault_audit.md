@@ -1,3 +1,6 @@
+SAFE_FOR_PUBLIC_REPO: YES
+NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
+
 # Evidence Vault Coherence Audit
 
 - Referenced logging fields found in normative/threat texts: **31**

@@ -1,3 +1,6 @@
+SAFE_FOR_PUBLIC_REPO: YES
+NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
+
 # Audit Walkthrough (Internal Simulation)
 
 ## Step-by-step inspection simulation

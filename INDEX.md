@@ -11,12 +11,8 @@
 - `standard/` (normative requirements)
 - `annex/` (normative supporting rationale and mappings)
 - `schemas/` (machine-readable contracts)
-- `validation/` (validation artifacts)
-- `regulator-pack/` (inspection support package)
-- `alignment/` (external crosswalks)
 - `translations/` (translation set and metadata)
 - `archive/` (historical references)
-- `policies/` (implementer-facing policies)
 - `annex/G-CONFLICT-ENVIRONMENT-SAFEGUARDS.md` (informative conflict-adjacent safeguards)
 - `annex/H-ADAPTIVE-GOVERNANCE.md` (informative adaptive governance and deployment guidance)
 
@@ -32,5 +28,5 @@ AI-HPP distinguishes:
 Only artifacts under `standard/` and `annex/` define normative requirements.
 
 ## Internal maintainer layer
-- `internal/` (non-normative maintainer documentation, audits, orchestration assets, and historical top-level materials)
+- `internal/` (public but non-normative maintainer documentation, audits, orchestration assets, and historical top-level materials)
 - `internal/regulator-sim/` (internal regulator simulation pack)
