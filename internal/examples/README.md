@@ -75,7 +75,7 @@ Have an implementation example to share? We welcome contributions!
 4. Provide context on use case
 5. Submit as Pull Request
 
-See [CONTRIBUTING.md](../CONTRIBUTING.md) for details.
+See [CONTRIBUTING.md](../legacy-top/CONTRIBUTING.md) for details.
 
 ## License
 

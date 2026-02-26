@@ -4,7 +4,7 @@
 Define a consistent process for listing public AI-HPP compliance declarations.
 
 ## Scope
-Applies to submissions for `registry/COMPLIANT_SYSTEMS.md`.
+Applies to submissions for `internal/registry/COMPLIANT_SYSTEMS.md`.
 
 ## Requirements
 1. Publish `COMPLIANCE_DECLARATION.md` based on `governance/compliance/COMPLIANCE_DECLARATION_TEMPLATE.md`.
@@ -12,4 +12,4 @@ Applies to submissions for `registry/COMPLIANT_SYSTEMS.md`.
 3. Include public links for declaration and supporting materials.
 
 ## Maintainer Process
-Maintainers verify completeness and then add or update an entry in `registry/COMPLIANT_SYSTEMS.md`.
+Maintainers verify completeness and then add or update an entry in `internal/registry/COMPLIANT_SYSTEMS.md`.

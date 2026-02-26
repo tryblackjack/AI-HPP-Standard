@@ -5,6 +5,18 @@ All notable changes to the AI-HPP standard are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
+## [v3.16] - 2026-02-26
+
+### Changed
+- Public root surface minimized to canonical inspection entrypoints and canonical public directories.
+- Maintainer artifacts moved under `internal/` with structured subfolders for audits, governance, registries, and orchestration assets.
+- Canonical navigation updated for dual-layer layout (`README.md`, `INDEX.md`).
+- Link and path references updated for relocated maintainer materials.
+
+### Added
+- `internal/README.md` to define internal layer scope and non-normative precedence.
+- `BASELINE-v3.16.md` with public-surface policy and v3.16 baseline marker.
+
 ## [v3.15] - 2026-02-26
 
 ### Changed
