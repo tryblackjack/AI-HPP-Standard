@@ -1,61 +1,42 @@
 # INDEX
 
-## Canonical
+## Canonical entrypoints
 - `README.md`
+- `INDEX.md`
+- `BASELINE-v3.15.md`
 - `GLOSSARY.md`
-- `CONTRIBUTING.md`
 - `CHANGELOG.md`
+- `CONTRIBUTING.md`
 
-## Standard (normative)
-- `standard/README.md`
-- `standard/00-FOREWORD.md`
-- `standard/01-PRINCIPLES.md`
-- `standard/02-INTERPRETABILITY.md`
-- `standard/03-ZERO-TRUST.md`
-- `standard/04-DATA-PROVENANCE.md`
-- `standard/05-TOOL-EXECUTION.md`
-- `standard/06-VULNERABLE-GROUPS.md`
-- `standard/07-PROPORTIONAL-RESPONSE.md`
-- `standard/08-ADVERSARIAL-ROBUSTNESS.md`
-- `standard/09-GRACEFUL-DEGRADATION.md`
-- `standard/10-MULTI-JURISDICTION.md`
-- `standard/11-MULTI-AGENT.md`
-- `standard/12-EVIDENCE-VAULT.md`
-- `standard/CONFORMANCE-LEVELS.md`
-- `standard/REQUIREMENTS-INDEX.md`
+## Core Normative Layer (frozen baseline)
+- `standard/`
+- `annex/`
+- `schemas/`
 
-## Annex (informative)
-- `annex/README.md`
-- `annex/A-THREAT-MODEL.md`
-- `annex/B-INCIDENTS.md`
-- `annex/C-FAILURE-TAXONOMY.md`
-- `annex/D-REGULATORY-MAP.md`
-- `annex/E-MATHEMATICAL-FOUNDATIONS.md`
-- `annex/F-AGENT-FACING.md`
-- `annex/G-CONFLICT-ENVIRONMENT-SAFEGUARDS.md`
-- `annex/CEO-AI-GOLDEN-EXAMPLE.md`
+Future additions to the Core Normative Layer MUST include: threat reference (`T-*`), incident reference (`INC-*`), and measurable verification logic.
 
-## Alignment
-- `alignment/ISO-42001-CROSSWALK.md`
-- `alignment/NIST-AI-RMF-CROSSWALK.md`
-- `alignment/INTL-AI-SAFETY-REPORT-2026.md`
-- `alignment/NEW-DELHI-DECLARATION-2026.md`
+## Alignment and assurance support
+- `alignment/`
+- `regulator-pack/`
+- `validation/`
+- `conformance/`
 
-## Regulator Pack
-- `regulator-pack/SELF-ASSESSMENT-CHECKLIST.md`
-- `regulator-pack/AUDIT-ARTIFACT-LIST.md`
-- `regulator-pack/CONFORMANCE-EVIDENCE-MAP.md`
-- `regulator-pack/INSPECTION-PREPARATION.md`
+## Implementation and reference assets
+- `reference/`
+- `examples/`
+- `scripts/`
+- `translations/`
 
-## Validation
-- `validation/RED-TEAM-MATRIX.md`
-- `validation/TEST-SCENARIOS.md`
-- `validation/EXECUTION-GUIDELINES.md`
+## Governance and policy context
+- `governance/`
+- `enterprise_governance/`
+- `agent_safety/`
+- `decision_integrity/`
+- `policies/`
+- `registry/`
+- `adr/`
 
-## Historical
+## Historical archives (read-only)
 - `archive/`
-
-## v3.12 update note
-- Regulator self-assessment tooling added.
-- Threat model expanded with systemic autonomy risk classes in `annex/A-THREAT-MODEL.md`.
-- Requirement ID normalization and new safeguards reflected in `standard/REQUIREMENTS-INDEX.md`.
+- `archive/root-legacy/v2-root-superseded/`
+- `archive/root-legacy/v3-root-superseded/`

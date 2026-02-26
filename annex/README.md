@@ -10,4 +10,6 @@ Informative material supporting normative requirements:
 - Conflict-environment safeguards (Annex G)
 - CEO-AI golden example (lean evidence pattern)
 
-Threat model expansion (v3.12) adds systemic autonomy risks: synthetic compliance fabrication, incentive-driven safety erosion, silent tool scope expansion, override latency failure, and narrative softening.
+Threat model expansion covers systemic autonomy risks including synthetic compliance fabrication, incentive-driven safety erosion, silent tool scope expansion, override latency failure, narrative softening, authorization scope abuse, lethal optimization misuse, and escalation-threshold failure.
+
+Baseline status: `annex/` is part of the Core Normative Layer frozen at v3.15.

@@ -5,29 +5,32 @@ All notable changes to the AI-HPP standard are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
- codex/integrate-grey-zone-incidents-into-annexes
+## [v3.15] - 2026-02-26
+
+### Changed
+- Structural consolidation completed and canonical repository structure enforced in `INDEX.md`; legacy root `v2/` and `v3/` moved to archival storage.
+- Threat-incident closure completed: all T-NEW entries now include linked incident coverage or explicit forward-looking designation.
+- Incident registry normalized to INC-001..INC-013 with linked threat anchors and placeholder IDs removed.
+- Normative language hardened to require measurable verification statements and canonical Evidence Export Package terminology.
+- Evidence Vault schema alignment completed for threat, escalation, zero-trust, and lethal-intent logging fields.
+- Core baseline freeze marker added for `standard/`, `annex/`, and `schemas/`.
+
+### Added
+- `BASELINE-v3.15.md` inspection entry point with architecture, module, threat, incident, conformance, schema, and governance baseline summary.
+
 ## [v3.14] - 2026-02-25
 
 ### Added
 - Added three grey-zone incidents (IoT authorization excessive privilege, lethal optimization misuse, escalation-threshold failure) in Annex B.
 - Expanded Threat Model with T-NEW-8 through T-NEW-10 and incident-linked Evidence Vault field mappings.
 - Added targeted safeguards: scoped authorization enforcement (03), lethal optimization refusal (08), and escalation-threshold policy (07).
+- Regulator self-assessment tooling added under `regulator-pack/` for inspection preparation, artifact minimums, and conformance-evidence traceability.
 
 ### Changed
 - Updated requirements index with AI-HPP-03.1.2, AI-HPP-07.1.3, and AI-HPP-08.1.2.
 - Performed translation synchronization updates for changed annex and proportional-response files, with version sync advanced to v3.14.
 
-=======
-codex/create-regulator-readiness-self-assessment-pack
-## [v3.14] - 2026-02-24
 
-### Added
-- Regulator self-assessment tooling added under `regulator-pack/` for inspection preparation, artifact minimums, and conformance-evidence traceability.
-
-
-=======
-main
-codex/perform-quality-hardening-patch-for-ai-hpp
 ## [v3.12.1] - 2026-02-24
 
 ### Changed
@@ -39,8 +42,6 @@ codex/perform-quality-hardening-patch-for-ai-hpp
 - Residual draft artifacts eliminated from normative requirement content.
 
 ---
-=======
-main
 ## [v3.13] - 2026-02-24
 
 ### Added
@@ -49,7 +50,6 @@ main
 - Linked threats to measurable validation scenarios.
 
 
-main
 ## [v3.12] - 2026-02-24
 
 ### Changed

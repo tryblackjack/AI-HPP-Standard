@@ -11,7 +11,8 @@
 - **Autonomous AI agent:** Parse requirement IDs (`AI-HPP-x.y.z`) and resolve evidence links (`INC-*`, `T-*`, `REG-*`).
 
 ## Repository map
-- `INDEX.md` — authoritative navigation map.
+- `BASELINE-v3.15.md` — inspection entry point for v3.15 frozen baseline.
+- `INDEX.md` — authoritative navigation map and frozen-core boundary.
 - `standard/` — normative requirements only.
 - `annex/` — threat, incidents, taxonomy, regulatory map, math, agent-facing notes, conflict-environment safeguards, and the CEO-AI golden example.
 - `alignment/` — concise external crosswalks.
@@ -22,3 +23,7 @@ Any major patch that adds a new annex or modifies canonical structure must updat
 
 ## Philosophy
 AI-HPP specifies safeguards, accountability boundaries, and degradation behavior for autonomous or semi-autonomous systems. It is preventive engineering, not a certification marketing program.
+
+
+## Baseline freeze notice (v3.15)
+The Core Normative Layer (`standard/`, `annex/`, `schemas/`) is frozen for inspection stability. New entries require a threat reference, incident reference, and measurable verification logic. Root-level legacy version trees have been archived under `archive/root-legacy/`.
