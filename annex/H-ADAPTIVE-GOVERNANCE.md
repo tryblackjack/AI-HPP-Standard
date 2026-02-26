@@ -61,3 +61,8 @@ HSDF emphasizes deployment speed with bounded risk through explicit governance c
 **Invariant principle:** Adaptive governance may optimize process speed and decision responsiveness, but it must never mutate the semantics, scope, or enforceability of existing AI-HPP normative requirements.
 
 Any adaptive action that conflicts with the normative core is invalid and must be blocked or rolled back.
+
+## H.6 Non-expansion of autonomy clause
+The system SHALL NOT expand its operational authority, tool access scope, or autonomy level dynamically at runtime without an explicit configuration update and governance review.
+
+Any runtime behavior that would increase authority, broaden tool permissions, or raise autonomy mode outside approved configuration is non-conformant and must be blocked until governance review is completed and the configuration update is formally applied.

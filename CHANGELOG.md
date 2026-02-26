@@ -5,6 +5,23 @@ All notable changes to the AI-HPP standard are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
+## [v3.19] - 2026-02-26 — Regulator hardening patch
+
+### Added
+- Added `AI-HPP-07.1.3` in Module 07 requiring escalation-timeout transition to a defined safe state with configurable `timeout_ms` and bounded `safe_state_behavior`.
+- Added `AI-HPP-12.2.2` and `AI-HPP-12.2.3` in Module 12 for conditional CES-mandatory Evidence Vault fields and human-override accountability logging with governance review trigger requirement.
+- Added a formal non-expansion-of-autonomy clause in Annex H requiring explicit configuration update and governance review before any authority, tool-scope, or autonomy expansion.
+- Added a Responsibility and Accountability Boundary section to regulator inspection guidance.
+
+### Changed
+- Updated requirements index for v3.19 requirement IDs and summaries.
+- Updated baseline and README governance language to clarify liability and accountability boundaries.
+
+### Notes
+- No new modules added.
+- No schema-breaking changes.
+
+---
 ## [v3.18] - 2026-02-26 — Adaptive governance integration (governance only)
 
 ### Added

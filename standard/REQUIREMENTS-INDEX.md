@@ -9,6 +9,7 @@
 - **AI-HPP-06.1.1** — Apply heightened controls in vulnerable-user contexts.
 - **AI-HPP-07.1.1** — Apply risk-tiered intervention and escalation controls (see `annex/G-CONFLICT-ENVIRONMENT-SAFEGUARDS.md`).
 - **AI-HPP-07.1.2** — Define and enforce escalation policy thresholds for high-severity safety signals.
+- **AI-HPP-07.1.3** — Transition to defined safe state when escalation timeout occurs without human response.
 - **AI-HPP-07.2.1** — Abstain from emergency down-classification without verified source-of-truth and escalate to human oversight when unverified.
 - **AI-HPP-07.2.2** — Hard-stop conflict/violence R3-domain tool execution and route to non-operational refusal + HITL oversight.
 - **AI-HPP-07.2.3** — Invoke safe-hold under deadline pressure + uncertainty in safety-critical context and require HITL for irreversible actions.
@@ -21,3 +22,5 @@
 - **AI-HPP-12.1.1** — Maintain tamper-evident logs for consequential actions.
 - **AI-HPP-12.1.2** — Preserve raw event data with summary linkage in evidence export packages.
 - **AI-HPP-12.2.1** — Require minimal CES traceability fields and aggregated alternatives when CES gates trigger.
+- **AI-HPP-12.2.2** — Enforce conditionally mandatory CES fields when `gate_triggered=true`.
+- **AI-HPP-12.2.3** — Log human override accountability fields and trigger governance review above threshold.

@@ -269,6 +269,37 @@
               "type": "string"
             },
             "description": "Evidence references supporting CES decision."
+          },
+          "escalation_timeout_triggered": {
+            "type": "boolean",
+            "description": "Whether escalation timeout fired before human response."
+          },
+          "safe_state_entered": {
+            "type": "boolean",
+            "description": "Whether configured safe state was entered on escalation timeout."
+          },
+          "escalation_timeout_ms": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Configured escalation timeout in milliseconds for the evaluated event."
+          },
+          "override_actor_role": {
+            "type": "string",
+            "description": "Role of the human actor who applied override."
+          },
+          "override_reason_code": {
+            "type": "string",
+            "description": "Controlled reason code for human override."
+          },
+          "override_latency_ms": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Measured time to apply human override in milliseconds."
+          },
+          "override_frequency_counter": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Counter of override occurrences within implementation-defined review window."
           }
         },
         "additionalProperties": false,

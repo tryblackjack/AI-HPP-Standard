@@ -49,6 +49,7 @@ AI-HPP is implementation-agnostic and does not reference proprietary systems in 
 
 ## Philosophy
 AI-HPP specifies safeguards, accountability boundaries, and degradation behavior for autonomous or semi-autonomous systems. It is preventive engineering, not a certification marketing program.
+AI-HPP defines engineering controls, while implementing organizations retain operational responsibility; it does not guarantee regulatory compliance and is not a certification regime.
 
 ## Baseline freeze notice (v3.17)
 The Core Normative Layer (`standard/`, `annex/`, `schemas/`) remains inspection-stable. v3.17 adds CES safeguards through Module 07 and Module 12, with Annex G as informative guidance and no new modules added. New entries require a threat reference, incident reference, and measurable verification logic.
