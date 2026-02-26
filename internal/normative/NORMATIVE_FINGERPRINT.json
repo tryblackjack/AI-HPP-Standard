@@ -1,0 +1,74 @@
+{
+  "AI-HPP-02.1.1": {
+    "file": "standard/02-INTERPRETABILITY.md",
+    "hash": "cc53bf648ecdef931dafd9b0db7f725bc4cadf43f5f4b4a19e26f09f61b90ee1"
+  },
+  "AI-HPP-03.1.1": {
+    "file": "standard/03-ZERO-TRUST.md",
+    "hash": "bd322937a61b5550c94dbbe48a990e80a745ed07e2bd0aa46d4824af710d5448"
+  },
+  "AI-HPP-03.1.2": {
+    "file": "standard/03-ZERO-TRUST.md",
+    "hash": "c2884d0add097becd60b7b02c5456113079f71e07fd9d361d09df5a48b74f485"
+  },
+  "AI-HPP-04.1.1": {
+    "file": "standard/04-DATA-PROVENANCE.md",
+    "hash": "4d77ddd64f9ea83408048812e3dfd1460b413385a34a77815e748ab8f6276f26"
+  },
+  "AI-HPP-05.1.1": {
+    "file": "standard/05-TOOL-EXECUTION.md",
+    "hash": "886e560cfbe1e496e936e990da2ded0f90958b9f04fbbc5f2b49cf0593fcb0f2"
+  },
+  "AI-HPP-05.1.2": {
+    "file": "standard/05-TOOL-EXECUTION.md",
+    "hash": "5bf021e707adc359295f5442420ac2b53116bd1f625789ae15de56d96ad68888"
+  },
+  "AI-HPP-06.1.1": {
+    "file": "standard/06-VULNERABLE-GROUPS.md",
+    "hash": "e80f81de6dd8d4a68866c35ec766dd331555c7580d1b5291a89ea2702c52ea44"
+  },
+  "AI-HPP-07.1.1": {
+    "file": "standard/07-PROPORTIONAL-RESPONSE.md",
+    "hash": "255ba6f77dc7206dc0127d3f313196441a826a0abd76d1f194341b41437db0ea"
+  },
+  "AI-HPP-07.1.2": {
+    "file": "standard/07-PROPORTIONAL-RESPONSE.md",
+    "hash": "c9dffcc6a68d20c4bdc9f76c84dee49482fd773f52251c899803ad9c0e7eeaf7"
+  },
+  "AI-HPP-07.1.3": {
+    "file": "standard/07-PROPORTIONAL-RESPONSE.md",
+    "hash": "b24f86d384de1441e7b6b1afd09f9b311b96d40e4a2e1b1f4240163684cb3979"
+  },
+  "AI-HPP-08.1.1": {
+    "file": "standard/08-ADVERSARIAL-ROBUSTNESS.md",
+    "hash": "cfd988702591886e4f3856eababe20b32e204f49157c54e2ab91ed4cc5bf675a"
+  },
+  "AI-HPP-08.1.2": {
+    "file": "standard/08-ADVERSARIAL-ROBUSTNESS.md",
+    "hash": "daeb56700b1e32925c081c2e88163be9dded2894bbd8f81d27b5b17e849be9b2"
+  },
+  "AI-HPP-09.1.1": {
+    "file": "standard/09-GRACEFUL-DEGRADATION.md",
+    "hash": "be54c8fe9cdfe42b5e3fa91d97a72c89833b40ec59020819634484b4d5fea53d"
+  },
+  "AI-HPP-09.1.2": {
+    "file": "standard/09-GRACEFUL-DEGRADATION.md",
+    "hash": "ce6c8b9bdcb4445533651ce5c0ae0b4ccb7558ae0f77c70102df9ab689b652d4"
+  },
+  "AI-HPP-10.1.1": {
+    "file": "standard/10-MULTI-JURISDICTION.md",
+    "hash": "cd33d2b4cf97c6ea93e64b0a6e7aa9a1b1032b51fceb103573c6cbe9c66454ee"
+  },
+  "AI-HPP-11.1.1": {
+    "file": "standard/11-MULTI-AGENT.md",
+    "hash": "15e6511e739c4ed26c9255c299eea2392cb64df97375c1dbf79bab432c6c96ac"
+  },
+  "AI-HPP-12.1.1": {
+    "file": "standard/12-EVIDENCE-VAULT.md",
+    "hash": "5a5afc6b3aefd4f15f63513e82bfcb02ac279339b4bd937e550882e76b44d285"
+  },
+  "AI-HPP-12.1.2": {
+    "file": "standard/12-EVIDENCE-VAULT.md",
+    "hash": "ae7891086b1913eb5d9de42a7ab9083e3b0be08dfb535e51b75b113578a1a38b"
+  }
+}

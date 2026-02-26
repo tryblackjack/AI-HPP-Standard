@@ -1,0 +1,51 @@
+name: Normative Semantic Freeze
+
+on:
+  pull_request:
+
+jobs:
+  normative-freeze-guard:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Generate normative fingerprint
+        run: python scripts/normative_fingerprint.py
+
+      - name: Detect fingerprint changes
+        id: fingerprint_diff
+        run: |
+          if git diff --quiet -- internal/normative/NORMATIVE_FINGERPRINT.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Enforce semantic override marker
+        if: steps.fingerprint_diff.outputs.changed == 'true'
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          if printf '%s' "$PR_BODY" | grep -q 'SEMANTIC_CHANGE_APPROVED'; then
+            echo "PR body override marker found."
+            exit 0
+          fi
+
+          if git log "origin/$BASE_REF..HEAD" --pretty=%B | grep -q 'BREAKING SEMANTICS'; then
+            echo "Commit message override marker found."
+            exit 0
+          fi
+
+          echo "Normative fingerprint changed without required override marker."
+          echo "Add SEMANTIC_CHANGE_APPROVED to PR body or BREAKING SEMANTICS to a commit message."
+          exit 1
