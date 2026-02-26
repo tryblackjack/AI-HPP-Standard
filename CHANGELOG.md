@@ -5,6 +5,31 @@ All notable changes to the AI-HPP standard are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
+## [v3.16.6] - 2026-02-26
+
+### Added
+- Add enterprise pilot enablement layer.
+- No normative changes.
+
+## [v3.16.5] - 2026-02-26
+
+### Added
+- Add autonomous maintainer governance layer.
+- No normative changes.
+
+## [v3.16.4] - 2026-02-26
+
+### Added
+- Add regulator packaging layer.
+- No normative changes.
+
+## [v3.16.3] - 2026-02-26
+
+### Added
+- Add semantic freeze protection for normative requirements.
+- Introduce automated fingerprint guard.
+- No normative content changes.
+
 ## [v3.16.2] - 2026-02-26
 
 ### Changed
