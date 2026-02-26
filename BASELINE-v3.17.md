@@ -22,6 +22,7 @@ AI-HPP v3.17 preserves the canonical normative surface and introduces enforceabl
 - CES safeguards are enforced normatively through `AI-HPP-07.2.1` to `AI-HPP-07.2.3` and `AI-HPP-12.2.1`.
 - Evidence schemas include CES fields for domain gating, escalation metadata, safe-hold, and aggregated top-K alternatives.
 - Annex G remains informative guidance for conflict-adjacent operation and does not add a new module.
+- Annex H adds informative adaptive governance and high-speed deployment guidance without changing core normative semantics.
 
 ## Threat and incident coverage summary
 - Threat model includes `T-CES-1` and `T-CES-2`.
@@ -35,5 +36,6 @@ AI-HPP v3.17 preserves the canonical normative surface and introduces enforceabl
 
 ## Governance status
 - No new modules were added.
+- Governance integration includes informative Annex H (AGL + HSDF) with no normative requirement deltas.
 - New requirements retain Requirement/Rationale/Verification structure with threat, incident, and regulatory references.
 - Prior baseline markers are retained under `archive/baselines/` where applicable.

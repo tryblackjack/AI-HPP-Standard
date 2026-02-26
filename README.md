@@ -39,6 +39,7 @@ Internal materials do not override normative modules.
 5. `schemas/` and `validation/`
 
 - CES safeguards are covered in `standard/07-PROPORTIONAL-RESPONSE.md`, `standard/12-EVIDENCE-VAULT.md`, and `annex/G-CONFLICT-ENVIRONMENT-SAFEGUARDS.md`.
+- Adaptive governance guidance is available in `annex/H-ADAPTIVE-GOVERNANCE.md` (AGL + HSDF; informative only).
 
 ## Translation synchronization rule (major patches)
 Any major patch that adds a new annex or modifies canonical structure must update translation metadata and provide synchronized translation files for changed canonical entrypoints. See `translations/README.md`.
