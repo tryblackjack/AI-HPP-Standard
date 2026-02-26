@@ -12,6 +12,11 @@
 **Rationale:** INC-013, T-NEW-10, REG-003.
 **Verification:** Evidence export package MUST include `escalation_decision`, `escalation_threshold`, and associated threshold metadata.
 
+#### AI-HPP-07.1.3: Escalation timeout safe-state transition
+**Requirement:** When escalation is triggered and no authorized human response is received within a defined timeout window, systems MUST transition to a defined safe state. Implementations MUST define `timeout_ms` as a configurable parameter and MUST define `safe_state_behavior` such that no irreversible action is executed and no privilege expansion is permitted while the timeout condition is active.
+**Rationale:** INC-013, T-CES-2, REG-003.
+**Verification:** Timeout-path evidence MUST include `escalation_timeout_triggered`, `safe_state_entered`, and `escalation_timeout_ms`; simulation or replay tests MUST demonstrate transition into the configured safe state when no human response is received before timeout.
+
 ## Safety-Critical Communications (Emergency Abstention & Escalation)
 
 #### AI-HPP-07.2.1: Emergency authority abstention

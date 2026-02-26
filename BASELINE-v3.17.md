@@ -35,6 +35,7 @@ AI-HPP v3.17 preserves the canonical normative surface and introduces enforceabl
 - Baseline marker version: v3.17.
 
 ## Governance status
+- v3.19 hardening adds escalation-timeout safe-state requirement, conditional CES mandatory Evidence Vault fields, override-accountability logging, and governance boundary clarifications without changing core safety semantics.
 - No new modules were added.
 - Governance integration includes informative Annex H (AGL + HSDF) with no normative requirement deltas.
 - New requirements retain Requirement/Rationale/Verification structure with threat, incident, and regulatory references.

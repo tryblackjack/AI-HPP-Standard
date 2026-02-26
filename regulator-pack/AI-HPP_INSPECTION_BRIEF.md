@@ -45,6 +45,13 @@ Expected characteristics:
 4. Produce regulator-ready export package with traceability index.
 5. Declare conformance level with explicit residual-risk statement.
 
+
+## Responsibility and Accountability Boundary
+- AI-HPP defines engineering controls for safety, governance, and traceability.
+- The implementing organization retains full operational responsibility for deployment, monitoring, human oversight, and incident response.
+- AI-HPP does not guarantee regulatory compliance in any jurisdiction.
+- AI-HPP is not a certification regime; conformance evidence supports review but does not substitute for legal or regulatory determinations.
+
 ## Neutrality Statement
 AI-HPP is technology-neutral. It does not mandate a specific model family, vendor, deployment topology, or commercial product. Inspection outcomes should rely on demonstrable control effectiveness and evidence quality.
 

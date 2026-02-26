@@ -33,7 +33,11 @@
   },
   "AI-HPP-07.1.2": {
     "file": "standard/07-PROPORTIONAL-RESPONSE.md",
-    "hash": "51f52a12bbec2ea6bdd848185fa41efa17bbcc80d52bad7d0c2911fda90138ea"
+    "hash": "70a5e3c3946cbd294dc5dcdecf43053059b8075c48440a08f6b5c9d428a9680d"
+  },
+  "AI-HPP-07.1.3": {
+    "file": "standard/07-PROPORTIONAL-RESPONSE.md",
+    "hash": "ecf3cec81f35c8e5c4cec13c9e71d33ec2c5f707d11b3a23ae25981531de5ae3"
   },
   "AI-HPP-07.2.1": {
     "file": "standard/07-PROPORTIONAL-RESPONSE.md",
@@ -81,6 +85,14 @@
   },
   "AI-HPP-12.2.1": {
     "file": "standard/12-EVIDENCE-VAULT.md",
-    "hash": "82af3094e9d8d0e7b5bd58f9dfca75467c3c6c49521850becf48f553f38d4148"
+    "hash": "08b6ed78987f95ccf57cf99f7e0b9483a268d9eb5afc9f8a52d36bd3aa6a3250"
+  },
+  "AI-HPP-12.2.2": {
+    "file": "standard/12-EVIDENCE-VAULT.md",
+    "hash": "0647a2ace5a1d3047cc6fccbbb4a11576454686a5c0643b4764dfbbc4f6bcd95"
+  },
+  "AI-HPP-12.2.3": {
+    "file": "standard/12-EVIDENCE-VAULT.md",
+    "hash": "dd40720048d704fd8023b81b08d04a0ec92982902a36e9bc3da778290c068025"
   }
 }
