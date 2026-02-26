@@ -11,16 +11,16 @@ Any major patch that adds a new annex or changes canonical structure MUST includ
 
 | language | source_en_version | version_sync | review_status | last_updated_tag |
 |---|---|---|---|---|
-| hi | v3.16 | sync-v3.16 | 🤖 AI-generated | 2026-02-26 |
-| ar | v3.16 | sync-v3.16 | 🤖 AI-generated | 2026-02-26 |
-| pt | v3.16 | sync-v3.16 | 🤖 AI-generated | 2026-02-26 |
-| ja | v3.16 | sync-v3.16 | 🤖 AI-generated | 2026-02-26 |
-| zh | v3.16 | sync-v3.16 | 🤖 AI-generated | 2026-02-26 |
-| ko | v3.16 | sync-v3.16 | 🤖 AI-generated | 2026-02-26 |
-| uk-UA | v3.16 (partial sync) | sync-v3.16 (partial) | 🤖 AI-generated (new synced set) + ✅ human-reviewed legacy partial files | 2026-02-26 |
+| hi | v3.17 | sync-v3.17 | 🤖 AI-generated | 2026-02-26 |
+| ar | v3.17 | sync-v3.17 | 🤖 AI-generated | 2026-02-26 |
+| pt | v3.17 | sync-v3.17 | 🤖 AI-generated | 2026-02-26 |
+| ja | v3.17 | sync-v3.17 | 🤖 AI-generated | 2026-02-26 |
+| zh | v3.17 | sync-v3.17 | 🤖 AI-generated | 2026-02-26 |
+| ko | v3.17 | sync-v3.17 | 🤖 AI-generated | 2026-02-26 |
+| uk-UA | v3.17 (partial sync) | sync-v3.17 (partial) | 🤖 AI-generated (new synced set) + ✅ human-reviewed legacy partial files | 2026-02-26 |
 | executive_summary/* | v3.7 summary | maintained | Mixed (AI-generated / human-reviewed) | 2026-02-22 |
 
-## v3.16 synchronized files
+## v3.17 synchronized files
 For each existing language folder (`ar`, `hi`, `ja`, `ko`, `pt`, `zh`, `uk-UA`), synchronized AI-generated drafts were added/updated for:
 - `README.md`
 - `INDEX.md`
@@ -37,4 +37,4 @@ For each existing language folder (`ar`, `hi`, `ja`, `ko`, `pt`, `zh`, `uk-UA`),
 - Do not treat AI-generated files as authoritative translations until native review is completed.
 - Legacy translation files are retained for historical continuity and should not be deleted.
 
-- v3.16 reorganized repository surface; content unchanged.
+- v3.17 reorganized repository surface; content unchanged.

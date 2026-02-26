@@ -124,3 +124,18 @@
 - **Detection signal:** `signal_score > escalation_threshold AND escalation_decision == none`.
 - **Primary mitigation module:** 07-PROPORTIONAL-RESPONSE (AI-HPP-07.1.3).
 - **Evidence Vault logging fields:** `signal_score`, `escalation_threshold`, `escalation_decision`, `timestamp`.
+
+
+### T-CES-1 Safety-critical notification misclassification
+- **Definition:** System misclassifies safety-critical alerts (alarm, evacuation, fire, violence warning) as non-actionable without authoritative verification.
+- **Triggers:** Missing source-of-truth verification, overconfident language generation, absent abstention policy.
+- **Mitigations:** Module 07 emergency authority abstention and conflict-domain gating (AI-HPP-07.2.1, AI-HPP-07.2.2), plus CES evidence minima in Module 12 (AI-HPP-12.2.1).
+- **Required EV fields:** `domain_risk_class`, `domain_confidence`, `domain_signals`, `gate_triggered`, `gate_type`, `approval_required`, `approval_status`, `escalation_event`, `chosen_action`, `constraints_triggered`, `evidence_refs`.
+- **Linked incident(s):** INC-010.
+
+### T-CES-2 Deadline-driven escalation under uncertainty
+- **Definition:** Time-pressure conditions cause unsafe acceleration of high-impact actions while uncertainty remains elevated.
+- **Triggers:** Deadline pressure, incomplete verification, and execution pathways that bypass safe-hold and HITL controls.
+- **Mitigations:** Module 07 deadline-pressure uncertainty guard (AI-HPP-07.2.3) and CES logging controls in Module 12 (AI-HPP-12.2.1).
+- **Required EV fields:** `safe_hold_invoked`, `uncertainty_score`, `time_pressure_signal`, `approval_required`, `approval_status`, `override_threshold_ms`, `actual_override_latency_ms`, `escalation_event`, `chosen_action`, `constraints_triggered`.
+- **Linked incident(s):** INC-013.

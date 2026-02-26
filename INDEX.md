@@ -2,7 +2,7 @@
 
 ## Canonical entrypoints
 - `README.md`
-- `BASELINE-v3.16.md`
+- `BASELINE-v3.17.md`
 - `INDEX.md`
 - `GLOSSARY.md`
 - `CHANGELOG.md`
@@ -17,6 +17,7 @@
 - `translations/` (translation set and metadata)
 - `archive/` (historical references)
 - `policies/` (implementer-facing policies)
+- `annex/G-CONFLICT-ENVIRONMENT-SAFEGUARDS.md` (informative conflict-adjacent safeguards)
 
 Future additions to the core normative layer MUST include: threat reference (`T-*`), incident reference (`INC-*`), and measurable verification logic.
 

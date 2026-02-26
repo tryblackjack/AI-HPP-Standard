@@ -5,6 +5,16 @@ All notable changes to the AI-HPP standard are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
+## [v3.17] - 2026-02-26
+
+### Changed
+- CES normative requirements added in Module 07 for emergency abstention, conflict-domain hard gating, and deadline-pressure safe-hold escalation.
+- Evidence Vault minimal CES logging requirements added in Module 12 with explicit aggregated top-K alternative capture.
+- Threat model expanded with T-CES-1 and T-CES-2 entries.
+- Incident normalization updated for INC-010 with explicit source status, evidence grade, and CES control links.
+- Schema updates applied to `schemas/evidence-bundle.schema.json` and `schemas/audit-export.schema.json` for CES traceability fields.
+- No new modules added.
+
 ## [v3.16.6] - 2026-02-26
 
 ### Added
