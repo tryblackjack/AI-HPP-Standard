@@ -5,6 +5,16 @@ All notable changes to the AI-HPP standard are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
+## [v3.16.1] - 2026-02-26
+
+### Changed
+- Public surface hardening completed: no empty or placeholder-only markdown files remain in inspection-facing paths.
+- Archived compatibility pointer `archive/docs/Failure_Taxonomy.md` expanded to a minimal explicit stub with canonical location guidance.
+
+### Added
+- `internal/meta-audits/_empty_files_report.md` with empty/near-empty markdown scan output, references, and classifications.
+- `scripts/check_empty_md.py` to fail CI/local checks when markdown files are empty or near-empty without explicit stub marker.
+
 ## [v3.16] - 2026-02-26
 
 ### Changed
