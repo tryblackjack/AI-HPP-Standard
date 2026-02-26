@@ -24,3 +24,8 @@ jobs:
       - name: Run link checker
         run: |
           python internal/legacy-top/scripts/check_links.py
+
+      - name: Run regulator simulation checks
+        run: |
+          python scripts/regulator_sim_check.py
+

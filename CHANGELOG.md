@@ -5,6 +5,30 @@ All notable changes to the AI-HPP standard are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
+## [v3.20.1] - 2026-02-26 — Founder pressure protocol (internal only)
+
+### Added
+- Added internal founder psychological pressure-test protocol under `internal/founder-pressure-test/` (`README.md`, scenario deck, under-fire decision protocol, board pressure Q&A).
+
+### Notes
+- Internal protocol only.
+- No normative changes.
+- No schema changes.
+
+## [v3.20] - 2026-02-26 — Regulator simulation layer (internal)
+
+### Added
+- Added internal regulator simulation pack under `internal/regulator-sim/` (overview, inspector question bank, evidence request playbook, audit walkthrough, adversarial regulator attack simulation).
+- Added `scripts/regulator_sim_check.py` for internal static checks (field presence, regulator-pack link resolution, non-empty regulator simulation docs).
+
+### Changed
+- Added a minimal internal-layer link in `README.md` and `INDEX.md` for the regulator simulation pack.
+- Wired `python scripts/regulator_sim_check.py` into repository integrity CI workflow.
+
+### Notes
+- No normative changes.
+- No schema breaking changes.
+
 ## [v3.19] - 2026-02-26 — Regulator hardening patch
 
 ### Added
