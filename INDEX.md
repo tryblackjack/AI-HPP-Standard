@@ -20,5 +20,14 @@
 
 Future additions to the core normative layer MUST include: threat reference (`T-*`), incident reference (`INC-*`), and measurable verification logic.
 
+## Layering Model
+
+AI-HPP distinguishes:
+
+- Public Inspection Surface — normative and inspection-relevant artifacts.
+- Internal Maintainer Layer — development history and governance materials.
+
+Only artifacts under `standard/` and `annex/` define normative requirements.
+
 ## Internal maintainer layer
 - `internal/` (non-normative maintainer documentation, audits, orchestration assets, and historical top-level materials)

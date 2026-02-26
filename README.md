@@ -10,16 +10,26 @@
 - **Engineer:** Implement controls module-by-module and verify with each requirement block's verification criteria.
 - **Autonomous AI agent:** Parse requirement IDs (`AI-HPP-x.y.z`) and resolve evidence links (`INC-*`, `T-*`, `REG-*`).
 
-## Repository Layers
+## Repository Structure (Public Inspection Surface)
+
+AI-HPP is structured in two layers:
 
 ### Public Inspection Baseline
-Canonical inspection surface:
-- `README.md`, `BASELINE-v3.16.md`, `INDEX.md`, `GLOSSARY.md`, `CHANGELOG.md`
-- `standard/`, `annex/`, `schemas/`, `validation/`, `regulator-pack/`
-- `alignment/`, `translations/`, `archive/`, `policies/`
+- `BASELINE-v3.16.md` — inspection entry point
+- `standard/` — normative engineering requirements
+- `annex/` — threat model and incident registry
+- `schemas/` — machine-verifiable logging schemas
+- `validation/` — conformance and validation artifacts
+- `regulator-pack/` — structured inspection materials
+- `policies/` — implementer-facing enforcement policies
+- `translations/` — language variants
+- `archive/` — historical versions
 
 ### Internal Maintainer Layer
-- `internal/` contains maintainer-only support materials (non-normative).
+- `internal/` — non-normative maintainer artifacts (ADR, governance, audit reports, legacy stubs)
+
+Canonical normative text exists only in `standard/` and `annex/`.
+Internal materials do not override normative modules.
 
 ## Start here
 1. `BASELINE-v3.16.md`
