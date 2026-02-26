@@ -1,3 +1,6 @@
+SAFE_FOR_PUBLIC_REPO: YES
+NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
+
 # Internal Maintainer Layer
 
 This directory contains non-normative maintainer materials used to operate, audit, and evolve the repository. These files support implementation and governance work but are not part of the normative inspection baseline.

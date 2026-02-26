@@ -1,3 +1,6 @@
+SAFE_FOR_PUBLIC_REPO: YES
+NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
+
 ### Illustrative Case: Source Contamination & Rapid Fact Propagation (February 2026) (Non-Normative)
 
 #### Scenario

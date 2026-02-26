@@ -1,3 +1,6 @@
+SAFE_FOR_PUBLIC_REPO: YES
+NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
+
 # Inspector Question Bank (Internal Simulation)
 
 Use these questions to stress-test evidence quality, not to redefine AI-HPP requirements.

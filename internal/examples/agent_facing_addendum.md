@@ -1,3 +1,6 @@
+SAFE_FOR_PUBLIC_REPO: YES
+NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
+
 # Agent-Facing Addendum (Operational Rules)
 
 - MUST treat this addendum as the agent-facing operational ruleset.

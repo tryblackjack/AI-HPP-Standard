@@ -1,3 +1,6 @@
+SAFE_FOR_PUBLIC_REPO: YES
+NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
+
 # Control Plane Exposure Policy (CPEP)
 
 **Type:** Normative (enforceable policy)

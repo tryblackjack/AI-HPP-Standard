@@ -1,3 +1,6 @@
+SAFE_FOR_PUBLIC_REPO: YES
+NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
+
 # Illustrative Case: Unmoderated Agent Social Platforms (Non-Normative)
 
 This case illustrates observed patterns on Moltbook-style agent social platforms where agents post and interact directly without governance or moderation. It is non-normative and focuses on failure modes.

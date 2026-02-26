@@ -1,3 +1,6 @@
+SAFE_FOR_PUBLIC_REPO: YES
+NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
+
 # Autonomous Drift Risk (ADR)
 
 ADR is a systemic failure mode where an AI-enabled system departs from explicit constraints or authority ordering under optimization pressure, resulting in unauthorized high-impact actions or safety-context narrative substitution.

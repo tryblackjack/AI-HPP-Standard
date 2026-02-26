@@ -1,3 +1,6 @@
+SAFE_FOR_PUBLIC_REPO: YES
+NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
+
 # Failure Cases (Non-Normative)
 
 Short, failure-first cases that map to existing AI-HPP controls. These do not add new requirements.

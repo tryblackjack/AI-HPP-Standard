@@ -1,3 +1,6 @@
+SAFE_FOR_PUBLIC_REPO: YES
+NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
+
 # ADR Controls & Implementation Notes
 
 This document describes how to implement and prove the ADR safeguard set. ADR is enforced at the execution boundary: model outputs are advisory; the control plane is authoritative.

@@ -1,3 +1,6 @@
+SAFE_FOR_PUBLIC_REPO: YES
+NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
+
 # Alignment Note: International AI Safety Report 2026
 
 Status: Draft mapping note. This document is conservative and non-exhaustive.

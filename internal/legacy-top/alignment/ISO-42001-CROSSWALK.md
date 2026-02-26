@@ -1,3 +1,6 @@
+SAFE_FOR_PUBLIC_REPO: YES
+NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
+
 # ISO 42001 Crosswalk (Concise)
 
 This crosswalk is complementary, not competing.

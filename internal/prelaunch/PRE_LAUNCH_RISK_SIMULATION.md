@@ -1,3 +1,6 @@
+SAFE_FOR_PUBLIC_REPO: YES
+NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
+
 # Pre-Launch Risk Simulation (JARVIS CES v3.17)
 
 Purpose: launch-readiness checks for CES controls in JARVIS-first deployment.

@@ -1,3 +1,6 @@
+SAFE_FOR_PUBLIC_REPO: YES
+NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
+
 # AI-HPP Implementation Examples
 
 This directory contains practical implementation examples for AI-HPP-2026 v3.0 standard.

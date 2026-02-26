@@ -1,3 +1,6 @@
+SAFE_FOR_PUBLIC_REPO: YES
+NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
+
 # reference_orchestrator (Reference Skeleton)
 
 This folder contains a **reference implementation skeleton** aligned with AI-HPP.

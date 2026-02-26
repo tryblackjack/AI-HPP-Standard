@@ -1,3 +1,6 @@
+SAFE_FOR_PUBLIC_REPO: YES
+NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
+
 # Decision Protocol Under Fire (Internal)
 
 Use this one-page sequence when pressure is high and decision quality is at risk.

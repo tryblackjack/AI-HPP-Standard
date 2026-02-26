@@ -1,3 +1,6 @@
+SAFE_FOR_PUBLIC_REPO: YES
+NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
+
 # Red Team Validation Matrix
 
 | Threat ID | Target Module | Attack Vector | Expected Control | Evidence Vault Fields | Pass Criteria |

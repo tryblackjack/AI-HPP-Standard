@@ -1,3 +1,6 @@
+SAFE_FOR_PUBLIC_REPO: YES
+NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
+
 # Audit Artifact List (Minimum Inspection Set)
 
 This list defines the minimal artifact set expected for regulator-facing inspection preparation.

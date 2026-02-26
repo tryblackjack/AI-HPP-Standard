@@ -1,3 +1,6 @@
+SAFE_FOR_PUBLIC_REPO: YES
+NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
+
 # Alignment Crosswalk Consistency Audit
 
 ## 1) ISO-42001-CROSSWALK module/reference validation

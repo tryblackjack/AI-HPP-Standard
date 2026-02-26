@@ -1,3 +1,6 @@
+SAFE_FOR_PUBLIC_REPO: YES
+NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
+
 # Inspection Preparation Guide
 
 Use this sequence to prepare a regulator-facing evidence package.

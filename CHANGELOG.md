@@ -5,6 +5,19 @@ All notable changes to the AI-HPP standard are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
+## [v3.16.x+1] - 2026-02-26 — ISO/IAEA cleanup + public anti-leak guard
+
+### Changed
+- v3.16.x: ISO/IAEA cleanup + public anti-leak guard (no normative changes).
+- Root/public navigation cleaned up; non-canonical top-level materials relocated under `internal/legacy-top/`.
+- CI now enforces public anti-leak scanning and internal markdown safety header policy.
+- CODEOWNERS review gates added for `internal/**`, `schemas/**`, `standard/**`, and `annex/**`.
+
+### Notes
+- No normative changes.
+- No requirement changes.
+- No schema changes.
+
 ## [v3.20.1] - 2026-02-26 — Founder pressure protocol (internal only)
 
 ### Added

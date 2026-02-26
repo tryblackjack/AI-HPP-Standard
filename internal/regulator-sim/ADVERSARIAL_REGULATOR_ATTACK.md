@@ -1,3 +1,6 @@
+SAFE_FOR_PUBLIC_REPO: YES
+NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
+
 # Adversarial Regulator Attack Simulation (Internal)
 
 This document models hostile-but-plausible inspection tactics and safe remediation paths within existing AI-HPP governance.
