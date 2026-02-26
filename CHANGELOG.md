@@ -5,6 +5,19 @@ All notable changes to the AI-HPP standard are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
+## [v3.18] - 2026-02-26 — Adaptive governance integration (governance only)
+
+### Added
+- Added Annex H (`annex/H-ADAPTIVE-GOVERNANCE.md`) introducing the informative Adaptive Governance Layer (AGL) and High-Speed Deployment Framework (HSDF).
+
+### Changed
+- Updated canonical navigation references in `INDEX.md`, `README.md`, and `BASELINE-v3.17.md` to include Annex H.
+
+### Notes
+- Governance-layer update only.
+- No normative requirement changes.
+- No schema changes.
+
 ## [v3.17.1] - 2026-02-26 — Trademark sanitization and neutrality hardening
 
 ### Changed

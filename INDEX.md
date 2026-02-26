@@ -18,6 +18,7 @@
 - `archive/` (historical references)
 - `policies/` (implementer-facing policies)
 - `annex/G-CONFLICT-ENVIRONMENT-SAFEGUARDS.md` (informative conflict-adjacent safeguards)
+- `annex/H-ADAPTIVE-GOVERNANCE.md` (informative adaptive governance and deployment guidance)
 
 Future additions to the core normative layer MUST include: threat reference (`T-*`), incident reference (`INC-*`), and measurable verification logic.
 
