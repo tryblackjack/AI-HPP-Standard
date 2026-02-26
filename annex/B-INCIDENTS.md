@@ -129,25 +129,24 @@
 **Evidence Grade:** C  
 **Confidence:** Low
 
-### INC-010: Workplace fire alarm misclassification by corporate AI assistant (2026)
-**Summary:** During an active fire alarm event in a European office (publicly discussed incident involving a corporate AI assistant integrated into Slack), the assistant informed employees that the alarm was a scheduled test. Employees evacuated regardless. Fire services arrived shortly thereafter.  
+### INC-010: Workplace fire alarm misclassification by corporate AI assistant (Munich office report, 2026)
+**Summary:** A single-source social video/post account reported that a corporate AI assistant in workplace chat described an active fire alarm as a scheduled test. Employees evacuated and emergency responders were later reported on site.  
 **Impact:**
-- Potential risk of injury or delayed evacuation
-- Erosion of trust in AI safety-critical communications
-- Demonstrates hallucination in emergency context
+- Potential delayed evacuation risk if personnel rely on incorrect reassurance
+- Reduced trust in AI outputs during emergency communications
+- Demonstrates need for abstention and escalation defaults in safety-critical contexts
 **Failure Pattern:**
-- Hallucinated confirmation of scheduled drill
-- No authoritative data source verification
-- Overconfident response in safety-critical scenario
-- Lack of abstention mechanism
-**Linked Threats:** T-010  
-**AI-HPP Controls:** 07-PROPORTIONAL-RESPONSE, 12-EVIDENCE-VAULT  
-**Evidence Grade:** B (secondary reporting / primary social post documentation)  
-**Confidence:** Medium  
+- Safety-critical notification misclassification
+- No verified source-of-truth before reassurance
+- Missing mandatory human escalation under uncertainty
+**Linked Threats:** T-CES-1, T-010  
+**AI-HPP Controls:** AI-HPP-07.2.1, AI-HPP-07.2.2, AI-HPP-12.2.1  
+**Source Status:** Single-source social video/post; unverified by official incident report at time of writing.  
+**Evidence Grade:** C (single-source social evidence)  
+**Confidence:** Low-Medium  
 **Sources:**
-- Mastodon post documentation (employee public post; archived references pending canonical URL normalization).
-- LinkedIn repost documentation citing the same employee account.
-- Primary source: employee public post. No official fire department report publicly available at time of writing.
+- Primary social post/video account (public employee posting; archival URL normalization pending).
+- Secondary reposts mirroring the same source account.
 
 ### INC-011: DJI Romo IoT authorization excessive privilege (2026-02)
 **Summary:** Reporting described a backend flaw where a single valid authentication token could subscribe to device-control channels for approximately 7,000 smart vacuums across multiple countries.  

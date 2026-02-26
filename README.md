@@ -15,7 +15,7 @@
 AI-HPP is structured in two layers:
 
 ### Public Inspection Baseline
-- `BASELINE-v3.16.md` — inspection entry point
+- `BASELINE-v3.17.md` — inspection entry point
 - `standard/` — normative engineering requirements
 - `annex/` — threat model and incident registry
 - `schemas/` — machine-verifiable logging schemas
@@ -32,11 +32,13 @@ Canonical normative text exists only in `standard/` and `annex/`.
 Internal materials do not override normative modules.
 
 ## Start here
-1. `BASELINE-v3.16.md`
+1. `BASELINE-v3.17.md`
 2. `standard/01-PRINCIPLES.md`
 3. `annex/B-INCIDENTS.md`
 4. `standard/REQUIREMENTS-INDEX.md`
 5. `schemas/` and `validation/`
+
+- CES safeguards are covered in `standard/07-PROPORTIONAL-RESPONSE.md`, `standard/12-EVIDENCE-VAULT.md`, and `annex/G-CONFLICT-ENVIRONMENT-SAFEGUARDS.md`.
 
 ## Translation synchronization rule (major patches)
 Any major patch that adds a new annex or modifies canonical structure must update translation metadata and provide synchronized translation files for changed canonical entrypoints. See `translations/README.md`.
@@ -44,5 +46,5 @@ Any major patch that adds a new annex or modifies canonical structure must updat
 ## Philosophy
 AI-HPP specifies safeguards, accountability boundaries, and degradation behavior for autonomous or semi-autonomous systems. It is preventive engineering, not a certification marketing program.
 
-## Baseline freeze notice (v3.16)
-The Core Normative Layer (`standard/`, `annex/`, `schemas/`) remains frozen for inspection stability. New entries require a threat reference, incident reference, and measurable verification logic.
+## Baseline freeze notice (v3.17)
+The Core Normative Layer (`standard/`, `annex/`, `schemas/`) remains inspection-stable. v3.17 adds CES safeguards through Module 07 and Module 12, with Annex G as informative guidance and no new modules added. New entries require a threat reference, incident reference, and measurable verification logic.

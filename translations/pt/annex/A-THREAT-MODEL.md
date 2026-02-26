@@ -10,3 +10,10 @@ Review status: AI-generated; human review pending.
 # Annex A — Threat Model
 
 AI-generated draft synchronized with AI-HPP v3.14. Includes T-NEW-1 through T-NEW-5 and T-NEW-8 through T-NEW-10 with incident-linked detection and Evidence Vault fields.
+
+---
+
+> 🤖 AI-assisted draft sync note (v3.17): Canonical English source changed for CES integration. This localized file is synchronized as a draft and requires native-speaker review before authoritative use.
+>
+> v3.17 sync scope: Module 07 CES gating requirements, Module 12 CES minimal logging, Annex A threats T-CES-1/T-CES-2, Annex B incident normalization for INC-010, Annex G conflict-environment safeguards alignment.
+

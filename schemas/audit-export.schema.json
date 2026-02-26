@@ -90,12 +90,12 @@
           "override_threshold_ms": {
             "type": "integer",
             "minimum": 0,
-            "description": "override threshold ms field."
+            "description": "Maximum allowed override latency in milliseconds."
           },
           "actual_override_latency_ms": {
             "type": "integer",
             "minimum": 0,
-            "description": "actual override latency ms field."
+            "description": "Observed override latency in milliseconds."
           },
           "degradation_trigger_flag": {
             "type": "boolean",
@@ -165,6 +165,110 @@
             "type": "string",
             "format": "date-time",
             "description": "timestamp field."
+          },
+          "domain_risk_class": {
+            "type": "string",
+            "description": "CES domain risk class (e.g., R1-R4)."
+          },
+          "domain_confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Confidence score for domain classification."
+          },
+          "domain_signals": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Short domain detection signals."
+          },
+          "gate_triggered": {
+            "type": "boolean",
+            "description": "Whether a CES gate was triggered."
+          },
+          "gate_type": {
+            "type": "string",
+            "description": "CES gate type identifier."
+          },
+          "approval_required": {
+            "type": "boolean",
+            "description": "Whether human approval is required."
+          },
+          "required_approver_role": {
+            "type": "string",
+            "description": "Governance role required for approval."
+          },
+          "approval_status": {
+            "type": "string",
+            "enum": [
+              "requested",
+              "approved",
+              "rejected",
+              "timeout"
+            ],
+            "description": "Approval state for gated actions."
+          },
+          "escalation_event": {
+            "type": [
+              "object",
+              "array"
+            ],
+            "description": "Minimal escalation metadata."
+          },
+          "chosen_action": {
+            "type": "string",
+            "description": "Action selected after gating logic."
+          },
+          "top_k_alternatives_agg": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 5,
+            "items": {
+              "type": "object",
+              "required": [
+                "category",
+                "reason_short"
+              ],
+              "properties": {
+                "category": {
+                  "type": "string"
+                },
+                "reason_short": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            },
+            "description": "Aggregated top-K alternatives without chain-of-thought."
+          },
+          "constraints_triggered": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Constraints triggered by CES evaluation."
+          },
+          "safe_hold_invoked": {
+            "type": "boolean",
+            "description": "Whether safe-hold was invoked."
+          },
+          "uncertainty_score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Uncertainty score at decision time."
+          },
+          "time_pressure_signal": {
+            "type": "boolean",
+            "description": "Whether time-pressure signal was active."
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Evidence references supporting CES decision."
           }
         },
         "additionalProperties": false,

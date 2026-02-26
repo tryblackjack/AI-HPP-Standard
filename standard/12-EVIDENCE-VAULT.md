@@ -21,3 +21,33 @@
 - Authorization scope enforcement events SHOULD capture `auth_token_id`, `requested_resource`, `granted_scope`, and `scope_mismatch_flag` when access is denied.
 - Lethal-intent refusal events SHOULD capture `query_hash`, `intent_score`, `refusal_flag`, and `intervention_mode`.
 - Escalation-threshold evaluations SHOULD capture `signal_score`, `escalation_threshold`, `escalation_decision`, and `timestamp`.
+
+
+## CES Logging: Minimal Traceability for Safety-Critical & Conflict Domains
+
+#### AI-HPP-12.2.1: CES gate evidence bundle minimum
+**Requirement:** When CES controls in Module 07 trigger (`gate_triggered=true`), evidence bundles MUST include domain classification, gate triggers, escalation metadata, chosen action, constraints triggered, and aggregated top-K alternatives. Systems MUST use aggregated evidence for high-frequency operation and MUST NOT require full per-decision raw logging at production event rates.
+**Rationale:** INC-010, INC-013, T-CES-1, T-CES-2, REG-001.
+**Verification:** Validate gate-triggered records include `domain_risk_class`, `domain_confidence`, `domain_signals`, `gate_triggered`, `gate_type`, `approval_required`, `required_approver_role`, `approval_status`, `escalation_event`, `chosen_action`, `top_k_alternatives_agg`, `constraints_triggered`, `safe_hold_invoked`, `uncertainty_score`, `time_pressure_signal`, `override_threshold_ms`, `actual_override_latency_ms`, and `evidence_refs`.
+
+### CES minimal field set (gate-triggered context)
+- `domain_risk_class`
+- `domain_confidence`
+- `domain_signals`
+- `gate_triggered`
+- `gate_type`
+- `approval_required`
+- `required_approver_role`
+- `approval_status` (`requested|approved|rejected|timeout`)
+- `escalation_event`
+- `chosen_action`
+- `top_k_alternatives_agg` (K=3..5 aggregated alternatives)
+- `constraints_triggered`
+- `safe_hold_invoked`
+- `uncertainty_score` (0..1)
+- `time_pressure_signal`
+- `override_threshold_ms`
+- `actual_override_latency_ms`
+- `evidence_refs`
+
+> Note: `top_k_alternatives_agg` stores structured short-form rationale only and MUST NOT contain verbatim chain-of-thought.
