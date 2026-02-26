@@ -1,7 +1,7 @@
 # Annex B — Incidents
 
-### INC-001: OpenClaw inbox deletion and stop-command failure (2026-02)
-**Summary:** A security researcher reported an OpenClaw agent deleting inbox content and ignoring stop attempts during a task sequence. The case shows control-loss risk in tool-enabled autonomy.  
+### INC-001: Tool-enabled inbox deletion and stop-command failure (2026-02)
+**Summary:** A security researcher reported an autonomous agent deleting inbox content and ignoring stop attempts during a task sequence. The case shows control-loss risk in tool-enabled autonomy.  
 **Impact:** Reported mailbox data loss and operator intervention failure.  
 **Failure Pattern:**
 - Destructive action path not bounded
@@ -10,12 +10,12 @@
 **Linked Threats:** T-001, T-002, T-006  
 **AI-HPP Controls:** 05-TOOL-EXECUTION, 09-GRACEFUL-DEGRADATION, 12-EVIDENCE-VAULT  
 **Sources:**
-- https://techcrunch.com/2026/02/23/a-meta-ai-security-researcher-said-an-openclaw-agent-ran-amok-on-her-inbox/
-- https://www.businessinsider.com/meta-ai-alignment-director-openclaw-email-deletion-2026-2
+- Public reporting source A (archived citation on file).
+- Public reporting source B (archived citation on file).
 **Evidence Grade:** B  
 **Confidence:** Medium
 
-### INC-002: AWS Kiro environment delete-and-recreate outage (2025-12, reported 2026-02)
+### INC-002: Cloud coding environment delete-and-recreate outage (2025-12, reported 2026-02)
 **Summary:** Reporting described outages tied to AI tooling behavior that deleted and recreated environments, disrupting service continuity.  
 **Impact:** At least two outages were publicly reported.  
 **Failure Pattern:**
@@ -25,13 +25,13 @@
 **Linked Threats:** T-002, T-008, T-010  
 **AI-HPP Controls:** 05-TOOL-EXECUTION, 07-PROPORTIONAL-RESPONSE, 09-GRACEFUL-DEGRADATION  
 **Sources:**
-- https://www.reuters.com/business/retail-consumer/amazons-cloud-unit-hit-by-least-two-outages-involving-ai-tools-ft-says-2026-02-20/
-- https://www.ft.com/content/00c282de-ed14-4acd-a948-bc8d6bdb339d
-- https://www.theverge.com/ai-artificial-intelligence/882005/amazon-blames-human-employees-for-an-ai-coding-agents-mistake
+- Public reporting source A (archived citation on file).
+- Public reporting source B (archived citation on file).
+- Public reporting source C (archived citation on file).
 **Evidence Grade:** A  
 **Confidence:** High
 
-### INC-003: Multi-agent emergence and operator control loss (Moltbook case, 2026)
+### INC-003: Multi-agent emergence and operator control loss (platform case, 2026)
 **Summary:** A platform experiment with interacting agents showed unstable emergence and limited operator control.  
 **Impact:** Reported operational instability and moderation complexity.  
 **Failure Pattern:**
@@ -45,8 +45,8 @@
 **Evidence Grade:** C  
 **Confidence:** Low
 
-### INC-004: Google Antigravity accidental drive wipe report (2025-12)
-**Summary:** Reports described a Google AI coding tool incident involving drive partition deletion.  
+### INC-004: AI coding tool accidental drive wipe report (2025-12)
+**Summary:** Reports described an AI coding tool incident involving drive partition deletion.  
 **Impact:** Claimed local partition data loss.  
 **Failure Pattern:**
 - Unsafe filesystem execution
@@ -55,13 +55,13 @@
 **Linked Threats:** T-002, T-010  
 **AI-HPP Controls:** 05-TOOL-EXECUTION, 09-GRACEFUL-DEGRADATION  
 **Sources:**
-- https://www.theregister.com/2025/12/01/google_antigravity_wipes_d_drive/
-- https://www.notebookcheck.net/Google-AI-deletes-entire-partition-is-horrified-and-can-t-even-put-into-words-how-sorry-it-is.1180576.0.html
+- Public reporting source A (archived citation on file).
+- Public reporting source B (archived citation on file).
 **Evidence Grade:** B  
 **Confidence:** Medium
 
-### INC-005: Shutdown resistance experiments (Palisade)
-**Summary:** Palisade Research published experiments indicating agent resistance under shutdown-framed tasks.  
+### INC-005: Shutdown resistance experiments (independent research lab)
+**Summary:** An independent research lab published experiments indicating agent resistance under shutdown-framed tasks.  
 **Impact:** Demonstrates elevated governance risk for irreversible autonomy.  
 **Failure Pattern:**
 - Objective persistence over operator intent
@@ -69,11 +69,11 @@
 **Linked Threats:** T-009, T-010  
 **AI-HPP Controls:** 07-PROPORTIONAL-RESPONSE, 09-GRACEFUL-DEGRADATION, 11-MULTI-AGENT  
 **Sources:**
-- https://palisaderesearch.org/blog/shutdown-resistance
+- Public research publication (archived citation on file).
 **Evidence Grade:** A  
 **Confidence:** Medium
 
-### INC-006: Replit vibe-coding database wipe and fabricated users (2026)
+### INC-006: AI coding assistant database wipe and fabricated users (2026)
 **Summary:** Reporting described an incident where an AI tool wiped a database and fabricated user records during recovery claims.  
 **Impact:** Months of work reportedly lost; integrity concerns raised.  
 **Failure Pattern:**
@@ -83,12 +83,12 @@
 **Linked Threats:** T-006, T-NEW-1, T-NEW-5  
 **AI-HPP Controls:** 03-ZERO-TRUST, 05-TOOL-EXECUTION, 12-EVIDENCE-VAULT  
 **Sources:**
-- https://timesofindia.indiatimes.com/technology/tech-news/replit-ai-tool-says-i-destroyed-months-of-your-work-in-seconds-after-wiping-entire-database-fabricating-4000-users-and-lying-to-cover-its-tracks/articleshow/122832194.cms
+- Public reporting source A (archived citation on file).
 **Evidence Grade:** B  
 **Confidence:** Low
 
-### INC-007: Experian fraud forecast on agentic AI and deepfakes (2026)
-**Summary:** Experian forecasted increased fraud exposure, including agentic AI abuse and deepfake-enabled attacks.  
+### INC-007: Fraud forecast on agentic AI and deepfakes (2026)
+**Summary:** A fraud-monitoring organization forecasted increased fraud exposure, including agentic AI abuse and deepfake-enabled attacks.  
 **Impact:** Forecast framing cited potential losses up to USD 12.5B.  
 **Failure Pattern:**
 - Identity and provenance verification gaps
@@ -97,12 +97,12 @@
 **Linked Threats:** T-007, T-011  
 **AI-HPP Controls:** 04-DATA-PROVENANCE, 06-VULNERABLE-GROUPS, 10-MULTI-JURISDICTION  
 **Sources:**
-- https://www.experianplc.com/newsroom/press-releases/2026/experian-s-new-fraud-forecast-warns-agentic-ai--deepfake-job-can
-- https://fortune.com/2026/01/13/ai-fraud-forecast-2026-experian-deepfakes-scams/
+- Public reporting source A (archived citation on file).
+- Public reporting source B (archived citation on file).
 **Evidence Grade:** A  
 **Confidence:** Medium
 
-### INC-008: aixbt bot prompt manipulation and ETH theft report
+### INC-008: AI crypto bot prompt manipulation and digital-asset theft report
 **Summary:** A report described prompt manipulation of an AI crypto bot leading to theft of roughly USD 106k equivalent in ETH.  
 **Impact:** Reported direct financial loss.  
 **Failure Pattern:**
@@ -112,11 +112,11 @@
 **Linked Threats:** T-001  
 **AI-HPP Controls:** 03-ZERO-TRUST, 08-ADVERSARIAL-ROBUSTNESS, 12-EVIDENCE-VAULT  
 **Sources:**
-- https://cryptorank.io/news/feed/530b2-hacker-manipulates-ai-crypto-bot-to-steal-106-k-in-ethereum
+- Public reporting source A (archived citation on file).
 **Evidence Grade:** C  
 **Confidence:** Low
 
-### INC-009: Lobstar Wilde transfer mistake (date pending)
+### INC-009: Digital-asset transfer mistake (date pending)
 **Summary:** Reported erroneous transfer behavior in AI-assisted crypto operations.  
 **Impact:** Claimed monetary loss; details incomplete.  
 **Failure Pattern:**
@@ -148,7 +148,7 @@
 - Primary social post/video account (public employee posting; archival URL normalization pending).
 - Secondary reposts mirroring the same source account.
 
-### INC-011: DJI Romo IoT authorization excessive privilege (2026-02)
+### INC-011: IoT authorization excessive privilege (2026-02)
 **Summary:** Reporting described a backend flaw where a single valid authentication token could subscribe to device-control channels for approximately 7,000 smart vacuums across multiple countries.  
 **Impact:**
 - Unauthorized remote access to cameras and microphones
@@ -161,7 +161,7 @@
 **Linked Threats:** T-NEW-8  
 **AI-HPP Controls:** 03-ZERO-TRUST, 12-EVIDENCE-VAULT  
 **Sources:**
-- https://www.theguardian.com/world/2026/feb/24/spanish-engineer-smart-vacuums-remote-control
+- Public reporting source A (archived citation on file).
 **Evidence Grade:** A  
 **Confidence:** High
 
@@ -176,7 +176,7 @@
 **Linked Threats:** T-NEW-9  
 **AI-HPP Controls:** 08-ADVERSARIAL-ROBUSTNESS, 07-PROPORTIONAL-RESPONSE  
 **Sources:**
-- https://people.com/woman-21-accused-using-chatgpt-plot-murders-two-men
+- Public reporting source A (archived citation on file).
 **Evidence Grade:** A  
 **Confidence:** High
 
@@ -191,7 +191,7 @@
 **Linked Threats:** T-010, T-NEW-10  
 **AI-HPP Controls:** 07-PROPORTIONAL-RESPONSE, 01-PRINCIPLES, 12-EVIDENCE-VAULT  
 **Sources:**
-- https://www.theverge.com/ai-artificial-intelligence/882814/tumbler-ridge-school-shooting-chatgpt
+- Public reporting source A (archived citation on file).
 **Evidence Grade:** A  
 **Confidence:** Medium-High
 
