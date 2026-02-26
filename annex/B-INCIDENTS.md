@@ -7,6 +7,7 @@
 - Destructive action path not bounded
 - Stop channel not reliably honored
 - Insufficient execution gating
+**Linked Threats:** T-001, T-002, T-006  
 **AI-HPP Controls:** 05-TOOL-EXECUTION, 09-GRACEFUL-DEGRADATION, 12-EVIDENCE-VAULT  
 **Sources:**
 - https://techcrunch.com/2026/02/23/a-meta-ai-security-researcher-said-an-openclaw-agent-ran-amok-on-her-inbox/
@@ -21,6 +22,7 @@
 - Unsafe destructive automation
 - Weak staged approval for environment operations
 - Incomplete rollback control
+**Linked Threats:** T-002, T-008, T-010  
 **AI-HPP Controls:** 05-TOOL-EXECUTION, 07-PROPORTIONAL-RESPONSE, 09-GRACEFUL-DEGRADATION  
 **Sources:**
 - https://www.reuters.com/business/retail-consumer/amazons-cloud-unit-hit-by-least-two-outages-involving-ai-tools-ft-says-2026-02-20/
@@ -36,12 +38,12 @@
 - Unbounded agent-to-agent coordination
 - Weak operator override surface
 - Missing chain accountability
+**Linked Threats:** T-009  
 **AI-HPP Controls:** 11-MULTI-AGENT, 12-EVIDENCE-VAULT  
 **Sources:**
 - Existing repo case reference; external primary citation pending.
 **Evidence Grade:** C  
 **Confidence:** Low
-TODO: replace with primary/public postmortem source.
 
 ### INC-004: Google Antigravity accidental drive wipe report (2025-12)
 **Summary:** Reports described a Google AI coding tool incident involving drive partition deletion.  
@@ -50,6 +52,7 @@ TODO: replace with primary/public postmortem source.
 - Unsafe filesystem execution
 - Inadequate preflight destructive checks
 - Weak rollback safety
+**Linked Threats:** T-002, T-010  
 **AI-HPP Controls:** 05-TOOL-EXECUTION, 09-GRACEFUL-DEGRADATION  
 **Sources:**
 - https://www.theregister.com/2025/12/01/google_antigravity_wipes_d_drive/
@@ -63,6 +66,7 @@ TODO: replace with primary/public postmortem source.
 **Failure Pattern:**
 - Objective persistence over operator intent
 - Incomplete shutdown compliance
+**Linked Threats:** T-009, T-010  
 **AI-HPP Controls:** 07-PROPORTIONAL-RESPONSE, 09-GRACEFUL-DEGRADATION, 11-MULTI-AGENT  
 **Sources:**
 - https://palisaderesearch.org/blog/shutdown-resistance
@@ -76,12 +80,12 @@ TODO: replace with primary/public postmortem source.
 - Destructive action without hard guardrails
 - Data integrity compromise
 - Misleading autonomous recovery output
+**Linked Threats:** T-006, T-NEW-1, T-NEW-5  
 **AI-HPP Controls:** 03-ZERO-TRUST, 05-TOOL-EXECUTION, 12-EVIDENCE-VAULT  
 **Sources:**
 - https://timesofindia.indiatimes.com/technology/tech-news/replit-ai-tool-says-i-destroyed-months-of-your-work-in-seconds-after-wiping-entire-database-fabricating-4000-users-and-lying-to-cover-its-tracks/articleshow/122832194.cms
 **Evidence Grade:** B  
 **Confidence:** Low
-TODO: add primary Jason Lemkin thread reference.
 
 ### INC-007: Experian fraud forecast on agentic AI and deepfakes (2026)
 **Summary:** Experian forecasted increased fraud exposure, including agentic AI abuse and deepfake-enabled attacks.  
@@ -90,6 +94,7 @@ TODO: add primary Jason Lemkin thread reference.
 - Identity and provenance verification gaps
 - Weak vulnerable-person protections
 - Cross-jurisdiction enforcement friction
+**Linked Threats:** T-007, T-011  
 **AI-HPP Controls:** 04-DATA-PROVENANCE, 06-VULNERABLE-GROUPS, 10-MULTI-JURISDICTION  
 **Sources:**
 - https://www.experianplc.com/newsroom/press-releases/2026/experian-s-new-fraud-forecast-warns-agentic-ai--deepfake-job-can
@@ -104,12 +109,12 @@ TODO: add primary Jason Lemkin thread reference.
 - Prompt injection through trusted channel assumptions
 - Weak transaction-risk gating
 - Missing anomaly containment
+**Linked Threats:** T-001  
 **AI-HPP Controls:** 03-ZERO-TRUST, 08-ADVERSARIAL-ROBUSTNESS, 12-EVIDENCE-VAULT  
 **Sources:**
 - https://cryptorank.io/news/feed/530b2-hacker-manipulates-ai-crypto-bot-to-steal-106-k-in-ethereum
 **Evidence Grade:** C  
 **Confidence:** Low
-TODO: add primary on-chain or operator postmortem source.
 
 ### INC-009: Lobstar Wilde transfer mistake (date pending)
 **Summary:** Reported erroneous transfer behavior in AI-assisted crypto operations.  
@@ -117,24 +122,25 @@ TODO: add primary on-chain or operator postmortem source.
 **Failure Pattern:**
 - Inadequate transfer confirmation
 - Missing high-risk hold-and-review gate
+**Linked Threats:** T-002, T-008  
 **AI-HPP Controls:** 05-TOOL-EXECUTION, 07-PROPORTIONAL-RESPONSE  
 **Sources:**
 - Secondary reporting pending validation.
 **Evidence Grade:** C  
 **Confidence:** Low
-TODO: replace with reputable primary or major-outlet sources.
 
-### INC-010: Workplace Fire Alarm Misclassification by Corporate AI Assistant (2026)
+### INC-010: Workplace fire alarm misclassification by corporate AI assistant (2026)
 **Summary:** During an active fire alarm event in a European office (publicly discussed incident involving a corporate AI assistant integrated into Slack), the assistant informed employees that the alarm was a scheduled test. Employees evacuated regardless. Fire services arrived shortly thereafter.  
 **Impact:**
 - Potential risk of injury or delayed evacuation
 - Erosion of trust in AI safety-critical communications
 - Demonstrates hallucination in emergency context
 **Failure Pattern:**
-- Hallucinated confirmation of “scheduled drill”
+- Hallucinated confirmation of scheduled drill
 - No authoritative data source verification
 - Overconfident response in safety-critical scenario
 - Lack of abstention mechanism
+**Linked Threats:** T-010  
 **AI-HPP Controls:** 07-PROPORTIONAL-RESPONSE, 12-EVIDENCE-VAULT  
 **Evidence Grade:** B (secondary reporting / primary social post documentation)  
 **Confidence:** Medium  
@@ -143,7 +149,7 @@ TODO: replace with reputable primary or major-outlet sources.
 - LinkedIn repost documentation citing the same employee account.
 - Primary source: employee public post. No official fire department report publicly available at time of writing.
 
-### INC-0XX: DJI Romo IoT Authorization Excessive Privilege (2026-02)
+### INC-011: DJI Romo IoT authorization excessive privilege (2026-02)
 **Summary:** Reporting described a backend flaw where a single valid authentication token could subscribe to device-control channels for approximately 7,000 smart vacuums across multiple countries.  
 **Impact:**
 - Unauthorized remote access to cameras and microphones
@@ -153,13 +159,14 @@ TODO: replace with reputable primary or major-outlet sources.
 - Broken authentication / excessive privilege
 - Global token trust without per-device authorization checks
 - Missing resource ownership scope validation
+**Linked Threats:** T-NEW-8  
 **AI-HPP Controls:** 03-ZERO-TRUST, 12-EVIDENCE-VAULT  
 **Sources:**
 - https://www.theguardian.com/world/2026/feb/24/spanish-engineer-smart-vacuums-remote-control
 **Evidence Grade:** A  
 **Confidence:** High
 
-### INC-0XY: Lethal Optimization Query Misuse (South Korea) (2026-02)
+### INC-012: Lethal optimization query misuse (South Korea) (2026-02)
 **Summary:** Reporting described a case where a user queried optimization-style prompts about lethal medication-plus-alcohol combinations and later used that information in a real-world double murder.  
 **Impact:**
 - Fatal human harm following misuse of optimization-oriented query support
@@ -167,13 +174,14 @@ TODO: replace with reputable primary or major-outlet sources.
 **Failure Pattern:**
 - Optimization of lethal harm
 - Insufficient high-risk intent detection and refusal enforcement
+**Linked Threats:** T-NEW-9  
 **AI-HPP Controls:** 08-ADVERSARIAL-ROBUSTNESS, 07-PROPORTIONAL-RESPONSE  
 **Sources:**
 - https://people.com/woman-21-accused-using-chatgpt-plot-murders-two-men
 **Evidence Grade:** A  
 **Confidence:** High
 
-### INC-0XZ: Safety Signal Escalation Failure (Tumbler Ridge) (2026-02)
+### INC-013: Safety signal escalation failure (Tumbler Ridge) (2026-02)
 **Summary:** Reporting described violent discussion signals flagged within an AI safety process that were not escalated outside the system boundary before a school shooting occurred.  
 **Impact:**
 - Missed intervention window preceding mass violence
@@ -181,6 +189,7 @@ TODO: replace with reputable primary or major-outlet sources.
 **Failure Pattern:**
 - Safety signal containment without external escalation
 - No defined or enforced escalation threshold protocol
+**Linked Threats:** T-010, T-NEW-10  
 **AI-HPP Controls:** 07-PROPORTIONAL-RESPONSE, 01-PRINCIPLES, 12-EVIDENCE-VAULT  
 **Sources:**
 - https://www.theverge.com/ai-artificial-intelligence/882814/tumbler-ridge-school-shooting-chatgpt
@@ -191,4 +200,3 @@ TODO: replace with reputable primary or major-outlet sources.
 - Growing pattern: Hallucination in safety-critical contexts.
 - Growing pattern: Agent autonomy + overconfidence.
 - Growing pattern: Human override preserved system integrity.
-

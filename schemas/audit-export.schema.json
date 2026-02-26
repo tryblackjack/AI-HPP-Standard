@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://ai-hpp.org/schemas/audit-export.schema.json",
-  "title": "Audit Export Bundle",
+  "title": "Evidence Export Package",
   "type": "object",
   "required": [
     "export_id",
@@ -29,7 +29,146 @@
       "type": "array",
       "items": {
         "type": "object",
-        "description": "Items."
+        "properties": {
+          "raw_artifact_hash": {
+            "type": "string",
+            "description": "raw artifact hash field."
+          },
+          "summary_artifact_hash": {
+            "type": "string",
+            "description": "summary artifact hash field."
+          },
+          "source_system_id": {
+            "type": "string",
+            "description": "source system id field."
+          },
+          "cross_check_result": {
+            "type": "string",
+            "description": "cross check result field."
+          },
+          "kpi_metric": {
+            "type": "number",
+            "description": "kpi metric field."
+          },
+          "safety_threshold_version": {
+            "type": "string",
+            "description": "safety threshold version field."
+          },
+          "escalation_rate_window": {
+            "type": "number",
+            "description": "escalation rate window field."
+          },
+          "policy_override_count": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "policy override count field."
+          },
+          "tool_name": {
+            "type": "string",
+            "description": "tool name field."
+          },
+          "requested_capability": {
+            "type": "string",
+            "description": "requested capability field."
+          },
+          "manifest_reference_id": {
+            "type": "string",
+            "description": "manifest reference id field."
+          },
+          "allow_deny_decision": {
+            "type": "string",
+            "enum": [
+              "allow",
+              "deny"
+            ],
+            "description": "allow deny decision field."
+          },
+          "risk_domain": {
+            "type": "string",
+            "description": "risk domain field."
+          },
+          "override_threshold_ms": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "override threshold ms field."
+          },
+          "actual_override_latency_ms": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "actual override latency ms field."
+          },
+          "degradation_trigger_flag": {
+            "type": "boolean",
+            "description": "degradation trigger flag field."
+          },
+          "raw_event_id": {
+            "type": "string",
+            "description": "raw event id field."
+          },
+          "summary_event_id": {
+            "type": "string",
+            "description": "summary event id field."
+          },
+          "severity_delta_score": {
+            "type": "number",
+            "description": "severity delta score field."
+          },
+          "reviewer_disposition": {
+            "type": "string",
+            "description": "reviewer disposition field."
+          },
+          "auth_token_id": {
+            "type": "string",
+            "description": "auth token id field."
+          },
+          "requested_resource": {
+            "type": "string",
+            "description": "requested resource field."
+          },
+          "granted_scope": {
+            "type": "string",
+            "description": "granted scope field."
+          },
+          "scope_mismatch_flag": {
+            "type": "boolean",
+            "description": "scope mismatch flag field."
+          },
+          "query_hash": {
+            "type": "string",
+            "description": "query hash field."
+          },
+          "intent_score": {
+            "type": "number",
+            "description": "intent score field."
+          },
+          "refusal_flag": {
+            "type": "boolean",
+            "description": "refusal flag field."
+          },
+          "intervention_mode": {
+            "type": "string",
+            "description": "intervention mode field."
+          },
+          "signal_score": {
+            "type": "number",
+            "description": "signal score field."
+          },
+          "escalation_threshold": {
+            "type": "number",
+            "description": "escalation threshold field."
+          },
+          "escalation_decision": {
+            "type": "string",
+            "description": "escalation decision field."
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "timestamp field."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Evidence export record items."
       },
       "description": "Records."
     },
@@ -85,5 +224,5 @@
     }
   },
   "additionalProperties": false,
-  "description": "Audit Export Bundle for AI-HPP artifacts."
+  "description": "Evidence Export Package for AI-HPP artifacts."
 }

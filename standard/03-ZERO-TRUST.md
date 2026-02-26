@@ -9,5 +9,5 @@
 
 #### AI-HPP-03.1.2: Scoped authorization enforcement
 **Requirement:** Authentication tokens MUST be validated against resource ownership and MUST NOT grant access outside declared scope.
-**Rationale:** INC-0XX, T-NEW-8.
+**Rationale:** INC-011, T-NEW-8.
 **Verification:** Evidence Vault MUST log `scope_mismatch_flag` for denied out-of-scope access attempts.

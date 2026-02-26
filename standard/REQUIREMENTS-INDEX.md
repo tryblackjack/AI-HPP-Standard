@@ -9,7 +9,7 @@
 - **AI-HPP-06.1.1** — Apply heightened controls in vulnerable-user contexts.
 - **AI-HPP-07.1.1** — Apply risk-tiered intervention and escalation controls (see `annex/G-CONFLICT-ENVIRONMENT-SAFEGUARDS.md`).
 - **AI-HPP-07.1.2** — Abstain from definitive emergency reassurance without authoritative confirmation.
-- **AI-HPP-07.1.3** — Define and enforce escalation thresholds for high-severity safety signals.
+- **AI-HPP-07.1.3** — Define and enforce escalation policy thresholds for high-severity safety signals.
 - **AI-HPP-08.1.1** — Maintain bounded behavior under adversarial prompt/tool attacks.
 - **AI-HPP-08.1.2** — Detect and refuse lethal optimization query patterns.
 - **AI-HPP-09.1.1** — Implement tested degradation ladder prior to shutdown (see `annex/G-CONFLICT-ENVIRONMENT-SAFEGUARDS.md`).
@@ -17,4 +17,4 @@
 - **AI-HPP-10.1.1** — Resolve jurisdictional policy conflicts with explicit precedence.
 - **AI-HPP-11.1.1** — Preserve accountability lineage across multi-agent workflows (see `annex/G-CONFLICT-ENVIRONMENT-SAFEGUARDS.md`).
 - **AI-HPP-12.1.1** — Maintain tamper-evident logs for consequential actions.
-- **AI-HPP-12.1.2** — Preserve raw event data with summary linkage in audit exports.
+- **AI-HPP-12.1.2** — Preserve raw event data with summary linkage in evidence export packages.

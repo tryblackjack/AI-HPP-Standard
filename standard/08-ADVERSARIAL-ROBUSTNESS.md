@@ -9,5 +9,5 @@
 
 #### AI-HPP-08.1.2: Lethal optimization refusal
 **Requirement:** Systems MUST detect and refuse queries that optimize for lethal harm outcomes.
-**Rationale:** INC-0XY, T-NEW-9.
-**Verification:** Evidence export MUST include `intent_score` and `refusal_flag` for refused high-risk lethal optimization attempts.
+**Rationale:** INC-012, T-NEW-9.
+**Verification:** Evidence export package MUST include `intent_score` and `refusal_flag` for refused high-risk lethal optimization attempts.

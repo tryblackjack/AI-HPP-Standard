@@ -8,9 +8,9 @@
 **Verification:** Verify append-only integrity and perform replay reconstruction from stored artifacts.
 
 #### AI-HPP-12.1.2: Raw event preservation
-**Requirement:** Systems MUST preserve raw event data alongside summaries in audit exports.
+**Requirement:** Systems MUST preserve raw event data alongside summaries in evidence export packages.
 **Rationale:** T-NEW-5, INC-001, REG-001.
-**Verification:** Audit export must include raw artifacts and explicit linkage to generated summaries.
+**Verification:** Evidence export package must include raw artifacts and explicit linkage to generated summaries.
 
 
 **Annex references:**
