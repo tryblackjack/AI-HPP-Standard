@@ -33,3 +33,4 @@ Only artifacts under `standard/` and `annex/` define normative requirements.
 
 ## Internal maintainer layer
 - `internal/` (non-normative maintainer documentation, audits, orchestration assets, and historical top-level materials)
+- `internal/regulator-sim/` (internal regulator simulation pack)

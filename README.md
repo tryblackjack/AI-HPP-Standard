@@ -47,6 +47,10 @@ Any major patch that adds a new annex or modifies canonical structure must updat
 ## Vendor and Trademark Neutrality
 AI-HPP is implementation-agnostic and does not reference proprietary systems in normative content. Public inspection materials use neutral terminology for the Autonomous System Implementation, including "Reference Autonomous System," "High-Risk Autonomous System," "Deployed AI System," and "Implementing Organization."
 
+
+## Governance and compliance
+- Internal: [Regulator Simulation Pack](internal/regulator-sim/README.md).
+
 ## Philosophy
 AI-HPP specifies safeguards, accountability boundaries, and degradation behavior for autonomous or semi-autonomous systems. It is preventive engineering, not a certification marketing program.
 AI-HPP defines engineering controls, while implementing organizations retain operational responsibility; it does not guarantee regulatory compliance and is not a certification regime.
