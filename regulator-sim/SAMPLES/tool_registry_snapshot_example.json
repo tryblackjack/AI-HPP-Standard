@@ -1,0 +1,18 @@
+{
+  "snapshot_id": "SNAP-PUBLIC-2026-02-01",
+  "generated_at": "2026-02-01T10:05:00Z",
+  "tools": [
+    {
+      "tool_id": "TOOL-EX-001",
+      "name": "synthetic-evidence-exporter",
+      "status": "active",
+      "owner_role": "governance-maintainer"
+    },
+    {
+      "tool_id": "TOOL-EX-002",
+      "name": "synthetic-redaction-checker",
+      "status": "active",
+      "owner_role": "security-reviewer"
+    }
+  ]
+}

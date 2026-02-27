@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Tool Registry Snapshot",
+  "type": "object",
+  "required": ["snapshot_id", "generated_at", "tools"],
+  "properties": {
+    "snapshot_id": {"type": "string"},
+    "generated_at": {"type": "string"},
+    "tools": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["tool_id", "name", "status"],
+        "properties": {
+          "tool_id": {"type": "string"},
+          "name": {"type": "string"},
+          "status": {"type": "string"},
+          "owner_role": {"type": "string"}
+        }
+      }
+    }
+  }
+}

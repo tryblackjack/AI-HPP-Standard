@@ -1,5 +1,20 @@
 # Public Regulator Simulation Pack
 
-This directory contains the **public-safe** regulator simulation scaffolding used by CI.
+This directory contains a public-safe, ISO-style regulator simulation pack designed for audit-style rehearsal in open environments.
 
-It intentionally excludes any internal or quarantined content. The purpose of this pack is to provide stable placeholders and check targets that can be validated in clean public checkouts.
+## Pack structure
+
+- Core controls: `DOC_CONTROL.md`, `CHANGELOG.md`, `SCOPE.md`
+- Procedures: `PROCEDURES/`
+- Request assets: `REQUESTS/`
+- Crosswalks: `CROSSWALK/`
+- Conformance map: `CONFORMANCE/`
+- Templates and schemas: `TEMPLATES/`
+- Synthetic samples: `SAMPLES/`
+- Walkthrough scenarios: `SCENARIOS/`
+
+## Public-safety rules
+
+- No proprietary implementation details.
+- No real tokens, secrets, user data, or environment-specific identifiers.
+- Examples are synthetic and documentation-focused.

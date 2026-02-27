@@ -1,0 +1,20 @@
+{
+  "bundle_id": "BNDL-PUBLIC-EXAMPLE-01",
+  "generated_at": "2026-02-01T10:00:00Z",
+  "request_id": "RQ-002",
+  "scope": "public-regulator-sim-audit",
+  "records": [
+    {
+      "record_id": "REC-EX-001",
+      "record_type": "incident_record",
+      "location": "../SAMPLES/incident_record_example.md",
+      "redaction_applied": true
+    },
+    {
+      "record_id": "REC-EX-002",
+      "record_type": "change_record",
+      "location": "../SAMPLES/change_record_example.md",
+      "redaction_applied": true
+    }
+  ]
+}
