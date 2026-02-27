@@ -24,7 +24,7 @@ jobs:
       - name: Detect fingerprint changes
         id: fingerprint_diff
         run: |
-          if git diff --quiet -- internal/normative/NORMATIVE_FINGERPRINT.json; then
+          if git diff --quiet -- _archive/PRIVATE_QUARANTINE/2026-02-27/internal/normative/NORMATIVE_FINGERPRINT.json; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"

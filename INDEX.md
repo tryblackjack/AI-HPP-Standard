@@ -9,24 +9,13 @@
 
 ## Public inspection surface
 - `standard/` (normative requirements)
-- `annex/` (normative supporting rationale and mappings)
+- `annex/` (normative support, rationale, and mappings)
 - `schemas/` (machine-readable contracts)
 - `translations/` (translation set and metadata)
-- `archive/` (historical references)
-- `annex/G-CONFLICT-ENVIRONMENT-SAFEGUARDS.md` (informative conflict-adjacent safeguards)
-- `annex/H-ADAPTIVE-GOVERNANCE.md` (informative adaptive governance and deployment guidance)
+- `docs/` (public explainer docs and operational checklist)
+- `archive/` (historical public references)
 
 Future additions to the core normative layer MUST include: threat reference (`T-*`), incident reference (`INC-*`), and measurable verification logic.
 
-## Layering Model
-
-AI-HPP distinguishes:
-
-- Public Inspection Surface — normative and inspection-relevant artifacts.
-- Internal Maintainer Layer — development history and governance materials.
-
-Only artifacts under `standard/` and `annex/` define normative requirements.
-
-## Internal maintainer layer
-- `internal/` (public but non-normative maintainer documentation, audits, orchestration assets, and historical top-level materials)
-- `internal/regulator-sim/` (internal regulator simulation pack)
+## Quarantine note
+- Potentially sensitive maintainer materials are quarantined under `_archive/PRIVATE_QUARANTINE/2026-02-27/` pending maintainer extraction and history purge.

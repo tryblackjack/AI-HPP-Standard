@@ -34,3 +34,18 @@ build/
 # Local config (never commit secrets)
 .env.local
 secrets.yaml
+
+# Sensitive material guardrails
+*.env
+.env.*
+*.pem
+*.key
+*.p12
+*key.json
+*private_key*.json
+secrets/
+secrets.*
+credentials/
+credentials.*
+dumps/
+*.dump

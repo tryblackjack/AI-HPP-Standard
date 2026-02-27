@@ -1,56 +1,29 @@
-# AI-HPP Standard Library (ISO/IEC-style)
+# AI-HPP Standard Library
 
-**Status:** Inspection-ready working draft  
-**Notice:** ISO/IEC-style structure; not an ISO standard; no endorsements claimed.
+**Public v0.3 clean structure**
 
-## 30-second orientation by audience
-- **Policymaker:** This library defines concrete safeguards for agentic AI systems, with traceability from requirement to incident, threat, and regulatory intent.
-- **Standards reviewer:** Normative content is in `standard/`; supporting evidence is in `annex/`; machine contracts are in `schemas/`.
-- **Compliance team:** Use `standard/REQUIREMENTS-INDEX.md` for checklist extraction and `annex/D-REGULATORY-MAP.md` for mapping.
-- **Engineer:** Implement controls module-by-module and verify with each requirement block's verification criteria.
-- **Autonomous AI agent:** Parse requirement IDs (`AI-HPP-x.y.z`) and resolve evidence links (`INC-*`, `T-*`, `REG-*`).
+AI-HPP is an implementation-neutral safety and governance framework for agentic AI systems. It defines verifiable controls, evidence expectations, and failure-handling rules.
 
-## Repository Structure (Public Inspection Surface)
+## 5-minute overview
+1. Start with [`BASELINE-v3.17.md`](BASELINE-v3.17.md) for the high-level baseline.
+2. Read [`standard/`](standard/README.md) for normative requirements.
+3. Use [`annex/`](annex/README.md) for threat/incident and regulatory context.
+4. Use [`schemas/`](schemas/README.md) for machine-readable evidence structures.
+5. Browse [`docs/`](docs/README.md) for public explainer docs and operator checklist.
 
-AI-HPP is structured in two layers:
+## Public repository structure
+- `standard/` — normative technical requirements
+- `annex/` — supporting rationale, incidents, and mappings
+- `schemas/` — evidence and audit JSON schemas
+- `translations/` — translated public materials
+- `docs/` — human-friendly guides and public roadmap
+- `archive/` — historical public references
+- `_archive/PRIVATE_QUARANTINE/` — temporary maintainer quarantine area (must be removed before final release)
 
-### Public Inspection Baseline (normative + inspection-facing)
-- `BASELINE-v3.17.md` — inspection entry point
-- `standard/` — normative engineering requirements
-- `annex/` — threat model and incident registry
-- `schemas/` — machine-verifiable logging schemas
-- `translations/` — language variants
-- `archive/` — historical versions
+## Safety and disclosure
+- See [`SECURITY.md`](SECURITY.md) for responsible security reporting.
+- Quarantined material remains in Git history until history rewrite is performed.
+- Post-merge maintainer actions are documented in [`docs/POST_MERGE_OPERATOR_CHECKLIST.md`](docs/POST_MERGE_OPERATOR_CHECKLIST.md).
 
-### Internal Maintainer Layer (public, non-normative)
-- `internal/` — maintainer artifacts (ADR, governance, audit reports, legacy-top relocation stubs); policy+CI sanitized for public repo safety
-
-Canonical normative text exists only in `standard/` and `annex/`.
-Internal materials do not override normative modules.
-
-## Start here
-1. `BASELINE-v3.17.md`
-2. `standard/01-PRINCIPLES.md`
-3. `annex/B-INCIDENTS.md`
-4. `standard/REQUIREMENTS-INDEX.md`
-5. `schemas/`
-
-- CES safeguards are covered in `standard/07-PROPORTIONAL-RESPONSE.md`, `standard/12-EVIDENCE-VAULT.md`, and `annex/G-CONFLICT-ENVIRONMENT-SAFEGUARDS.md`.
-- Adaptive governance guidance is available in `annex/H-ADAPTIVE-GOVERNANCE.md` (AGL + HSDF; informative only).
-
-## Translation synchronization rule (major patches)
-Any major patch that adds a new annex or modifies canonical structure must update translation metadata and provide synchronized translation files for changed canonical entrypoints. See `translations/README.md`.
-
-## Vendor and Trademark Neutrality
-AI-HPP is implementation-agnostic and does not reference proprietary systems in normative content. Public inspection materials use neutral terminology for the Autonomous System Implementation, including "Reference Autonomous System," "High-Risk Autonomous System," "Deployed AI System," and "Implementing Organization."
-
-
-## Governance and compliance
-- Internal: [Regulator Simulation Pack](internal/regulator-sim/README.md).
-
-## Philosophy
-AI-HPP specifies safeguards, accountability boundaries, and degradation behavior for autonomous or semi-autonomous systems. It is preventive engineering, not a certification marketing program.
-AI-HPP defines engineering controls, while implementing organizations retain operational responsibility; it does not guarantee regulatory compliance and is not a certification regime.
-
-## Baseline freeze notice (v3.17)
-The Core Normative Layer (`standard/`, `annex/`, `schemas/`) remains inspection-stable. v3.17 adds CES safeguards through Module 07 and Module 12, with Annex G as informative guidance and no new modules added. New entries require a threat reference, incident reference, and measurable verification logic.
+## Scope note
+Canonical normative requirements are defined by files under `standard/` and supporting references in `annex/`.
