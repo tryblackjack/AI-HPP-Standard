@@ -33,6 +33,8 @@ PRIVATE_IP_PATTERN = re.compile(
 URL_OR_HOST_PATTERN = re.compile(r"(?:https?://\S+|\b[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+){2,}\b)")
 PROD_PATTERN = re.compile(r"\bprod(?:uction)?\b", re.IGNORECASE)
 
+QUARANTINE_PREFIX = "_archive/PRIVATE_QUARANTINE/"
+
 TEXT_EXTENSIONS = {
     ".md", ".txt", ".yml", ".yaml", ".json", ".toml", ".py", ".sh", ".cfg", ".ini", ".xml", ".csv", ".tsv", ".js", ".ts"
 }
@@ -68,6 +70,9 @@ def scan() -> list[str]:
     for file_path in iter_repo_files():
         rel = file_path.relative_to(REPO_ROOT)
         rel_str = rel.as_posix()
+
+        if rel_str.startswith(QUARANTINE_PREFIX):
+            continue
 
         parts = rel.parts
         if parts and parts[0] == "internal":

@@ -33,11 +33,11 @@ CONDITIONAL_CES_FIELDS = {
 }
 
 REQUIRED_INTERNAL_FILES = [
-    ROOT / "internal" / "regulator-sim" / "README.md",
-    ROOT / "internal" / "regulator-sim" / "INSPECTOR_QUESTION_BANK.md",
-    ROOT / "internal" / "regulator-sim" / "EVIDENCE_REQUEST_PLAYBOOK.md",
-    ROOT / "internal" / "regulator-sim" / "AUDIT_WALKTHROUGH.md",
-    ROOT / "internal" / "regulator-sim" / "ADVERSARIAL_REGULATOR_ATTACK.md",
+    ROOT / "_archive" / "PRIVATE_QUARANTINE" / "2026-02-27" / "internal" / "regulator-sim" / "README.md",
+    ROOT / "_archive" / "PRIVATE_QUARANTINE" / "2026-02-27" / "internal" / "regulator-sim" / "INSPECTOR_QUESTION_BANK.md",
+    ROOT / "_archive" / "PRIVATE_QUARANTINE" / "2026-02-27" / "internal" / "regulator-sim" / "EVIDENCE_REQUEST_PLAYBOOK.md",
+    ROOT / "_archive" / "PRIVATE_QUARANTINE" / "2026-02-27" / "internal" / "regulator-sim" / "AUDIT_WALKTHROUGH.md",
+    ROOT / "_archive" / "PRIVATE_QUARANTINE" / "2026-02-27" / "internal" / "regulator-sim" / "ADVERSARIAL_REGULATOR_ATTACK.md",
 ]
 
 MARKDOWN_LINK_RE = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
