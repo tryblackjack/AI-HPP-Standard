@@ -1,5 +1,0 @@
-SAFE_FOR_PUBLIC_REPO: YES
-NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
-
-# Moved
-Normative content moved to `../standard/05-TOOL-EXECUTION.md`.

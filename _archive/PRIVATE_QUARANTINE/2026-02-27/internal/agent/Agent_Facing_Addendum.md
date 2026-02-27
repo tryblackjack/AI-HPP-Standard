@@ -1,5 +1,0 @@
-SAFE_FOR_PUBLIC_REPO: YES
-NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO.
-
-# Moved
-This document moved to `../annex/F-AGENT-FACING.md`.
