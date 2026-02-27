@@ -15,8 +15,6 @@ SKIP_DIRS = {
     ".github",
     ".venv",
     "node_modules",
-    "internal",
-    "_archive",
     "archive",
     "translations",
 }

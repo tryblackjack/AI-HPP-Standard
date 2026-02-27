@@ -29,7 +29,7 @@ AI-HPP v3.16 preserves the frozen core normative layer and applies a public-surf
 - No placeholder incident IDs remain.
 
 ## Conformance levels
-Conformance is defined in `standard/CONFORMANCE-LEVELS.md` and supported by `regulator-pack/SELF-ASSESSMENT-CHECKLIST.md` and `regulator-pack/CONFORMANCE-EVIDENCE-MAP.md`.
+Conformance is defined in `standard/CONFORMANCE-LEVELS.md` and supported by `regulator-sim/REQUESTS/REQUEST_CATALOG.md` and `regulator-sim/CONFORMANCE/REQUIREMENT_TO_EVIDENCE_MAP.yaml`.
 
 ## Evidence Vault schema version
 - Baseline schema set: Draft 2020-12 JSON Schemas under `schemas/`.
@@ -38,7 +38,7 @@ Conformance is defined in `standard/CONFORMANCE-LEVELS.md` and supported by `reg
 - Baseline marker version: v3.16.
 
 ## Public Surface Policy
-- Root is intentionally minimal; maintainer materials live in `internal/`.
+- Root is intentionally minimal; maintainer materials are held outside this public repository.
 - Canonical normative text lives in `standard/` with supporting normative context in `annex/`.
 
 ## Governance status

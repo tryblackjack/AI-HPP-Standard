@@ -4,12 +4,12 @@
 
 ## 1) Extract quarantine locally (secure storage)
 1. Clone/fetch the merged branch in a secure environment.
-2. Copy `/_archive/PRIVATE_QUARANTINE/2026-02-27/` to encrypted local storage.
+2. Copy approved release artifacts to encrypted local storage.
 3. Confirm integrity (hashes/checksum) of extracted content.
 
 ## 2) Remove quarantine from public repository
 1. Create follow-up branch.
-2. Remove `/_archive/PRIVATE_QUARANTINE/2026-02-27/` from the repo.
+2. Verify no non-public material remains in the repository tree.
 3. Update docs if any temporary quarantine links remain.
 4. Merge and deploy.
 

@@ -9,9 +9,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 - v3.16.x: ISO/IAEA cleanup + public anti-leak guard (no normative changes).
-- Root/public navigation cleaned up; non-canonical top-level materials relocated under `internal/legacy-top/`.
+- Root/public navigation cleaned up; non-canonical top-level materials relocated under public legacy log area.
 - CI now enforces public anti-leak scanning and internal markdown safety header policy.
-- CODEOWNERS review gates added for `internal/**`, `schemas/**`, `standard/**`, and `annex/**`.
+- CODEOWNERS review gates added for `schemas/**`, `standard/**`, and `annex/**`.
 
 ### Notes
 - No normative changes.
@@ -21,7 +21,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [v3.20.1] - 2026-02-26 — Founder pressure protocol (internal only)
 
 ### Added
-- Added internal founder psychological pressure-test protocol under `internal/founder-pressure-test/` (`README.md`, scenario deck, under-fire decision protocol, board pressure Q&A).
+- Added internal founder psychological pressure-test protocol under an internal review workstream (`README.md`, scenario deck, under-fire decision protocol, board pressure Q&A).
 
 ### Notes
 - Internal protocol only.
@@ -31,8 +31,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [v3.20] - 2026-02-26 — Regulator simulation layer (internal)
 
 ### Added
-- Added internal regulator simulation pack under `internal/regulator-sim/` (overview, inspector question bank, evidence request playbook, audit walkthrough, adversarial regulator attack simulation).
-- Added `scripts/regulator_sim_check.py` for internal static checks (field presence, regulator-pack link resolution, non-empty regulator simulation docs).
+- Added internal regulator simulation pack under an earlier regulator simulation workstream (overview, inspector question bank, evidence request playbook, audit walkthrough, adversarial regulator attack simulation).
+- Added `scripts/regulator_sim_check.py` for public static checks (field presence, regulator-sim link resolution, non-empty regulator simulation docs).
 
 ### Changed
 - Added a minimal internal-layer link in `README.md` and `INDEX.md` for the regulator simulation pack.
@@ -133,19 +133,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Archived compatibility pointer `archive/docs/Failure_Taxonomy.md` expanded to a minimal explicit stub with canonical location guidance.
 
 ### Added
-- `internal/meta-audits/_empty_files_report.md` with empty/near-empty markdown scan output, references, and classifications.
+- meta-audits report artifact with empty/near-empty markdown scan output, references, and classifications.
 - `scripts/check_empty_md.py` to fail CI/local checks when markdown files are empty or near-empty without explicit stub marker.
 
 ## [v3.16] - 2026-02-26
 
 ### Changed
 - Public root surface minimized to canonical inspection entrypoints and canonical public directories.
-- Maintainer artifacts moved under `internal/` with structured subfolders for audits, governance, registries, and orchestration assets.
+- Maintainer artifacts moved under maintainer work areas with structured subfolders for audits, governance, registries, and orchestration assets.
 - Canonical navigation updated for dual-layer layout (`README.md`, `INDEX.md`).
 - Link and path references updated for relocated maintainer materials.
 
 ### Added
-- `internal/README.md` to define internal layer scope and non-normative precedence.
+- internal scope documentation to define internal layer scope and non-normative precedence.
 - `BASELINE-v3.16.md` with public-surface policy and v3.16 baseline marker.
 
 ## [v3.15] - 2026-02-26
@@ -167,7 +167,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Added three grey-zone incidents (IoT authorization excessive privilege, lethal optimization misuse, escalation-threshold failure) in Annex B.
 - Expanded Threat Model with T-NEW-8 through T-NEW-10 and incident-linked Evidence Vault field mappings.
 - Added targeted safeguards: scoped authorization enforcement (03), lethal optimization refusal (08), and escalation-threshold policy (07).
-- Regulator self-assessment tooling added under `regulator-pack/` for inspection preparation, artifact minimums, and conformance-evidence traceability.
+- Regulator self-assessment tooling added under `regulator-sim/` for inspection preparation, artifact minimums, and conformance-evidence traceability.
 
 ### Changed
 - Updated requirements index with AI-HPP-03.1.2, AI-HPP-07.1.3, and AI-HPP-08.1.2.
@@ -499,7 +499,7 @@ Version 3.0 transforms AI-HPP from a decision framework for individual AI agents
 
 - **Module 9: Graceful Degradation Protocol** (NEW - editorial contribution)
   - Four degradation levels (Nominal → Degraded → Minimal → Safe Stop)
-  - Failure mode responses (interpretability, vault, network, sanitizer)
+  - Failure mode responses (interpretability, evidence-store, network, sanitizer)
   - Automatic and manual recovery protocols
   - State transition logic
 

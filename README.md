@@ -17,12 +17,9 @@ AI-HPP is an implementation-neutral safety and governance framework for agentic 
 - `schemas/` — evidence and audit JSON schemas
 - `translations/` — translated public materials
 - `docs/` — human-friendly guides and public roadmap
-- `archive/` — historical public references
-- `_archive/PRIVATE_QUARANTINE/` — temporary maintainer quarantine area (must be removed before final release)
 
 ## Safety and disclosure
 - See [`SECURITY.md`](SECURITY.md) for responsible security reporting.
-- Quarantined material remains in Git history until history rewrite is performed.
 - Post-merge maintainer actions are documented in [`docs/POST_MERGE_OPERATOR_CHECKLIST.md`](docs/POST_MERGE_OPERATOR_CHECKLIST.md).
 
 ## Scope note
