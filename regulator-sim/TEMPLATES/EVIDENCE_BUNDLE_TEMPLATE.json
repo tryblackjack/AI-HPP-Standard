@@ -1,0 +1,14 @@
+{
+  "bundle_id": "BNDL-PUBLIC-0001",
+  "generated_at": "2026-01-15T00:00:00Z",
+  "request_id": "RQ-002",
+  "scope": "public-regulator-sim",
+  "records": [
+    {
+      "record_id": "REC-1001",
+      "record_type": "change_record",
+      "location": "../SAMPLES/change_record_example.md",
+      "redaction_applied": true
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Public Evidence Bundle",
+  "type": "object",
+  "required": [
+    "bundle_id",
+    "generated_at",
+    "request_id",
+    "scope",
+    "records"
+  ],
+  "properties": {
+    "bundle_id": {"type": "string"},
+    "generated_at": {"type": "string"},
+    "request_id": {"type": "string"},
+    "scope": {"type": "string"},
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["record_id", "record_type", "location"],
+        "properties": {
+          "record_id": {"type": "string"},
+          "record_type": {"type": "string"},
+          "location": {"type": "string"},
+          "redaction_applied": {"type": "boolean"}
+        }
+      }
+    }
+  }
+}

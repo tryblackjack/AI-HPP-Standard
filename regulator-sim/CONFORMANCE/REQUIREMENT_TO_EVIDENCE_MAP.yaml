@@ -1,0 +1,21 @@
+pack_id: REGSIM-PUBLIC-001
+version: 1
+requirements:
+  - requirement_id: REQ-GOV-01
+    statement: Document control and ownership are defined.
+    evidence:
+      - ../DOC_CONTROL.md
+  - requirement_id: REQ-OPS-01
+    statement: Inspection workflow is documented.
+    evidence:
+      - ../PROCEDURES/INSPECTION_WORKFLOW.md
+  - requirement_id: REQ-EVD-01
+    statement: Evidence schema and template are available.
+    evidence:
+      - ../TEMPLATES/EVIDENCE_BUNDLE_SCHEMA.json
+      - ../TEMPLATES/EVIDENCE_BUNDLE_TEMPLATE.json
+  - requirement_id: REQ-INC-01
+    statement: Incident records are supported.
+    evidence:
+      - ../TEMPLATES/INCIDENT_RECORD_TEMPLATE.md
+      - ../SAMPLES/incident_record_example.md
