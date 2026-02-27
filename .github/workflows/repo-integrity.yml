@@ -23,7 +23,7 @@ jobs:
 
       - name: Run link checker
         run: |
-          python _archive/PRIVATE_QUARANTINE/2026-02-27/internal/legacy-top/scripts/check_links.py
+          python scripts/check_links.py
 
       - name: Run regulator simulation checks
         run: |
