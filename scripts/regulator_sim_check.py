@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Static checks for the internal regulator simulation pack."""
+"""Static checks for the public regulator simulation pack."""
 
 from __future__ import annotations
 
@@ -32,12 +32,12 @@ CONDITIONAL_CES_FIELDS = {
     "approval_status",
 }
 
-REQUIRED_INTERNAL_FILES = [
-    ROOT / "_archive" / "PRIVATE_QUARANTINE" / "2026-02-27" / "internal" / "regulator-sim" / "README.md",
-    ROOT / "_archive" / "PRIVATE_QUARANTINE" / "2026-02-27" / "internal" / "regulator-sim" / "INSPECTOR_QUESTION_BANK.md",
-    ROOT / "_archive" / "PRIVATE_QUARANTINE" / "2026-02-27" / "internal" / "regulator-sim" / "EVIDENCE_REQUEST_PLAYBOOK.md",
-    ROOT / "_archive" / "PRIVATE_QUARANTINE" / "2026-02-27" / "internal" / "regulator-sim" / "AUDIT_WALKTHROUGH.md",
-    ROOT / "_archive" / "PRIVATE_QUARANTINE" / "2026-02-27" / "internal" / "regulator-sim" / "ADVERSARIAL_REGULATOR_ATTACK.md",
+REQUIRED_PUBLIC_FILES = [
+    ROOT / "regulator-sim" / "README.md",
+    ROOT / "regulator-sim" / "INSPECTOR_QUESTION_BANK.md",
+    ROOT / "regulator-sim" / "EVIDENCE_REQUEST_PLAYBOOK.md",
+    ROOT / "regulator-sim" / "AUDIT_WALKTHROUGH.md",
+    ROOT / "regulator-sim" / "ADVERSARIAL_REGULATOR_ATTACK.md",
 ]
 
 MARKDOWN_LINK_RE = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
@@ -73,7 +73,7 @@ def check_schema_fields() -> list[str]:
 
 def check_regulator_pack_links() -> list[str]:
     errors: list[str] = []
-    for md in sorted((ROOT / "regulator-pack").glob("*.md")):
+    for md in sorted((ROOT / "regulator-sim").glob("*.md")):
         text = md.read_text(encoding="utf-8", errors="ignore")
         for raw_target in MARKDOWN_LINK_RE.findall(text):
             target = raw_target.strip()
@@ -92,9 +92,9 @@ def check_regulator_pack_links() -> list[str]:
     return errors
 
 
-def check_internal_files_non_empty() -> list[str]:
+def check_public_pack_files_non_empty() -> list[str]:
     errors: list[str] = []
-    for path in REQUIRED_INTERNAL_FILES:
+    for path in REQUIRED_PUBLIC_FILES:
         if not path.exists():
             errors.append(f"Missing file: {path.relative_to(ROOT)}")
             continue
@@ -107,7 +107,7 @@ def main() -> int:
     errors = []
     errors.extend(check_schema_fields())
     errors.extend(check_regulator_pack_links())
-    errors.extend(check_internal_files_non_empty())
+    errors.extend(check_public_pack_files_non_empty())
 
     if errors:
         print("FAIL: regulator simulation checks failed")
