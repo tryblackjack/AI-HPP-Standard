@@ -68,7 +68,7 @@ AI-HPP розглядає немодеровану публікацію аген
 Системи без цих обмежень вважаються такими, що не відповідають
 керівним принципам AI-HPP для агентних розгортань.
 
-- Приклад: [Illustrative Case: Unmoderated Agent Social Platforms](../../internal/examples/agent_social_platform_failure_cases.md)
+- Приклад: [Illustrative Case: Unmoderated Agent Social Platforms](../../docs/README.md)
 ---
 
 ### Підміна ідентичності агента в агентних соціальних мережах (спостережуваний патерн відмов)

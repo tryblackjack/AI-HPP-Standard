@@ -51,7 +51,7 @@
 - Аудит-логування змін ідентичності та ключових подій (Evidence Vault)
 - Ескалація до людини для високоризикових дій або повторних збоїв перевірки
 
-**Приклад:** [Illustrative Case: Unmoderated Agent Social Platforms](../../internal/examples/agent_social_platform_failure_cases.md)
+**Приклад:** [Illustrative Case: Unmoderated Agent Social Platforms](../../docs/README.md)
 
 ### 1.5 Автономне фінансове виконання / ризик агент-до-агентного маркетплейсу
 

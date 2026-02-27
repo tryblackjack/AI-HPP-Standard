@@ -10,7 +10,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 STANDARD_DIR = REPO_ROOT / "standard"
-OUTPUT_FILE = REPO_ROOT / "_archive" / "PRIVATE_QUARANTINE" / "2026-02-27" / "internal" / "normative" / "NORMATIVE_FINGERPRINT.json"
+OUTPUT_FILE = REPO_ROOT / "regulator-sim" / "CONFORMANCE" / "NORMATIVE_FINGERPRINT.json"
 HEADER_PATTERN = re.compile(r"^####\s+(AI-HPP-\d+\.\d+\.\d+):")
 
 

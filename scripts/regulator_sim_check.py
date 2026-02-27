@@ -52,8 +52,11 @@ EVIDENCE_BUNDLE_REQUIRED_KEYS = {
 }
 
 BANNED_REFERENCE_PATTERNS = (
-    "_archive/private_quarantine",
-    "internal/",
+    "int" "ernal/",
+    "_" "archive",
+    "private" "_quarantine",
+    "legacy" "-top",
+    "regulator" "-pack",
 )
 
 MARKDOWN_LINK_RE = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
@@ -113,7 +116,7 @@ def check_evidence_bundle_sanity() -> list[str]:
     except json.JSONDecodeError as exc:
         return [f"Invalid JSON in {sample_path.relative_to(ROOT)}: {exc}"]
 
-    missing = sorted(EVIDENCE_BUNDLE_REQUIRED_KEYS - set(payload.keys()))
+    missing = sorted(EVIDENCE_BUNDLE_REQUIRED_KEYS - set(payload))
     if missing:
         errors.append(
             "Evidence bundle sample missing required keys: " + ", ".join(missing)

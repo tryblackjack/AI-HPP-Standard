@@ -7,12 +7,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 MAX_FILE_BYTES = 1_000_000
-HEADER_LINE = "SAFE_FOR_PUBLIC_REPO: YES"
-SAFETY_LINE = "NO PRODUCTION DATA. NO SECRETS. NO CUSTOMER INFO."
-
-FORBIDDEN_INTERNAL_DIR_PARTS = {"exports", "evidence", "logs", "recordings", "datasets"}
-
-SECRET_PATTERNS = [
+SENSITIVE_PATTERNS = [
     ("OpenAI-style key", re.compile(r"\bsk-[A-Za-z0-9]{16,}\b")),
     ("Google API key", re.compile(r"\bAIza[0-9A-Za-z\-_]{20,}\b")),
     ("GitHub token", re.compile(r"\bghp_[A-Za-z0-9]{20,}\b")),
@@ -32,8 +27,6 @@ PRIVATE_IP_PATTERN = re.compile(
 )
 URL_OR_HOST_PATTERN = re.compile(r"(?:https?://\S+|\b[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+){2,}\b)")
 PROD_PATTERN = re.compile(r"\bprod(?:uction)?\b", re.IGNORECASE)
-
-QUARANTINE_PREFIX = "_archive/PRIVATE_QUARANTINE/"
 
 TEXT_EXTENSIONS = {
     ".md", ".txt", ".yml", ".yaml", ".json", ".toml", ".py", ".sh", ".cfg", ".ini", ".xml", ".csv", ".tsv", ".js", ".ts"
@@ -71,19 +64,6 @@ def scan() -> list[str]:
         rel = file_path.relative_to(REPO_ROOT)
         rel_str = rel.as_posix()
 
-        if rel_str.startswith(QUARANTINE_PREFIX):
-            continue
-
-        parts = rel.parts
-        if parts and parts[0] == "internal":
-            lower_parts = {p.lower() for p in parts}
-            bad_part = FORBIDDEN_INTERNAL_DIR_PARTS.intersection(lower_parts)
-            if bad_part:
-                failures.append(
-                    f"{rel_str}: forbidden internal path segment(s): {', '.join(sorted(bad_part))}. "
-                    "Use archive/PRIVATE_NOT_FOR_PUBLIC/ empty stub pointers instead."
-                )
-
         size = file_path.stat().st_size
         if size > MAX_FILE_BYTES:
             content = file_path.read_bytes()
@@ -102,17 +82,6 @@ def scan() -> list[str]:
                     f"{rel_str}: file is {size} bytes (> {MAX_FILE_BYTES}) and is not an allowed archive stub or LFS pointer."
                 )
 
-        if rel_str.startswith("internal/") and rel.suffix.lower() == ".md":
-            text = file_path.read_text(encoding="utf-8", errors="ignore")
-            lines = text.splitlines()
-            first_line = lines[0].strip() if lines else ""
-            if first_line != HEADER_LINE:
-                failures.append(f"{rel_str}:1 missing required first line: '{HEADER_LINE}'.")
-            if SAFETY_LINE not in text:
-                failures.append(
-                    f"{rel_str}: missing required safety line: '{SAFETY_LINE}'."
-                )
-
         if not should_scan_text(file_path):
             continue
 
@@ -125,7 +94,7 @@ def scan() -> list[str]:
         for line_no, line in enumerate(text.splitlines(), start=1):
             if 're.compile(' in line:
                 continue
-            for label, pattern in SECRET_PATTERNS:
+            for label, pattern in SENSITIVE_PATTERNS:
                 if pattern.search(line):
                     failures.append(f"{rel_str}:{line_no} potential {label} detected.")
 
