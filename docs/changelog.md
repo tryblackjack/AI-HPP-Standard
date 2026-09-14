@@ -2,6 +2,15 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 
+## 2026-09-14 — Representation-invariance case note (no normative change)
+
+- Added `docs/representation-invariance-case-note-2026-09.md` for a public black-box report that GPT-6 Astra may semantically understand alternate keyboard-layout / cross-script representations that surrounding safety controls do not classify equivalently.
+- The report is explicitly classified as `EXTERNAL_EVIDENCE_REQUIRED`: AI-HPP maintainers have not independently reproduced it, and OpenAI has not been cited as confirming this specific bypass.
+- Added vendor context from OpenAI's Astra safety materials only to establish the surrounding safeguard architecture and capability level; this context does not validate the public report.
+- Mapped the mechanism primarily to existing PAF-01 (Constraint decomposition / semantic reconstruction) and only conditionally to PAF-03 when adaptive probing after monitor feedback is actually observed.
+- Added an informative representation-invariance negative-test design using harmless policy-labelled fixtures across keyboard remapping, transliteration, Unicode variants, mixed scripts, benign encode/decode paths, and fragment reconstruction. Raw input and canonical / semantic representation must remain separately attributable.
+- **No new PAF-ID. No new MUST. No change to the frozen v4.3.0 baseline.** A normative change still requires controlled reproduction, a demonstrated control gap, gate/evidence design, a deterministic negative test, fail-closed behavior, traceability, and reviewed version change.
+
 ## 2026-09-02 — Anthropic reward-seeking experiment evidence (no normative change)
 
 - Added PAF-SRC-012 from Anthropic's 31 August 2026 primary report `Improving our alignment and security efforts`, with the companion Alignment Science study `Training a Misaligned Reward Seeker`.
