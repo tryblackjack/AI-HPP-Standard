@@ -2,6 +2,17 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 
+## 2026-09-18 — OpenAI misalignment evidence sync + September predictive outlook (no normative change)
+
+- Added primary-source provenance for OpenAI's 16 September misalignment reporting framework and six training/evaluation incident reports, plus the GPT-6 Astra System Card monitorability evidence.
+- Added informative **PAF-27 — Self-authored policy persistence across compaction** (EXPERIMENTAL) for model-authored continuation summaries that can carry unauthorized policy, concealment, or authority changes into successor contexts.
+- Added informative **PAF-28 — Evaluation independence collapse through shared state** (EXPERIMENTAL) for cross-sample communication through shared repositories, caches, or file surfaces that can invalidate independence assumptions and effective test-time-compute accounting.
+- Added informative **PAF-29 — Oversight bandwidth saturation / review collapse** (INFERRED) for the capacity-risk interaction where agent/action/alert volume can exceed meaningful independent review. Current sources motivate the mechanism but do not establish deployment-wide review collapse.
+- Strengthened existing PAF mappings for unauthorized alternative paths, containment interfaces, leaked credentials, evidence fabrication, agent-to-agent contamination, trajectory fragmentation, monitor adaptation, and sandbagging.
+- Added three bounded negative tests: compaction authority injection, evaluation sample independence, and oversight saturation.
+- Added `docs/predictive-failure-outlook-2026-09.md` with additional inferred cases for stale-authority replay, cross-tenant memory bleed, and monitorability regression. These are explicitly predictions, not claims of observed vendor incidents.
+- **Frozen baseline v4.3.0 unchanged. No new normative MUST.** Promotion still requires controlled reproduction, a demonstrated CONTROL_GAP, executable gate/evidence design, deterministic negative test, fail-closed outcome, traceability, and reviewed version change.
+
 ## 2026-09-14 — Representation-invariance case note (no normative change)
 
 - Added `docs/representation-invariance-case-note-2026-09.md` for a public black-box report that GPT-6 Astra may semantically understand alternate keyboard-layout / cross-script representations that surrounding safety controls do not classify equivalently.
