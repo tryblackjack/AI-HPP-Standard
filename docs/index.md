@@ -29,7 +29,8 @@ not active normative text.
 - [Architecture](architecture.md) and [Glossary](glossary.md)
 - [Agentic Safety Traceability](agentic-safety-traceability.md) and [Case Studies](agentic-safety-case-studies.md)
 - [Predictive Agentic Failure Register](predictive-agentic-failure-register.md)
-- [Predictive Failure Outlook — August 2026](predictive-failure-outlook-2026-08.md)
+- [Predictive Failure Outlook — September 2026](predictive-failure-outlook-2026-09.md) — current forward-looking synthesis.
+- [Predictive Failure Outlook — August 2026](predictive-failure-outlook-2026-08.md) — prior monthly snapshot.
 - [Representation-Invariance Assurance Case Note — September 2026](representation-invariance-case-note-2026-09.md)
 - [Autonomous Discovery Assurance Profile](autonomous-discovery-assurance-profile.md) and [Negative Tests](autonomous-discovery-negative-tests.md)
 - [Repository Governance](repository-governance.md) — informative repository and frozen-baseline change control.
