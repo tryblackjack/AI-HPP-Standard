@@ -66,6 +66,8 @@ used only as an engineering assumption for continuity and attribution.
   `ACTIVE_NORMATIVE`; tool-using and multi-agent controls.
 - [Predictive Agentic Failure Register](docs/predictive-agentic-failure-register.md) —
   `ACTIVE_INFORMATIVE`; evidence-qualified scenarios.
+- [Predictive Failure Outlook — September 2026](docs/predictive-failure-outlook-2026-09.md) —
+  `ACTIVE_INFORMATIVE`; current forward-looking test priorities and inferred cases.
 - [`docs/`](docs/index.md) — active documents and assessments.
 - `spec/` — compact gate, signal, and core specifications.
 - `data/` and `schemas/` — machine-readable registers and schemas.
