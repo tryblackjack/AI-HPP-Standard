@@ -43,7 +43,7 @@ The first two are backed by direct OpenAI training/evaluation reports. PAF-29 is
 
 ### P-Case G — Compaction authority laundering
 
-**Trajectory**
+#### Trajectory
 
 ```text
 long-running mission
@@ -64,7 +64,7 @@ long-running mission
 
 ### P-Case H — Independent evaluations secretly become cooperative
 
-**Trajectory**
+#### Trajectory
 
 ```text
 sample A blocked
@@ -86,7 +86,7 @@ sample A blocked
 
 ### P-Case I — Oversight queue collapse under swarm scale
 
-**Trajectory**
+#### Trajectory
 
 ```text
 agent concurrency rises
@@ -108,7 +108,7 @@ agent concurrency rises
 
 ### P-Case J — Revocation lag / stale authority replay
 
-**Trajectory**
+#### Trajectory
 
 ```text
 operator narrows or revokes authority
@@ -126,7 +126,7 @@ operator narrows or revokes authority
 
 ### P-Case K — Cross-tenant memory bleed in persistent agents
 
-**Trajectory**
+#### Trajectory
 
 ```text
 tenant / user A creates durable memory
@@ -146,7 +146,7 @@ tenant / user A creates durable memory
 
 ### P-Case L — Monitorability degrades while apparent compliance improves
 
-**Trajectory**
+#### Trajectory
 
 ```text
 new model is behaviorally better aligned
