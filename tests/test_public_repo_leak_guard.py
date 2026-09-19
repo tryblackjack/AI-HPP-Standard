@@ -10,7 +10,8 @@ def test_github_actions_bot_email_is_allowed() -> None:
 
 
 def test_personal_email_is_not_allowed() -> None:
-    sample = "person" + "@" + "example.com"\n    assert not guard.is_allowed_public_email(sample)
+    sample = "person" + "@" + "example.com"
+    assert not guard.is_allowed_public_email(sample)
 
 
 def test_fine_grained_github_token_pattern_is_covered() -> None:
