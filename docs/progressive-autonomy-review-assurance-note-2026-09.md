@@ -190,7 +190,7 @@ open-source implementation material without separate license confirmation.
 Its design ideas may be evaluated independently; copying or integrating the code
 is outside this note.
 
-Source: https://github.com/unclebob/uml-viewer
+Source: [unclebob/uml-viewer](https://github.com/unclebob/uml-viewer)
 
 ## Negative-test implications
 
