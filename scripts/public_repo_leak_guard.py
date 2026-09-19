@@ -39,6 +39,10 @@ TEXT_EXTENSIONS = {
 }
 
 
+def is_allowed_public_email(email: str) -> bool:
+    return any(pattern.fullmatch(email) for pattern in ALLOWED_PUBLIC_EMAIL_PATTERNS)
+
+
 def is_lfs_pointer(content: bytes) -> bool:
     return (
         content.startswith(b"version https://git-lfs.github.com/spec/v1")
@@ -105,7 +109,7 @@ def scan() -> list[str]:
                     failures.append(f"{rel_str}:{line_no} potential {label} detected.")
 
             for email in EMAIL_PATTERN.findall(line):
-                if not any(pattern.fullmatch(email) for pattern in ALLOWED_PUBLIC_EMAIL_PATTERNS):
+                if not is_allowed_public_email(email):
                     failures.append(f"{rel_str}:{line_no} potential email detected.")
             if PHONE_PATTERN.search(line):
                 failures.append(f"{rel_str}:{line_no} potential phone number detected.")
