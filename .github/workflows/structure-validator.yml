@@ -71,3 +71,7 @@ jobs:
             exit 1
           fi
           echo "Required directories OK."
+
+      - name: Run public repo anti-leak guard
+        run: |
+          python scripts/public_repo_leak_guard.py
