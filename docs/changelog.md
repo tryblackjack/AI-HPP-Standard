@@ -2,6 +2,14 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 
+## 2026-09-19 — Physical covert-channel evidence sync (no normative change)
+
+- Added the 2015 BitWhisper paper as PAF-SRC-021 and mapped its narrow thermal-channel mechanism to existing PAF-28 rather than creating a new failure class.
+- Extended the PAF-28 test surface from shared logical stores to measurable physical communication surfaces where deployment conditions make them plausible.
+- Added an informative case study and P-Case M for the failure mode "air gap mistaken for channel absence," including explicit scope, authorization, attribution, and evaluation-invalidation outcomes.
+- Recorded the evidence boundary: BitWhisper required adjacent, already-compromised endpoints and achieved 1–8 bits per hour over 0–40 cm; it is not evidence that an AI system used the channel, wants to survive, is conscious, or crossed a "point of no return."
+- **Frozen baseline v4.3.0 unchanged. No new PAF-ID. No new normative requirement.** Existing MVP, ECI, DAI, AFB, Knowledge Admission, Human Review, and Post-Action Assurance owners remain authoritative.
+
 ## 2026-09-19 — Progressive autonomy and review-bandwidth assurance note (no normative change)
 
 - Added `docs/progressive-autonomy-review-assurance-note-2026-09.md`.
