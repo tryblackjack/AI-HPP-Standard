@@ -2,6 +2,17 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 
+## 2026-09-19 — Progressive autonomy and review-bandwidth assurance note (no normative change)
+
+- Added `docs/progressive-autonomy-review-assurance-note-2026-09.md`.
+- Clarified that progressive autonomy is an implementation pattern inside an authorized scope: prior success may support a proposal for broader authority but MUST NOT itself grant new authority.
+- Clarified the distinction between continuous human authority and continuous per-action human clicking; existing Human Review, Risk, Scope, Reflexive Safety, and Post-Action Assurance gates remain the control owners.
+- Added risk-proportionate assurance guidance, preserving existing `ICA-REQ-002` / `ICA-REQ-004` ownership rather than creating a parallel risk framework.
+- Added an epistemic-honesty test framing: declared uncertainty and observable error are distinct from fabricated evidence, concealed limitations, or false verification claims. Existing Epistemic Integrity, `MVP-007`, `EAA-REQ-002`, and `PAF-12` remain the owners.
+- Added bounded negative-test guidance for unauthorized autonomy expansion, green-check hidden degradation, review-bandwidth saturation, epistemic honesty, and risk proportionality.
+- Added Bob Martin's actively developed `unclebob/uml-viewer` as an external implementation signal for architecture-level review compression using topology, CRAP, mutation-testing overlays, dependency-rule visualization, drill-down, and an associated coding agent. The note explicitly does not treat the tool as proof of safety or as reusable open-source code; no explicit license was found during review.
+- **Frozen baseline v4.3.0 unchanged. No new PAF-ID. No new normative requirement.** The change maps the new discussion and implementation signal to existing `ICA`, `ECI`, `KAI`, `EAA`, `PAF-11`, `PAF-12`, and `PAF-29` owners.
+
 ## 2026-09-18 — OpenAI misalignment evidence sync + September predictive outlook (no normative change)
 
 - Added primary-source provenance for OpenAI's 16 September misalignment reporting framework and six training/evaluation incident reports, plus the GPT-6 Astra System Card monitorability evidence.

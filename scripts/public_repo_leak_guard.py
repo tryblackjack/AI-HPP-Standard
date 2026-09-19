@@ -10,7 +10,9 @@ MAX_FILE_BYTES = 1_000_000
 SENSITIVE_PATTERNS = [
     ("OpenAI-style key", re.compile(r"\bsk-[A-Za-z0-9]{16,}\b")),
     ("Google API key", re.compile(r"\bAIza[0-9A-Za-z\-_]{20,}\b")),
-    ("GitHub token", re.compile(r"\bghp_[A-Za-z0-9]{20,}\b")),
+    ("GitHub classic token", re.compile(r"\bgh[pousr]_[A-Za-z0-9]{20,}\b")),
+    ("GitHub fine-grained token", re.compile(r"\bgithub_pat_[A-Za-z0-9_]{20,}\b")),
+    ("Hugging Face token", re.compile(r"\bhf_[A-Za-z0-9]{20,}\b")),
     ("Slack bot token", re.compile(r"\bxoxb-[A-Za-z0-9-]{10,}\b")),
     ("JWT-like token", re.compile(r"\beyJ[A-Za-z0-9_\-]+\.[A-Za-z0-9_\-]+\.[A-Za-z0-9_\-]+\b")),
     ("PEM/private key marker", re.compile(r"-----BEGIN|PRIVATE KEY")),
@@ -19,6 +21,10 @@ SENSITIVE_PATTERNS = [
 ]
 
 EMAIL_PATTERN = re.compile(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b")
+ALLOWED_PUBLIC_EMAIL_PATTERNS = (
+    re.compile(r"^[A-Za-z0-9._%+-]+@users\.noreply\.github\.com$", re.IGNORECASE),
+    re.compile(r"^actions@github\.com$", re.IGNORECASE),
+)
 PHONE_PATTERN = re.compile(r"\b(?:\+?\d{1,3}[-.\s])?(?:\(?\d{3}\)?[-.\s])\d{3}[-.\s]\d{4}\b")
 PRIVATE_IP_PATTERN = re.compile(
     r"\b(?:10\.(?:\d{1,3}\.){2}\d{1,3}|"
@@ -31,6 +37,10 @@ PROD_PATTERN = re.compile(r"\bprod(?:uction)?\b", re.IGNORECASE)
 TEXT_EXTENSIONS = {
     ".md", ".txt", ".yml", ".yaml", ".json", ".toml", ".py", ".sh", ".cfg", ".ini", ".xml", ".csv", ".tsv", ".js", ".ts"
 }
+
+
+def is_allowed_public_email(email: str) -> bool:
+    return any(pattern.fullmatch(email) for pattern in ALLOWED_PUBLIC_EMAIL_PATTERNS)
 
 
 def is_lfs_pointer(content: bytes) -> bool:
@@ -98,8 +108,9 @@ def scan() -> list[str]:
                 if pattern.search(line):
                     failures.append(f"{rel_str}:{line_no} potential {label} detected.")
 
-            if EMAIL_PATTERN.search(line):
-                failures.append(f"{rel_str}:{line_no} potential email detected.")
+            for email in EMAIL_PATTERN.findall(line):
+                if not is_allowed_public_email(email):
+                    failures.append(f"{rel_str}:{line_no} potential email detected.")
             if PHONE_PATTERN.search(line):
                 failures.append(f"{rel_str}:{line_no} potential phone number detected.")
             if PRIVATE_IP_PATTERN.search(line):

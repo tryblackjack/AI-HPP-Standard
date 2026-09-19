@@ -68,6 +68,8 @@ used only as an engineering assumption for continuity and attribution.
   `ACTIVE_INFORMATIVE`; evidence-qualified scenarios.
 - [Predictive Failure Outlook — September 2026](docs/predictive-failure-outlook-2026-09.md) —
   `ACTIVE_INFORMATIVE`; current forward-looking test priorities and inferred cases.
+- [Progressive Autonomy, Review Bandwidth, and Epistemic Honesty](docs/progressive-autonomy-review-assurance-note-2026-09.md) —
+  `ACTIVE_INFORMATIVE`; evidence-bounded autonomy, event-triggered human review, review-bandwidth scaling, and epistemic-honesty test guidance.
 - [`docs/`](docs/index.md) — active documents and assessments.
 - `spec/` — compact gate, signal, and core specifications.
 - `data/` and `schemas/` — machine-readable registers and schemas.
