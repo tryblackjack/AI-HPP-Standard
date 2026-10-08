@@ -27,6 +27,13 @@ evidence obligations, and expected fail-closed outcomes in the standard.
 7. Make only a scoped conformance statement containing the fields required by
    the [MVP conformance statement](../docs/ai-hpp-standard.md#mvp-conformance-statement).
 
+## Conformance statement starter
+
+Use the [MVP conformance statement template](mvp-conformance-statement.template.json)
+with its [JSON Schema](../schemas/mvp-conformance-statement.schema.json). The
+template defaults every control to `NOT_ASSESSED` and cannot claim conformance
+until all seven mandatory controls pass with evidence and tests.
+
 ## Minimal gate result shape
 
 This shape is illustrative. Field names may differ when the same semantics and
