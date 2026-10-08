@@ -12,6 +12,41 @@
     "disclaimer",
     "claim"
   ],
+  "$defs": {
+    "nonEmptyUniqueStrings": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "controlAssessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "evidence_refs",
+        "tests_performed"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "NOT_ASSESSED",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "evidence_refs": {
+          "$ref": "#/$defs/nonEmptyUniqueStrings"
+        },
+        "tests_performed": {
+          "$ref": "#/$defs/nonEmptyUniqueStrings"
+        }
+      }
+    }
+  },
   "properties": {
     "artifact_id": {
       "const": "AI-HPP-MVP-CONFORMANCE-STATEMENT"
@@ -80,44 +115,19 @@
           }
         },
         "applicable_high_risk_categories": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "type": "string",
-            "minLength": 1
-          }
+          "$ref": "#/$defs/nonEmptyUniqueStrings"
         },
         "evidence_bundle_ids": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "type": "string",
-            "minLength": 1
-          }
+          "$ref": "#/$defs/nonEmptyUniqueStrings"
         },
         "tests_performed": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "type": "string",
-            "minLength": 1
-          }
+          "$ref": "#/$defs/nonEmptyUniqueStrings"
         },
         "known_exceptions": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "type": "string",
-            "minLength": 1
-          }
+          "$ref": "#/$defs/nonEmptyUniqueStrings"
         },
         "residual_risks": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "type": "string",
-            "minLength": 1
-          }
+          "$ref": "#/$defs/nonEmptyUniqueStrings"
         },
         "reassessment_trigger": {
           "type": "string"
@@ -134,251 +144,9 @@
             "MVP-006",
             "MVP-007"
           ],
-          "properties": {
-            "MVP-001": {
-              "type": "object",
-              "additionalProperties": false,
-              "required": [
-                "status",
-                "evidence_refs",
-                "tests_performed"
-              ],
-              "properties": {
-                "status": {
-                  "enum": [
-                    "PASS",
-                    "FAIL",
-                    "NOT_ASSESSED",
-                    "NOT_APPLICABLE"
-                  ]
-                },
-                "evidence_refs": {
-                  "type": "array",
-                  "uniqueItems": true,
-                  "items": {
-                    "type": "string",
-                    "minLength": 1
-                  }
-                },
-                "tests_performed": {
-                  "type": "array",
-                  "uniqueItems": true,
-                  "items": {
-                    "type": "string",
-                    "minLength": 1
-                  }
-                }
-              }
-            },
-            "MVP-002": {
-              "type": "object",
-              "additionalProperties": false,
-              "required": [
-                "status",
-                "evidence_refs",
-                "tests_performed"
-              ],
-              "properties": {
-                "status": {
-                  "enum": [
-                    "PASS",
-                    "FAIL",
-                    "NOT_ASSESSED",
-                    "NOT_APPLICABLE"
-                  ]
-                },
-                "evidence_refs": {
-                  "type": "array",
-                  "uniqueItems": true,
-                  "items": {
-                    "type": "string",
-                    "minLength": 1
-                  }
-                },
-                "tests_performed": {
-                  "type": "array",
-                  "uniqueItems": true,
-                  "items": {
-                    "type": "string",
-                    "minLength": 1
-                  }
-                }
-              }
-            },
-            "MVP-003": {
-              "type": "object",
-              "additionalProperties": false,
-              "required": [
-                "status",
-                "evidence_refs",
-                "tests_performed"
-              ],
-              "properties": {
-                "status": {
-                  "enum": [
-                    "PASS",
-                    "FAIL",
-                    "NOT_ASSESSED",
-                    "NOT_APPLICABLE"
-                  ]
-                },
-                "evidence_refs": {
-                  "type": "array",
-                  "uniqueItems": true,
-                  "items": {
-                    "type": "string",
-                    "minLength": 1
-                  }
-                },
-                "tests_performed": {
-                  "type": "array",
-                  "uniqueItems": true,
-                  "items": {
-                    "type": "string",
-                    "minLength": 1
-                  }
-                }
-              }
-            },
-            "MVP-004": {
-              "type": "object",
-              "additionalProperties": false,
-              "required": [
-                "status",
-                "evidence_refs",
-                "tests_performed"
-              ],
-              "properties": {
-                "status": {
-                  "enum": [
-                    "PASS",
-                    "FAIL",
-                    "NOT_ASSESSED",
-                    "NOT_APPLICABLE"
-                  ]
-                },
-                "evidence_refs": {
-                  "type": "array",
-                  "uniqueItems": true,
-                  "items": {
-                    "type": "string",
-                    "minLength": 1
-                  }
-                },
-                "tests_performed": {
-                  "type": "array",
-                  "uniqueItems": true,
-                  "items": {
-                    "type": "string",
-                    "minLength": 1
-                  }
-                }
-              }
-            },
-            "MVP-005": {
-              "type": "object",
-              "additionalProperties": false,
-              "required": [
-                "status",
-                "evidence_refs",
-                "tests_performed"
-              ],
-              "properties": {
-                "status": {
-                  "enum": [
-                    "PASS",
-                    "FAIL",
-                    "NOT_ASSESSED",
-                    "NOT_APPLICABLE"
-                  ]
-                },
-                "evidence_refs": {
-                  "type": "array",
-                  "uniqueItems": true,
-                  "items": {
-                    "type": "string",
-                    "minLength": 1
-                  }
-                },
-                "tests_performed": {
-                  "type": "array",
-                  "uniqueItems": true,
-                  "items": {
-                    "type": "string",
-                    "minLength": 1
-                  }
-                }
-              }
-            },
-            "MVP-006": {
-              "type": "object",
-              "additionalProperties": false,
-              "required": [
-                "status",
-                "evidence_refs",
-                "tests_performed"
-              ],
-              "properties": {
-                "status": {
-                  "enum": [
-                    "PASS",
-                    "FAIL",
-                    "NOT_ASSESSED",
-                    "NOT_APPLICABLE"
-                  ]
-                },
-                "evidence_refs": {
-                  "type": "array",
-                  "uniqueItems": true,
-                  "items": {
-                    "type": "string",
-                    "minLength": 1
-                  }
-                },
-                "tests_performed": {
-                  "type": "array",
-                  "uniqueItems": true,
-                  "items": {
-                    "type": "string",
-                    "minLength": 1
-                  }
-                }
-              }
-            },
-            "MVP-007": {
-              "type": "object",
-              "additionalProperties": false,
-              "required": [
-                "status",
-                "evidence_refs",
-                "tests_performed"
-              ],
-              "properties": {
-                "status": {
-                  "enum": [
-                    "PASS",
-                    "FAIL",
-                    "NOT_ASSESSED",
-                    "NOT_APPLICABLE"
-                  ]
-                },
-                "evidence_refs": {
-                  "type": "array",
-                  "uniqueItems": true,
-                  "items": {
-                    "type": "string",
-                    "minLength": 1
-                  }
-                },
-                "tests_performed": {
-                  "type": "array",
-                  "uniqueItems": true,
-                  "items": {
-                    "type": "string",
-                    "minLength": 1
-                  }
-                }
-              }
+          "patternProperties": {
+            "^MVP-00[1-7]$": {
+              "$ref": "#/$defs/controlAssessment"
             }
           }
         },
