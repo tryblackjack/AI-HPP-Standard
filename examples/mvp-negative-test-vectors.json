@@ -1,7 +1,7 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "artifact_id": "AI-HPP-MVP-NEGATIVE-VECTORS",
   "artifact_version": "1.0.0",
+  "schema_version": "1.0.0",
   "standard_version": "4.3.0",
   "status": "ACTIVE_INFORMATIVE",
   "purpose": "Language-neutral negative test inputs for the Minimum Viable AI-HPP Profile. Passing these examples is not runtime conformance evidence.",
