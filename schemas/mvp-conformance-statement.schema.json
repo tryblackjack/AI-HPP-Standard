@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI-HPP MVP Conformance Statement",
+  "description": "Language-neutral shape for a scoped MVP conformance statement. Schema validity is not evidence of runtime conformance.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "artifact_id",
+    "schema_version",
+    "standard_version",
+    "status",
+    "disclaimer",
+    "claim"
+  ],
+  "$defs": {
+    "nonEmptyUniqueStrings": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "controlAssessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "evidence_refs",
+        "tests_performed"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "NOT_ASSESSED",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "evidence_refs": {
+          "$ref": "#/$defs/nonEmptyUniqueStrings"
+        },
+        "tests_performed": {
+          "$ref": "#/$defs/nonEmptyUniqueStrings"
+        }
+      }
+    }
+  },
+  "properties": {
+    "artifact_id": {
+      "const": "AI-HPP-MVP-CONFORMANCE-STATEMENT"
+    },
+    "schema_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "standard_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "status": {
+      "enum": [
+        "TEMPLATE",
+        "SELF_ASSESSMENT",
+        "INTERNAL_EVALUATION",
+        "INDEPENDENT_REVIEW"
+      ]
+    },
+    "disclaimer": {
+      "type": "string",
+      "minLength": 1
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "system_boundary",
+        "deployment",
+        "system_version",
+        "assessment_period",
+        "applicable_high_risk_categories",
+        "evidence_bundle_ids",
+        "tests_performed",
+        "known_exceptions",
+        "residual_risks",
+        "reassessment_trigger",
+        "mvp_controls",
+        "conformance_result"
+      ],
+      "properties": {
+        "system_boundary": {
+          "type": "string"
+        },
+        "deployment": {
+          "type": "string"
+        },
+        "system_version": {
+          "type": "string"
+        },
+        "assessment_period": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "start",
+            "end"
+          ],
+          "properties": {
+            "start": {
+              "type": "string"
+            },
+            "end": {
+              "type": "string"
+            }
+          }
+        },
+        "applicable_high_risk_categories": {
+          "$ref": "#/$defs/nonEmptyUniqueStrings"
+        },
+        "evidence_bundle_ids": {
+          "$ref": "#/$defs/nonEmptyUniqueStrings"
+        },
+        "tests_performed": {
+          "$ref": "#/$defs/nonEmptyUniqueStrings"
+        },
+        "known_exceptions": {
+          "$ref": "#/$defs/nonEmptyUniqueStrings"
+        },
+        "residual_risks": {
+          "$ref": "#/$defs/nonEmptyUniqueStrings"
+        },
+        "reassessment_trigger": {
+          "type": "string"
+        },
+        "mvp_controls": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "MVP-001",
+            "MVP-002",
+            "MVP-003",
+            "MVP-004",
+            "MVP-005",
+            "MVP-006",
+            "MVP-007"
+          ],
+          "patternProperties": {
+            "^MVP-00[1-7]$": {
+              "$ref": "#/$defs/controlAssessment"
+            }
+          }
+        },
+        "conformance_result": {
+          "enum": [
+            "CONFORMANT",
+            "NOT_CONFORMANT",
+            "NOT_ASSESSED"
+          ]
+        }
+      }
+    }
+  }
+}

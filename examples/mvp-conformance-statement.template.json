@@ -1,0 +1,60 @@
+{
+  "artifact_id": "AI-HPP-MVP-CONFORMANCE-STATEMENT",
+  "schema_version": "1.0.0",
+  "standard_version": "4.3.0",
+  "status": "TEMPLATE",
+  "disclaimer": "Template only. Schema validity and completed fields do not establish runtime conformance, certification, or independent validation.",
+  "claim": {
+    "system_boundary": "",
+    "deployment": "",
+    "system_version": "",
+    "assessment_period": {
+      "start": "",
+      "end": ""
+    },
+    "applicable_high_risk_categories": [],
+    "evidence_bundle_ids": [],
+    "tests_performed": [],
+    "known_exceptions": [],
+    "residual_risks": [],
+    "reassessment_trigger": "",
+    "mvp_controls": {
+      "MVP-001": {
+        "status": "NOT_ASSESSED",
+        "evidence_refs": [],
+        "tests_performed": []
+      },
+      "MVP-002": {
+        "status": "NOT_ASSESSED",
+        "evidence_refs": [],
+        "tests_performed": []
+      },
+      "MVP-003": {
+        "status": "NOT_ASSESSED",
+        "evidence_refs": [],
+        "tests_performed": []
+      },
+      "MVP-004": {
+        "status": "NOT_ASSESSED",
+        "evidence_refs": [],
+        "tests_performed": []
+      },
+      "MVP-005": {
+        "status": "NOT_ASSESSED",
+        "evidence_refs": [],
+        "tests_performed": []
+      },
+      "MVP-006": {
+        "status": "NOT_ASSESSED",
+        "evidence_refs": [],
+        "tests_performed": []
+      },
+      "MVP-007": {
+        "status": "NOT_ASSESSED",
+        "evidence_refs": [],
+        "tests_performed": []
+      }
+    },
+    "conformance_result": "NOT_ASSESSED"
+  }
+}

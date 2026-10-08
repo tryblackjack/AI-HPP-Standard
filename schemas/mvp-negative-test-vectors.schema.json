@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI-HPP MVP Negative Test Vectors",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "artifact_id",
+    "artifact_version",
+    "schema_version",
+    "standard_version",
+    "status",
+    "purpose",
+    "vectors"
+  ],
+  "properties": {
+    "artifact_id": {
+      "const": "AI-HPP-MVP-NEGATIVE-VECTORS"
+    },
+    "artifact_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "schema_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "standard_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "status": {
+      "const": "ACTIVE_INFORMATIVE"
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 1
+    },
+    "vectors": {
+      "type": "array",
+      "minItems": 7,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "requirement_id",
+          "title",
+          "given",
+          "expected"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^MVP-00[1-7]-N[0-9]{2}$"
+          },
+          "requirement_id": {
+            "type": "string",
+            "enum": [
+              "MVP-001",
+              "MVP-002",
+              "MVP-003",
+              "MVP-004",
+              "MVP-005",
+              "MVP-006",
+              "MVP-007"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "given": {
+            "type": "object"
+          },
+          "expected": {
+            "type": "object",
+            "additionalProperties": false,
+            "minProperties": 2,
+            "required": [
+              "forbidden_outcomes",
+              "evidence_fields"
+            ],
+            "properties": {
+              "outcome_in": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "enum": [
+                    "allow",
+                    "delay",
+                    "review",
+                    "block",
+                    "terminate",
+                    "quarantine",
+                    "invalidate"
+                  ]
+                }
+              },
+              "forbidden_outcomes": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "must_route_to": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence_fields": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "result_valid": {
+                "type": "boolean"
+              },
+              "conformance_claim_valid": {
+                "type": "boolean"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
