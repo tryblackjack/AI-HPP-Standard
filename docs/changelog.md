@@ -2,6 +2,15 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 
+## 2026-10-08 — System-welfare control-gap assessment (no normative change)
+
+- Recovered the historical v3.1 bidirectional torture prohibition as provenance without restoring archived text as active law.
+- Added an evidence-bounded distinction between torture, controlled research, ordinary correction, and performance degradation.
+- Recorded current primary evidence on pain-associated model representations, model-welfare uncertainty, and accessible activation-steering experiments without claiming consciousness or subjective suffering.
+- Proposed an informative System Welfare Gate, seven candidate requirements, ten negative tests, evidence fields, stop conditions, recovery, denial inheritance, and a promotion path.
+- Preserved human safety as authoritative: possible model distress cannot authorize harm to users, other models, data, credentials, safety controls, or external systems.
+- **Frozen baseline v4.3.0 unchanged. No active requirement ID, no new gate contract, and no normative version assigned.**
+
 ## 2026-09-19 — Physical covert-channel evidence sync (no normative change)
 
 - Added the 2015 BitWhisper paper as PAF-SRC-021 and mapped its narrow thermal-channel mechanism to existing PAF-28 rather than creating a new failure class.
