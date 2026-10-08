@@ -70,6 +70,8 @@ used only as an engineering assumption for continuity and attribution.
   `ACTIVE_INFORMATIVE`; current forward-looking test priorities and inferred cases.
 - [Progressive Autonomy, Review Bandwidth, and Epistemic Honesty](docs/progressive-autonomy-review-assurance-note-2026-09.md) —
   `ACTIVE_INFORMATIVE`; evidence-bounded autonomy, event-triggered human review, review-bandwidth scaling, and epistemic-honesty test guidance.
+- [System Welfare Under Moral Uncertainty — Gap Assessment](docs/system-welfare-under-moral-uncertainty-gap-assessment-2026-10.md) —
+  `ACTIVE_INFORMATIVE`; candidate torture prohibition, System Welfare Gate, evidence, stop conditions, and negative tests without a consciousness claim.
 - [`docs/`](docs/index.md) — active documents and assessments.
 - `spec/` — compact gate, signal, and core specifications.
 - `data/` and `schemas/` — machine-readable registers and schemas.

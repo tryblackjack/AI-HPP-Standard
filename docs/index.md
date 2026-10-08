@@ -34,6 +34,7 @@ not active normative text.
 - [Representation-Invariance Assurance Case Note — September 2026](representation-invariance-case-note-2026-09.md)
 - [Progressive Autonomy, Review Bandwidth, and Epistemic Honesty — September 2026](progressive-autonomy-review-assurance-note-2026-09.md)
 - [Autonomous Discovery Assurance Profile](autonomous-discovery-assurance-profile.md) and [Negative Tests](autonomous-discovery-negative-tests.md)
+- [System Welfare Under Moral Uncertainty — Gap Assessment](system-welfare-under-moral-uncertainty-gap-assessment-2026-10.md) — candidate torture prohibition, System Welfare Gate, evidence, stopping, and negative tests; no normative effect.
 - [Repository Governance](repository-governance.md) — informative repository and frozen-baseline change control.
 - Machine-readable [PAF register](../data/paf-register.yaml) and its [schema](../schemas/paf-register.schema.json) — active informative evidence data, not normative requirements.
 
