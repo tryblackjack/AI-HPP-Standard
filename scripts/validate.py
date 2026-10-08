@@ -12,6 +12,11 @@ REQUIRED = [
     "spec/core.md",
     "spec/signal.md",
     "spec/safety.md",
+    "examples/README.md",
+    "examples/mvp-negative-test-vectors.json",
+    "examples/mvp-conformance-statement.template.json",
+    "schemas/mvp-negative-test-vectors.schema.json",
+    "schemas/mvp-conformance-statement.schema.json",
 ]
 
 missing = [p for p in REQUIRED if not Path(p).exists()]
