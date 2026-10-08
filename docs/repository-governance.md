@@ -2,7 +2,7 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 Owner: Repository maintainers
-Last updated: 2026-08-17
+Last updated: 2026-10-08
 
 ## Purpose
 
@@ -84,6 +84,26 @@ effectiveness.
 `v4.3.0` is an immutable published baseline. Future changes to `main` do not
 retroactively change `v4.3.0`; a defect requires a new version rather than a
 moved tag.
+
+## Implementation compatibility and migration
+
+AI-HPP remains implementation-language neutral. A normative version MUST NOT
+make one programming language, framework, or repository validation script an
+implementation dependency unless a future reviewed profile explicitly declares
+that scope.
+
+Stable requirement IDs MUST NOT be silently repurposed. A future normative
+version that changes an existing requirement, gate outcome, evidence obligation,
+or conformance condition MUST publish migration notes identifying:
+
+- added, changed, deprecated, and removed requirement IDs;
+- changed gate outcomes or evidence fields;
+- affected language-neutral test vectors; and
+- whether the change is compatible or requires implementation work.
+
+The previous published version remains immutable. Machine-readable examples and
+test vectors MAY evolve as informative adoption aids, but they do not alter a
+normative requirement and do not establish runtime conformance by themselves.
 
 After freeze, new incidents MAY update informative PAF evidence, case studies,
 predictive outlooks, mappings, and explanatory material, but MUST NOT silently
