@@ -105,7 +105,7 @@ Changes become canonical only through the review and precedence process. See
 Run `python scripts/validate.py` for the lightweight structure check. The deeper
 configured checks are `python scripts/check_agentic_safety.py`,
 `python scripts/check_paf_register.py`, `python scripts/check_discovery_profile.py`,
-and `PYTHONPATH=. pytest tests`. These checks establish repository consistency,
+and `python scripts/check_implementation_assets.py`, followed by\n`PYTHONPATH=. pytest tests`. These checks establish repository consistency,
 not runtime AI-HPP conformance.
 
 > Reviewers are encouraged to attack the assumptions, negative tests, gate
