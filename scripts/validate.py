@@ -21,6 +21,8 @@ REQUIRED = [
     "schemas/mvp-negative-test-vectors.schema.json",
     "schemas/mvp-conformance-statement.schema.json",
     "schemas/replication-persistence-negative-test-vectors.schema.json",
+    "formal/README.md",
+    "formal/ai_hpp_core.qnt",
 ]
 
 missing = [p for p in REQUIRED if not Path(p).exists()]

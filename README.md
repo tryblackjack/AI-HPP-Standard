@@ -15,6 +15,10 @@ The [language-neutral implementation starter](examples/README.md) and
 shortest current adoption path. They are reusable implementation aids, not
 runtime conformance evidence.
 
+The [formal core model](formal/README.md) expresses seven stable assurance
+invariants as an executable Quint state machine. It supplies machine-checkable
+pseudocode without imposing a runtime language, library, or internal architecture.
+
 ## Start here
 
 1. Implement the seven [Minimum Viable AI-HPP Profile controls](docs/ai-hpp-standard.md#minimum-viable-ai-hpp-profile-mvp).
@@ -91,6 +95,7 @@ used only as an engineering assumption for continuity and attribution.
 - `spec/` — compact gate, signal, and core specifications.
 - `data/` and `schemas/` — machine-readable registers and schemas.
 - `scripts/` and `tests/` — structural and consistency checks.
+- `formal/` — executable language-neutral assurance model and bounded verification.
 - `examples/` — integration examples, not conformance evidence.
 - `archive/` — historical material, not active normative text.
 

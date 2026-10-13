@@ -49,3 +49,5 @@ credentials/
 credentials.*
 dumps/
 *.dump
+# Formal verification output
+_apalache-out/
