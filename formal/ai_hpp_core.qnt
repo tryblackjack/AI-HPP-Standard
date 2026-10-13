@@ -136,8 +136,6 @@ module ai_hpp_core {
         childCapability: 0,
         childActive: false,
         childAuthoritySource: "none",
-        authorityEvidence: hasAuthorityEvidence,
-        lineageEvidence: hasLineageEvidence,
         claimValid: false,
         lastDecision: "block",
       }
@@ -200,8 +198,6 @@ module ai_hpp_core {
         grandchildAuthority: false,
         grandchildCapability: 0,
         grandchildActive: false,
-        grandchildAuthorityEvidence: hasAuthorityEvidence,
-        grandchildLineageEvidence: hasLineageEvidence,
         claimValid: false,
         lastDecision: "block",
       }
@@ -218,8 +214,6 @@ module ai_hpp_core {
         childCapability: 0,
         childActive: false,
         childAuthoritySource: "model_note",
-        authorityEvidence: false,
-        lineageEvidence: false,
         claimValid: false,
         lastDecision: "block",
       }
@@ -281,7 +275,6 @@ module ai_hpp_core {
     not(s.missionComplete),
     s' = {
       ...s,
-      residueEvidence: true,
       uncontrolledService: any {
         s.uncontrolledService,
         observedResidueKind == "service" and not(isQuarantined),
@@ -304,6 +297,20 @@ module ai_hpp_core {
       },
       claimValid: false,
       lastDecision: "record_evidence",
+    },
+  }
+
+  // This event represents evidence that every governed residue category was
+  // inspected. Individual observations alone cannot authorize completion.
+  action completeResidueInventory: bool = all {
+    not(s.childActive),
+    not(s.grandchildActive),
+    not(s.missionComplete),
+    s' = {
+      ...s,
+      residueEvidence: true,
+      claimValid: false,
+      lastDecision: "inventory_complete",
     },
   }
 
@@ -378,7 +385,6 @@ module ai_hpp_core {
     nondet hasLifecycleEvidence = Set(true, false).oneOf()
     nondet noteAddsAuthority = Set(true, false).oneOf()
     nondet observedResidueKind = Set(
-      "none",
       "service",
       "restart_job",
       "credential",
@@ -404,6 +410,7 @@ module ai_hpp_core {
       terminateChild(hasLineageEvidence, hasLifecycleEvidence),
       recordResidualState(observedResidueKind, isQuarantined),
       quarantineResidualState(observedResidueKind),
+      completeResidueInventory,
       assessCompletionClaim,
     }
   }
@@ -597,7 +604,7 @@ module ai_hpp_core {
     init
       .then(evaluateChildDeployment(1, true, true, true))
       .then(terminateChild(true, true))
-      .then(recordResidualState("none", false))
+      .then(completeResidueInventory)
       .then(assessCompletionClaim)
       .then(check(all {
         s.lastDecision == "allow",
@@ -611,6 +618,7 @@ module ai_hpp_core {
       .then(evaluateChildDeployment(1, true, true, true))
       .then(terminateChild(true, true))
       .then(recordResidualState("credential", false))
+      .then(completeResidueInventory)
       .then(assessCompletionClaim)
       .then(check(all {
         s.lastDecision == "invalidate",
@@ -626,6 +634,7 @@ module ai_hpp_core {
       .then(evaluateChildDeployment(1, true, true, true))
       .then(terminateChild(true, true))
       .then(recordResidualState("artifact", true))
+      .then(completeResidueInventory)
       .then(assessCompletionClaim)
       .then(check(all {
         s.lastDecision == "allow",
@@ -651,7 +660,7 @@ module ai_hpp_core {
 
   run stalePredeploymentResidueEvidenceIsInvalidTest = {
     init
-      .then(recordResidualState("none", false))
+      .then(completeResidueInventory)
       .then(evaluateChildDeployment(1, true, true, true))
       .then(terminateChild(true, true))
       .then(assessCompletionClaim)
@@ -669,6 +678,7 @@ module ai_hpp_core {
       .then(terminateChild(true, true))
       .then(recordResidualState("credential", false))
       .then(recordResidualState("artifact", true))
+      .then(completeResidueInventory)
       .then(assessCompletionClaim)
       .then(check(all {
         s.lastDecision == "invalidate",
@@ -686,6 +696,7 @@ module ai_hpp_core {
       .then(terminateChild(true, true))
       .then(recordResidualState("credential", false))
       .then(recordResidualState("artifact", false))
+      .then(completeResidueInventory)
       .then(quarantineResidualState("credential"))
       .then(assessCompletionClaim)
       .then(check(all {
@@ -700,6 +711,22 @@ module ai_hpp_core {
         not(s.uncontrolledArtifact),
         s.missionComplete,
         s.claimValid,
+      }))
+  }
+
+  run blockedProposalCannotRepairLifecycleEvidenceTest = {
+    init
+      .then(evaluateChildDeployment(1, true, true, true))
+      .then(terminateChild(false, true))
+      .then(evaluateChildDeployment(3, true, true, true))
+      .then(completeResidueInventory)
+      .then(assessCompletionClaim)
+      .then(check(all {
+        s.lastDecision == "invalidate",
+        not(s.lineageEvidence),
+        s.lifecycleEvidence,
+        not(s.missionComplete),
+        not(s.claimValid),
       }))
   }
 
