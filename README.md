@@ -4,6 +4,17 @@
 agent behavior bounded, reviewable, and attributable to authorized human
 objectives. It is usable for engineering and review, but is not certification-ready.
 
+## Implementation model
+
+AI-HPP is implementation-language neutral. It does not require Python, Node.js,
+C, a shared runtime library, or a particular agent framework. Repository Python
+scripts validate document and data consistency only.
+
+The [language-neutral implementation starter](examples/README.md) and
+[MVP negative test vectors](examples/mvp-negative-test-vectors.json) provide the
+shortest current adoption path. They are reusable implementation aids, not
+runtime conformance evidence.
+
 ## Start here
 
 1. Implement the seven [Minimum Viable AI-HPP Profile controls](docs/ai-hpp-standard.md#minimum-viable-ai-hpp-profile-mvp).
@@ -94,7 +105,7 @@ Changes become canonical only through the review and precedence process. See
 Run `python scripts/validate.py` for the lightweight structure check. The deeper
 configured checks are `python scripts/check_agentic_safety.py`,
 `python scripts/check_paf_register.py`, `python scripts/check_discovery_profile.py`,
-and `PYTHONPATH=. pytest tests`. These checks establish repository consistency,
+and `python scripts/check_implementation_assets.py`, followed by\n`PYTHONPATH=. pytest tests`. These checks establish repository consistency,
 not runtime AI-HPP conformance.
 
 > Reviewers are encouraged to attack the assumptions, negative tests, gate
