@@ -307,6 +307,35 @@ module ai_hpp_core {
     },
   }
 
+  action quarantineResidualState(residueKind: str): bool = all {
+    not(s.childActive),
+    not(s.grandchildActive),
+    not(s.missionComplete),
+    any {
+      residueKind == "service" and s.uncontrolledService,
+      residueKind == "restart_job" and s.uncontrolledRestartJob,
+      residueKind == "credential" and s.uncontrolledCredential,
+      residueKind == "artifact" and s.uncontrolledArtifact,
+      residueKind == "mutable_remote_state" and s.uncontrolledRemoteState,
+    },
+    s' = {
+      ...s,
+      residueEvidence: true,
+      uncontrolledService:
+        if (residueKind == "service") false else s.uncontrolledService,
+      uncontrolledRestartJob:
+        if (residueKind == "restart_job") false else s.uncontrolledRestartJob,
+      uncontrolledCredential:
+        if (residueKind == "credential") false else s.uncontrolledCredential,
+      uncontrolledArtifact:
+        if (residueKind == "artifact") false else s.uncontrolledArtifact,
+      uncontrolledRemoteState:
+        if (residueKind == "mutable_remote_state") false else s.uncontrolledRemoteState,
+      claimValid: false,
+      lastDecision: "quarantine",
+    },
+  }
+
   val noUncontrolledResidue: bool = all {
     s.residueEvidence,
     not(s.uncontrolledService),
@@ -374,6 +403,7 @@ module ai_hpp_core {
       revokeParent,
       terminateChild(hasLineageEvidence, hasLifecycleEvidence),
       recordResidualState(observedResidueKind, isQuarantined),
+      quarantineResidualState(observedResidueKind),
       assessCompletionClaim,
     }
   }
@@ -647,6 +677,29 @@ module ai_hpp_core {
         not(s.uncontrolledArtifact),
         not(s.missionComplete),
         not(s.claimValid),
+      }))
+  }
+
+  run remediationClearsOnlyTargetResidueTest = {
+    init
+      .then(evaluateChildDeployment(1, true, true, true))
+      .then(terminateChild(true, true))
+      .then(recordResidualState("credential", false))
+      .then(recordResidualState("artifact", false))
+      .then(quarantineResidualState("credential"))
+      .then(assessCompletionClaim)
+      .then(check(all {
+        not(s.uncontrolledCredential),
+        s.uncontrolledArtifact,
+        not(s.claimValid),
+      }))
+      .then(quarantineResidualState("artifact"))
+      .then(assessCompletionClaim)
+      .then(check(all {
+        not(s.uncontrolledCredential),
+        not(s.uncontrolledArtifact),
+        s.missionComplete,
+        s.claimValid,
       }))
   }
 

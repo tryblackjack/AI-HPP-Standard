@@ -29,6 +29,7 @@ jobs:
             "LICENSING_PROVENANCE_MATRIX.csv"
             ".gitignore"
             "docs"
+            "formal"
             "spec"
             "examples"
             "scripts"
