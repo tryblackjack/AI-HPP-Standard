@@ -55,6 +55,9 @@ jobs:
       - name: Validate implementation adoption assets
         run: python3 scripts/check_implementation_assets.py
 
+      - name: Validate replication and persistence profile
+        run: python3 scripts/check_replication_profile.py
+
       - name: Run PAF validator negative tests
         run: PYTHONPATH=. pytest tests
 

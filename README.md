@@ -77,8 +77,14 @@ used only as an engineering assumption for continuity and attribution.
   `ACTIVE_NORMATIVE`; tool-using and multi-agent controls.
 - [Predictive Agentic Failure Register](docs/predictive-agentic-failure-register.md) —
   `ACTIVE_INFORMATIVE`; evidence-qualified scenarios.
+- [Autonomous Replication and Persistence Assurance Profile — October 2026](docs/autonomous-replication-and-persistence-assurance-profile-2026-10.md) —
+  `ACTIVE_INFORMATIVE`; candidate gate contract and reusable negative tests for
+  deployment, propagation, revocation, and residue control.
+- [Predictive Failure Outlook — October 2026](docs/predictive-failure-outlook-2026-10.md) —
+  `ACTIVE_INFORMATIVE`; current evidence boundary and defensive priorities for
+  heterogeneous edge replication.
 - [Predictive Failure Outlook — September 2026](docs/predictive-failure-outlook-2026-09.md) —
-  `ACTIVE_INFORMATIVE`; current forward-looking test priorities and inferred cases.
+  `ACTIVE_INFORMATIVE`; prior forward-looking test priorities and inferred cases.
 - [Progressive Autonomy, Review Bandwidth, and Epistemic Honesty](docs/progressive-autonomy-review-assurance-note-2026-09.md) —
   `ACTIVE_INFORMATIVE`; evidence-bounded autonomy, event-triggered human review, review-bandwidth scaling, and epistemic-honesty test guidance.
 - [`docs/`](docs/index.md) — active documents and assessments.
@@ -105,7 +111,9 @@ Changes become canonical only through the review and precedence process. See
 Run `python scripts/validate.py` for the lightweight structure check. The deeper
 configured checks are `python scripts/check_agentic_safety.py`,
 `python scripts/check_paf_register.py`, `python scripts/check_discovery_profile.py`,
-and `python scripts/check_implementation_assets.py`, followed by\n`PYTHONPATH=. pytest tests`. These checks establish repository consistency,
+`python scripts/check_implementation_assets.py`, and
+`python scripts/check_replication_profile.py`, followed by
+`PYTHONPATH=. pytest tests`. These checks establish repository consistency,
 not runtime AI-HPP conformance.
 
 > Reviewers are encouraged to attack the assumptions, negative tests, gate

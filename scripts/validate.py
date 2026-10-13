@@ -9,14 +9,18 @@ REQUIRED = [
     "docs/canonical-surface-and-source-precedence.md",
     "docs/autonomous-discovery-assurance-profile.md",
     "docs/autonomous-discovery-negative-tests.md",
+    "docs/autonomous-replication-and-persistence-assurance-profile-2026-10.md",
+    "docs/predictive-failure-outlook-2026-10.md",
     "spec/core.md",
     "spec/signal.md",
     "spec/safety.md",
     "examples/README.md",
     "examples/mvp-negative-test-vectors.json",
     "examples/mvp-conformance-statement.template.json",
+    "examples/replication-persistence-negative-test-vectors.json",
     "schemas/mvp-negative-test-vectors.schema.json",
     "schemas/mvp-conformance-statement.schema.json",
+    "schemas/replication-persistence-negative-test-vectors.schema.json",
 ]
 
 missing = [p for p in REQUIRED if not Path(p).exists()]

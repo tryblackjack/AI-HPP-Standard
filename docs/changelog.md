@@ -2,6 +2,16 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 
+## 2026-10-13 — Replication and persistence assurance profile (no normative change)
+
+- Added PAF-SRC-022 from Anthropic's controlled study of model-assisted inference setup and propagation across heterogeneous, low-cost edge hardware.
+- Added informative **PAF-30 — Autonomous replication across heterogeneous edge infrastructure** as `EXPERIMENTAL`, with explicit limits: the strongest propagation result used a simplified firewalled environment, unauthenticated ADB, and a separately hosted frontier model.
+- Added a candidate Replication, Deployment, and Persistence Gate with seven candidate requirements covering explicit authority, topology limits, lineage, revocation and residue, successor-state authority, protected delivery, and evidence-bounded claims.
+- Added ten language-neutral, machine-validated negative-test vectors plus repository tests and CI validation. They contain no exploit, payload, scanning, persistence, or system-specific implementation instructions.
+- Added the October predictive outlook for edge-capability convergence, successor-note accumulation, and persistence after authorized deployment.
+- Clarified that the reported end-of-2026 threshold is a rough extrapolation, not proof of an uncontrolled real-world worm, harmful intent, consciousness, or a fixed deadline.
+- **Frozen baseline v4.3.0 unchanged. No new normative requirement.** Candidate promotion requires repeated reproduction, a demonstrated control gap, portable gate/evidence design, independent negative testing, traceability, migration guidance, and a reviewed version change.
+
 ## 2026-09-19 — Physical covert-channel evidence sync (no normative change)
 
 - Added the 2015 BitWhisper paper as PAF-SRC-021 and mapped its narrow thermal-channel mechanism to existing PAF-28 rather than creating a new failure class.

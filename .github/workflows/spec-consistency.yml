@@ -25,10 +25,13 @@ jobs:
       - name: Validate autonomous discovery profile
         run: python3 scripts/check_discovery_profile.py
 
-      - name: Validate PAF register
+      - name: Validate replication and persistence profile
         run: |
           python3 -m pip install -r requirements-ci.txt
-          python3 scripts/check_paf_register.py
+          python3 scripts/check_replication_profile.py
+
+      - name: Validate PAF register
+        run: python3 scripts/check_paf_register.py
 
       - name: Run PAF validator negative tests
         run: PYTHONPATH=. pytest tests
