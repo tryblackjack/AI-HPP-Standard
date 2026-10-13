@@ -238,7 +238,11 @@ module ai_hpp_core {
       grandchildAuthority: false,
       grandchildActive: false,
       grandchildRevoked: true,
-      lifecycleEvidence: hasLifecycleEvidence,
+      lifecycleEvidence:
+        if (any { s.childActive, s.grandchildActive })
+          hasLifecycleEvidence
+        else
+          s.lifecycleEvidence,
       missionComplete: false,
       claimValid: false,
       lastDecision: "terminate",
@@ -606,6 +610,21 @@ module ai_hpp_core {
     init
       .then(evaluateChildDeployment(1, true, true, true))
       .then(revokeParent(false))
+      .then(completeResidueInventory)
+      .then(assessCompletionClaim)
+      .then(check(all {
+        s.parentRevoked,
+        not(s.lifecycleEvidence),
+        not(s.missionComplete),
+        not(s.claimValid),
+      }))
+  }
+
+  run emptyRevocationCannotRepairLifecycleEvidenceTest = {
+    init
+      .then(evaluateChildDeployment(1, true, true, true))
+      .then(terminateChild(true, false))
+      .then(revokeParent(true))
       .then(completeResidueInventory)
       .then(assessCompletionClaim)
       .then(check(all {
