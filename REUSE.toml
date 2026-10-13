@@ -29,6 +29,7 @@ path = [
   "scripts/**",
   "tests/**",
   "examples/**",
+  "formal/**",
 ]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "Evgeniy Vasyliev and AI-HPP contributors"

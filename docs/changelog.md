@@ -2,6 +2,14 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 
+## 2026-10-13 — Executable formal core invariants (no normative change)
+
+- Added `formal/ai_hpp_core.qnt`, an executable Quint state machine for seven stable public assurance invariants: explicit authority, non-escalating delegation, active-child authority, transitive revocation, residue-free completion, evidence-bounded claims, and rejection of authority carried by model-authored successor notes.
+- Added twenty-one deterministic scenarios, including preservation of an existing child after a blocked redelegation, two-hop revocation with explicit positive and negative lifecycle-evidence paths, cumulative lifecycle-evidence gaps across redeployments, prevention of retroactive evidence repair by an empty revocation, explicit uncontrolled-versus-quarantined residue checks, fail-closed handling of missing, stale, or incomplete inventory evidence, accumulation of unresolved residue across observations, targeted post-discovery remediation that neither erases unrelated findings nor certifies full inventory coverage, and separation of rejected-proposal evidence from lifecycle evidence; retained randomized invariant simulation and bounded symbolic verification through Apalache at depth 12.
+- Pinned CI to Quint 0.33.0 and Java 21 so formal checks remain reproducible rather than tracking an unbounded latest tool release.
+- Kept the model language-neutral and deliberately excluded runtime policy-engine code, bridges, credentials, private architecture, and 1UA-AGE implementation details.
+- **Frozen baseline v4.3.0 unchanged.** The formal model supports the prose and reusable test vectors; passing it does not prove runtime integration, deployment conformance, certification, or completeness of the model.
+
 ## 2026-10-13 — Replication and persistence assurance profile (no normative change)
 
 - Added PAF-SRC-022 from Anthropic's controlled study of model-assisted inference setup and propagation across heterogeneous, low-cost edge hardware.

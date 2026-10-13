@@ -27,6 +27,7 @@ not active normative text.
 ## Active informative material
 
 - [Architecture](architecture.md) and [Glossary](glossary.md)
+- [Formal Core Invariants](../formal/README.md) — executable Quint model of seven public assurance invariants; informative, not a runtime implementation.
 - [Agentic Safety Traceability](agentic-safety-traceability.md) and [Case Studies](agentic-safety-case-studies.md)
 - [Predictive Agentic Failure Register](predictive-agentic-failure-register.md)
 - [Autonomous Replication and Persistence Assurance Profile — October 2026](autonomous-replication-and-persistence-assurance-profile-2026-10.md) — candidate gate, evidence contract, and reusable negative tests; no normative change.

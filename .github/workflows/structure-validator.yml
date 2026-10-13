@@ -30,6 +30,7 @@ jobs:
             "LICENSING_PROVENANCE_MATRIX.csv"
             ".gitignore"
             "docs"
+            "formal"
             "spec"
             "scripts"
             "examples"
@@ -60,7 +61,7 @@ jobs:
       - name: Validate required directories
         run: |
           missing=0
-          for dir in docs spec scripts examples archive; do
+          for dir in docs formal spec scripts examples archive; do
             if [ ! -d "$dir" ]; then
               echo "::error::Missing required directory: $dir"
               missing=1

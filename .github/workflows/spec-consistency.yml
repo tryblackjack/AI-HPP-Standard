@@ -12,6 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set up Java for bounded formal verification
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
       - name: Run markdownlint
         run: |
           npx markdownlint-cli@0.42.0 --ignore "archive/**" "**/*.md" || {
@@ -32,6 +38,13 @@ jobs:
 
       - name: Validate PAF register
         run: python3 scripts/check_paf_register.py
+
+      - name: Validate formal core invariants
+        run: |
+          npx -y @informalsystems/quint@0.33.0 typecheck formal/ai_hpp_core.qnt
+          npx -y @informalsystems/quint@0.33.0 test formal/ai_hpp_core.qnt --max-samples=1 --backend=typescript
+          npx -y @informalsystems/quint@0.33.0 run formal/ai_hpp_core.qnt --invariant=allCoreInvariants --max-samples=5000 --max-steps=12 --backend=typescript
+          npx -y @informalsystems/quint@0.33.0 verify formal/ai_hpp_core.qnt --invariant=allCoreInvariants --max-steps=12
 
       - name: Run PAF validator negative tests
         run: PYTHONPATH=. pytest tests
