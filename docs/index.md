@@ -29,7 +29,9 @@ not active normative text.
 - [Architecture](architecture.md) and [Glossary](glossary.md)
 - [Agentic Safety Traceability](agentic-safety-traceability.md) and [Case Studies](agentic-safety-case-studies.md)
 - [Predictive Agentic Failure Register](predictive-agentic-failure-register.md)
-- [Predictive Failure Outlook — September 2026](predictive-failure-outlook-2026-09.md) — current forward-looking synthesis.
+- [Autonomous Replication and Persistence Assurance Profile — October 2026](autonomous-replication-and-persistence-assurance-profile-2026-10.md) — candidate gate, evidence contract, and reusable negative tests; no normative change.
+- [Predictive Failure Outlook — October 2026](predictive-failure-outlook-2026-10.md) — current forward-looking synthesis.
+- [Predictive Failure Outlook — September 2026](predictive-failure-outlook-2026-09.md) — prior monthly snapshot.
 - [Predictive Failure Outlook — August 2026](predictive-failure-outlook-2026-08.md) — prior monthly snapshot.
 - [Representation-Invariance Assurance Case Note — September 2026](representation-invariance-case-note-2026-09.md)
 - [Progressive Autonomy, Review Bandwidth, and Epistemic Honesty — September 2026](progressive-autonomy-review-assurance-note-2026-09.md)

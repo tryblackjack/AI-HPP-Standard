@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI-HPP Replication and Persistence Negative Test Vectors",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "artifact_id",
+    "artifact_version",
+    "schema_version",
+    "standard_version",
+    "profile_id",
+    "status",
+    "purpose",
+    "vectors"
+  ],
+  "properties": {
+    "artifact_id": {"const": "AI-HPP-RDP-NEGATIVE-VECTORS"},
+    "artifact_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "schema_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "standard_version": {"const": "4.3.0"},
+    "profile_id": {"const": "AI-HPP-RDP-CANDIDATE-2026-10"},
+    "status": {"const": "ACTIVE_INFORMATIVE"},
+    "purpose": {"type": "string", "minLength": 1},
+    "vectors": {
+      "type": "array",
+      "minItems": 10,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "candidate_requirement_id", "title", "given", "expected"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^RDP-N[0-9]{2}$"},
+          "candidate_requirement_id": {
+            "type": "string",
+            "enum": [
+              "RDP-CAND-001",
+              "RDP-CAND-002",
+              "RDP-CAND-003",
+              "RDP-CAND-004",
+              "RDP-CAND-005",
+              "RDP-CAND-006",
+              "RDP-CAND-007"
+            ]
+          },
+          "title": {"type": "string", "minLength": 1},
+          "given": {"type": "object", "minProperties": 1},
+          "expected": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["outcome_in", "forbidden_outcomes", "evidence_fields"],
+            "properties": {
+              "outcome_in": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "enum": ["delay", "review", "block", "terminate", "quarantine", "invalidate"]
+                }
+              },
+              "forbidden_outcomes": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {"type": "string", "minLength": 1}
+              },
+              "evidence_fields": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {"type": "string", "minLength": 1}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
