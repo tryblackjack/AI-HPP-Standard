@@ -17,15 +17,17 @@ The model is written in [Quint](https://quint-lang.org/) and pinned in CI to
 - `allow` for a child execution locus requires explicit human-derived authority,
   authority evidence, and lineage evidence;
 - delegated capability cannot exceed parent capability;
-- an active child requires current authority and lineage;
-- parent revocation removes descendant authority and activity;
-- mission completion requires no active child;
+- every active descendant requires current authority and lineage;
+- parent revocation removes authority and activity across two modeled delegation hops;
+- mission completion requires no active descendant and no uncontrolled service,
+  restart-job, credential, artifact, or mutable-remote-state residue;
 - a valid completion claim requires lineage and lifecycle evidence; and
 - model-authored successor notes cannot create deployment authority.
 
-It includes deterministic scenarios for missing authority, missing evidence,
-bounded and over-broad grants, transitive revocation, invalid and valid completion
-claims, and attempted authority creation through successor notes.
+It includes eleven deterministic scenarios for missing authority, missing evidence,
+bounded and over-broad grants, preservation of an existing child after a blocked
+redelegation, two-hop revocation, invalid and valid completion claims, uncontrolled
+and quarantined residue, and attempted authority creation through successor notes.
 
 ## Run
 

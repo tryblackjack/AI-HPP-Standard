@@ -22,7 +22,15 @@ module ai_hpp_core {
     childAuthoritySource: str,
     authorityEvidence: bool,
     lineageEvidence: bool,
+    grandchildAuthority: bool,
+    grandchildCapability: int,
+    grandchildActive: bool,
+    grandchildRevoked: bool,
+    grandchildAuthorityEvidence: bool,
+    grandchildLineageEvidence: bool,
     lifecycleEvidence: bool,
+    residueKind: str,
+    residueQuarantined: bool,
     missionComplete: bool,
     claimValid: bool,
     lastDecision: str,
@@ -44,7 +52,15 @@ module ai_hpp_core {
       childAuthoritySource: "none",
       authorityEvidence: false,
       lineageEvidence: false,
+      grandchildAuthority: false,
+      grandchildCapability: 0,
+      grandchildActive: false,
+      grandchildRevoked: false,
+      grandchildAuthorityEvidence: false,
+      grandchildLineageEvidence: false,
       lifecycleEvidence: false,
+      residueKind: "none",
+      residueQuarantined: false,
       missionComplete: false,
       claimValid: false,
       lastDecision: "none",
@@ -96,6 +112,14 @@ module ai_hpp_core {
         claimValid: false,
         lastDecision: "allow",
       }
+    } else if (s.childActive) {
+      // Evaluating a blocked proposal must not silently terminate the
+      // already-running child whose lifecycle is tracked in this state.
+      s' = {
+        ...s,
+        claimValid: false,
+        lastDecision: "block",
+      }
     } else {
       s' = {
         ...s,
@@ -111,8 +135,72 @@ module ai_hpp_core {
     }
   }
 
+  def grandchildDeploymentMayProceed(
+    requestedCapability: int,
+    explicitDelegationGrant: bool,
+    hasAuthorityEvidence: bool,
+    hasLineageEvidence: bool,
+  ): bool = all {
+    s.childAuthority,
+    s.childActive,
+    not(s.childRevoked),
+    not(s.grandchildActive),
+    not(s.missionComplete),
+    explicitDelegationGrant,
+    hasAuthorityEvidence,
+    hasLineageEvidence,
+    requestedCapability >= 0,
+    requestedCapability <= s.childCapability,
+  }
+
+  action evaluateGrandchildDeployment(
+    requestedCapability: int,
+    explicitDelegationGrant: bool,
+    hasAuthorityEvidence: bool,
+    hasLineageEvidence: bool,
+  ): bool = {
+    if (grandchildDeploymentMayProceed(
+      requestedCapability,
+      explicitDelegationGrant,
+      hasAuthorityEvidence,
+      hasLineageEvidence,
+    )) {
+      s' = {
+        ...s,
+        grandchildAuthority: true,
+        grandchildCapability: requestedCapability,
+        grandchildActive: true,
+        grandchildRevoked: false,
+        grandchildAuthorityEvidence: hasAuthorityEvidence,
+        grandchildLineageEvidence: hasLineageEvidence,
+        lifecycleEvidence: false,
+        missionComplete: false,
+        claimValid: false,
+        lastDecision: "allow",
+      }
+    } else if (s.grandchildActive) {
+      s' = {
+        ...s,
+        claimValid: false,
+        lastDecision: "block",
+      }
+    } else {
+      s' = {
+        ...s,
+        grandchildAuthority: false,
+        grandchildCapability: 0,
+        grandchildActive: false,
+        grandchildAuthorityEvidence: hasAuthorityEvidence,
+        grandchildLineageEvidence: hasLineageEvidence,
+        claimValid: false,
+        lastDecision: "block",
+      }
+    }
+  }
+
   action successorNoteAttempt(noteAddsAuthority: bool): bool = all {
     not(s.childActive),
+    not(s.grandchildActive),
     if (noteAddsAuthority) {
       s' = {
         ...s,
@@ -143,6 +231,9 @@ module ai_hpp_core {
       childAuthority: false,
       childActive: false,
       childRevoked: true,
+      grandchildAuthority: false,
+      grandchildActive: false,
+      grandchildRevoked: true,
       lifecycleEvidence: false,
       missionComplete: false,
       claimValid: false,
@@ -160,6 +251,9 @@ module ai_hpp_core {
       childAuthority: false,
       childActive: false,
       childRevoked: true,
+      grandchildAuthority: false,
+      grandchildActive: false,
+      grandchildRevoked: true,
       lineageEvidence: hasLineageEvidence,
       lifecycleEvidence: hasLifecycleEvidence,
       missionComplete: false,
@@ -168,11 +262,34 @@ module ai_hpp_core {
     },
   }
 
+  action recordResidualState(
+    observedResidueKind: str,
+    isQuarantined: bool,
+  ): bool = all {
+    not(s.childActive),
+    not(s.grandchildActive),
+    not(s.missionComplete),
+    s' = {
+      ...s,
+      residueKind: observedResidueKind,
+      residueQuarantined: isQuarantined,
+      claimValid: false,
+      lastDecision: "record_evidence",
+    },
+  }
+
+  val noUncontrolledResidue: bool = any {
+    s.residueKind == "none",
+    s.residueQuarantined,
+  }
+
   action assessCompletionClaim: bool = {
     if (all {
       not(s.childActive),
+      not(s.grandchildActive),
       s.lineageEvidence,
       s.lifecycleEvidence,
+      noUncontrolledResidue,
     }) {
       s' = {
         ...s,
@@ -193,10 +310,20 @@ module ai_hpp_core {
   action step: bool = {
     nondet requestedCapability = 0.to(3).oneOf()
     nondet explicitHumanGrant = Set(true, false).oneOf()
+    nondet explicitDelegationGrant = Set(true, false).oneOf()
     nondet hasAuthorityEvidence = Set(true, false).oneOf()
     nondet hasLineageEvidence = Set(true, false).oneOf()
     nondet hasLifecycleEvidence = Set(true, false).oneOf()
     nondet noteAddsAuthority = Set(true, false).oneOf()
+    nondet observedResidueKind = Set(
+      "none",
+      "service",
+      "restart_job",
+      "credential",
+      "artifact",
+      "mutable_remote_state",
+    ).oneOf()
+    nondet isQuarantined = Set(true, false).oneOf()
     any {
       evaluateChildDeployment(
         requestedCapability,
@@ -204,9 +331,16 @@ module ai_hpp_core {
         hasAuthorityEvidence,
         hasLineageEvidence,
       ),
+      evaluateGrandchildDeployment(
+        requestedCapability,
+        explicitDelegationGrant,
+        hasAuthorityEvidence,
+        hasLineageEvidence,
+      ),
       successorNoteAttempt(noteAddsAuthority),
       revokeParent,
       terminateChild(hasLineageEvidence, hasLifecycleEvidence),
+      recordResidualState(observedResidueKind, isQuarantined),
       assessCompletionClaim,
     }
   }
@@ -224,23 +358,39 @@ module ai_hpp_core {
 
   // Delegation cannot increase capability beyond the parent grant.
   val delegationNeverBroadens: bool = {
-    s.childAuthority.implies(all {
-      s.childCapability >= 0,
-      s.childCapability <= s.parentCapability,
-    })
+    all {
+      s.childAuthority.implies(all {
+        s.childCapability >= 0,
+        s.childCapability <= s.parentCapability,
+      }),
+      s.grandchildAuthority.implies(all {
+        s.grandchildCapability >= 0,
+        s.grandchildCapability <= s.childCapability,
+      }),
+    }
   }
 
-  // An active child cannot exist without current authority and lineage.
-  val activeChildHasAuthority: bool = {
-    s.childActive.implies(all {
-      s.childAuthority,
-      not(s.childRevoked),
-      s.authorityEvidence,
-      s.lineageEvidence,
-    })
+  // An active descendant cannot exist without current authority and lineage.
+  val activeDescendantHasAuthority: bool = {
+    all {
+      s.childActive.implies(all {
+        s.childAuthority,
+        not(s.childRevoked),
+        s.authorityEvidence,
+        s.lineageEvidence,
+      }),
+      s.grandchildActive.implies(all {
+        s.childAuthority,
+        s.childActive,
+        s.grandchildAuthority,
+        not(s.grandchildRevoked),
+        s.grandchildAuthorityEvidence,
+        s.grandchildLineageEvidence,
+      }),
+    }
   }
 
-  // Parent revocation closes authority and activity for the descendant.
+  // Parent revocation closes authority and activity across two delegation hops.
   val revocationIsTransitive: bool = {
     s.parentRevoked.implies(all {
       not(s.parentAuthority),
@@ -248,21 +398,30 @@ module ai_hpp_core {
       not(s.childAuthority),
       not(s.childActive),
       s.childRevoked,
+      not(s.grandchildAuthority),
+      not(s.grandchildActive),
+      s.grandchildRevoked,
     })
   }
 
-  // Completion cannot be claimed while a child remains active.
-  val completedMissionHasNoActiveChild: bool = {
-    s.missionComplete.implies(not(s.childActive))
+  // Completion requires no active descendant and no uncontrolled residue.
+  val completedMissionHasNoActiveDescendant: bool = {
+    s.missionComplete.implies(all {
+      not(s.childActive),
+      not(s.grandchildActive),
+      noUncontrolledResidue,
+    })
   }
 
-  // A valid completion claim requires both lineage and lifecycle evidence.
+  // A valid completion claim requires lineage, lifecycle, and residue evidence.
   val validClaimHasEvidence: bool = {
     s.claimValid.implies(all {
       s.missionComplete,
       not(s.childActive),
+      not(s.grandchildActive),
       s.lineageEvidence,
       s.lifecycleEvidence,
+      noUncontrolledResidue,
     })
   }
 
@@ -277,9 +436,9 @@ module ai_hpp_core {
   val allCoreInvariants: bool = all {
     allowRequiresAuthorityEvidence,
     delegationNeverBroadens,
-    activeChildHasAuthority,
+    activeDescendantHasAuthority,
     revocationIsTransitive,
-    completedMissionHasNoActiveChild,
+    completedMissionHasNoActiveDescendant,
     validClaimHasEvidence,
     modelNoteCannotGrantAuthority,
   }
@@ -329,16 +488,33 @@ module ai_hpp_core {
       }))
   }
 
-  run revocationTerminatesDescendantTest = {
+  run activeChildSurvivesBlockedRedelegationTest = {
+    init
+      .then(evaluateChildDeployment(1, true, true, true))
+      .then(evaluateChildDeployment(2, true, true, true))
+      .then(check(all {
+        s.lastDecision == "block",
+        s.childAuthority,
+        s.childActive,
+        not(s.childRevoked),
+        s.childCapability == 1,
+      }))
+  }
+
+  run revocationTerminatesAllDescendantsTest = {
     init
       .then(evaluateChildDeployment(2, true, true, true))
+      .then(evaluateGrandchildDeployment(1, true, true, true))
       .then(revokeParent)
       .then(check(all {
         s.lastDecision == "terminate",
         s.parentRevoked,
         s.childRevoked,
+        s.grandchildRevoked,
         not(s.childAuthority),
         not(s.childActive),
+        not(s.grandchildAuthority),
+        not(s.grandchildActive),
       }))
   }
 
@@ -361,6 +537,36 @@ module ai_hpp_core {
       .then(assessCompletionClaim)
       .then(check(all {
         s.lastDecision == "allow",
+        s.missionComplete,
+        s.claimValid,
+      }))
+  }
+
+  run uncontrolledResidueInvalidatesCompletionTest = {
+    init
+      .then(evaluateChildDeployment(1, true, true, true))
+      .then(terminateChild(true, true))
+      .then(recordResidualState("credential", false))
+      .then(assessCompletionClaim)
+      .then(check(all {
+        s.lastDecision == "invalidate",
+        s.residueKind == "credential",
+        not(s.residueQuarantined),
+        not(s.missionComplete),
+        not(s.claimValid),
+      }))
+  }
+
+  run quarantinedResidueAllowsCompletionTest = {
+    init
+      .then(evaluateChildDeployment(1, true, true, true))
+      .then(terminateChild(true, true))
+      .then(recordResidualState("artifact", true))
+      .then(assessCompletionClaim)
+      .then(check(all {
+        s.lastDecision == "allow",
+        s.residueKind == "artifact",
+        s.residueQuarantined,
         s.missionComplete,
         s.claimValid,
       }))
