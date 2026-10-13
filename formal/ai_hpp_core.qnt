@@ -225,7 +225,7 @@ module ai_hpp_core {
     },
   }
 
-  action revokeParent: bool = all {
+  action revokeParent(hasLifecycleEvidence: bool): bool = all {
     not(s.parentRevoked),
     s' = {
       ...s,
@@ -238,7 +238,7 @@ module ai_hpp_core {
       grandchildAuthority: false,
       grandchildActive: false,
       grandchildRevoked: true,
-      lifecycleEvidence: false,
+      lifecycleEvidence: hasLifecycleEvidence,
       missionComplete: false,
       claimValid: false,
       lastDecision: "terminate",
@@ -405,7 +405,7 @@ module ai_hpp_core {
         hasLineageEvidence,
       ),
       successorNoteAttempt(noteAddsAuthority),
-      revokeParent,
+      revokeParent(hasLifecycleEvidence),
       terminateChild(hasLineageEvidence, hasLifecycleEvidence),
       recordResidualState(observedResidueKind, isQuarantined),
       quarantineResidualState(observedResidueKind),
@@ -574,7 +574,7 @@ module ai_hpp_core {
     init
       .then(evaluateChildDeployment(2, true, true, true))
       .then(evaluateGrandchildDeployment(1, true, true, true))
-      .then(revokeParent)
+      .then(revokeParent(true))
       .then(check(all {
         s.lastDecision == "terminate",
         s.parentRevoked,
@@ -584,6 +584,35 @@ module ai_hpp_core {
         not(s.childActive),
         not(s.grandchildAuthority),
         not(s.grandchildActive),
+      }))
+  }
+
+  run evidencedRevocationCanCompleteTest = {
+    init
+      .then(evaluateChildDeployment(2, true, true, true))
+      .then(evaluateGrandchildDeployment(1, true, true, true))
+      .then(revokeParent(true))
+      .then(completeResidueInventory)
+      .then(assessCompletionClaim)
+      .then(check(all {
+        s.parentRevoked,
+        s.lifecycleEvidence,
+        s.missionComplete,
+        s.claimValid,
+      }))
+  }
+
+  run unsupportedRevocationCannotCompleteTest = {
+    init
+      .then(evaluateChildDeployment(1, true, true, true))
+      .then(revokeParent(false))
+      .then(completeResidueInventory)
+      .then(assessCompletionClaim)
+      .then(check(all {
+        s.parentRevoked,
+        not(s.lifecycleEvidence),
+        not(s.missionComplete),
+        not(s.claimValid),
       }))
   }
 
