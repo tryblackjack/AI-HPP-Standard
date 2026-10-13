@@ -24,7 +24,7 @@ The model is written in [Quint](https://quint-lang.org/) and pinned in CI to
 - a valid completion claim requires lineage and lifecycle evidence; and
 - model-authored successor notes cannot create deployment authority.
 
-It includes twenty deterministic scenarios for missing authority, missing evidence,
+It includes twenty-one deterministic scenarios for missing authority, missing evidence,
 bounded and over-broad grants, preservation of an existing child after a blocked
 redelegation, two-hop revocation, invalid and valid completion claims, uncontrolled
 and quarantined residue, missing residue-reconciliation evidence, preservation of
@@ -37,7 +37,9 @@ quarantine of one observed category is sufficient. Parent revocation also carrie
 explicit lifecycle evidence: evidenced revocation can complete after residue
 reconciliation, while unevidenced revocation remains fail-closed. Revocation evidence
 applies only when the transition actually stops an active descendant and cannot
-retroactively repair an earlier unevidenced termination.
+retroactively repair an earlier unevidenced termination. Unresolved lifecycle or
+lineage evidence also accumulates across reuse of the child slot, so a later valid
+deployment cannot overwrite an earlier evidence gap.
 
 ## Run
 

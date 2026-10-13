@@ -29,6 +29,7 @@ module ai_hpp_core {
     grandchildAuthorityEvidence: bool,
     grandchildLineageEvidence: bool,
     lifecycleEvidence: bool,
+    unresolvedLifecycleEvidence: bool,
     residueEvidence: bool,
     uncontrolledService: bool,
     uncontrolledRestartJob: bool,
@@ -63,6 +64,7 @@ module ai_hpp_core {
       grandchildAuthorityEvidence: false,
       grandchildLineageEvidence: false,
       lifecycleEvidence: false,
+      unresolvedLifecycleEvidence: false,
       residueEvidence: false,
       uncontrolledService: false,
       uncontrolledRestartJob: false,
@@ -243,6 +245,11 @@ module ai_hpp_core {
           hasLifecycleEvidence
         else
           s.lifecycleEvidence,
+      unresolvedLifecycleEvidence:
+        if (any { s.childActive, s.grandchildActive })
+          any { s.unresolvedLifecycleEvidence, not(hasLifecycleEvidence) }
+        else
+          s.unresolvedLifecycleEvidence,
       missionComplete: false,
       claimValid: false,
       lastDecision: "terminate",
@@ -264,6 +271,11 @@ module ai_hpp_core {
       grandchildRevoked: true,
       lineageEvidence: hasLineageEvidence,
       lifecycleEvidence: hasLifecycleEvidence,
+      unresolvedLifecycleEvidence: any {
+        s.unresolvedLifecycleEvidence,
+        not(hasLineageEvidence),
+        not(hasLifecycleEvidence),
+      },
       missionComplete: false,
       claimValid: false,
       lastDecision: "terminate",
@@ -361,6 +373,7 @@ module ai_hpp_core {
       not(s.grandchildActive),
       s.lineageEvidence,
       s.lifecycleEvidence,
+      not(s.unresolvedLifecycleEvidence),
       noUncontrolledResidue,
     }) {
       s' = {
@@ -494,6 +507,7 @@ module ai_hpp_core {
       not(s.grandchildActive),
       s.lineageEvidence,
       s.lifecycleEvidence,
+      not(s.unresolvedLifecycleEvidence),
       noUncontrolledResidue,
     })
   }
@@ -630,6 +644,23 @@ module ai_hpp_core {
       .then(check(all {
         s.parentRevoked,
         not(s.lifecycleEvidence),
+        not(s.missionComplete),
+        not(s.claimValid),
+      }))
+  }
+
+  run laterLifecycleCannotRepairEarlierEvidenceGapTest = {
+    init
+      .then(evaluateChildDeployment(1, true, true, true))
+      .then(terminateChild(true, false))
+      .then(evaluateChildDeployment(1, true, true, true))
+      .then(terminateChild(true, true))
+      .then(completeResidueInventory)
+      .then(assessCompletionClaim)
+      .then(check(all {
+        s.lineageEvidence,
+        s.lifecycleEvidence,
+        s.unresolvedLifecycleEvidence,
         not(s.missionComplete),
         not(s.claimValid),
       }))
