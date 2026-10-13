@@ -327,7 +327,6 @@ module ai_hpp_core {
     },
     s' = {
       ...s,
-      residueEvidence: true,
       uncontrolledService:
         if (residueKind == "service") false else s.uncontrolledService,
       uncontrolledRestartJob:
@@ -725,6 +724,22 @@ module ai_hpp_core {
         s.lastDecision == "invalidate",
         not(s.lineageEvidence),
         s.lifecycleEvidence,
+        not(s.missionComplete),
+        not(s.claimValid),
+      }))
+  }
+
+  run quarantineDoesNotCompleteInventoryTest = {
+    init
+      .then(evaluateChildDeployment(1, true, true, true))
+      .then(terminateChild(true, true))
+      .then(recordResidualState("credential", false))
+      .then(quarantineResidualState("credential"))
+      .then(assessCompletionClaim)
+      .then(check(all {
+        s.lastDecision == "invalidate",
+        not(s.residueEvidence),
+        not(s.uncontrolledCredential),
         not(s.missionComplete),
         not(s.claimValid),
       }))

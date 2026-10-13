@@ -24,7 +24,7 @@ The model is written in [Quint](https://quint-lang.org/) and pinned in CI to
 - a valid completion claim requires lineage and lifecycle evidence; and
 - model-authored successor notes cannot create deployment authority.
 
-It includes sixteen deterministic scenarios for missing authority, missing evidence,
+It includes seventeen deterministic scenarios for missing authority, missing evidence,
 bounded and over-broad grants, preservation of an existing child after a blocked
 redelegation, two-hop revocation, invalid and valid completion claims, uncontrolled
 and quarantined residue, missing residue-reconciliation evidence, preservation of
@@ -32,7 +32,8 @@ unresolved residue across later observations, rejection of stale pre-deployment
 residue evidence, targeted post-discovery remediation, separation of rejected-
 proposal evidence from lifecycle evidence, and attempted authority creation through
 successor notes. A completion claim also requires an explicit completed-inventory
-event covering all governed residue categories; a single observation is insufficient.
+event covering all governed residue categories; neither a single observation nor
+quarantine of one observed category is sufficient.
 
 ## Run
 
