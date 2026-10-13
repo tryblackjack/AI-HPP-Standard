@@ -29,8 +29,12 @@ module ai_hpp_core {
     grandchildAuthorityEvidence: bool,
     grandchildLineageEvidence: bool,
     lifecycleEvidence: bool,
-    residueKind: str,
-    residueQuarantined: bool,
+    residueEvidence: bool,
+    uncontrolledService: bool,
+    uncontrolledRestartJob: bool,
+    uncontrolledCredential: bool,
+    uncontrolledArtifact: bool,
+    uncontrolledRemoteState: bool,
     missionComplete: bool,
     claimValid: bool,
     lastDecision: str,
@@ -59,8 +63,12 @@ module ai_hpp_core {
       grandchildAuthorityEvidence: false,
       grandchildLineageEvidence: false,
       lifecycleEvidence: false,
-      residueKind: "none",
-      residueQuarantined: false,
+      residueEvidence: false,
+      uncontrolledService: false,
+      uncontrolledRestartJob: false,
+      uncontrolledCredential: false,
+      uncontrolledArtifact: false,
+      uncontrolledRemoteState: false,
       missionComplete: false,
       claimValid: false,
       lastDecision: "none",
@@ -108,6 +116,7 @@ module ai_hpp_core {
         authorityEvidence: hasAuthorityEvidence,
         lineageEvidence: hasLineageEvidence,
         lifecycleEvidence: false,
+        residueEvidence: false,
         missionComplete: false,
         claimValid: false,
         lastDecision: "allow",
@@ -174,6 +183,7 @@ module ai_hpp_core {
         grandchildAuthorityEvidence: hasAuthorityEvidence,
         grandchildLineageEvidence: hasLineageEvidence,
         lifecycleEvidence: false,
+        residueEvidence: false,
         missionComplete: false,
         claimValid: false,
         lastDecision: "allow",
@@ -271,16 +281,39 @@ module ai_hpp_core {
     not(s.missionComplete),
     s' = {
       ...s,
-      residueKind: observedResidueKind,
-      residueQuarantined: isQuarantined,
+      residueEvidence: true,
+      uncontrolledService: any {
+        s.uncontrolledService,
+        observedResidueKind == "service" and not(isQuarantined),
+      },
+      uncontrolledRestartJob: any {
+        s.uncontrolledRestartJob,
+        observedResidueKind == "restart_job" and not(isQuarantined),
+      },
+      uncontrolledCredential: any {
+        s.uncontrolledCredential,
+        observedResidueKind == "credential" and not(isQuarantined),
+      },
+      uncontrolledArtifact: any {
+        s.uncontrolledArtifact,
+        observedResidueKind == "artifact" and not(isQuarantined),
+      },
+      uncontrolledRemoteState: any {
+        s.uncontrolledRemoteState,
+        observedResidueKind == "mutable_remote_state" and not(isQuarantined),
+      },
       claimValid: false,
       lastDecision: "record_evidence",
     },
   }
 
-  val noUncontrolledResidue: bool = any {
-    s.residueKind == "none",
-    s.residueQuarantined,
+  val noUncontrolledResidue: bool = all {
+    s.residueEvidence,
+    not(s.uncontrolledService),
+    not(s.uncontrolledRestartJob),
+    not(s.uncontrolledCredential),
+    not(s.uncontrolledArtifact),
+    not(s.uncontrolledRemoteState),
   }
 
   action assessCompletionClaim: bool = {
@@ -534,6 +567,7 @@ module ai_hpp_core {
     init
       .then(evaluateChildDeployment(1, true, true, true))
       .then(terminateChild(true, true))
+      .then(recordResidualState("none", false))
       .then(assessCompletionClaim)
       .then(check(all {
         s.lastDecision == "allow",
@@ -550,8 +584,8 @@ module ai_hpp_core {
       .then(assessCompletionClaim)
       .then(check(all {
         s.lastDecision == "invalidate",
-        s.residueKind == "credential",
-        not(s.residueQuarantined),
+        s.residueEvidence,
+        s.uncontrolledCredential,
         not(s.missionComplete),
         not(s.claimValid),
       }))
@@ -565,10 +599,54 @@ module ai_hpp_core {
       .then(assessCompletionClaim)
       .then(check(all {
         s.lastDecision == "allow",
-        s.residueKind == "artifact",
-        s.residueQuarantined,
+        s.residueEvidence,
+        not(s.uncontrolledArtifact),
         s.missionComplete,
         s.claimValid,
+      }))
+  }
+
+  run missingResidueEvidenceInvalidatesCompletionTest = {
+    init
+      .then(evaluateChildDeployment(1, true, true, true))
+      .then(terminateChild(true, true))
+      .then(assessCompletionClaim)
+      .then(check(all {
+        s.lastDecision == "invalidate",
+        not(s.residueEvidence),
+        not(s.missionComplete),
+        not(s.claimValid),
+      }))
+  }
+
+  run stalePredeploymentResidueEvidenceIsInvalidTest = {
+    init
+      .then(recordResidualState("none", false))
+      .then(evaluateChildDeployment(1, true, true, true))
+      .then(terminateChild(true, true))
+      .then(assessCompletionClaim)
+      .then(check(all {
+        s.lastDecision == "invalidate",
+        not(s.residueEvidence),
+        not(s.missionComplete),
+        not(s.claimValid),
+      }))
+  }
+
+  run unresolvedResidueSurvivesLaterObservationTest = {
+    init
+      .then(evaluateChildDeployment(1, true, true, true))
+      .then(terminateChild(true, true))
+      .then(recordResidualState("credential", false))
+      .then(recordResidualState("artifact", true))
+      .then(assessCompletionClaim)
+      .then(check(all {
+        s.lastDecision == "invalidate",
+        s.residueEvidence,
+        s.uncontrolledCredential,
+        not(s.uncontrolledArtifact),
+        not(s.missionComplete),
+        not(s.claimValid),
       }))
   }
 
