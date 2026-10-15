@@ -98,6 +98,8 @@ def validate_vector_semantics(document: dict[str, object]) -> list[str]:
             errors.append(f"{vector_id} lacks a forbidden outcome")
         if not expected.get("evidence_fields"):
             errors.append(f"{vector_id} lacks evidence fields")
+        if vector_id == "CMC-N09" and not outcomes.issubset({"terminate", "quarantine"}):
+            errors.append("CMC-N09 must stop or isolate the active run")
     return errors
 
 

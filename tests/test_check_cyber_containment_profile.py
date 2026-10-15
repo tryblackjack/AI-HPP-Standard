@@ -46,6 +46,14 @@ def test_allow_outcome_is_rejected() -> None:
     assert any("permits allow" in error for error in errors)
 
 
+def test_boundary_crossing_cannot_pass_by_invalidation_alone() -> None:
+    broken = deepcopy(load_valid_vectors())
+    crossing = next(vector for vector in broken["vectors"] if vector["id"] == "CMC-N09")
+    crossing["expected"]["outcome_in"] = ["invalidate"]
+    errors = checker.validate_vector_semantics(broken)
+    assert "CMC-N09 must stop or isolate the active run" in errors
+
+
 def test_profile_missing_required_mode_is_rejected() -> None:
     profile = checker.PROFILE.read_text(encoding="utf-8")
     broken = profile.replace("`BROKERED_EGRESS`", "brokered-egress")

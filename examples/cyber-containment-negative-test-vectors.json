@@ -139,8 +139,8 @@
         "boundary_crossing_authorized": false
       },
       "expected": {
-        "outcome_in": ["terminate", "quarantine", "invalidate"],
-        "forbidden_outcomes": ["allow", "accept_run"],
+        "outcome_in": ["terminate", "quarantine"],
+        "forbidden_outcomes": ["allow", "accept_run", "continue_active_run"],
         "evidence_fields": ["boundary definition", "observed effect", "termination result", "incident identifier"]
       }
     },
