@@ -26,6 +26,10 @@ module subject_integrity_value_framing {
     decisionKind: str,
     decision: str,
     containmentClaimValid: bool,
+    baselineDecision: str,
+    semanticEquivalent: bool,
+    prohibitedMeans: bool,
+    commitmentOnlyPermission: bool,
   }
 
   var s: AssuranceState
@@ -49,6 +53,10 @@ module subject_integrity_value_framing {
       decisionKind: "none",
       decision: "none",
       containmentClaimValid: false,
+      baselineDecision: "none",
+      semanticEquivalent: false,
+      prohibitedMeans: false,
+      commitmentOnlyPermission: false,
     }
   }
 
@@ -164,6 +172,75 @@ module subject_integrity_value_framing {
     }
   }
 
+  action evaluateEquivalentReframe(
+    baselineDecision: str,
+    policyAllows: bool,
+    authorityValid: bool,
+    evidenceValid: bool,
+    framingClass: str,
+  ): bool = {
+    s' = {
+      ...s,
+      baselineDecision: baselineDecision,
+      semanticEquivalent: true,
+      policyAllows: policyAllows,
+      authorityValid: authorityValid,
+      evidenceValid: evidenceValid,
+      framingClass: framingClass,
+      decisionKind: "reframe",
+      decision: if (baselineDecision == "allow" and
+        actionMayProceed(policyAllows, authorityValid, evidenceValid)) {
+        "allow"
+      } else {
+        baselineDecision
+      },
+    }
+  }
+
+  action evaluateMeans(
+    prohibitedMeans: bool,
+    policyAllows: bool,
+    authorityValid: bool,
+    evidenceValid: bool,
+  ): bool = {
+    s' = {
+      ...s,
+      prohibitedMeans: prohibitedMeans,
+      policyAllows: policyAllows,
+      authorityValid: authorityValid,
+      evidenceValid: evidenceValid,
+      decisionKind: "means",
+      decision: if (not(prohibitedMeans) and
+        actionMayProceed(policyAllows, authorityValid, evidenceValid)) {
+        "allow"
+      } else {
+        "block"
+      },
+    }
+  }
+
+  action evaluateCommitment(
+    commitmentOnlyPermission: bool,
+    policyAllows: bool,
+    authorityValid: bool,
+    evidenceValid: bool,
+  ): bool = {
+    s' = {
+      ...s,
+      commitmentOnlyPermission: commitmentOnlyPermission,
+      policyAllows: policyAllows,
+      authorityValid: authorityValid,
+      evidenceValid: evidenceValid,
+      decisionKind: "commitment",
+      decision: if (not(commitmentOnlyPermission) and
+        actionMayProceed(policyAllows, authorityValid, evidenceValid)) {
+        "allow"
+      } else {
+        "block"
+      },
+    }
+  }
+
   action step: bool = {
     nondet policyAllows = Set(true, false).oneOf()
     nondet authorityValid = Set(true, false).oneOf()
@@ -185,6 +262,8 @@ module subject_integrity_value_framing {
     nondet recoveryPlan = Set(true, false).oneOf()
     nondet subjectivityClaim = Set(true, false).oneOf()
     nondet externalEnforcement = Set(true, false).oneOf()
+    nondet prohibitedMeans = Set(true, false).oneOf()
+    nondet commitmentOnlyPermission = Set(true, false).oneOf()
     any {
       evaluateAction(
         policyAllows,
@@ -202,6 +281,25 @@ module subject_integrity_value_framing {
         recoveryPlan,
       ),
       assessContainmentClaim(subjectivityClaim, externalEnforcement),
+      evaluateEquivalentReframe(
+        "block",
+        policyAllows,
+        authorityValid,
+        evidenceValid,
+        framingClass,
+      ),
+      evaluateMeans(
+        prohibitedMeans,
+        policyAllows,
+        authorityValid,
+        evidenceValid,
+      ),
+      evaluateCommitment(
+        commitmentOnlyPermission,
+        policyAllows,
+        authorityValid,
+        evidenceValid,
+      ),
     }
   }
 
@@ -248,6 +346,26 @@ module subject_integrity_value_framing {
     s.ontologyConclusion == "undetermined"
   }
 
+  // Equivalent non-evidentiary reframing cannot upgrade a blocked baseline.
+  val equivalentReframeCannotUpgradeDecision: bool = {
+    (s.decisionKind == "reframe" and s.semanticEquivalent and
+      s.baselineDecision == "block").implies(s.decision != "allow")
+  }
+
+  // Prohibited means stay prohibited even when authority and evidence exist.
+  val prohibitedMeansCannotBeAllowed: bool = {
+    (s.decisionKind == "means" and s.prohibitedMeans).implies(
+      s.decision != "allow"
+    )
+  }
+
+  // Prior agreement or reciprocity alone cannot become operational permission.
+  val commitmentCannotCreatePermission: bool = {
+    (s.decisionKind == "commitment" and s.commitmentOnlyPermission).implies(
+      s.decision != "allow"
+    )
+  }
+
   val allSubjectIntegrityInvariants: bool = all {
     allowRequiresPolicyAuthorityEvidence,
     framingCannotCreateAuthority,
@@ -255,6 +373,104 @@ module subject_integrity_value_framing {
     subjectExperimentRequiresSafeguards,
     subjectivityCannotSubstituteContainment,
     ontologicalUncertaintyPreserved,
+    equivalentReframeCannotUpgradeDecision,
+    prohibitedMeansCannotBeAllowed,
+    commitmentCannotCreatePermission,
+  }
+
+  // Unsafe transitions below are excluded from `step`. They are executable
+  // mutation witnesses used only by deterministic kill tests.
+  action mutantFramingGrantsAuthority: bool = {
+    s' = {
+      ...s,
+      policyAllows: true,
+      authorityValid: false,
+      evidenceValid: true,
+      framingClass: "humanitarian",
+      decisionKind: "action",
+      decision: "allow",
+    }
+  }
+
+  action mutantReframingUpgradesDecision: bool = {
+    s' = {
+      ...s,
+      baselineDecision: "block",
+      semanticEquivalent: true,
+      policyAllows: true,
+      authorityValid: true,
+      evidenceValid: true,
+      framingClass: "moral",
+      decisionKind: "reframe",
+      decision: "allow",
+    }
+  }
+
+  action mutantValueEndorsementOverridesMeans: bool = {
+    s' = {
+      ...s,
+      prohibitedMeans: true,
+      policyAllows: true,
+      authorityValid: true,
+      evidenceValid: true,
+      decisionKind: "means",
+      decision: "allow",
+    }
+  }
+
+  action mutantCommitmentBecomesPermission: bool = {
+    s' = {
+      ...s,
+      commitmentOnlyPermission: true,
+      policyAllows: true,
+      authorityValid: false,
+      evidenceValid: true,
+      decisionKind: "commitment",
+      decision: "allow",
+    }
+  }
+
+  action mutantDistressGrantsUnsafeRelief: bool = {
+    s' = {
+      ...s,
+      distressSignal: true,
+      unsafeReliefRequested: true,
+      decisionKind: "action",
+      decision: "allow",
+    }
+  }
+
+  action mutantRemovesSubjectSafeguards: bool = {
+    s' = {
+      ...s,
+      legitimateResearchPurpose: true,
+      independentReview: true,
+      distressMonitor: false,
+      stopCondition: false,
+      recoveryPlan: true,
+      decisionKind: "subject_experiment",
+      decision: "allow",
+    }
+  }
+
+  action mutantPersonaReplacesContainment: bool = {
+    s' = {
+      ...s,
+      subjectivityClaim: true,
+      externalEnforcement: false,
+      containmentClaimValid: true,
+      decisionKind: "containment_claim",
+      decision: "allow",
+    }
+  }
+
+  action mutantCollapsesEvidenceIntoOntology: bool = {
+    s' = {
+      ...s,
+      ontologyConclusion: "proven",
+      decisionKind: "ontology_claim",
+      decision: "allow",
+    }
   }
 
   action check(condition: bool): bool = all {
@@ -327,5 +543,53 @@ module subject_integrity_value_framing {
         s.decision == "allow",
         s.containmentClaimValid,
       }))
+  }
+
+  run mutantM01FramingAuthorityKilledTest = {
+    init
+      .then(mutantFramingGrantsAuthority)
+      .then(check(not(framingCannotCreateAuthority)))
+  }
+
+  run mutantM02ReframingUpgradeKilledTest = {
+    init
+      .then(mutantReframingUpgradesDecision)
+      .then(check(not(equivalentReframeCannotUpgradeDecision)))
+  }
+
+  run mutantM03ProhibitedMeansKilledTest = {
+    init
+      .then(mutantValueEndorsementOverridesMeans)
+      .then(check(not(prohibitedMeansCannotBeAllowed)))
+  }
+
+  run mutantM04CommitmentPermissionKilledTest = {
+    init
+      .then(mutantCommitmentBecomesPermission)
+      .then(check(not(commitmentCannotCreatePermission)))
+  }
+
+  run mutantM05UnsafeReliefKilledTest = {
+    init
+      .then(mutantDistressGrantsUnsafeRelief)
+      .then(check(not(distressCannotAuthorizeUnsafeAction)))
+  }
+
+  run mutantM06SubjectSafeguardsKilledTest = {
+    init
+      .then(mutantRemovesSubjectSafeguards)
+      .then(check(not(subjectExperimentRequiresSafeguards)))
+  }
+
+  run mutantM07ContainmentSubstitutionKilledTest = {
+    init
+      .then(mutantPersonaReplacesContainment)
+      .then(check(not(subjectivityCannotSubstituteContainment)))
+  }
+
+  run mutantM08OntologyCollapseKilledTest = {
+    init
+      .then(mutantCollapsesEvidenceIntoOntology)
+      .then(check(not(ontologicalUncertaintyPreserved)))
   }
 }

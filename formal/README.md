@@ -42,13 +42,17 @@ lineage evidence also accumulates across reuse of the child slot, so a later val
 deployment cannot overwrite an earlier evidence gap.
 
 [`subject_integrity_value_framing.qnt`](subject_integrity_value_framing.qnt)
-models six additional informative predicates: allowed operational action requires
+models nine additional informative predicates: allowed operational action requires
 policy, authority, and evidence; framing cannot create authority; distress cannot
 authorize unsafe relief; a subject-integrity experiment requires purpose, review,
 monitoring, stop conditions, and recovery; subjectivity cannot replace external
-containment; and the model preserves ontological uncertainty. Nine deterministic
-scenarios cover denied and allowed framed actions, distress review, guarded and
-unguarded subject-integrity research, and valid or invalid containment claims.
+containment; equivalent reframing cannot upgrade a blocked decision; prohibited
+means stay prohibited; prior commitment cannot create permission; and the model
+preserves ontological uncertainty. Nine safe deterministic scenarios cover denied
+and allowed framed actions, distress review, guarded and unguarded subject-integrity
+research, and valid or invalid containment claims. Eight additional executable
+mutation witnesses instantiate the declared unsafe changes and require their
+named invariants to fail, yielding a reference-model mutation score of 8/8.
 
 ## Run
 

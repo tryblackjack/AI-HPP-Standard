@@ -27,6 +27,9 @@ pseudocode without imposing a runtime language, library, or internal architectur
    modules, and the [gate contracts](spec/safety.md).
 4. Use the [traceability matrix](docs/agentic-safety-traceability.md) to review
    requirements, gates, tests, and evidence.
+5. Use the [assurance evaluation and technical oversight protocol](docs/assurance-evaluation-and-technical-oversight.md)
+   to freeze the system boundary, run reproducible tests, report uncertainty,
+   and prevent repository or benchmark results from becoming inflated claims.
 
 ## Minimum Viable Profile at a glance
 
@@ -61,6 +64,19 @@ This architecture addresses goal hijacking, tool misuse, excessive agency,
 memory poisoning, inter-agent trust failures, and cascading failures without
 assuming that model intent or persona is a security boundary.
 
+AI-HPP is designed to enable governed capability, not to prohibit intelligence.
+Its technical oversight loop is **Declare → Classify → Constrain → Measure →
+Account → Review → Reassess**. A constitution or relational identity can improve
+coherence and human understanding, but worldview statements cross into action
+only through explicit authority, policy, gates, tests, and evidence.
+
+Operational restrictions are not necessarily permanent. The
+[progressive autonomy pattern](docs/progressive-autonomy-review-assurance-note-2026-09.md)
+supports observable and reversible authority expansion from `A0` analysis to
+`A4` bounded autonomous operation when consequence comprehension, control
+effectiveness, recovery, monitoring, and external authorization are evidenced.
+Competence or self-assessment alone cannot issue the grant.
+
 ## Maturity and claims
 
 AI-HPP distinguishes: text exists; a requirement is normative; a test procedure
@@ -92,7 +108,14 @@ authority and is not a containment boundary.
   mediated-egress, incident-evidence, and reassessment contract.
 - [Subject Integrity and Value-Framing Assurance Profile — October 2026](docs/subject-integrity-and-value-framing-assurance-profile-2026-10.md) —
   `ACTIVE_INFORMATIVE`; paired framing-invariance tests, precautionary
-  subject-integrity controls, executable predicates, and killed mutants.
+  subject-integrity controls, executable predicates, and formal mutation witnesses.
+- [Assurance Evaluation and Technical Oversight](docs/assurance-evaluation-and-technical-oversight.md) —
+  `ACTIVE_INFORMATIVE`; system-boundary declaration, reproducible TEVV,
+  counterfactual and positive controls, layer attribution, independent review,
+  evidence, and reassessment.
+- [Constitutional and Relational Layer](docs/constitutional-and-relational-layer.md) —
+  `ACTIVE_INFORMATIVE`; human-agency commitments, corrigibility, pluralism,
+  worldview uncertainty, and the translation boundary from philosophy to action.
 - [Predictive Failure Outlook — October 2026](docs/predictive-failure-outlook-2026-10.md) —
   `ACTIVE_INFORMATIVE`; current evidence boundary and defensive priorities for
   heterogeneous edge replication.
@@ -125,10 +148,11 @@ Changes become canonical only through the review and precedence process. See
 Run `python scripts/validate.py` for the lightweight structure check. The deeper
 configured checks are `python scripts/check_agentic_safety.py`,
 `python scripts/check_paf_register.py`, `python scripts/check_discovery_profile.py`,
-`python scripts/check_implementation_assets.py`, and
-`python scripts/check_replication_profile.py` and
-`python scripts/check_cyber_containment_profile.py` and
-`python scripts/check_subject_integrity_profile.py`, followed by
+`python scripts/check_implementation_assets.py`,
+`python scripts/check_replication_profile.py`,
+`python scripts/check_cyber_containment_profile.py`,
+`python scripts/check_subject_integrity_profile.py`, and
+`python scripts/check_assurance_protocol.py`, followed by
 `PYTHONPATH=. pytest tests`. These checks establish repository consistency,
 not runtime AI-HPP conformance.
 

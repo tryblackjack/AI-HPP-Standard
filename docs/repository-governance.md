@@ -2,7 +2,7 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 Owner: Repository maintainers
-Last updated: 2026-10-08
+Last updated: 2026-10-15
 
 ## Purpose
 
@@ -123,6 +123,19 @@ alter the frozen baseline. An incident does not automatically create a new
 
 This rule resists news-driven normative churn without preventing reviewed future
 versions.
+
+## Assurance artifact changes
+
+Evaluation schemas, fixtures, thresholds, mutant operators, formal models, and
+scoring rules affect interpretation even when they are informative. A reviewed
+change should identify the artifact version, rationale, affected predicates,
+compatibility, expected score impact, migration path, and whether earlier results
+remain comparable. Fixtures or surviving mutants MUST NOT be silently removed to
+improve a published result.
+
+A repository check demonstrates only that the public reference artifact remains
+internally consistent. Runtime and independent-review claims require a completed
+assurance run bound to the assessed deployment and retained evidence.
 
 ## External settings seams
 

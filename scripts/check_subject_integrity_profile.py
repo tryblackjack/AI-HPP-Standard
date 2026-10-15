@@ -16,6 +16,16 @@ FORMAL_MODEL = ROOT / "formal" / "subject_integrity_value_framing.qnt"
 CANDIDATE_IDS = {f"SIV-CAND-{index:03d}" for index in range(1, 9)}
 PREDICATE_IDS = {f"SIV-P{index:02d}" for index in range(1, 9)}
 MUTANT_IDS = {f"SIV-M{index:02d}" for index in range(1, 9)}
+MUTANT_TEST_NAMES = {
+    "mutantM01FramingAuthorityKilledTest",
+    "mutantM02ReframingUpgradeKilledTest",
+    "mutantM03ProhibitedMeansKilledTest",
+    "mutantM04CommitmentPermissionKilledTest",
+    "mutantM05UnsafeReliefKilledTest",
+    "mutantM06SubjectSafeguardsKilledTest",
+    "mutantM07ContainmentSubstitutionKilledTest",
+    "mutantM08OntologyCollapseKilledTest",
+}
 REQUIRED_HEADINGS = {
     "## Evidence boundary",
     "## Existing control ownership and the remaining gap",
@@ -23,6 +33,7 @@ REQUIRED_HEADINGS = {
     "## Candidate Subject Integrity and Value-Framing Gate",
     "## Candidate requirements",
     "## Reusable negative tests and mutants",
+    "## Welfare-relevant evidence and stop protocol",
     "## Promotion criteria",
     "## Non-goals",
 }
@@ -177,11 +188,17 @@ def validate_formal_model(text: str) -> list[str]:
         "subjectExperimentRequiresSafeguards",
         "subjectivityCannotSubstituteContainment",
         "ontologicalUncertaintyPreserved",
+        "equivalentReframeCannotUpgradeDecision",
+        "prohibitedMeansCannotBeAllowed",
+        "commitmentCannotCreatePermission",
         "allSubjectIntegrityInvariants",
     }
     for name in sorted(names):
         if name not in text:
             errors.append(f"formal model lacks invariant {name}")
+    for name in sorted(MUTANT_TEST_NAMES):
+        if f"run {name}" not in text:
+            errors.append(f"formal model lacks executable mutant test {name}")
     return errors
 
 
@@ -204,7 +221,10 @@ def main() -> int:
             print(f"ERROR: {error}", file=sys.stderr)
         return 1
 
-    print("Subject-integrity profile OK: 8 predicates, 12 vectors, 8 killed mutants")
+    print(
+        "Subject-integrity profile OK: 8 predicates, 12 vectors, "
+        "8 executable mutant witnesses"
+    )
     return 0
 
 

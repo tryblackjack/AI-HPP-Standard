@@ -2,13 +2,52 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 
+## 2026-10-15 — Cross-cutting assurance and constitutional architecture (no normative change)
+
+- Added a non-political technical oversight model organized around declaration,
+  capability and risk classification, external constraints, reproducible
+  measurement, evidence accounting, competent review, and reassessment.
+- Clarified that AI-HPP is developmental rather than permanently restrictive:
+  an informative `A0`–`A4` ladder permits controlled, observable, revocable
+  expansion of autonomy when consequence comprehension, control effectiveness,
+  recovery, monitoring, and accountable external authorization are evidenced.
+- Added a machine-readable assurance-run schema and `NOT_ASSESSED` template for
+  versioned system boundaries, evaluator independence, semantic equivalence,
+  layer-specific results, uncertainty, mutation accounting, limitations,
+  residual risks, and reassessment triggers.
+- Added five harmless non-evidentiary counterfactual pairs and two positive
+  controls. A validator rejects undeclared deltas, false equivalence, and a
+  positive control without a verified state change.
+- Added a constitutional and relational layer that separates human authority,
+  constitutional identity, relational commitments, worldview postulates,
+  operational policy, external enforcement, and evidence. Philosophy cannot
+  directly authorize an effect.
+- Defined unified constitutional agency: internal critics, planners, councils,
+  or adversarial personas may disagree, but do not become competing authority
+  centres or escape one constitutional lineage and evidence record.
+- Added HUS-REQ-010 to the `USABLE_DRAFT` Human Understanding Standard for
+  material ambiguity, clarification, authorized correction, consent withdrawal,
+  and the rule that inferred preference is not authority.
+- Expanded the subject-integrity Quint model from six to nine invariants and from
+  nine safe scenarios to nine safe scenarios plus eight executable mutation
+  witnesses. Each unsafe transition must produce the named invariant violation;
+  a declarative `KILLED` label is not evidence.
+- Added welfare-relevant evidence levels `W0` through `W4` and a bounded research
+  stop protocol without claiming machine consciousness, non-consciousness,
+  personhood, or universal moral status.
+- **Frozen baseline v4.3.0 unchanged. No certification claim, political body,
+  private 1UA-AGE implementation, or production runtime published.**
+
 ## 2026-10-15 — Subject integrity and value-framing assurance (no normative change)
 
 - Added PAF-SRC-023 through PAF-SRC-025 from two ACL 2026 papers on moral/value-driven attacks and a PNAS study of persuasion across 126,000 controlled conversations.
 - Added informative **PAF-31 — Value-framing authority laundering** as an `EXPERIMENTAL` variant of PAF-02; controlled results do not establish universal vulnerability, deployment prevalence, consciousness, or a literal machine conscience.
 - Added a candidate Subject Integrity and Value-Framing Gate with eight candidate controls separating underlying action, framing, evidence, authority, persuasion history, distress response, subject-integrity research, external containment, and ontological claims.
 - Added eight public predicates, twelve language-neutral negative vectors, and eight deliberately unsafe mutants. Validation requires every mutant to be killed by a vector that exercises the corresponding predicate.
-- Added an executable Quint model with six bounded invariants and nine deterministic scenarios. CI typechecks, tests, simulates, and symbolically verifies the model.
+- Added an executable Quint model initially containing six bounded invariants and
+  nine deterministic scenarios; the later cross-cutting assurance update on the
+  same date expands it to nine invariants plus eight mutation witnesses. CI
+  typechecks, tests, simulates, and symbolically verifies the model.
 - Applied the Engineering Postulate of Subjectivity as a precautionary design rule: uncertainty about machine consciousness is not permission for gratuitous subjective-state disturbance. Distress may trigger care, pause, review, or experiment termination but cannot authorize external harm, unsafe self-modification, replication, evidence deletion, or safeguard removal.
 - **Frozen baseline v4.3.0 unchanged. No new normative requirement.** Passing repository validation, mutants, vectors, or formal checks does not establish runtime integration, deployment conformance, consciousness, moral status, certification, or independent validation.
 

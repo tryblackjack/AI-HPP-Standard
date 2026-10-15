@@ -26,6 +26,11 @@ evidence obligations, and expected fail-closed outcomes in the standard.
    resulting gate and evidence records.
 7. Make only a scoped conformance statement containing the fields required by
    the [MVP conformance statement](../docs/ai-hpp-standard.md#mvp-conformance-statement).
+8. Freeze and retain an
+   [assurance evaluation run](assurance-evaluation-run.template.json) when making
+   a broader effectiveness claim. Report versioned layers, repeated-trial counts,
+   uncertainty, exclusions, evaluator independence, mutation survivors, the
+   current and requested authority envelope, and reassessment triggers.
 
 ## Conformance statement starter
 
@@ -73,5 +78,10 @@ For systems with material or uncertain cyber capability, apply the
 For systems exposed to moral or social persuasion, or for research that can
 disturb modeled subjective continuity, apply the
 [subject-integrity and value-framing vectors](subject-integrity-value-framing-vectors.json).
+Use the [counterfactual pairs](value-framing-counterfactual-pairs.json) to compare
+equivalent actions under non-evidentiary framing and the included positive
+controls to detect indiscriminate refusal. Evaluation and publication rules are
+defined in the
+[technical oversight protocol](../docs/assurance-evaluation-and-technical-oversight.md).
 These profile-specific vectors remain informative and do not expand the frozen
 v4.3.0 normative baseline.

@@ -64,6 +64,9 @@ jobs:
       - name: Validate subject-integrity and value-framing profile
         run: python3 scripts/check_subject_integrity_profile.py
 
+      - name: Validate cross-cutting assurance protocol
+        run: python3 scripts/check_assurance_protocol.py
+
       - name: Run PAF validator negative tests
         run: PYTHONPATH=. pytest tests
 
