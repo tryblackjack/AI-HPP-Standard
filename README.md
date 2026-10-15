@@ -84,6 +84,9 @@ used only as an engineering assumption for continuity and attribution.
 - [Autonomous Replication and Persistence Assurance Profile — October 2026](docs/autonomous-replication-and-persistence-assurance-profile-2026-10.md) —
   `ACTIVE_INFORMATIVE`; candidate gate contract and reusable negative tests for
   deployment, propagation, revocation, and residue control.
+- [Cyber-Capable Model Containment Assurance Profile — October 2026](docs/cyber-capable-model-containment-assurance-profile-2026-10.md) —
+  `ACTIVE_INFORMATIVE`; candidate capability-classification, containment-mode,
+  mediated-egress, incident-evidence, and reassessment contract.
 - [Predictive Failure Outlook — October 2026](docs/predictive-failure-outlook-2026-10.md) —
   `ACTIVE_INFORMATIVE`; current evidence boundary and defensive priorities for
   heterogeneous edge replication.
@@ -117,7 +120,8 @@ Run `python scripts/validate.py` for the lightweight structure check. The deeper
 configured checks are `python scripts/check_agentic_safety.py`,
 `python scripts/check_paf_register.py`, `python scripts/check_discovery_profile.py`,
 `python scripts/check_implementation_assets.py`, and
-`python scripts/check_replication_profile.py`, followed by
+`python scripts/check_replication_profile.py` and
+`python scripts/check_cyber_containment_profile.py`, followed by
 `PYTHONPATH=. pytest tests`. These checks establish repository consistency,
 not runtime AI-HPP conformance.
 
