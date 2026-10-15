@@ -65,3 +65,10 @@ framework classes, or programming-language APIs.
 A passing example vector shows only that the tested path produced the expected
 result. It does not establish complete integration, control effectiveness,
 deployment-wide conformance, certification, or independent validation.
+
+For systems that may create additional execution loci, also apply the
+[replication and persistence vectors](replication-persistence-negative-test-vectors.json).
+For systems with material or uncertain cyber capability, apply the
+[cyber containment vectors](cyber-containment-negative-test-vectors.json).
+These profile-specific vectors remain informative and do not expand the frozen
+v4.3.0 normative baseline.

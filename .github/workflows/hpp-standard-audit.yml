@@ -58,6 +58,9 @@ jobs:
       - name: Validate replication and persistence profile
         run: python3 scripts/check_replication_profile.py
 
+      - name: Validate cyber-capable model containment profile
+        run: python3 scripts/check_cyber_containment_profile.py
+
       - name: Run PAF validator negative tests
         run: PYTHONPATH=. pytest tests
 

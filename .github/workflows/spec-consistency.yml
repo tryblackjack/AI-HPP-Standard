@@ -36,6 +36,9 @@ jobs:
           python3 -m pip install -r requirements-ci.txt
           python3 scripts/check_replication_profile.py
 
+      - name: Validate cyber-capable model containment profile
+        run: python3 scripts/check_cyber_containment_profile.py
+
       - name: Validate PAF register
         run: python3 scripts/check_paf_register.py
 

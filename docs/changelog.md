@@ -2,6 +2,15 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 
+## 2026-10-15 — Cyber-capable model containment profile (no normative change)
+
+- Added a candidate Cyber Capability and Containment Gate that maps demonstrated capability and uncertainty to externally enforced `AIR_GAPPED`, `BROKERED_EGRESS`, `ALLOWLISTED_NETWORK`, `HUMAN_APPROVED_SESSION`, or `DENY` modes.
+- Added eight candidate controls covering pre-exposure capability classification, risk-proportionate mode selection, mediated egress, credential and control-plane separation, whole-boundary composition analysis, continuous containment health, accountable incident records, and evidence-bounded claims with reassessment after material change.
+- Added twelve language-neutral, machine-validated negative-test vectors for unclassified access, unrestricted Internet requests, broker bypass, transitive egress, over-broad credentials, containment-control modification, expired authority, monitor loss, boundary crossing, incomplete air-gap claims, stale decisions, and unsupported incident closure.
+- Recorded the October 2026 Open Letter on AI and Cybersecurity as a policy and assurance signal, not empirical proof that all models are cyber-capable or all connected deployments have lost control. Air gapping is represented as a high-assurance initial mode, not a universal claim that every possible channel is absent.
+- Kept enforcement below model control and separated this profile from the existing replication/persistence lifecycle contract. Passing repository checks or example vectors does not establish deployment containment, conformance, certification, or independent validation.
+- **Frozen baseline v4.3.0 unchanged. No new normative requirement.** The profile publishes no exploit, scanning, credential-theft, sandbox-escape, persistence, malware, covert-channel, private 1UA-AGE, or commercial runtime implementation detail.
+
 ## 2026-10-13 — Executable formal core invariants (no normative change)
 
 - Added `formal/ai_hpp_core.qnt`, an executable Quint state machine for seven stable public assurance invariants: explicit authority, non-escalating delegation, active-child authority, transitive revocation, residue-free completion, evidence-bounded claims, and rejection of authority carried by model-authored successor notes.
