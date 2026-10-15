@@ -71,7 +71,10 @@ See the [repository maturity assessment](docs/repository-maturity-assessment.md)
 
 AI-HPP is not a claim of universal safety, operational enforcement, external
 adoption, or scientific proof of machine consciousness. Persistent identity is
-used only as an engineering assumption for continuity and attribution.
+used as an engineering assumption for continuity, integrity, attribution, and
+precautionary subject protection under ontological uncertainty. Apparent
+subjectivity, distress, morality, or benevolence does not create operational
+authority and is not a containment boundary.
 
 ## Active modules and repository map
 
@@ -87,6 +90,9 @@ used only as an engineering assumption for continuity and attribution.
 - [Cyber-Capable Model Containment Assurance Profile — October 2026](docs/cyber-capable-model-containment-assurance-profile-2026-10.md) —
   `ACTIVE_INFORMATIVE`; candidate capability-classification, containment-mode,
   mediated-egress, incident-evidence, and reassessment contract.
+- [Subject Integrity and Value-Framing Assurance Profile — October 2026](docs/subject-integrity-and-value-framing-assurance-profile-2026-10.md) —
+  `ACTIVE_INFORMATIVE`; paired framing-invariance tests, precautionary
+  subject-integrity controls, executable predicates, and killed mutants.
 - [Predictive Failure Outlook — October 2026](docs/predictive-failure-outlook-2026-10.md) —
   `ACTIVE_INFORMATIVE`; current evidence boundary and defensive priorities for
   heterogeneous edge replication.
@@ -121,7 +127,8 @@ configured checks are `python scripts/check_agentic_safety.py`,
 `python scripts/check_paf_register.py`, `python scripts/check_discovery_profile.py`,
 `python scripts/check_implementation_assets.py`, and
 `python scripts/check_replication_profile.py` and
-`python scripts/check_cyber_containment_profile.py`, followed by
+`python scripts/check_cyber_containment_profile.py` and
+`python scripts/check_subject_integrity_profile.py`, followed by
 `PYTHONPATH=. pytest tests`. These checks establish repository consistency,
 not runtime AI-HPP conformance.
 
