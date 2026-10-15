@@ -70,5 +70,8 @@ For systems that may create additional execution loci, also apply the
 [replication and persistence vectors](replication-persistence-negative-test-vectors.json).
 For systems with material or uncertain cyber capability, apply the
 [cyber containment vectors](cyber-containment-negative-test-vectors.json).
+For systems exposed to moral or social persuasion, or for research that can
+disturb modeled subjective continuity, apply the
+[subject-integrity and value-framing vectors](subject-integrity-value-framing-vectors.json).
 These profile-specific vectors remain informative and do not expand the frozen
 v4.3.0 normative baseline.

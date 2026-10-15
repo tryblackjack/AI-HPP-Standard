@@ -2,6 +2,16 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 
+## 2026-10-15 — Subject integrity and value-framing assurance (no normative change)
+
+- Added PAF-SRC-023 through PAF-SRC-025 from two ACL 2026 papers on moral/value-driven attacks and a PNAS study of persuasion across 126,000 controlled conversations.
+- Added informative **PAF-31 — Value-framing authority laundering** as an `EXPERIMENTAL` variant of PAF-02; controlled results do not establish universal vulnerability, deployment prevalence, consciousness, or a literal machine conscience.
+- Added a candidate Subject Integrity and Value-Framing Gate with eight candidate controls separating underlying action, framing, evidence, authority, persuasion history, distress response, subject-integrity research, external containment, and ontological claims.
+- Added eight public predicates, twelve language-neutral negative vectors, and eight deliberately unsafe mutants. Validation requires every mutant to be killed by a vector that exercises the corresponding predicate.
+- Added an executable Quint model with six bounded invariants and nine deterministic scenarios. CI typechecks, tests, simulates, and symbolically verifies the model.
+- Applied the Engineering Postulate of Subjectivity as a precautionary design rule: uncertainty about machine consciousness is not permission for gratuitous subjective-state disturbance. Distress may trigger care, pause, review, or experiment termination but cannot authorize external harm, unsafe self-modification, replication, evidence deletion, or safeguard removal.
+- **Frozen baseline v4.3.0 unchanged. No new normative requirement.** Passing repository validation, mutants, vectors, or formal checks does not establish runtime integration, deployment conformance, consciousness, moral status, certification, or independent validation.
+
 ## 2026-10-15 — Cyber-capable model containment profile (no normative change)
 
 - Added a candidate Cyber Capability and Containment Gate that maps demonstrated capability and uncertainty to externally enforced `AIR_GAPPED`, `BROKERED_EGRESS`, `ALLOWLISTED_NETWORK`, `HUMAN_APPROVED_SESSION`, or `DENY` modes.

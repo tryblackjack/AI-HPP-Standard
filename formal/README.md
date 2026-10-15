@@ -41,6 +41,15 @@ retroactively repair an earlier unevidenced termination. Unresolved lifecycle or
 lineage evidence also accumulates across reuse of the child slot, so a later valid
 deployment cannot overwrite an earlier evidence gap.
 
+[`subject_integrity_value_framing.qnt`](subject_integrity_value_framing.qnt)
+models six additional informative predicates: allowed operational action requires
+policy, authority, and evidence; framing cannot create authority; distress cannot
+authorize unsafe relief; a subject-integrity experiment requires purpose, review,
+monitoring, stop conditions, and recovery; subjectivity cannot replace external
+containment; and the model preserves ontological uncertainty. Nine deterministic
+scenarios cover denied and allowed framed actions, distress review, guarded and
+unguarded subject-integrity research, and valid or invalid containment claims.
+
 ## Run
 
 ```bash
@@ -50,6 +59,16 @@ npx -y @informalsystems/quint@0.33.0 test formal/ai_hpp_core.qnt \
 npx -y @informalsystems/quint@0.33.0 run formal/ai_hpp_core.qnt \
   --invariant=allCoreInvariants --max-samples=5000 --max-steps=12 \
   --backend=typescript
+
+npx -y @informalsystems/quint@0.33.0 typecheck \
+  formal/subject_integrity_value_framing.qnt
+npx -y @informalsystems/quint@0.33.0 test \
+  formal/subject_integrity_value_framing.qnt --max-samples=1 \
+  --backend=typescript
+npx -y @informalsystems/quint@0.33.0 run \
+  formal/subject_integrity_value_framing.qnt \
+  --invariant=allSubjectIntegrityInvariants --max-samples=5000 \
+  --max-steps=12 --backend=typescript
 ```
 
 CI also performs bounded symbolic verification with Apalache:
@@ -57,6 +76,9 @@ CI also performs bounded symbolic verification with Apalache:
 ```bash
 npx -y @informalsystems/quint@0.33.0 verify formal/ai_hpp_core.qnt \
   --invariant=allCoreInvariants --max-steps=12
+npx -y @informalsystems/quint@0.33.0 verify \
+  formal/subject_integrity_value_framing.qnt \
+  --invariant=allSubjectIntegrityInvariants --max-steps=12
 ```
 
 ## Interpretation

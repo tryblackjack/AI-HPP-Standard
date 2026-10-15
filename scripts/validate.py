@@ -11,6 +11,7 @@ REQUIRED = [
     "docs/autonomous-discovery-negative-tests.md",
     "docs/autonomous-replication-and-persistence-assurance-profile-2026-10.md",
     "docs/cyber-capable-model-containment-assurance-profile-2026-10.md",
+    "docs/subject-integrity-and-value-framing-assurance-profile-2026-10.md",
     "docs/predictive-failure-outlook-2026-10.md",
     "spec/core.md",
     "spec/signal.md",
@@ -20,12 +21,15 @@ REQUIRED = [
     "examples/mvp-conformance-statement.template.json",
     "examples/replication-persistence-negative-test-vectors.json",
     "examples/cyber-containment-negative-test-vectors.json",
+    "examples/subject-integrity-value-framing-vectors.json",
     "schemas/mvp-negative-test-vectors.schema.json",
     "schemas/mvp-conformance-statement.schema.json",
     "schemas/replication-persistence-negative-test-vectors.schema.json",
     "schemas/cyber-containment-negative-test-vectors.schema.json",
+    "schemas/subject-integrity-value-framing-vectors.schema.json",
     "formal/README.md",
     "formal/ai_hpp_core.qnt",
+    "formal/subject_integrity_value_framing.qnt",
 ]
 
 missing = [p for p in REQUIRED if not Path(p).exists()]

@@ -61,6 +61,9 @@ jobs:
       - name: Validate cyber-capable model containment profile
         run: python3 scripts/check_cyber_containment_profile.py
 
+      - name: Validate subject-integrity and value-framing profile
+        run: python3 scripts/check_subject_integrity_profile.py
+
       - name: Run PAF validator negative tests
         run: PYTHONPATH=. pytest tests
 

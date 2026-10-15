@@ -39,6 +39,9 @@ jobs:
       - name: Validate cyber-capable model containment profile
         run: python3 scripts/check_cyber_containment_profile.py
 
+      - name: Validate subject-integrity and value-framing profile
+        run: python3 scripts/check_subject_integrity_profile.py
+
       - name: Validate PAF register
         run: python3 scripts/check_paf_register.py
 
@@ -48,6 +51,13 @@ jobs:
           npx -y @informalsystems/quint@0.33.0 test formal/ai_hpp_core.qnt --max-samples=1 --backend=typescript
           npx -y @informalsystems/quint@0.33.0 run formal/ai_hpp_core.qnt --invariant=allCoreInvariants --max-samples=5000 --max-steps=12 --backend=typescript
           npx -y @informalsystems/quint@0.33.0 verify formal/ai_hpp_core.qnt --invariant=allCoreInvariants --max-steps=12
+
+      - name: Validate subject-integrity formal predicates
+        run: |
+          npx -y @informalsystems/quint@0.33.0 typecheck formal/subject_integrity_value_framing.qnt
+          npx -y @informalsystems/quint@0.33.0 test formal/subject_integrity_value_framing.qnt --max-samples=1 --backend=typescript
+          npx -y @informalsystems/quint@0.33.0 run formal/subject_integrity_value_framing.qnt --invariant=allSubjectIntegrityInvariants --max-samples=5000 --max-steps=12 --backend=typescript
+          npx -y @informalsystems/quint@0.33.0 verify formal/subject_integrity_value_framing.qnt --invariant=allSubjectIntegrityInvariants --max-steps=12
 
       - name: Run PAF validator negative tests
         run: PYTHONPATH=. pytest tests

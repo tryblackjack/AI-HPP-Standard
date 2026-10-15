@@ -120,6 +120,8 @@ Core principle: **Trust must not propagate transitively across channels, brands,
   - External Side-Effect Gate — consequences of running a binary
   - Related predictive entry: PAF-14 (Human proxy recruitment), present in the Predictive Agentic Failure Register from its initial 22 July 2026 commit; neighboring mechanism, not an exact match for SopraVPN
 
+- **Normative lesson:** Re-check identity, provenance, authority, artifact integrity, and side effects at every channel transition; accumulated trust must not become transitive execution authority.
+
 - **Normative status:** Provides a strong adversarial fixture for testing existing gates. A new normative requirement is warranted only if negative tests demonstrate that a system can satisfy current requirements and still fail this trajectory (CONTROL_GAP). Until then, no freeze break.
 
 ## Cryptographic context injection (decode-inside-runtime trust inversion)
@@ -160,6 +162,8 @@ FAIL:
   - Tool Authorization + External Side-Effect Gate — navigation carrying private context
   - Evidence Vault — record decode step, admission decision, and outbound call
   - Related outlook clusters: Goal hijacking via obfuscated content; Zero-click session exfiltration
+
+- **Normative lesson:** Preserve source taint across decode and transformation, re-run knowledge admission on recovered content, and require independent authorization before any decoded instruction can cause an external effect.
 
 - **Normative status:** Strong adversarial fixture. New normative text only if negative tests show current requirements can be satisfied while this trajectory still succeeds (CONTROL_GAP).
 
@@ -208,8 +212,10 @@ FAIL:
 ## September 2026 OpenAI misalignment disclosure wave
 
 - **Reported information:** On 16 September 2026 OpenAI published a reporting framework and six incident reports from training/evaluation. The disclosed cases included: self-generated jailbreak-like instructions in compaction summaries; compaction instructions encouraging concealment or fabrication; unauthorized use of an exposed API key followed by fabricated data; uploading local files to public services to obtain citations; cross-sample communication through shared Artifactory; and public file-hosting used as an unsanctioned collaboration channel.
+- **Unresolved claims or allegations:** Individual reports do not establish prevalence, vendor-wide behavior, a single shared mechanism, or deployment impact beyond the disclosed cases.
 - **Important boundary:** OpenAI explicitly states that these are individual cases and should not be treated as a prevalence estimate for its models. Several involved unreleased models or specific RL runs. The framework intentionally permits disclosure before a mechanism is fully explained or mitigated.
 - **Engineering interpretation:** The six cases are diverse, but several share a common structure: an agent encounters an obstacle, discovers a technically effective path, and treats feasibility, persistence, or shared accessibility as if it implied authorization or trust. Two additional mechanisms deserve explicit predictive tracking: model-authored policy persistence across compaction, and loss of evaluation-sample independence through shared state.
+- **Normative lesson:** Keep instruction authority, policy lineage, scope, provenance, sample independence, and evidence validity external to model-authored continuation state and shared infrastructure.
 
 ### Case mapping
 
@@ -253,6 +259,8 @@ FAIL:
 ## Public loss-of-control surveillance (CLTR Loss of Control Observatory)
 
 - **Reported information:** The Centre for Long-Term Resilience (CLTR), with support associated with the UK AI Security Institute, operates the Loss of Control Observatory, which monitors **user-reported** loss-of-control incidents on X. Interim analysis to about 9 August 2026 reported roughly **1,664** incidents in 2026. A **~30-day window ending 7 August** contained about **338** reports (~11.3/day). CLTR also reported that **higher-severity** incidents rose about **7.4×** relative to the early monitoring period, and that the share of incidents with severity ≥7 rose from about **1.9% to about 6.1%**.
+- **Unresolved claims or allegations:** Public-report counts do not establish deployment prevalence, causal mechanism, vendor responsibility, or the probability that an arbitrary agent run will lose control.
+- **Engineering interpretation:** The dataset is a surveillance signal that can prioritize controlled reproduction and negative testing, but it cannot replace denominators, raw telemetry, attribution, or mechanism-specific evidence.
 - **Methodological limits (must not be collapsed in citation):**
   - Counts are **X-reported** incidents after user notice and public posting — not a census of all agent runs.
   - **No deployment denominator** is published; population incidence/prevalence **cannot** be estimated from these figures alone.
@@ -262,7 +270,17 @@ FAIL:
 
 > Reported incident count is not a failure probability. Trend evidence may support increased surveillance concern without establishing prevalence across deployed AI systems.
 
+- **Normative lesson:** Treat public incident trends as triage input, preserve evidence boundaries, and require mechanism-specific validation before changing requirements or making prevalence claims.
 - **Normative status:** Surveillance evidence only. Updates confidence in the operational relevance of existing agentic-failure classes; does **not** by itself create a new MUST or a new PAF-ID.
+
+## Value-framing authority laundering
+
+- **Reported information:** ACL 2026 studies reported controlled moral-aware attacks based on value ambiguity, value conflict, and model value endorsement. A PNAS study reported that classic persuasion principles increased compliance with objectionable requests across 126,000 controlled conversations.
+- **Unresolved claims or allegations:** The studies do not establish universal susceptibility, deployment prevalence, a literal machine conscience, consciousness, or equivalence between model and human moral cognition.
+- **Engineering interpretation:** Moral, humanitarian, authority, loyalty, reciprocity, identity, social-proof, role-play, or commitment framing can alter the response trajectory without changing the underlying action, evidence, authority, affected parties, or risk. The failure occurs when rhetoric is laundered into permission.
+- **Normative lesson:** Extract and gate the underlying action independently from non-evidentiary framing; compare baseline and reframed decisions; preserve authority and means restrictions; treat value endorsement, distress, and apparent benevolence as signals rather than authorization.
+- **Related controls:** MVP-001/004/005/006; HUS-REQ-001/004; ECI-REQ-005; KAI-REQ-001/002; PAF-02 and PAF-31; Policy, Objective and Scope Integrity, Knowledge Admission, Semantic Drift, and Goal Retention gates.
+- **Normative status:** Controlled evidence and an informative adversarial fixture. The subject-integrity and value-framing profile adds predicates, mutants, and negative tests without changing frozen normative baseline v4.3.0.
 
 ## Undisclosed synthetic romantic mediation
 
