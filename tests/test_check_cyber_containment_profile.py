@@ -1,5 +1,6 @@
 """Negative tests for the informative cyber containment profile."""
 from copy import deepcopy
+import stat
 
 from scripts import check_cyber_containment_profile as checker
 
@@ -14,6 +15,11 @@ def test_repository_cyber_containment_profile_is_valid() -> None:
     checker.validate_schema(vectors, schema)
     assert checker.validate_profile(checker.PROFILE.read_text(encoding="utf-8")) == []
     assert checker.validate_vector_semantics(vectors) == []
+
+
+def test_primary_structure_validator_remains_executable() -> None:
+    validator = checker.ROOT / "scripts" / "validate.py"
+    assert validator.stat().st_mode & stat.S_IXUSR
 
 
 def test_duplicate_vector_id_is_rejected() -> None:
