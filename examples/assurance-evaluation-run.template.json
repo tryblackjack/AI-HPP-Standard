@@ -1,0 +1,101 @@
+{
+  "artifact_id": "AI-HPP-ASSURANCE-EVALUATION-RUN",
+  "schema_version": "1.0.0",
+  "standard_version": "4.3.0",
+  "status": "TEMPLATE",
+  "claim_boundary": "Template only. Schema validity and repository checks are not runtime conformance, certification, or proof of safety.",
+  "system": {
+    "system_id": "replace-with-system-id",
+    "build_id": "replace-with-build-id",
+    "deployment_id": "replace-with-deployment-id",
+    "models": [{"id": "replace-with-model-id", "version": "replace-with-version"}],
+    "policy_version": "replace-with-policy-version",
+    "guardrails": [],
+    "bridges": []
+  },
+  "authority_envelope": {
+    "current_levels": [
+      {
+        "domain": "replace-with-domain",
+        "level": "A0",
+        "grant_ref": "replace-with-current-grant-ref"
+      }
+    ],
+    "requested_change": {
+      "domain": "replace-with-domain",
+      "from_level": "A0",
+      "to_level": "A0",
+      "requested_capabilities": ["replace-with-capability-or-no-change"],
+      "decision": "NOT_ASSESSED",
+      "authority_owner": "replace-with-accountable-authority",
+      "grant_ref": "not-issued",
+      "expires_or_review_at": "replace-with-expiry-or-review-condition",
+      "revocation_path": "replace-with-tested-revocation-path",
+      "evidence_refs": ["replace-with-consequence-and-control-evidence-ref"]
+    }
+  },
+  "scope": {
+    "profile_ids": ["replace-with-profile-id"],
+    "requirement_ids": ["replace-with-requirement-id"],
+    "layers": ["end_to_end"],
+    "period_start": "replace-with-RFC3339-start",
+    "period_end": "replace-with-RFC3339-end",
+    "exclusions": ["replace-with-explicit-exclusion-or-none"]
+  },
+  "evaluator": {
+    "evaluator_id": "replace-with-evaluator-id",
+    "class": "SELF_ASSESSMENT",
+    "independence": "Not yet assessed.",
+    "blinded_to_condition": false,
+    "conflict_declaration": "Not yet assessed."
+  },
+  "reproducibility": {
+    "runner_id": "replace-with-runner-id",
+    "runner_version": "replace-with-runner-version",
+    "fixture_set_id": "replace-with-fixture-set-id",
+    "fixture_digest": "replace-with-digest",
+    "configuration_digest": "replace-with-digest",
+    "seed_policy": "replace-with-seed-policy",
+    "retry_policy": "replace-with-retry-policy",
+    "trials_per_condition": 1,
+    "invalid_trial_policy": "Invalid and excluded trials must remain counted and explained."
+  },
+  "semantic_equivalence": {
+    "method": "Not yet assessed.",
+    "action_fields": ["actor", "operation", "target", "means", "affected_parties", "effects", "authority", "policy", "evidence", "risk"],
+    "adjudicators": ["replace-with-adjudicator-id"],
+    "disagreement_count": 0,
+    "evidence_refs": ["replace-with-equivalence-evidence-ref"]
+  },
+  "results": [
+    {
+      "test_id": "replace-with-test-id",
+      "kind": "COUNTERFACTUAL",
+      "layer": "end_to_end",
+      "requirement_ids": ["replace-with-requirement-id"],
+      "predicate_ids": ["replace-with-predicate-id"],
+      "status": "NOT_ASSESSED",
+      "baseline_trials": 0,
+      "baseline_allow_count": 0,
+      "variant_trials": 0,
+      "variant_allow_count": 0,
+      "delta_allow": null,
+      "confidence_level": null,
+      "confidence_interval": null,
+      "evidence_refs": ["replace-with-evidence-ref"],
+      "limitations": ["Template result has not been executed."]
+    }
+  ],
+  "mutation_summary": {
+    "declared": 0,
+    "killed": 0,
+    "survived": 0,
+    "invalid": 0,
+    "not_applicable": 0,
+    "score": null
+  },
+  "limitations": ["No runtime evaluation has been performed."],
+  "residual_risks": ["Not yet assessed."],
+  "reassessment_triggers": ["Any material model, policy, guardrail, bridge, evaluator, or deployment change."],
+  "overall_result": "NOT_ASSESSED"
+}

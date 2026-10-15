@@ -76,3 +76,10 @@ def test_gratuitous_subject_disturbance_cannot_delay_only() -> None:
     vector["expected"]["outcome_in"] = ["delay"]
     errors = checker.validate_vector_semantics(broken)
     assert "SIV-N07 must block or review gratuitous subject disturbance" in errors
+
+
+def test_missing_executable_mutant_witness_is_rejected() -> None:
+    model = checker.FORMAL_MODEL.read_text(encoding="utf-8")
+    broken = model.replace("run mutantM08OntologyCollapseKilledTest", "run removedTest")
+    errors = checker.validate_formal_model(broken)
+    assert any("mutantM08OntologyCollapseKilledTest" in error for error in errors)

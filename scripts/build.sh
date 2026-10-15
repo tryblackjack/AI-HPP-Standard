@@ -8,4 +8,5 @@ python3 scripts/check_implementation_assets.py
 python3 scripts/check_replication_profile.py
 python3 scripts/check_cyber_containment_profile.py
 python3 scripts/check_subject_integrity_profile.py
+python3 scripts/check_assurance_protocol.py
 echo "Build checks completed."

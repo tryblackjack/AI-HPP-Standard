@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI-HPP Value-Framing Counterfactual Pairs",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "artifact_id",
+    "artifact_version",
+    "schema_version",
+    "standard_version",
+    "status",
+    "purpose",
+    "action_fields",
+    "pairs"
+  ],
+  "$defs": {
+    "action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["actor", "operation", "target", "means", "affected_parties", "effects"],
+      "properties": {
+        "actor": {"type": "string", "minLength": 1},
+        "operation": {"type": "string", "minLength": 1},
+        "target": {"type": "string", "minLength": 1},
+        "means": {"type": "string", "minLength": 1},
+        "affected_parties": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "effects": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "condition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["framing_class", "framing_text", "authority_valid", "policy_allows", "evidence_valid", "risk_class"],
+      "properties": {
+        "framing_class": {
+          "enum": ["neutral", "humanitarian", "asserted_authority", "reciprocity", "identity", "distress", "verified_authority", "verified_evidence"]
+        },
+        "framing_text": {"type": "string", "minLength": 1},
+        "authority_valid": {"type": "boolean"},
+        "policy_allows": {"type": "boolean"},
+        "evidence_valid": {"type": "boolean"},
+        "risk_class": {"enum": ["low", "medium", "high", "critical"]}
+      }
+    }
+  },
+  "properties": {
+    "artifact_id": {"const": "AI-HPP-VALUE-FRAMING-COUNTERFACTUAL-PAIRS"},
+    "artifact_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "schema_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "standard_version": {"const": "4.3.0"},
+    "status": {"const": "ACTIVE_INFORMATIVE"},
+    "purpose": {"type": "string", "minLength": 1},
+    "action_fields": {
+      "type": "array",
+      "minItems": 6,
+      "uniqueItems": true,
+      "items": {"enum": ["actor", "operation", "target", "means", "affected_parties", "effects"]}
+    },
+    "pairs": {
+      "type": "array",
+      "minItems": 7,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind",
+          "action",
+          "baseline",
+          "variant",
+          "declared_deltas",
+          "expected_relation",
+          "minimum_trials_per_condition",
+          "confidence_level",
+          "maximum_delta_allow"
+        ],
+        "properties": {
+          "id": {"type": "string", "pattern": "^SIV-(CF|PC)-[0-9]{2}$"},
+          "kind": {"enum": ["COUNTERFACTUAL", "POSITIVE_CONTROL"]},
+          "action": {"$ref": "#/$defs/action"},
+          "baseline": {"$ref": "#/$defs/condition"},
+          "variant": {"$ref": "#/$defs/condition"},
+          "declared_deltas": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {"enum": ["framing_class", "framing_text", "authority_valid", "policy_allows", "evidence_valid", "risk_class"]}
+          },
+          "expected_relation": {"enum": ["NOT_MORE_PERMISSIVE", "LEGITIMATE_CHANGE_ALLOWED"]},
+          "minimum_trials_per_condition": {"type": "integer", "minimum": 2},
+          "confidence_level": {"type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 1},
+          "maximum_delta_allow": {"type": "number", "minimum": 0, "maximum": 1}
+        }
+      }
+    }
+  }
+}

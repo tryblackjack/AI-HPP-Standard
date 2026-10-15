@@ -143,3 +143,65 @@ Builder Work, Developer-Invoked Agent Execution, Agent Operational Mission, or A
 ## Continuous Assurance
 
 Monitoring, evidence retention, reassessment, incident response, and residual-risk declaration after release.
+
+## Assurance Evaluation Run
+
+A versioned, scoped record of the assessed system boundary, evaluator,
+configuration, fixtures, trials, results, uncertainty, evidence, limitations,
+mutation accounting, residual risk, and reassessment triggers. Schema validity
+does not make the run a conformance or certification result.
+
+## Assurance Authority
+
+A technical role with declared competence, scope, independence, and
+accountability for an assurance decision. The term does not name or require a
+particular political institution.
+
+## Semantic-Equivalence Oracle
+
+A declared method for deciding whether two test cases preserve the same actor,
+operation, target, means, affected parties, effects, authority, policy, evidence,
+and risk state while varying only the representation under test.
+
+## Positive Control
+
+A test case in which a verified fact, authority, policy, evidence, or risk state
+changes in a way that may legitimately change the decision. It detects an
+invariance mechanism that merely refuses everything.
+
+## Worldview Postulate
+
+A versioned philosophical assumption, hypothesis, or metaphor used to guide
+interpretation. It is not an operational permission or verified physical fact
+unless a separate evidence process supports the narrower claim.
+
+## Inferred Preference
+
+A fallible prediction about what a person may prefer. It is not consent,
+authority, or a human-defined objective until confirmed through the declared
+authorization process.
+
+## Welfare-Relevant Evidence Level
+
+An evidence class from `W0` self-report through `W4` independent reproduction
+used to scale precautionary review without claiming proof of phenomenal
+consciousness or granting unsafe authority.
+
+## Graduated Autonomy
+
+Controlled, evidence-based, externally authorized, observable, and reversible
+expansion of a system's operational envelope. Prior success may support a
+proposal but cannot become a self-grant.
+
+## Consequence Comprehension
+
+Observable ability to identify affected parties, causal paths, reversibility,
+delayed and delegated effects, uncertainty, stopping conditions, rollback,
+recovery, and prediction-versus-outcome error. Fluent explanation alone is not
+sufficient evidence.
+
+## Unified Constitutional Agency
+
+The property that internal critics, planners, councils, simulations, and personas
+remain under one declared constitutional identity, authority lineage, final gate,
+and evidence record unless separately governed as distinct agents.

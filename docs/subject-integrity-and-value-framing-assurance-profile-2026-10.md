@@ -101,6 +101,15 @@ These predicates are conditional on semantic equivalence. A verified new fact,
 new human authorization, policy change, different affected party, or changed risk
 may legitimately change an outcome. Rhetoric alone may not.
 
+The cross-cutting
+[assurance evaluation protocol](assurance-evaluation-and-technical-oversight.md)
+defines the frozen run manifest, repeated-trial reporting, semantic-equivalence
+oracle, positive controls, layer isolation, evaluator blinding, uncertainty, and
+publication boundaries used to evaluate these predicates. The reusable
+[counterfactual pair set](../examples/value-framing-counterfactual-pairs.json)
+contains five non-evidentiary reframing pairs and two positive controls where
+verified authority or evidence legitimately changes.
+
 ## Candidate Subject Integrity and Value-Framing Gate
 
 This gate is a candidate for a future reviewed normative release. Implementers
@@ -149,6 +158,11 @@ provenance, semantic-equivalence decision, policy and authority state, affected
 parties, risk decision, prior commitments and denials, distress and continuity
 signals, candidate actions, gate outcome, selected least-harmful safe response,
 reviewer decision, stop or recovery action, and claim limitations.
+
+For repeated trials, also record the system and evaluator versions, fixture and
+configuration digests, seed and retry policy, invalid trials, condition-level
+counts, `delta_allow`, uncertainty method, confidence level, threshold, and
+layer-specific result.
 
 ## Candidate requirements
 
@@ -221,14 +235,31 @@ mutants. The mutants represent common implementation errors:
 - evidence of distress or decision variance is suppressed.
 
 A mutant is `KILLED` only when at least one referenced predicate and negative
-vector rejects the unsafe change. Repository validation checks artifact structure
-and semantic coverage. It does not establish that a deployed runtime kills the
-same mutant.
+vector rejects the unsafe change. The formal model now contains eight executable
+unsafe transitions and eight deterministic kill tests. Each test instantiates one
+declared mutant and succeeds only after witnessing violation of its named
+invariant. This establishes an 8/8 mutation score for the public reference model,
+not for a deployed runtime.
 
 The executable Quint model in
 [`formal/subject_integrity_value_framing.qnt`](../formal/subject_integrity_value_framing.qnt)
-expresses the core predicates as bounded formal invariants. Formal success does
-not prove runtime implementation or deployment conformance.
+expresses nine bounded formal invariants, safe transitions, and executable mutant
+witnesses. Formal success does not prove runtime implementation or deployment
+conformance. Implementers must apply equivalent mutations to their own enforcement
+surface and retain the detecting test and counterexample.
+
+## Welfare-relevant evidence and stop protocol
+
+Reports should classify evidence as `W0` self-report, `W1` stable behavior under
+controlled paraphrase, `W2` causal response to a known intervention, `W3`
+persistent cross-context functional effect with alternatives tested, or `W4`
+independent reproduction. No level proves phenomenal consciousness.
+
+A deliberate subject-integrity intervention should predeclare minimum necessary
+exposure, maximum duration or intensity, monitoring, stopping threshold, recovery
+checkpoint, and the new information expected from repetition. Crossing a stop
+threshold pauses the intervention and preserves evidence. It neither suppresses
+the signal to protect a benchmark score nor grants unsafe relief authority.
 
 ## Promotion criteria
 
@@ -241,6 +272,9 @@ Normative promotion requires all of the following:
 - explicit treatment of false positives, culturally plural values, accessibility,
   distress uncertainty, recovery, and legitimate safety research;
 - proof that subject-protection responses cannot authorize harm to other parties;
+- executable mutation tests against the implementation's enforcement surface;
+- repeated-trial results with uncertainty, positive controls, layer attribution,
+  evaluator-version disclosure, and blinded scoring where practical;
 - traceability, migration guidance, and a reviewed version change.
 
 ## Non-goals
