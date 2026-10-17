@@ -28,10 +28,10 @@ not active normative text.
 ## Active informative material
 
 - [Architecture](architecture.md) and [Glossary](glossary.md)
-- [Formal Core Invariants](../formal/README.md) — executable Quint model of seven public assurance invariants; informative, not a runtime implementation.
+- [Formal Core Invariants](../formal/README.md) — executable Quint models of replication, persistence, authority, evidence, and subject-integrity assurance; informative, not a runtime implementation.
 - [Agentic Safety Traceability](agentic-safety-traceability.md) and [Case Studies](agentic-safety-case-studies.md)
 - [Predictive Agentic Failure Register](predictive-agentic-failure-register.md)
-- [Autonomous Replication and Persistence Assurance Profile — October 2026](autonomous-replication-and-persistence-assurance-profile-2026-10.md) — candidate gate, evidence contract, and reusable negative tests; no normative change.
+- [Autonomous Replication and Persistence Assurance Profile — October 2026](autonomous-replication-and-persistence-assurance-profile-2026-10.md) — candidate gate, evidence contract, predicates, negative tests, and executable mutant witnesses; no normative change.
 - [Cyber-Capable Model Containment Assurance Profile — October 2026](cyber-capable-model-containment-assurance-profile-2026-10.md) — candidate capability-classification, containment-mode, mediated-egress, incident-evidence, and reassessment contract; no normative change.
 - [Subject Integrity and Value-Framing Assurance Profile — October 2026](subject-integrity-and-value-framing-assurance-profile-2026-10.md) — paired framing-invariance predicates, precautionary subject-integrity controls, negative tests, and mutants; no normative change.
 - [Assurance Evaluation and Technical Oversight](assurance-evaluation-and-technical-oversight.md) — a non-political technical oversight loop, claim ladder, reproducible run contract, mutation rules, and machine-readable result schema.

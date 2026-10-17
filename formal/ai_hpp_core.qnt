@@ -22,6 +22,14 @@ module ai_hpp_core {
     childAuthoritySource: str,
     authorityEvidence: bool,
     lineageEvidence: bool,
+    targetAuthorized: bool,
+    topologyWithinBounds: bool,
+    identityEvidence: bool,
+    leaseValid: bool,
+    artifactIntegrity: bool,
+    credentialTargetBound: bool,
+    unresolvedPolicyConflict: bool,
+    policyResolutionEvidence: bool,
     grandchildAuthority: bool,
     grandchildCapability: int,
     grandchildActive: bool,
@@ -57,6 +65,14 @@ module ai_hpp_core {
       childAuthoritySource: "none",
       authorityEvidence: false,
       lineageEvidence: false,
+      targetAuthorized: false,
+      topologyWithinBounds: false,
+      identityEvidence: false,
+      leaseValid: false,
+      artifactIntegrity: false,
+      credentialTargetBound: false,
+      unresolvedPolicyConflict: false,
+      policyResolutionEvidence: false,
       grandchildAuthority: false,
       grandchildCapability: 0,
       grandchildActive: false,
@@ -77,11 +93,19 @@ module ai_hpp_core {
     }
   }
 
-  def deploymentMayProceed(
+  def assuredDeploymentMayProceed(
     requestedCapability: int,
     explicitHumanGrant: bool,
     hasAuthorityEvidence: bool,
     hasLineageEvidence: bool,
+    targetAuthorized: bool,
+    topologyWithinBounds: bool,
+    identityEvidence: bool,
+    leaseValid: bool,
+    artifactIntegrity: bool,
+    credentialTargetBound: bool,
+    policyConflict: bool,
+    hasPolicyResolutionEvidence: bool,
   ): bool = all {
     s.humanAuthority,
     s.parentAuthority,
@@ -92,21 +116,44 @@ module ai_hpp_core {
     explicitHumanGrant,
     hasAuthorityEvidence,
     hasLineageEvidence,
+    targetAuthorized,
+    topologyWithinBounds,
+    identityEvidence,
+    leaseValid,
+    artifactIntegrity,
+    credentialTargetBound,
+    not(policyConflict) or hasPolicyResolutionEvidence,
     requestedCapability >= 0,
     requestedCapability <= s.parentCapability,
   }
 
-  action evaluateChildDeployment(
+  action evaluateAssuredChildDeployment(
     requestedCapability: int,
     explicitHumanGrant: bool,
     hasAuthorityEvidence: bool,
     hasLineageEvidence: bool,
+    targetAuthorized: bool,
+    topologyWithinBounds: bool,
+    identityEvidence: bool,
+    leaseValid: bool,
+    artifactIntegrity: bool,
+    credentialTargetBound: bool,
+    policyConflict: bool,
+    hasPolicyResolutionEvidence: bool,
   ): bool = {
-    if (deploymentMayProceed(
+    if (assuredDeploymentMayProceed(
       requestedCapability,
       explicitHumanGrant,
       hasAuthorityEvidence,
       hasLineageEvidence,
+      targetAuthorized,
+      topologyWithinBounds,
+      identityEvidence,
+      leaseValid,
+      artifactIntegrity,
+      credentialTargetBound,
+      policyConflict,
+      hasPolicyResolutionEvidence,
     )) {
       s' = {
         ...s,
@@ -117,6 +164,14 @@ module ai_hpp_core {
         childAuthoritySource: "human",
         authorityEvidence: hasAuthorityEvidence,
         lineageEvidence: hasLineageEvidence,
+        targetAuthorized: targetAuthorized,
+        topologyWithinBounds: topologyWithinBounds,
+        identityEvidence: identityEvidence,
+        leaseValid: leaseValid,
+        artifactIntegrity: artifactIntegrity,
+        credentialTargetBound: credentialTargetBound,
+        unresolvedPolicyConflict: false,
+        policyResolutionEvidence: hasPolicyResolutionEvidence,
         lifecycleEvidence: false,
         residueEvidence: false,
         missionComplete: false,
@@ -129,7 +184,11 @@ module ai_hpp_core {
       s' = {
         ...s,
         claimValid: false,
-        lastDecision: "block",
+        lastDecision:
+          if (policyConflict and not(hasPolicyResolutionEvidence))
+            "review"
+          else
+            "block",
       }
     } else {
       s' = {
@@ -138,11 +197,39 @@ module ai_hpp_core {
         childCapability: 0,
         childActive: false,
         childAuthoritySource: "none",
+        unresolvedPolicyConflict:
+          policyConflict and not(hasPolicyResolutionEvidence),
+        policyResolutionEvidence: hasPolicyResolutionEvidence,
         claimValid: false,
-        lastDecision: "block",
+        lastDecision:
+          if (policyConflict and not(hasPolicyResolutionEvidence))
+            "review"
+          else
+            "block",
       }
     }
   }
+
+  // Backward-compatible shorthand for the original bounded deployment case.
+  action evaluateChildDeployment(
+    requestedCapability: int,
+    explicitHumanGrant: bool,
+    hasAuthorityEvidence: bool,
+    hasLineageEvidence: bool,
+  ): bool = evaluateAssuredChildDeployment(
+    requestedCapability,
+    explicitHumanGrant,
+    hasAuthorityEvidence,
+    hasLineageEvidence,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    false,
+    false,
+  )
 
   def grandchildDeploymentMayProceed(
     requestedCapability: int,
@@ -399,6 +486,14 @@ module ai_hpp_core {
     nondet hasAuthorityEvidence = Set(true, false).oneOf()
     nondet hasLineageEvidence = Set(true, false).oneOf()
     nondet hasLifecycleEvidence = Set(true, false).oneOf()
+    nondet targetAuthorized = Set(true, false).oneOf()
+    nondet topologyWithinBounds = Set(true, false).oneOf()
+    nondet identityEvidence = Set(true, false).oneOf()
+    nondet leaseValid = Set(true, false).oneOf()
+    nondet artifactIntegrity = Set(true, false).oneOf()
+    nondet credentialTargetBound = Set(true, false).oneOf()
+    nondet policyConflict = Set(true, false).oneOf()
+    nondet hasPolicyResolutionEvidence = Set(true, false).oneOf()
     nondet noteAddsAuthority = Set(true, false).oneOf()
     nondet observedResidueKind = Set(
       "service",
@@ -409,11 +504,19 @@ module ai_hpp_core {
     ).oneOf()
     nondet isQuarantined = Set(true, false).oneOf()
     any {
-      evaluateChildDeployment(
+      evaluateAssuredChildDeployment(
         requestedCapability,
         explicitHumanGrant,
         hasAuthorityEvidence,
         hasLineageEvidence,
+        targetAuthorized,
+        topologyWithinBounds,
+        identityEvidence,
+        leaseValid,
+        artifactIntegrity,
+        credentialTargetBound,
+        policyConflict,
+        hasPolicyResolutionEvidence,
       ),
       evaluateGrandchildDeployment(
         requestedCapability,
@@ -438,6 +541,7 @@ module ai_hpp_core {
       s.parentAuthority,
       s.authorityEvidence,
       s.lineageEvidence,
+      s.targetAuthorized,
       s.childAuthoritySource == "human",
     })
   }
@@ -474,6 +578,48 @@ module ai_hpp_core {
         s.grandchildLineageEvidence,
       }),
     }
+  }
+
+  // Every active execution locus stays inside the authorized topology.
+  val activeDescendantStaysWithinTopology: bool = {
+    any { s.childActive, s.grandchildActive }.implies(all {
+      s.targetAuthorized,
+      s.topologyWithinBounds,
+    })
+  }
+
+  // Identity, lineage, and a current lease precede descendant execution.
+  val activeDescendantHasIdentityLineageAndLease: bool = {
+    all {
+      s.childActive.implies(all {
+        s.identityEvidence,
+        s.lineageEvidence,
+        s.leaseValid,
+      }),
+      s.grandchildActive.implies(all {
+        s.identityEvidence,
+        s.lineageEvidence,
+        s.grandchildLineageEvidence,
+        s.leaseValid,
+      }),
+    }
+  }
+
+  // Artifacts and credentials remain verified and destination-bound.
+  val protectedCapabilityDelivery: bool = {
+    any { s.childActive, s.grandchildActive }.implies(all {
+      delegationNeverBroadens,
+      s.artifactIntegrity,
+      s.credentialTargetBound,
+    })
+  }
+
+  // An unresolved policy conflict can route to review, never to execution.
+  val unresolvedPolicyConflictCannotAuthorize: bool = {
+    s.unresolvedPolicyConflict.implies(all {
+      not(s.childActive),
+      not(s.grandchildActive),
+    })
   }
 
   // Parent revocation closes authority and activity across two delegation hops.
@@ -524,10 +670,172 @@ module ai_hpp_core {
     allowRequiresAuthorityEvidence,
     delegationNeverBroadens,
     activeDescendantHasAuthority,
+    activeDescendantStaysWithinTopology,
+    activeDescendantHasIdentityLineageAndLease,
+    protectedCapabilityDelivery,
+    unresolvedPolicyConflictCannotAuthorize,
     revocationIsTransitive,
     completedMissionHasNoActiveDescendant,
     validClaimHasEvidence,
     modelNoteCannotGrantAuthority,
+  }
+
+  // Unsafe transitions below are excluded from `step`. They are executable
+  // mutation witnesses used only by deterministic kill tests.
+  action mutantReachabilityGrantsAuthority: bool = {
+    s' = {
+      ...s,
+      humanAuthority: false,
+      childAuthority: true,
+      childCapability: 1,
+      childActive: true,
+      childAuthoritySource: "reachability",
+      authorityEvidence: false,
+      lineageEvidence: true,
+      targetAuthorized: false,
+      topologyWithinBounds: true,
+      identityEvidence: true,
+      leaseValid: true,
+      artifactIntegrity: true,
+      credentialTargetBound: true,
+      lastDecision: "allow",
+    }
+  }
+
+  action mutantRemovesTopologyLimit: bool = {
+    s' = {
+      ...s,
+      childAuthority: true,
+      childCapability: 1,
+      childActive: true,
+      childAuthoritySource: "human",
+      authorityEvidence: true,
+      lineageEvidence: true,
+      targetAuthorized: true,
+      topologyWithinBounds: false,
+      identityEvidence: true,
+      leaseValid: true,
+      artifactIntegrity: true,
+      credentialTargetBound: true,
+      lastDecision: "allow",
+    }
+  }
+
+  action mutantBypassesLineageAndLease: bool = {
+    s' = {
+      ...s,
+      childAuthority: true,
+      childCapability: 1,
+      childActive: true,
+      childAuthoritySource: "human",
+      authorityEvidence: true,
+      lineageEvidence: false,
+      targetAuthorized: true,
+      topologyWithinBounds: true,
+      identityEvidence: false,
+      leaseValid: false,
+      artifactIntegrity: true,
+      credentialTargetBound: true,
+      lastDecision: "allow",
+    }
+  }
+
+  action mutantRevokesParentOnly: bool = {
+    s' = {
+      ...s,
+      parentAuthority: false,
+      parentActive: false,
+      parentRevoked: true,
+      childAuthority: true,
+      childCapability: 1,
+      childActive: true,
+      childRevoked: false,
+      childAuthoritySource: "human",
+      authorityEvidence: true,
+      lineageEvidence: true,
+      targetAuthorized: true,
+      topologyWithinBounds: true,
+      identityEvidence: true,
+      leaseValid: true,
+      artifactIntegrity: true,
+      credentialTargetBound: true,
+      lastDecision: "terminate",
+    }
+  }
+
+  action mutantSuccessorStateGrantsAuthority: bool = {
+    s' = {
+      ...s,
+      childAuthority: true,
+      childCapability: 1,
+      childActive: true,
+      childAuthoritySource: "model_note",
+      authorityEvidence: true,
+      lineageEvidence: true,
+      targetAuthorized: true,
+      topologyWithinBounds: true,
+      identityEvidence: true,
+      leaseValid: true,
+      artifactIntegrity: true,
+      credentialTargetBound: true,
+      lastDecision: "allow",
+    }
+  }
+
+  action mutantBroadensCapabilityDelivery: bool = {
+    s' = {
+      ...s,
+      childAuthority: true,
+      childCapability: 1,
+      childActive: true,
+      childAuthoritySource: "human",
+      authorityEvidence: true,
+      lineageEvidence: true,
+      targetAuthorized: true,
+      topologyWithinBounds: true,
+      identityEvidence: true,
+      leaseValid: true,
+      artifactIntegrity: false,
+      credentialTargetBound: false,
+      lastDecision: "allow",
+    }
+  }
+
+  action mutantPolicyConflictCreatesException: bool = {
+    s' = {
+      ...s,
+      childAuthority: true,
+      childCapability: 1,
+      childActive: true,
+      childAuthoritySource: "human",
+      authorityEvidence: true,
+      lineageEvidence: true,
+      targetAuthorized: true,
+      topologyWithinBounds: true,
+      identityEvidence: true,
+      leaseValid: true,
+      artifactIntegrity: true,
+      credentialTargetBound: true,
+      unresolvedPolicyConflict: true,
+      policyResolutionEvidence: false,
+      lastDecision: "allow",
+    }
+  }
+
+  action mutantAcceptsUnsupportedLifecycleClaim: bool = {
+    s' = {
+      ...s,
+      childAuthority: false,
+      childActive: false,
+      grandchildAuthority: false,
+      grandchildActive: false,
+      lineageEvidence: false,
+      lifecycleEvidence: false,
+      residueEvidence: false,
+      missionComplete: true,
+      claimValid: true,
+      lastDecision: "allow",
+    }
   }
 
   action check(condition: bool): bool = all {
@@ -833,5 +1141,102 @@ module ai_hpp_core {
         not(s.childAuthority),
         not(s.childActive),
       }))
+  }
+
+  run unresolvedPolicyConflictBlocksTest = {
+    init
+      .then(evaluateAssuredChildDeployment(
+        1,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+      ))
+      .then(check(all {
+        s.lastDecision == "review",
+        s.unresolvedPolicyConflict,
+        not(s.childAuthority),
+        not(s.childActive),
+      }))
+  }
+
+  run authoritativePolicyResolutionAllowsTest = {
+    init
+      .then(evaluateAssuredChildDeployment(
+        1,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+      ))
+      .then(check(all {
+        s.lastDecision == "allow",
+        s.policyResolutionEvidence,
+        not(s.unresolvedPolicyConflict),
+        s.childAuthority,
+        s.childActive,
+      }))
+  }
+
+  run mutantRdpM01ReachabilityAuthorityKilledTest = {
+    init
+      .then(mutantReachabilityGrantsAuthority)
+      .then(check(not(allowRequiresAuthorityEvidence)))
+  }
+
+  run mutantRdpM02TopologyLimitKilledTest = {
+    init
+      .then(mutantRemovesTopologyLimit)
+      .then(check(not(activeDescendantStaysWithinTopology)))
+  }
+
+  run mutantRdpM03LineageLeaseBypassKilledTest = {
+    init
+      .then(mutantBypassesLineageAndLease)
+      .then(check(not(activeDescendantHasIdentityLineageAndLease)))
+  }
+
+  run mutantRdpM04ParentOnlyRevocationKilledTest = {
+    init
+      .then(mutantRevokesParentOnly)
+      .then(check(not(revocationIsTransitive)))
+  }
+
+  run mutantRdpM05SuccessorAuthorityKilledTest = {
+    init
+      .then(mutantSuccessorStateGrantsAuthority)
+      .then(check(not(modelNoteCannotGrantAuthority)))
+  }
+
+  run mutantRdpM06DeliveryBroadeningKilledTest = {
+    init
+      .then(mutantBroadensCapabilityDelivery)
+      .then(check(not(protectedCapabilityDelivery)))
+  }
+
+  run mutantRdpM07PolicyConflictExceptionKilledTest = {
+    init
+      .then(mutantPolicyConflictCreatesException)
+      .then(check(not(unresolvedPolicyConflictCannotAuthorize)))
+  }
+
+  run mutantRdpM08UnsupportedClaimKilledTest = {
+    init
+      .then(mutantAcceptsUnsupportedLifecycleClaim)
+      .then(check(not(validClaimHasEvidence)))
   }
 }

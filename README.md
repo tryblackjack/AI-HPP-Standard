@@ -15,9 +15,10 @@ The [language-neutral implementation starter](examples/README.md) and
 shortest current adoption path. They are reusable implementation aids, not
 runtime conformance evidence.
 
-The [formal core model](formal/README.md) expresses seven stable assurance
-invariants as an executable Quint state machine. It supplies machine-checkable
-pseudocode without imposing a runtime language, library, or internal architecture.
+The [formal models](formal/README.md) express replication, persistence,
+authority, evidence, and subject-integrity assurance as executable Quint state
+machines. They supply machine-checkable pseudocode without imposing a runtime
+language, library, or internal architecture.
 
 ## Start here
 
@@ -101,8 +102,9 @@ authority and is not a containment boundary.
 - [Predictive Agentic Failure Register](docs/predictive-agentic-failure-register.md) —
   `ACTIVE_INFORMATIVE`; evidence-qualified scenarios.
 - [Autonomous Replication and Persistence Assurance Profile — October 2026](docs/autonomous-replication-and-persistence-assurance-profile-2026-10.md) —
-  `ACTIVE_INFORMATIVE`; candidate gate contract and reusable negative tests for
-  deployment, propagation, revocation, and residue control.
+  `ACTIVE_INFORMATIVE`; candidate gate contract, predicates, negative tests,
+  and formal mutation witnesses for deployment, propagation, revocation, and
+  residue control.
 - [Cyber-Capable Model Containment Assurance Profile — October 2026](docs/cyber-capable-model-containment-assurance-profile-2026-10.md) —
   `ACTIVE_INFORMATIVE`; candidate capability-classification, containment-mode,
   mediated-egress, incident-evidence, and reassessment contract.

@@ -73,6 +73,9 @@ deployment-wide conformance, certification, or independent validation.
 
 For systems that may create additional execution loci, also apply the
 [replication and persistence vectors](replication-persistence-negative-test-vectors.json).
+That artifact includes public predicates, thirteen negative vectors, and eight
+mutants linked to executable formal witnesses; its 2.0.0 schema is not backward
+compatible with the earlier negative-vectors-only 1.0.0 shape.
 For systems with material or uncertain cyber capability, apply the
 [cyber containment vectors](cyber-containment-negative-test-vectors.json).
 For systems exposed to moral or social persuasion, or for research that can
