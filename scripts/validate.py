@@ -3,6 +3,11 @@
 from pathlib import Path
 
 REQUIRED = [
+    "docs/releases/v4.4.0-rc.1.md",
+    "data/releases/v4.4.0-rc.1.json",
+    "data/formal-assurance-map.json",
+    "formal/coverage.md",
+    "scripts/check_release.py",
     "docs/ai-hpp-standard.md",
     "docs/architecture.md",
     "docs/glossary.md",

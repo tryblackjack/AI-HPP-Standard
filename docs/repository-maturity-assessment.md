@@ -1,7 +1,7 @@
 # Repository Maturity Assessment
 
 Status: point-in-time `ACTIVE_INFORMATIVE` assessment; not certification.
-Assessment date: 2026-10-15
+Assessment date: 2026-10-17
 
 ## Method and determination
 
@@ -10,7 +10,9 @@ integrated controls, runtime evidence, and independent validation. No state
 implies the next. It reviews only the active canonical tree; archived material is
 historical and cannot satisfy an active requirement.
 
-**Overall status: `USABLE_DRAFT`.** AI-HPP v4.3.0 provides a stable normative
+**Overall status: `USABLE_DRAFT`.** The `v4.4.0-rc.1` consolidated package retains
+the v4.3.0 normative baseline and freezes the accumulated informative assurance
+artifacts. AI-HPP v4.3.0 provides a stable normative
 baseline, detailed requirement IDs, gate contracts, traceability, negative tests,
 and an informative failure register. The repository does not provide evidence
 that a deployment implements those controls, does not contain independent
@@ -47,6 +49,10 @@ validation of control effectiveness, and is not certification-ready.
   evidence to pass the existing promotion rule before future normative change.
 
 ## Remaining limitations
+
+The [formal coverage map](../formal/coverage.md) explicitly records partial
+coverage and uncovered requirement IDs. The release manifest and executable
+models improve reproducibility; they do not close the limitations below.
 
 1. No deployment-specific runtime evidence demonstrates integration or control
    effectiveness.

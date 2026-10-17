@@ -2,6 +2,31 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 
+## 2026-10-17 — Consolidated package v4.4.0-rc.1
+
+- Designated `v4.4.0-rc.1` as the current consolidated release candidate, with
+  a SHA-256 composition manifest, release notes, migration instructions, and
+  explicit finalization criteria. Package identity is distinct from the
+  retained v4.3.0 normative baseline and overall `USABLE_DRAFT` maturity.
+- Included the current normative owners, HUS draft, both Quint models,
+  informative profiles, vectors, schemas, counterfactual controls, and tooling.
+  No requirement ID, normative gate outcome, or evidence obligation changes.
+- Added a complete inventory of twenty checked formal invariants, partial
+  requirement links, positive scenarios, mutation witnesses, and explicit gaps
+  for every MVP, agentic, and HUS requirement. Formal mapping does not certify a
+  runtime or prove a whole prose requirement.
+- Added release validation and negative tests for missing/changed artifacts,
+  silently promoted profiles, incomplete formal mapping, invalid witnesses, and
+  package/baseline version confusion. CI checks the candidate composition.
+- Added prerelease publication after all three required workflows succeed on
+  the exact manifest-changing `main` commit; publication never moves a tag.
+- Migration preserves `standard_version: "4.3.0"` in existing baseline records.
+  Consumers should additionally pin package and profile/artifact versions. RDP
+  artifact/schema 2.0.0 remains a breaking data-shape change with shared-vector
+  comparison limits; other included artifact versions are retained.
+- Final v4.4.0 remains subject to candidate review and resolution of release
+  findings. Normative promotion and independent validation remain separate.
+
 ## 2026-10-17 — Replication assurance predicates and mutation tests (no normative change)
 
 - Expanded the informative Replication, Deployment, and Persistence profile

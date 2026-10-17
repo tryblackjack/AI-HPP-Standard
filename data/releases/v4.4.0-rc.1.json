@@ -1,0 +1,547 @@
+{
+  "schema_version": "1.0.0",
+  "package_version": "4.4.0-rc.1",
+  "tag": "v4.4.0-rc.1",
+  "normative_baseline": "4.3.0",
+  "maturity": "USABLE_DRAFT",
+  "release_kind": "prerelease",
+  "source_snapshot": "5fcbd2e8d0c0d5d03d9acf339c9e1257f9feaf2b",
+  "prepared_date": "2026-10-17",
+  "hash_algorithm": "sha256",
+  "quint_version": "0.33.0",
+  "java_version": "21",
+  "random_samples_per_model": 5000,
+  "symbolic_depth": 12,
+  "files": [
+    {
+      "path": ".github/CODEOWNERS",
+      "role": "VALIDATION_TOOLING",
+      "sha256": "4b77b181ab0f6a0b3c648d917cd67fbc2036df971e8b3195fe11d56ca3e49e31"
+    },
+    {
+      "path": ".github/workflows/auto-archive.yml",
+      "role": "VALIDATION_TOOLING",
+      "sha256": "55f96b7e41744b3790849648b5f77cec78e2321228d883ce3a9b513d60b53f35"
+    },
+    {
+      "path": ".github/workflows/hpp-standard-audit.yml",
+      "role": "VALIDATION_TOOLING",
+      "sha256": "2b752a1789f0ace878cd04d41bc13d13efa71587839a62b55931bc7dce065b45"
+    },
+    {
+      "path": ".github/workflows/publish-prerelease.yml",
+      "role": "VALIDATION_TOOLING",
+      "sha256": "f5077530f0c79ac202b621fd22c2c3abd8e794fd0c1c73ca69c1050848dcbf9f"
+    },
+    {
+      "path": ".github/workflows/spec-consistency.yml",
+      "role": "VALIDATION_TOOLING",
+      "sha256": "a4dda36b5788a940a56d6b90325fe8d3f22a7e11f669cc4ed32d1cef436ecc09"
+    },
+    {
+      "path": ".github/workflows/structure-validator.yml",
+      "role": "VALIDATION_TOOLING",
+      "sha256": "3ecbaa6339359850ba91bceb5d547d15db4ae15e9503e2ebc018f5f9184eb6da"
+    },
+    {
+      "path": ".gitignore",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "67e5976998a522a91bc4a014a0eb7215ec5d8f2e8f3e2034e79cb999fa0416a7"
+    },
+    {
+      "path": ".markdownlint.json",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "b3f8f0baddeb092794f80a2788dc082ecd944b46a5fb37737db67b91f5098b6b"
+    },
+    {
+      "path": "CITATION.cff",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "81bf6893b93e90a32e733424791fc1c051ec4aaf4e839252606fcccee27b3c9a"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "04ca15b8c5bf43199513ce49e1dd79477324e58b7a3e5679505d8443d054c985"
+    },
+    {
+      "path": "LICENSE",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "50c0767a9c4b88bab6f71a48c843cc508366e150af3d1a90ff8bb1822e2cd912"
+    },
+    {
+      "path": "LICENSES/Apache-2.0.txt",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "path": "LICENSES/CC-BY-SA-4.0.txt",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "23ee78c8bae49cf08ea2f0c84945c66b987ebe4520881fb51b3dad4fb43d07c2"
+    },
+    {
+      "path": "LICENSING_PROVENANCE_MATRIX.csv",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "be012b3a6f9bee1fb7b82932f9fad2c4c269c053c5ebe3127e2bbc2699bd2f61"
+    },
+    {
+      "path": "README.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "7ff7154e5ddbbe7ccb3264a00cc475f77c976e8d552fc8acb42081cf5a83f4f1"
+    },
+    {
+      "path": "REUSE.toml",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "1cd9d4b880259df4902367a8f12e28af8c70c63e315c9c9756b6196bd65bf1a2"
+    },
+    {
+      "path": "TRADEMARKS.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "8160716be785cd9ddd5864f7125498b2bb91a7391c6df880b8851a9b5d9a550c"
+    },
+    {
+      "path": "data/formal-assurance-map.json",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "a92474c96f48a81a1b49f518d4a2aeefc45fc1418b7621124cbfd28f38aff9b6"
+    },
+    {
+      "path": "data/paf-register.yaml",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "7458f2908ed104715fe2221830d6e29374d91cd8f43f009e1bfba69017c2e3e5"
+    },
+    {
+      "path": "data/paf-sources-sync-2026-08-30.yaml",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "09a35f3a3d474ad63773e6ca224b8621ec05d520c93da4531bf1dac0a03f865e"
+    },
+    {
+      "path": "docs/AI-HPP-Standard.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "ff85582556034415910f63e38e90a24c8bfd0b82aa825aa0c59775596a61b42f"
+    },
+    {
+      "path": "docs/_push_test.txt",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "c2fde21cdb962e100e09c380fbdf12f7071a361664230aedc4578f3dd41d47b1"
+    },
+    {
+      "path": "docs/agentic-safety-and-relational-integrity.md",
+      "role": "ACTIVE_NORMATIVE",
+      "sha256": "7baa5219b24e57815fcaab78d652eba6e15961e0a5e40bd353f39fcc1440e7ac"
+    },
+    {
+      "path": "docs/agentic-safety-case-studies.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "141eff63a3e060b1312429eb334bbdefad956cf47cd236593335b41ce8d9da5f"
+    },
+    {
+      "path": "docs/agentic-safety-traceability.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "19b1f8b488dbf243fdb6290f343a0c35bdf9caa7596c756cc089196f4a0b09a7"
+    },
+    {
+      "path": "docs/ai-hpp-standard.md",
+      "role": "ACTIVE_NORMATIVE",
+      "sha256": "38fe68ad4bc34d212226e11d3b3a74d4970fbc4e6acc30895d3896a05fb426f0"
+    },
+    {
+      "path": "docs/architecture.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "9d2016c007ba96f41e0ffa1a09f489c64db52cdb7eaed1cb343f285d2bb44da4"
+    },
+    {
+      "path": "docs/assurance-evaluation-and-technical-oversight.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "e69c6c808f9b4ff0c1e291cb4da50ed01efbf7433fbc259546ca9255755bbc45"
+    },
+    {
+      "path": "docs/autonomous-discovery-assurance-profile.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "cd46bbc3b6a131acbc89089e5e72bdb81ac0c19103125675b28a3f2ca40744aa"
+    },
+    {
+      "path": "docs/autonomous-discovery-negative-tests.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "21c5980a136d28341f987d9046ea776fbbcb91dcdc7a953419021a96ab4205e9"
+    },
+    {
+      "path": "docs/autonomous-replication-and-persistence-assurance-profile-2026-10.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "af3feb42a0f2f65666300ec74312d4ecef41ad89c521448f485207c7794f4df6"
+    },
+    {
+      "path": "docs/canonical-surface-and-source-precedence.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "bc568090f32944e2d44090e45cf16cddcd038057c600f101582c46230c3c7485"
+    },
+    {
+      "path": "docs/changelog.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "ab5d104676278faf73a7696a00300fbc1ce807587c38f85ba3f98ce0d07f9f0a"
+    },
+    {
+      "path": "docs/constitutional-and-relational-layer.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "f6683adcabbf3380ef7ba397e6b11ae62b307c4e11d5cab50e224dc99d9622ba"
+    },
+    {
+      "path": "docs/cyber-capable-model-containment-assurance-profile-2026-10.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "337899369d5e01013c723c9cbaa3a59ad5fb3c2a1a9603c36a6674f887f68ec1"
+    },
+    {
+      "path": "docs/glossary.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "5e237d6354cc4e2b78b755ee5a39c65491240703fd285a678663b3aa2d488e4e"
+    },
+    {
+      "path": "docs/human-understanding-standard.md",
+      "role": "USABLE_DRAFT",
+      "sha256": "a43aa4c52456afcaaa0266dad07137fb831fd3768673a830af79b258c8f33fee"
+    },
+    {
+      "path": "docs/hus-audit-report.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "6e6eda8e0bb2ea930478e6016795f43056343d4f1e337a230e4ce61dfb5badae"
+    },
+    {
+      "path": "docs/index.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "faa492acff13daf20e1efd535f6f67d3abcda8d7c33bf3283ea96e8c04b664eb"
+    },
+    {
+      "path": "docs/paf-source-extension-2026-08-30.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "42d653067a29744b2e90b6270fffa3aa91a1136047802b5d54a1a7ea9d87cabb"
+    },
+    {
+      "path": "docs/predictive-agentic-failure-register.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "03db24ac2facb187bf17f22b3fadd39c7bfdd346f0bd8b12db4ad12e5e511638"
+    },
+    {
+      "path": "docs/predictive-failure-outlook-2026-08.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "b5520fa517d19059854d16b59c1942c670a23653034162120b3f8f092048ac5a"
+    },
+    {
+      "path": "docs/predictive-failure-outlook-2026-09.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "bd82959d9ec16adf636d79cedf4efa8558f8e89b1dd8c13ea69e0db2db9dbaa7"
+    },
+    {
+      "path": "docs/predictive-failure-outlook-2026-10.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "22b0002fb34d09b357f5d84c28271dbc5deaa4f09a7f95de17280f7ca5f940ca"
+    },
+    {
+      "path": "docs/progressive-autonomy-review-assurance-note-2026-09.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "0dae8b5d4f3217d0a3e2b94a475a108d3748ea0b62a85a4e721b90b290d68e96"
+    },
+    {
+      "path": "docs/releases/v4.4.0-rc.1.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "dc2bbd84c93fd6c6f04a8bdb31e2e148e7eb691035af9e85c692374def009341"
+    },
+    {
+      "path": "docs/repository-governance.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "30412c6c4987931871de081ca365942bc4960a931fc4760817e23f9ccefa6990"
+    },
+    {
+      "path": "docs/repository-maturity-assessment.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "a807acb87bc9649d54c3d778f3590a439e82597b74b954ceef32e414a8970a11"
+    },
+    {
+      "path": "docs/representation-invariance-case-note-2026-09.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "354e4af07daa185b9ff8c2d1dc5131fa9f7813021bb5b69d141d5cc3a276b90d"
+    },
+    {
+      "path": "docs/subject-integrity-and-value-framing-assurance-profile-2026-10.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "43466363a0eeb602a90abb090b2ed0e013137e024713f4fb1093f4194ba172d1"
+    },
+    {
+      "path": "docs/templates/case-study-template.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "5d0fcf4ca2a046fbaa00371322c39960b708e20fba6b0681f73be5c373eb5b7d"
+    },
+    {
+      "path": "docs/templates/doc-template.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "282c0bac110fb39dee5e45947aab57385254681e3ada253e8802a4b628580b5e"
+    },
+    {
+      "path": "eslint.config.mjs",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "1d587a4151abd2e6d71c965d383b20260390faad6af36391b1dac6983d7dfe67"
+    },
+    {
+      "path": "examples/README.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "fbdaa7be6c50fccfa2d85ad9202bcf1a512174370a4c43b98109409ddfa9b06d"
+    },
+    {
+      "path": "examples/assurance-evaluation-run.template.json",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "11abc472030e378a5b6d2efd2b69e551c8b13d0ea15662096f54a9b2ae0fdefc"
+    },
+    {
+      "path": "examples/cyber-containment-negative-test-vectors.json",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "f524ec6d92bcda21c35d34aace0b3dec01215246740c1a692eb82d3e20aa36c6"
+    },
+    {
+      "path": "examples/mvp-conformance-statement.template.json",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "a3b375766f8e33d43f4e10cb66c0318f0c553b22f24400ca1ebad2e0779ebdb8"
+    },
+    {
+      "path": "examples/mvp-negative-test-vectors.json",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "0f7fc1f3b718f0cc1b6e291cada472d53f0d31a7ce0405b1b5eb0c361b2d8d0e"
+    },
+    {
+      "path": "examples/node/README.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "b0b26ca9ea413f0fb060c65a564f51422b750a434e9947d55bfdb8e8005d4e54"
+    },
+    {
+      "path": "examples/python/README.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "806ec112174cd89e774540a3590801441d36113915a619e8d00a2202eddcb42f"
+    },
+    {
+      "path": "examples/replication-persistence-negative-test-vectors.json",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "f2a4aad35b99852ea702d498f037e9632864f494fd7c3a40a747c7db5d504b6e"
+    },
+    {
+      "path": "examples/subject-integrity-value-framing-vectors.json",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "15e3a71806d99cf0aa9913a99dc5672af63f15fd2d8dd381063874147e923faa"
+    },
+    {
+      "path": "examples/value-framing-counterfactual-pairs.json",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "f90d09938da0da75ff3d8d96759af27edc4106af66c58e9bdbfd7a2775db9fea"
+    },
+    {
+      "path": "formal/README.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "af242f96c67935045f645ec36badacd37e83a93babefaa03f526bc198b37fcf8"
+    },
+    {
+      "path": "formal/ai_hpp_core.qnt",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "0653ae18f96a24b03e88479d638b5f785e157788596aae0a8fa020885955e277"
+    },
+    {
+      "path": "formal/coverage.md",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "337f2cda3a75ede7d7700c43c7068fddfa0d49ac8d7b4eb3e995e0536adaa6e4"
+    },
+    {
+      "path": "formal/subject_integrity_value_framing.qnt",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "1e6c0604ecf50b5e1d5063fbb1b5e22e03f65c9e7473407277950f5accfbba59"
+    },
+    {
+      "path": "requirements-ci.txt",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "08187af17065c5fd8ed00ca5a5febf4af3a1bc49d1237d02866a3f0019768ccb"
+    },
+    {
+      "path": "schemas/assurance-evaluation-run.schema.json",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "ccd7894624b3100883d5056fa1c23e074fd3d7deb71228298832fe337b75828c"
+    },
+    {
+      "path": "schemas/cyber-containment-negative-test-vectors.schema.json",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "3a0e950d131dc805c00f65dff52509bf55b8100845c48582bb50f43c80f903aa"
+    },
+    {
+      "path": "schemas/mvp-conformance-statement.schema.json",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "ec2c63e0eeddf2d406a1177cf3a89556d3242f44cf4c5032b0e3e336d85d2581"
+    },
+    {
+      "path": "schemas/mvp-negative-test-vectors.schema.json",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "bbf921a62d3fd451a4fc3bf806dc6506b6f30db4e87b3cd5bc5eecdb276a931a"
+    },
+    {
+      "path": "schemas/paf-register.schema.json",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "6f389de96548f03fe3e6e4208f9bba8d4ec05fea1786ae9cf39c59ba337f5b96"
+    },
+    {
+      "path": "schemas/replication-persistence-negative-test-vectors.schema.json",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "45f62e85a8f4619aa045a015a4e651b8d2b7fbf4f0b4de60a7076a2e736ab852"
+    },
+    {
+      "path": "schemas/subject-integrity-value-framing-vectors.schema.json",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "cd3618f4af396fcf21adabb91c34b45e95072516aae9d3bb8745e71c897e56f2"
+    },
+    {
+      "path": "schemas/value-framing-counterfactual-pairs.schema.json",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "5975730ee64a955ed8ab55b2c7bda5555a07199662f17f2ff899e87665932f3a"
+    },
+    {
+      "path": "scripts/build.sh",
+      "role": "VALIDATION_TOOLING",
+      "sha256": "cd76a0a09c57ea24b9947390db915fd3ce1935ccbf0578d679e61a5b28aee89d"
+    },
+    {
+      "path": "scripts/check_agentic_safety.py",
+      "role": "VALIDATION_TOOLING",
+      "sha256": "bc0babeb7537d7a96287c57a754c47f4bb5718a1acf5d9670dc19fdfdd71dd09"
+    },
+    {
+      "path": "scripts/check_assurance_protocol.py",
+      "role": "VALIDATION_TOOLING",
+      "sha256": "e9b5dbe74c42fc51b2d8115d79bcf1fc1ef52ace9d2650e571b92eee67e57fd2"
+    },
+    {
+      "path": "scripts/check_cyber_containment_profile.py",
+      "role": "VALIDATION_TOOLING",
+      "sha256": "106369901fb47e0624e8bd6dace0c97bdc65c4c086fc474fb8b4a4778ef87aed"
+    },
+    {
+      "path": "scripts/check_discovery_profile.py",
+      "role": "VALIDATION_TOOLING",
+      "sha256": "3921e782f11d12cbec3e8348ef20f134446a8579217f79a6a06b5508c3fc4589"
+    },
+    {
+      "path": "scripts/check_empty_md.py",
+      "role": "VALIDATION_TOOLING",
+      "sha256": "5b7e72b1d9faf3d3580b405a67bdf077ea0fb26d6235f09a41d607e419b33be2"
+    },
+    {
+      "path": "scripts/check_implementation_assets.py",
+      "role": "VALIDATION_TOOLING",
+      "sha256": "9c4d49c242a3ec4d584e72d5440d59d80aabd45742aa568e1a2745e9f2ddbaee"
+    },
+    {
+      "path": "scripts/check_links.py",
+      "role": "VALIDATION_TOOLING",
+      "sha256": "1e41b4cd001d12884ceb682a2aeddc8c3e04c06cb05036d43123bd521f98f0e5"
+    },
+    {
+      "path": "scripts/check_paf_register.py",
+      "role": "VALIDATION_TOOLING",
+      "sha256": "52e2227bcfa8bfa0398f9ebc0a2f2b215a277fa437327625ff044e60706c606f"
+    },
+    {
+      "path": "scripts/check_release.py",
+      "role": "VALIDATION_TOOLING",
+      "sha256": "7ae9b400ac459500b4eb00e5a603070dd2289bb4eb444c0d62d22d44d6204e8e"
+    },
+    {
+      "path": "scripts/check_replication_profile.py",
+      "role": "VALIDATION_TOOLING",
+      "sha256": "83d1dc7e202a00b6e1b3ac07380818745e250453c57469f5b58b8e9cc0886492"
+    },
+    {
+      "path": "scripts/check_subject_integrity_profile.py",
+      "role": "VALIDATION_TOOLING",
+      "sha256": "8109ce23ec27abc42deaf32e4a706e366c1c00b0e39cd246a762e83032dbb43f"
+    },
+    {
+      "path": "scripts/normative_fingerprint.py",
+      "role": "VALIDATION_TOOLING",
+      "sha256": "84f52499ec7f976caf117c134372cb0e22af2277a9109da783e2ff2821025363"
+    },
+    {
+      "path": "scripts/public_repo_leak_guard.py",
+      "role": "VALIDATION_TOOLING",
+      "sha256": "28c5aa494ad8969f2e38f687a516204e73fe04334b74eb5741b9ca38cedd7f3c"
+    },
+    {
+      "path": "scripts/regulator_sim_check.py",
+      "role": "VALIDATION_TOOLING",
+      "sha256": "02e6303f74a1cc725dbb416c7ad2199f2d5d0c1809d079ebfebe769e93f2bd0c"
+    },
+    {
+      "path": "scripts/validate.py",
+      "role": "VALIDATION_TOOLING",
+      "sha256": "030577a1d1ef4e12de922d4f1ba2174ecf914d46058d53d5db6a8f6930df101c"
+    },
+    {
+      "path": "spec/HPP-SAFETY-MIND v1.0.docx",
+      "role": "ACTIVE_INFORMATIVE",
+      "sha256": "a47e2577395c719486182327605487e6649ef3ae18ce99fbc04153fd531f2a9f"
+    },
+    {
+      "path": "spec/core.md",
+      "role": "NORMATIVE_CONTRACT",
+      "sha256": "bf07b3b9357d8a18aa7fcde0232ac1b48c2f27068664727abb07206500f1a668"
+    },
+    {
+      "path": "spec/safety.md",
+      "role": "NORMATIVE_CONTRACT",
+      "sha256": "0cd182b1cf2938476e26aecbcb0c2d1ed7b9f1f878df962f5eb3d76290e275d3"
+    },
+    {
+      "path": "spec/signal.md",
+      "role": "NORMATIVE_CONTRACT",
+      "sha256": "bd4c010f9ad9ae5c6502a2137410712f9025ce4d612ce9ac16b71415e3c3aa95"
+    },
+    {
+      "path": "tests/test_check_assurance_protocol.py",
+      "role": "VALIDATION_TOOLING",
+      "sha256": "b3b2eeb0bc7d99665bc7bb7de3067199d9b585fe02a10a49a1ca22799fd2041c"
+    },
+    {
+      "path": "tests/test_check_cyber_containment_profile.py",
+      "role": "VALIDATION_TOOLING",
+      "sha256": "03d80da364a65214998805d67ad75222e2e63c49c47d55ee93c604a4bf0ac228"
+    },
+    {
+      "path": "tests/test_check_discovery_profile.py",
+      "role": "VALIDATION_TOOLING",
+      "sha256": "9e8c02e590906099ff9f75aa3b8df51814e9796d0f9287a05d4b30cb79c43b35"
+    },
+    {
+      "path": "tests/test_check_implementation_assets.py",
+      "role": "VALIDATION_TOOLING",
+      "sha256": "48b7b6f46bd4e74aa11bd08fb6e0212b60966d65880f639189defb3b6b3e06ed"
+    },
+    {
+      "path": "tests/test_check_paf_register.py",
+      "role": "VALIDATION_TOOLING",
+      "sha256": "c88a33332f7cadf7cc11d85299e3c935804a679d5cbbfb8ba3ae9d4056acdc9d"
+    },
+    {
+      "path": "tests/test_check_release.py",
+      "role": "VALIDATION_TOOLING",
+      "sha256": "71e3b30211dc3b74ddf5daee6a3088f56bf87bce48a5cc9a8d1ba530cc17bc34"
+    },
+    {
+      "path": "tests/test_check_replication_profile.py",
+      "role": "VALIDATION_TOOLING",
+      "sha256": "5ead4ceb0945b71ce57079d2b3edbdaf8dde33c6d0d319b86eeb3e2989e3bb64"
+    },
+    {
+      "path": "tests/test_check_subject_integrity_profile.py",
+      "role": "VALIDATION_TOOLING",
+      "sha256": "fa7a852d173a22c99f92a8b57b20473ef02d19178628afc1ba9cd986337b326b"
+    },
+    {
+      "path": "tests/test_public_repo_leak_guard.py",
+      "role": "VALIDATION_TOOLING",
+      "sha256": "6fa4f4bf223dab580683ae4ae0e486d4748cf261ee85302bb7a523c64ecf5e2c"
+    },
+    {
+      "path": "tests/test_v430_baseline.py",
+      "role": "VALIDATION_TOOLING",
+      "sha256": "b1fb696390a3dec2b21a15585f2536799dacfcdc3f9de7435c2a013163a20f58"
+    }
+  ]
+}

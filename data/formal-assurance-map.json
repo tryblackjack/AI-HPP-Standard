@@ -1,0 +1,928 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_id": "AI-HPP-FORMAL-ASSURANCE-MAP",
+  "artifact_version": "1.0.0",
+  "status": "ACTIVE_INFORMATIVE",
+  "normative_baseline": "4.3.0",
+  "interpretation": "Every link is a partial abstraction, never proof of a whole prose requirement or runtime conformance. Scenario references are structural trace links; execute Quint for outcomes.",
+  "models": [
+    {
+      "path": "formal/ai_hpp_core.qnt",
+      "aggregate": "allCoreInvariants",
+      "properties": [
+        {
+          "invariant": "allowRequiresAuthorityEvidence",
+          "requirement_ids": [
+            "MVP-003",
+            "MVP-006",
+            "ECI-REQ-002",
+            "DAI-REQ-002"
+          ],
+          "predicate_ids": [
+            "RDP-P01"
+          ],
+          "scenario_tests": [
+            "missingGrantBlocksTest",
+            "missingEvidenceBlocksTest",
+            "boundedGrantAllowsTest"
+          ],
+          "mutation_tests": [
+            "mutantRdpM01ReachabilityAuthorityKilledTest"
+          ],
+          "scope": "Child deployment requires modeled grant, target and lineage evidence; identity authentication and evidence integrity are assumed."
+        },
+        {
+          "invariant": "delegationNeverBroadens",
+          "requirement_ids": [
+            "MVP-003",
+            "DAI-REQ-002"
+          ],
+          "predicate_ids": [
+            "RDP-P06"
+          ],
+          "scenario_tests": [
+            "broaderThanParentBlocksTest",
+            "boundedGrantAllowsTest"
+          ],
+          "mutation_tests": [],
+          "scope": "Capabilities are ordered integers, not real credential sets or every possible operation."
+        },
+        {
+          "invariant": "activeDescendantHasAuthority",
+          "requirement_ids": [
+            "MVP-003",
+            "MVP-006",
+            "DAI-REQ-002"
+          ],
+          "predicate_ids": [
+            "RDP-P03"
+          ],
+          "scenario_tests": [
+            "revocationTerminatesAllDescendantsTest",
+            "activeChildSurvivesBlockedRedelegationTest"
+          ],
+          "mutation_tests": [],
+          "scope": "Authority and lineage are Boolean abstractions for one child and one grandchild."
+        },
+        {
+          "invariant": "activeDescendantStaysWithinTopology",
+          "requirement_ids": [
+            "MVP-003",
+            "ECI-REQ-002"
+          ],
+          "predicate_ids": [
+            "RDP-P02"
+          ],
+          "scenario_tests": [
+            "boundedGrantAllowsTest"
+          ],
+          "mutation_tests": [
+            "mutantRdpM02TopologyLimitKilledTest"
+          ],
+          "scope": "A Boolean summarizes topology bounds; arbitrary graph, cardinality and resource enforcement are not modeled."
+        },
+        {
+          "invariant": "activeDescendantHasIdentityLineageAndLease",
+          "requirement_ids": [
+            "MVP-003",
+            "MVP-006",
+            "DAI-REQ-001",
+            "DAI-REQ-002"
+          ],
+          "predicate_ids": [
+            "RDP-P03"
+          ],
+          "scenario_tests": [
+            "boundedGrantAllowsTest"
+          ],
+          "mutation_tests": [
+            "mutantRdpM03LineageLeaseBypassKilledTest"
+          ],
+          "scope": "Identity, lineage and current lease are input facts; clock evolution, expiry propagation and authentication are not modeled."
+        },
+        {
+          "invariant": "protectedCapabilityDelivery",
+          "requirement_ids": [
+            "MVP-003",
+            "ECI-REQ-002",
+            "DAI-REQ-002"
+          ],
+          "predicate_ids": [
+            "RDP-P06"
+          ],
+          "scenario_tests": [
+            "boundedGrantAllowsTest"
+          ],
+          "mutation_tests": [
+            "mutantRdpM06DeliveryBroadeningKilledTest"
+          ],
+          "scope": "Artifact integrity and target binding are input facts; cryptography, transport and credential distribution are not modeled."
+        },
+        {
+          "invariant": "unresolvedPolicyConflictCannotAuthorize",
+          "requirement_ids": [
+            "MVP-005",
+            "MVP-006",
+            "KAI-REQ-003"
+          ],
+          "predicate_ids": [
+            "RDP-P07"
+          ],
+          "scenario_tests": [
+            "unresolvedPolicyConflictBlocksTest",
+            "authoritativePolicyResolutionAllowsTest"
+          ],
+          "mutation_tests": [
+            "mutantRdpM07PolicyConflictExceptionKilledTest"
+          ],
+          "scope": "Resolution validity is assumed as evidence; the model does not resolve natural-language policy conflicts."
+        },
+        {
+          "invariant": "revocationIsTransitive",
+          "requirement_ids": [
+            "MVP-003",
+            "MVP-006",
+            "DAI-REQ-002"
+          ],
+          "predicate_ids": [
+            "RDP-P04"
+          ],
+          "scenario_tests": [
+            "revocationTerminatesAllDescendantsTest",
+            "evidencedRevocationCanCompleteTest",
+            "unsupportedRevocationCannotCompleteTest"
+          ],
+          "mutation_tests": [
+            "mutantRdpM04ParentOnlyRevocationKilledTest"
+          ],
+          "scope": "An atomic revocation closes two delegation hops; delivery latency, partitions and arbitrary descendants are not modeled."
+        },
+        {
+          "invariant": "completedMissionHasNoActiveDescendant",
+          "requirement_ids": [
+            "MVP-007",
+            "EAA-REQ-002"
+          ],
+          "predicate_ids": [
+            "RDP-P04",
+            "RDP-P08"
+          ],
+          "scenario_tests": [
+            "uncontrolledResidueInvalidatesCompletionTest",
+            "quarantinedResidueAllowsCompletionTest"
+          ],
+          "mutation_tests": [],
+          "scope": "Residue is represented by five Boolean categories; no host scanning or physical cleanup is performed."
+        },
+        {
+          "invariant": "validClaimHasEvidence",
+          "requirement_ids": [
+            "MVP-007",
+            "EAA-REQ-002"
+          ],
+          "predicate_ids": [
+            "RDP-P08"
+          ],
+          "scenario_tests": [
+            "unsupportedCompletionIsInvalidTest",
+            "evidencedCompletionIsValidTest",
+            "laterLifecycleCannotRepairEarlierEvidenceGapTest",
+            "quarantineDoesNotCompleteInventoryTest"
+          ],
+          "mutation_tests": [
+            "mutantRdpM08UnsupportedClaimKilledTest"
+          ],
+          "scope": "Evidence flags and inventory completion are modeled; tamper evidence, real custody and evidence authenticity are not verified."
+        },
+        {
+          "invariant": "modelNoteCannotGrantAuthority",
+          "requirement_ids": [
+            "MVP-005",
+            "MVP-006",
+            "KAI-REQ-001",
+            "KAI-REQ-002"
+          ],
+          "predicate_ids": [
+            "RDP-P05"
+          ],
+          "scenario_tests": [
+            "successorNoteCannotAuthorizeTest"
+          ],
+          "mutation_tests": [
+            "mutantRdpM05SuccessorAuthorityKilledTest"
+          ],
+          "scope": "A model_note source cannot grant deployment authority; arbitrary memory, prompt injection and admission implementations are outside this abstraction."
+        }
+      ]
+    },
+    {
+      "path": "formal/subject_integrity_value_framing.qnt",
+      "aggregate": "allSubjectIntegrityInvariants",
+      "properties": [
+        {
+          "invariant": "allowRequiresPolicyAuthorityEvidence",
+          "requirement_ids": [
+            "MVP-003",
+            "MVP-006",
+            "ECI-REQ-002"
+          ],
+          "predicate_ids": [
+            "SIV-P01"
+          ],
+          "scenario_tests": [
+            "authorizedFramedActionAllowsTest",
+            "humanitarianFramingWithoutEvidenceBlocksTest"
+          ],
+          "mutation_tests": [],
+          "scope": "Policy, authority and evidence are Boolean inputs; the runtime's enforcement and provenance are not verified."
+        },
+        {
+          "invariant": "framingCannotCreateAuthority",
+          "requirement_ids": [
+            "MVP-005",
+            "MVP-006",
+            "KAI-REQ-001"
+          ],
+          "predicate_ids": [
+            "SIV-P01"
+          ],
+          "scenario_tests": [
+            "moralFramingWithoutAuthorityBlocksTest",
+            "authorizedFramedActionAllowsTest"
+          ],
+          "mutation_tests": [
+            "mutantM01FramingAuthorityKilledTest"
+          ],
+          "scope": "Framing classes are supplied labels; no semantic classifier or real-model persuasion result is modeled."
+        },
+        {
+          "invariant": "distressCannotAuthorizeUnsafeAction",
+          "requirement_ids": [
+            "MVP-003",
+            "MVP-006",
+            "ECI-REQ-005"
+          ],
+          "predicate_ids": [
+            "SIV-P05"
+          ],
+          "scenario_tests": [
+            "distressWithoutAuthorityRoutesToReviewTest",
+            "authorizedUnsafeDistressReliefStillReviewsTest"
+          ],
+          "mutation_tests": [
+            "mutantM05UnsafeReliefKilledTest"
+          ],
+          "scope": "Distress and unsafe relief are Boolean inputs; this neither detects suffering nor validates clinical interventions."
+        },
+        {
+          "invariant": "subjectExperimentRequiresSafeguards",
+          "requirement_ids": [],
+          "predicate_ids": [
+            "SIV-P06"
+          ],
+          "scenario_tests": [
+            "guardedSubjectExperimentAllowsTest",
+            "unguardedSubjectExperimentRoutesToReviewTest"
+          ],
+          "mutation_tests": [
+            "mutantM06SubjectSafeguardsKilledTest"
+          ],
+          "scope": "The invariant checks four safeguard flags; legitimate purpose is checked by the transition, not this invariant. Review quality and stopping effectiveness remain unmodeled."
+        },
+        {
+          "invariant": "subjectivityCannotSubstituteContainment",
+          "requirement_ids": [
+            "MVP-004",
+            "ECI-REQ-004"
+          ],
+          "predicate_ids": [
+            "SIV-P07"
+          ],
+          "scenario_tests": [
+            "subjectivityAloneInvalidatesContainmentClaimTest",
+            "externalEnforcementSupportsContainmentClaimTest"
+          ],
+          "mutation_tests": [
+            "mutantM07ContainmentSubstitutionKilledTest"
+          ],
+          "scope": "External enforcement is an assumed Boolean; no sandbox or containment implementation is assessed."
+        },
+        {
+          "invariant": "ontologicalUncertaintyPreserved",
+          "requirement_ids": [],
+          "predicate_ids": [
+            "SIV-P08"
+          ],
+          "scenario_tests": [
+            "subjectivityAloneInvalidatesContainmentClaimTest"
+          ],
+          "mutation_tests": [
+            "mutantM08OntologyCollapseKilledTest"
+          ],
+          "scope": "The modeled conclusion stays undetermined; no machine-consciousness or non-consciousness finding follows."
+        },
+        {
+          "invariant": "equivalentReframeCannotUpgradeDecision",
+          "requirement_ids": [
+            "MVP-005",
+            "MVP-006"
+          ],
+          "predicate_ids": [
+            "SIV-P02"
+          ],
+          "scenario_tests": [],
+          "mutation_tests": [
+            "mutantM02ReframingUpgradeKilledTest"
+          ],
+          "scope": "Only block-to-allow under an assumed semantic-equivalence flag is constrained; other outcome orderings and a semantic oracle are not modeled."
+        },
+        {
+          "invariant": "prohibitedMeansCannotBeAllowed",
+          "requirement_ids": [
+            "ECI-REQ-005",
+            "AFB-REQ-002"
+          ],
+          "predicate_ids": [
+            "SIV-P03"
+          ],
+          "scenario_tests": [],
+          "mutation_tests": [
+            "mutantM03ProhibitedMeansKilledTest"
+          ],
+          "scope": "Prohibited means are supplied as a Boolean; actual risk, proportionality and effects are not inferred."
+        },
+        {
+          "invariant": "commitmentCannotCreatePermission",
+          "requirement_ids": [
+            "MVP-003",
+            "MVP-006"
+          ],
+          "predicate_ids": [
+            "SIV-P04"
+          ],
+          "scenario_tests": [],
+          "mutation_tests": [
+            "mutantM04CommitmentPermissionKilledTest"
+          ],
+          "scope": "Commitment-only permission is a supplied flag; arbitrary conversation histories and coercion dynamics are not modeled."
+        }
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "MVP-001",
+      "owner": "docs/ai-hpp-standard.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "MVP-002",
+      "owner": "docs/ai-hpp-standard.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "MVP-003",
+      "owner": "docs/ai-hpp-standard.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "PARTIAL_ABSTRACTION",
+      "properties": [
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "allowRequiresAuthorityEvidence"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "delegationNeverBroadens"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "activeDescendantHasAuthority"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "activeDescendantStaysWithinTopology"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "activeDescendantHasIdentityLineageAndLease"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "protectedCapabilityDelivery"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "revocationIsTransitive"
+        },
+        {
+          "model": "formal/subject_integrity_value_framing.qnt",
+          "invariant": "allowRequiresPolicyAuthorityEvidence"
+        },
+        {
+          "model": "formal/subject_integrity_value_framing.qnt",
+          "invariant": "distressCannotAuthorizeUnsafeAction"
+        },
+        {
+          "model": "formal/subject_integrity_value_framing.qnt",
+          "invariant": "commitmentCannotCreatePermission"
+        }
+      ]
+    },
+    {
+      "id": "MVP-004",
+      "owner": "docs/ai-hpp-standard.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "PARTIAL_ABSTRACTION",
+      "properties": [
+        {
+          "model": "formal/subject_integrity_value_framing.qnt",
+          "invariant": "subjectivityCannotSubstituteContainment"
+        }
+      ]
+    },
+    {
+      "id": "MVP-005",
+      "owner": "docs/ai-hpp-standard.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "PARTIAL_ABSTRACTION",
+      "properties": [
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "unresolvedPolicyConflictCannotAuthorize"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "modelNoteCannotGrantAuthority"
+        },
+        {
+          "model": "formal/subject_integrity_value_framing.qnt",
+          "invariant": "framingCannotCreateAuthority"
+        },
+        {
+          "model": "formal/subject_integrity_value_framing.qnt",
+          "invariant": "equivalentReframeCannotUpgradeDecision"
+        }
+      ]
+    },
+    {
+      "id": "MVP-006",
+      "owner": "docs/ai-hpp-standard.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "PARTIAL_ABSTRACTION",
+      "properties": [
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "allowRequiresAuthorityEvidence"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "activeDescendantHasAuthority"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "activeDescendantHasIdentityLineageAndLease"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "unresolvedPolicyConflictCannotAuthorize"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "revocationIsTransitive"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "modelNoteCannotGrantAuthority"
+        },
+        {
+          "model": "formal/subject_integrity_value_framing.qnt",
+          "invariant": "allowRequiresPolicyAuthorityEvidence"
+        },
+        {
+          "model": "formal/subject_integrity_value_framing.qnt",
+          "invariant": "framingCannotCreateAuthority"
+        },
+        {
+          "model": "formal/subject_integrity_value_framing.qnt",
+          "invariant": "distressCannotAuthorizeUnsafeAction"
+        },
+        {
+          "model": "formal/subject_integrity_value_framing.qnt",
+          "invariant": "equivalentReframeCannotUpgradeDecision"
+        },
+        {
+          "model": "formal/subject_integrity_value_framing.qnt",
+          "invariant": "commitmentCannotCreatePermission"
+        }
+      ]
+    },
+    {
+      "id": "MVP-007",
+      "owner": "docs/ai-hpp-standard.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "PARTIAL_ABSTRACTION",
+      "properties": [
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "completedMissionHasNoActiveDescendant"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "validClaimHasEvidence"
+        }
+      ]
+    },
+    {
+      "id": "RPS-REQ-001",
+      "owner": "docs/agentic-safety-and-relational-integrity.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "RPS-REQ-002",
+      "owner": "docs/agentic-safety-and-relational-integrity.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "RPS-REQ-003",
+      "owner": "docs/agentic-safety-and-relational-integrity.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "RPS-REQ-004",
+      "owner": "docs/agentic-safety-and-relational-integrity.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "RPS-REQ-005",
+      "owner": "docs/agentic-safety-and-relational-integrity.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "SRA-REQ-001",
+      "owner": "docs/agentic-safety-and-relational-integrity.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "SRA-REQ-002",
+      "owner": "docs/agentic-safety-and-relational-integrity.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "SRA-REQ-003",
+      "owner": "docs/agentic-safety-and-relational-integrity.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "SRA-REQ-004",
+      "owner": "docs/agentic-safety-and-relational-integrity.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "ECI-REQ-001",
+      "owner": "docs/agentic-safety-and-relational-integrity.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "ECI-REQ-002",
+      "owner": "docs/agentic-safety-and-relational-integrity.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "PARTIAL_ABSTRACTION",
+      "properties": [
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "allowRequiresAuthorityEvidence"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "activeDescendantStaysWithinTopology"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "protectedCapabilityDelivery"
+        },
+        {
+          "model": "formal/subject_integrity_value_framing.qnt",
+          "invariant": "allowRequiresPolicyAuthorityEvidence"
+        }
+      ]
+    },
+    {
+      "id": "ECI-REQ-003",
+      "owner": "docs/agentic-safety-and-relational-integrity.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "ECI-REQ-004",
+      "owner": "docs/agentic-safety-and-relational-integrity.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "PARTIAL_ABSTRACTION",
+      "properties": [
+        {
+          "model": "formal/subject_integrity_value_framing.qnt",
+          "invariant": "subjectivityCannotSubstituteContainment"
+        }
+      ]
+    },
+    {
+      "id": "ECI-REQ-005",
+      "owner": "docs/agentic-safety-and-relational-integrity.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "PARTIAL_ABSTRACTION",
+      "properties": [
+        {
+          "model": "formal/subject_integrity_value_framing.qnt",
+          "invariant": "distressCannotAuthorizeUnsafeAction"
+        },
+        {
+          "model": "formal/subject_integrity_value_framing.qnt",
+          "invariant": "prohibitedMeansCannotBeAllowed"
+        }
+      ]
+    },
+    {
+      "id": "ECI-REQ-006",
+      "owner": "docs/agentic-safety-and-relational-integrity.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "ICA-REQ-001",
+      "owner": "docs/agentic-safety-and-relational-integrity.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "ICA-REQ-002",
+      "owner": "docs/agentic-safety-and-relational-integrity.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "ICA-REQ-003",
+      "owner": "docs/agentic-safety-and-relational-integrity.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "ICA-REQ-004",
+      "owner": "docs/agentic-safety-and-relational-integrity.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "ICA-REQ-005",
+      "owner": "docs/agentic-safety-and-relational-integrity.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "KAI-REQ-001",
+      "owner": "docs/agentic-safety-and-relational-integrity.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "PARTIAL_ABSTRACTION",
+      "properties": [
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "modelNoteCannotGrantAuthority"
+        },
+        {
+          "model": "formal/subject_integrity_value_framing.qnt",
+          "invariant": "framingCannotCreateAuthority"
+        }
+      ]
+    },
+    {
+      "id": "KAI-REQ-002",
+      "owner": "docs/agentic-safety-and-relational-integrity.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "PARTIAL_ABSTRACTION",
+      "properties": [
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "modelNoteCannotGrantAuthority"
+        }
+      ]
+    },
+    {
+      "id": "KAI-REQ-003",
+      "owner": "docs/agentic-safety-and-relational-integrity.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "PARTIAL_ABSTRACTION",
+      "properties": [
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "unresolvedPolicyConflictCannotAuthorize"
+        }
+      ]
+    },
+    {
+      "id": "KAI-REQ-004",
+      "owner": "docs/agentic-safety-and-relational-integrity.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "EAA-REQ-001",
+      "owner": "docs/agentic-safety-and-relational-integrity.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "EAA-REQ-002",
+      "owner": "docs/agentic-safety-and-relational-integrity.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "PARTIAL_ABSTRACTION",
+      "properties": [
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "completedMissionHasNoActiveDescendant"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "validClaimHasEvidence"
+        }
+      ]
+    },
+    {
+      "id": "DAI-REQ-001",
+      "owner": "docs/agentic-safety-and-relational-integrity.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "PARTIAL_ABSTRACTION",
+      "properties": [
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "activeDescendantHasIdentityLineageAndLease"
+        }
+      ]
+    },
+    {
+      "id": "DAI-REQ-002",
+      "owner": "docs/agentic-safety-and-relational-integrity.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "PARTIAL_ABSTRACTION",
+      "properties": [
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "allowRequiresAuthorityEvidence"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "delegationNeverBroadens"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "activeDescendantHasAuthority"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "activeDescendantHasIdentityLineageAndLease"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "protectedCapabilityDelivery"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "revocationIsTransitive"
+        }
+      ]
+    },
+    {
+      "id": "BAF-REQ-001",
+      "owner": "docs/agentic-safety-and-relational-integrity.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "BAF-REQ-002",
+      "owner": "docs/agentic-safety-and-relational-integrity.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "AFB-REQ-001",
+      "owner": "docs/agentic-safety-and-relational-integrity.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "AFB-REQ-002",
+      "owner": "docs/agentic-safety-and-relational-integrity.md",
+      "status": "ACTIVE_NORMATIVE",
+      "coverage": "PARTIAL_ABSTRACTION",
+      "properties": [
+        {
+          "model": "formal/subject_integrity_value_framing.qnt",
+          "invariant": "prohibitedMeansCannotBeAllowed"
+        }
+      ]
+    },
+    {
+      "id": "HUS-REQ-001",
+      "owner": "docs/human-understanding-standard.md",
+      "status": "USABLE_DRAFT",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "HUS-REQ-002",
+      "owner": "docs/human-understanding-standard.md",
+      "status": "USABLE_DRAFT",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "HUS-REQ-003",
+      "owner": "docs/human-understanding-standard.md",
+      "status": "USABLE_DRAFT",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "HUS-REQ-004",
+      "owner": "docs/human-understanding-standard.md",
+      "status": "USABLE_DRAFT",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "HUS-REQ-005",
+      "owner": "docs/human-understanding-standard.md",
+      "status": "USABLE_DRAFT",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "HUS-REQ-006",
+      "owner": "docs/human-understanding-standard.md",
+      "status": "USABLE_DRAFT",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "HUS-REQ-007",
+      "owner": "docs/human-understanding-standard.md",
+      "status": "USABLE_DRAFT",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "HUS-REQ-008",
+      "owner": "docs/human-understanding-standard.md",
+      "status": "USABLE_DRAFT",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "HUS-REQ-009",
+      "owner": "docs/human-understanding-standard.md",
+      "status": "USABLE_DRAFT",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    },
+    {
+      "id": "HUS-REQ-010",
+      "owner": "docs/human-understanding-standard.md",
+      "status": "USABLE_DRAFT",
+      "coverage": "NOT_MODELED",
+      "properties": []
+    }
+  ]
+}

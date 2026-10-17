@@ -2,6 +2,12 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 
+Packaged in `v4.4.0-rc.1`. The [coverage map](coverage.md) and its
+[machine-readable source](../data/formal-assurance-map.json) record all twenty
+aggregate-member invariants, their partial requirement links, test witnesses,
+and the requirements that are not modeled. These files do not promote a
+candidate requirement or change normative precedence.
+
 This directory contains a small executable formal model of stable AI-HPP safety
 semantics. It gives implementers language-neutral pseudocode with machine-checked
 state transitions while leaving runtime architecture and programming language to

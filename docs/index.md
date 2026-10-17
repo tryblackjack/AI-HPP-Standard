@@ -1,5 +1,9 @@
 # Documentation Index
 
+**Current consolidated candidate: `v4.4.0-rc.1`.**
+[Release composition, migration, and finalization criteria](releases/v4.4.0-rc.1.md)
+freeze the current package while preserving each document's authority and maturity.
+
 **Standard status: `USABLE_DRAFT`.** Active normative requirements and
 machine-validated registers exist; control integration, runtime evidence, and
 independent validation remain deployment-specific. The project is not
@@ -29,6 +33,7 @@ not active normative text.
 
 - [Architecture](architecture.md) and [Glossary](glossary.md)
 - [Formal Core Invariants](../formal/README.md) — executable Quint models of replication, persistence, authority, evidence, and subject-integrity assurance; informative, not a runtime implementation.
+- [Formal Coverage and Gaps](../formal/coverage.md) — invariant-to-requirement mapping, executable witnesses, abstraction limits, and requirements without formal coverage.
 - [Agentic Safety Traceability](agentic-safety-traceability.md) and [Case Studies](agentic-safety-case-studies.md)
 - [Predictive Agentic Failure Register](predictive-agentic-failure-register.md)
 - [Autonomous Replication and Persistence Assurance Profile — October 2026](autonomous-replication-and-persistence-assurance-profile-2026-10.md) — candidate gate, evidence contract, predicates, negative tests, and executable mutant witnesses; no normative change.
@@ -55,3 +60,4 @@ not active normative text.
 - [Repository Governance](repository-governance.md)
 - [HUS Audit Report](hus-audit-report.md)
 - [Public Changelog](changelog.md)
+- [v4.4.0-rc.1 Release and Migration](releases/v4.4.0-rc.1.md)

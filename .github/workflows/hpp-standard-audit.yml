@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
 
       - name: Install linters
         run: |
@@ -69,6 +71,14 @@ jobs:
 
       - name: Run PAF validator negative tests
         run: PYTHONPATH=. pytest tests
+
+      - name: Validate consolidated release and formal coverage
+        run: |
+          if git diff --quiet HEAD^ HEAD -- data/releases/v4.4.0-rc.1.json; then
+            python3 scripts/check_release.py
+          else
+            python3 scripts/check_release.py --frozen
+          fi
 
       - name: Run AI-HPP safety audit
         run: |

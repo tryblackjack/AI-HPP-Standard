@@ -2,7 +2,7 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 Owner: Repository maintainers
-Last updated: 2026-10-15
+Last updated: 2026-10-17
 
 ## Purpose
 
@@ -81,9 +81,28 @@ effectiveness.
 
 ## Frozen baseline and change control
 
+The current consolidated package is `v4.4.0-rc.1`, described in the
+[release and migration guide](releases/v4.4.0-rc.1.md). A package version fixes
+the normative owners, draft modules, informative profiles, formal models, test
+vectors, and validation tooling as a reproducible set. It does not give every
+included file normative authority. `CITATION.cff` identifies the package;
+`standard_version` in existing example records identifies the normative baseline.
+
 `v4.3.0` is an immutable published baseline. Future changes to `main` do not
 retroactively change `v4.3.0`; a defect requires a new version rather than a
 moved tag.
+
+A release candidate uses a new tag and a SHA-256 composition manifest. After
+publication, corrections use a new candidate or release version; published tags
+and manifests are never moved or refreshed. Development may continue on `main`
+against the retained manifest; checking the frozen package uses its exact tag.
+Package checksums establish composition, not independent review or runtime safety.
+
+The prerelease publication workflow runs only for a same-repository `main`
+commit that changes the candidate manifest. It requires all three existing CI
+workflows to succeed at that exact commit, validates the manifest again, and
+publishes a prerelease with the exact commit as its tag target. It refuses to
+move an existing tag or overwrite a release.
 
 ## Implementation compatibility and migration
 

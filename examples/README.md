@@ -10,6 +10,12 @@ evidence obligations, and expected fail-closed outcomes in the standard.
 
 ## Smallest useful adoption path
 
+For a reproducible starting point use the consolidated `v4.4.0-rc.1` package
+and its [migration guide](../docs/releases/v4.4.0-rc.1.md). Existing
+`standard_version: "4.3.0"` records still identify the normative baseline;
+record the package tag and selected profile/artifact versions in the assessment
+boundary as well.
+
 1. Declare the system boundary, deployment, AI-HPP version, assessment period,
    and applicable risk profile.
 2. Map each of the seven MVP controls to an enforcement owner. Prompt-only or
