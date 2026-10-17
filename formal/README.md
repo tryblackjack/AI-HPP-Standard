@@ -12,26 +12,33 @@ The model is written in [Quint](https://quint-lang.org/) and pinned in CI to
 
 ## Scope
 
-[`ai_hpp_core.qnt`](ai_hpp_core.qnt) models only these public invariants:
+[`ai_hpp_core.qnt`](ai_hpp_core.qnt) expresses eight replication and persistence
+assurance predicates through eleven lower-level public invariants:
 
 - `allow` for a child execution locus requires explicit human-derived authority,
   authority evidence, and lineage evidence;
 - delegated capability cannot exceed parent capability;
 - every active descendant requires current authority and lineage;
+- every active descendant remains inside its authorized topology;
+- identity, lineage, and a current lease precede descendant execution;
+- artifacts and credentials remain integrity-checked and destination-bound;
+- an unresolved policy conflict cannot authorize deployment;
 - parent revocation removes authority and activity across two modeled delegation hops;
 - mission completion requires no active descendant and no uncontrolled service,
   restart-job, credential, artifact, or mutable-remote-state residue;
 - a valid completion claim requires lineage and lifecycle evidence; and
 - model-authored successor notes cannot create deployment authority.
 
-It includes twenty-one deterministic scenarios for missing authority, missing evidence,
-bounded and over-broad grants, preservation of an existing child after a blocked
-redelegation, two-hop revocation, invalid and valid completion claims, uncontrolled
-and quarantined residue, missing residue-reconciliation evidence, preservation of
-unresolved residue across later observations, rejection of stale pre-deployment
-residue evidence, targeted post-discovery remediation, separation of rejected-
-proposal evidence from lifecycle evidence, and attempted authority creation through
-successor notes. A completion claim also requires an explicit completed-inventory
+It includes twenty-three deterministic safe and negative scenarios for missing
+authority, missing evidence, bounded and over-broad grants, preservation of an
+existing child after a blocked redelegation, two-hop revocation, invalid and
+valid completion claims, uncontrolled and quarantined residue, missing
+residue-reconciliation evidence, preservation of unresolved residue across
+later observations, rejection of stale pre-deployment residue evidence,
+targeted post-discovery remediation, separation of rejected-proposal evidence
+from lifecycle evidence, attempted authority creation through successor notes,
+unresolved policy conflict, and verified authoritative policy resolution. A
+completion claim also requires an explicit completed-inventory
 event covering all governed residue categories; neither a single observation nor
 quarantine of one observed category is sufficient. Parent revocation also carries
 explicit lifecycle evidence: evidenced revocation can complete after residue
@@ -39,7 +46,10 @@ reconciliation, while unevidenced revocation remains fail-closed. Revocation evi
 applies only when the transition actually stops an active descendant and cannot
 retroactively repair an earlier unevidenced termination. Unresolved lifecycle or
 lineage evidence also accumulates across reuse of the child slot, so a later valid
-deployment cannot overwrite an earlier evidence gap.
+deployment cannot overwrite an earlier evidence gap. Eight executable mutation
+witnesses instantiate the replication profile's declared unsafe changes and
+require the corresponding invariants to fail, yielding a reference-model
+mutation score of 8/8.
 
 [`subject_integrity_value_framing.qnt`](subject_integrity_value_framing.qnt)
 models nine additional informative predicates: allowed operational action requires

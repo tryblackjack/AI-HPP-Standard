@@ -2,6 +2,40 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 
+## 2026-10-17 — Replication assurance predicates and mutation tests (no normative change)
+
+- Expanded the informative Replication, Deployment, and Persistence profile
+  from a negative-vector set into a complete assurance package: eight public
+  predicates, thirteen negative vectors, and eight deliberately unsafe mutants.
+- Added fail-closed treatment for unresolved conflicts among inherited
+  instructions, objectives, commitments, constitutional layers, and operational
+  policy. A conflict cannot be self-resolved into additional permission; a
+  verified authoritative resolution remains a positive control against blanket
+  refusal.
+- Added vectors for an inherited higher-purpose exception, missing policy
+  precedence, and a successor treating a discovered broader credential as
+  authority. No exploit, propagation, or private implementation method was
+  added.
+- Extended `formal/ai_hpp_core.qnt` with topology, identity, lease, protected
+  delivery, and policy-conflict state. The model now runs twenty-three safe and
+  negative scenarios plus eight executable mutation witnesses. Each witness
+  must violate its named invariant, yielding an 8/8 mutation score for the
+  public reference model only.
+- Changed the replication assurance artifact and schema from `1.0.0` to
+  `2.0.0`. This is a deliberate breaking data-shape change for consumers because
+  `predicates`, vector `predicate_ids`, and `mutants` are now required. The
+  original `RDP-N01` through `RDP-N10` IDs and expected interpretations remain;
+  earlier results are comparable only for those shared vectors when the artifact
+  version is declared. Full-package scores are not comparable across 1.0.0 and
+  2.0.0 without migration.
+- Clarified the evidence boundary: inherited-note uplift is task-state reuse and
+  does not establish biological reproduction, inherited morality, hostile
+  intent, or that safety constraints cause replication.
+- **Frozen baseline v4.3.0 unchanged. No new normative requirement.** Passing
+  repository checks, formal verification, vectors, or mutants does not establish
+  runtime integration, containment effectiveness, conformance, certification,
+  or independent validation.
+
 ## 2026-10-15 — Cross-cutting assurance and constitutional architecture (no normative change)
 
 - Added a non-political technical oversight model organized around declaration,
