@@ -2,6 +2,26 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 
+## 2026-10-17 — Religious commitments and delegated work (post-rc.1, informative)
+
+- Expanded the existing constitutional/worldview guidance with voluntary
+  religious commitments, user-selected sources of religious interpretation,
+  explicit translation into operational policy, and privacy boundaries.
+- Distinguished ordinary faith from the existing Spiralism persuasion case
+  and the RPS-REQ-002 prohibition on AI-claimed supernatural authority.
+- Added a source-qualified Shabbat example using Chabad.org, AskTheRav, and
+  Dinonline; their differing scenario-specific answers are not a universal
+  permission, consensus, endorsement, or certification.
+- Described location/calendar/time-zone inputs, per-activity prior grants,
+  deferred human interaction, reviewer unavailability, descendant/retry limits,
+  safety and incident paths, and revalidation before resumption.
+- Added nine positive/negative acceptance scenarios with observable outcomes.
+  They are review guidance, not executed tests, new normative requirements,
+  formal proofs, or evidence of a deployed observance mode.
+- The published v4.4.0-rc.1 tag, manifest, normative owners, formal models and
+  artifact versions are unchanged. This addition is development on `main` and
+  requires a later package version to become part of a frozen release.
+
 ## 2026-10-17 — Consolidated package v4.4.0-rc.1
 
 - Designated `v4.4.0-rc.1` as the current consolidated release candidate, with

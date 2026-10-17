@@ -41,6 +41,7 @@ not active normative text.
 - [Subject Integrity and Value-Framing Assurance Profile — October 2026](subject-integrity-and-value-framing-assurance-profile-2026-10.md) — paired framing-invariance predicates, precautionary subject-integrity controls, negative tests, and mutants; no normative change.
 - [Assurance Evaluation and Technical Oversight](assurance-evaluation-and-technical-oversight.md) — a non-political technical oversight loop, claim ladder, reproducible run contract, mutation rules, and machine-readable result schema.
 - [Constitutional and Relational Layer](constitutional-and-relational-layer.md) — separates human agency, constitutional identity, relational commitments, worldview postulates, operational policy, enforcement, and evidence.
+- [Religious commitments and delegated work](constitutional-and-relational-layer.md#religious-commitments-and-delegated-work) — post-rc.1 informative guidance for voluntary observance policies, source authority, scheduling, unavailable reviewers, and acceptance scenarios, including a bounded Shabbat example.
 - [Predictive Failure Outlook — October 2026](predictive-failure-outlook-2026-10.md) — current forward-looking synthesis.
 - [Predictive Failure Outlook — September 2026](predictive-failure-outlook-2026-09.md) — prior monthly snapshot.
 - [Predictive Failure Outlook — August 2026](predictive-failure-outlook-2026-08.md) — prior monthly snapshot.

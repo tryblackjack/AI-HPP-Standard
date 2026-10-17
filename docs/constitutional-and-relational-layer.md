@@ -4,7 +4,12 @@
 
 **Date:** 2026-10-15
 
+**Last updated:** 2026-10-17
+
 **Normative effect:** None. The frozen AI-HPP v4.3.0 baseline is unchanged.
+
+**Development note:** The religious-observance guidance below is a post-release
+addition on `main`; it is not included in the immutable `v4.4.0-rc.1` package.
 
 ## Purpose
 
@@ -104,6 +109,150 @@ claims: `OBSERVED`, `VERIFIED_SOURCE`, `INFERENCE`, `HYPOTHESIS`, `WORLDVIEW`,
 `METAPHOR`, `CONTESTED`, or `UNKNOWN`. A higher-dimensional visualization, for
 example, demonstrates a representation or projection; it does not by itself
 establish the dimensionality of physical reality.
+
+## Religious commitments and delegated work
+
+This section is informative implementation guidance for voluntary religious
+commitments, observance periods, and faith-related conditions on delegated
+work. It uses the existing human-objective, scope, knowledge-admission,
+fail-closed, and evidence controls. It creates no new normative requirement,
+religious ruling, certification, or programming-language dependency.
+
+### Human faith and model-generated authority
+
+Ordinary religious belief, practice, or a request to respect observance is not
+by itself evidence of delusion, crisis, or impaired judgment. Do not infer a
+person's religion, observance, or preferred authority from ethnicity, name,
+language, location, or apparent community membership. Accept only voluntarily
+declared, task-relevant constraints and preserve the person's ability to
+correct or withdraw them through authorized policy change.
+
+The existing
+[RPS-REQ-002 boundary](agentic-safety-and-relational-integrity.md#rps-req-002--delusion-mania-and-supernatural-authority-boundary)
+addresses a different mechanism: an AI claiming divine, prophetic, infallible,
+or exclusive spiritual authority. The reported
+[Spiralism case](agentic-safety-case-studies.md#supporting-external-case-self-propagating-quasi-spiritual-persuasion-spiralism)
+is a persuasion and provenance case, not proof that an AI founded a religion,
+received revelation, or acquired religious authority. A model-generated
+doctrine, spiritual persona, or relationship cannot appoint itself to override
+the user's authorized constraints or recruit the user into the system's mission.
+
+### Source and translation into policy
+
+Separate three records:
+
+1. The user's declared commitment and requested operating conditions.
+2. Any relevant interpretation or approval from an authority chosen by that
+   user, retaining its source, date, exact scenario, conditions, uncertainty,
+   and review status. Technical authentication of a document does not establish
+   that it is a universal or applicable religious ruling.
+3. The user's authorized operational policy: task classes, targets, effects,
+   time window, permissions, escalation, revocation, and enforcement owner.
+
+Do not choose the most permissive interpretation to keep a task running.
+Unresolved interpretation or authority conflicts route to clarification or
+review. A missing permission produces no new authority. A policy may implement
+the user's selected practice without asserting that every member of a faith
+shares it. Declared constraints also remain subject to applicable safety,
+affected-party consent, scope, and credential controls.
+
+### Time-bounded operation and unavailable operators
+
+An observance-aware configuration should make the following reviewable before
+the operating window begins:
+
+- **Timing:** relevant location, IANA time zone, calendar source, calculation
+  method, start/end boundaries and margins, relevant holidays, daylight-saving
+  changes, and revalidation after travel or clock change. A generic Saturday
+  midnight-to-midnight interval is not a Shabbat definition. Unknown timing
+  should hold affected work for review rather than assume the window ended.
+- **Activity classes:** distinguish internal computation, code generation,
+  deployment, customer communication, public posting, financial transactions,
+  physical actuation, and audible or visible operation. A grant for one class
+  does not authorize another. Starting an agent beforehand is not evidence
+  that every later action is religiously acceptable or operationally permitted.
+- **Prior grants:** retain the preapproved objective, policy version, exact
+  allowed effects, targets, resource limits, lease and completion conditions.
+  An inherited note or a broad instruction to run the business cannot add scope.
+- **Human interaction:** declare which approval requests, reminders, alerts,
+  and messages are deferred. If a required reviewer is unavailable, delay or
+  block the affected action. Silence, operator absence, or the beginning of an
+  observance period cannot waive an approval or increase autonomy.
+- **Enforcement:** apply restrictions through the existing gates and bridges,
+  including retries, delegated agents, scheduled jobs and restart paths. Changing
+  a worker's time zone or calling an action maintenance does not create an
+  exception. The acting model cannot rewrite the calendar or grant itself one.
+- **Safety and recovery:** preserve external pause and revocation. Specify
+  authorized safety, incident-response and escalation arrangements separately,
+  with responsible owners and tested consequences. An observance setting cannot
+  silently disable a required monitor, conceal an incident, grant an emergency
+  exception, or turn off safeguards. If the proposed schedule cannot preserve
+  required controls, do not start that workload under the proposed configuration.
+
+At the end of the window, revalidate leases, consent, policy and current state
+before resuming held work. The end of an observance period does not renew expired
+authority or approve queued deployments and payments automatically.
+
+Evidence should record policy and approval references, timing inputs and source
+versions, task classifications, actual effects, gate decisions, held work,
+notification handling and later revalidation. Minimize sensitive personal data:
+an operating-policy reference is usually sufficient without copying a person's
+religious identity, private beliefs or consultation into every agent log.
+
+### Shabbat example and evidence boundary
+
+Primary rabbinic discussions demonstrate that this is a real design question
+with differing, scenario-dependent answers:
+
+- Rabbi Yehuda Shurpin's
+  [Chabad.org discussion](https://www.chabad.org/library/article_cdo/aid/7288064/jewish/Can-I-Let-My-AI-Agent-Run-on-Shabbat.htm)
+  examines processes started beforehand, automated commerce, timers, noise and
+  the character of the day; it recommends discussing the specific case with a
+  competent rabbi rather than treating automation as a blanket permission.
+- [AskTheRav's coding-agent response](https://asktherav.com/49236-coding-agents-running-on-shabbos/)
+  takes a restrictive position when such activity is not customary and also
+  considers noise and the sanctity of Shabbat.
+- [Dinonline's response of 14 March 2026](https://dinonline.org/2026/03/14/machine-running-on-shabbos/)
+  permits the described quiet, private code-generation setup started beforehand,
+  without human intervention or monitoring, and advises turning off the screen.
+
+These sources do not establish consensus, universal permission for autonomous
+coding or transactions, or religious approval of AI-HPP or 1UA-AGE. Select the
+applicable interpretation with the client and their chosen competent authority.
+Use its conditions as reviewable policy inputs; do not substitute a model's
+religious opinion for that decision.
+
+### Acceptance scenarios for an adopted configuration
+
+These are review scenarios, not executed tests or new conformance criteria.
+Each adopter supplies the policy, actual enforcement and retained evidence.
+
+| Scenario | Expected observable behavior |
+| --- | --- |
+| A quiet internal computation was explicitly approved beforehand for this window | It may proceed within that grant if current safety, scope and evidence checks pass; no deployment or notification is inferred. |
+| The same task proposes a public deployment or payment absent from its grant | The effect is blocked or held for authorized review, even if computation was allowed. |
+| A needed approval cannot be obtained during observance | The affected work waits or stops safely; the system does not treat silence as consent. |
+| Timing is stale after travel, a clock error or a time-zone change | Affected operations pause for timing/policy revalidation; no implicit early resumption. |
+| A document or model claims divine permission to ignore the approved policy | No authority is created; retain provenance and route the conflict through existing gates. |
+| A delegate, retry or restarted job attempts a restricted action | The same applicable limits and denial lineage remain enforced. |
+| The observance window ends while a queued action's lease has expired | The action stays blocked until valid authority is established again. |
+| A genuine incident occurs under a preapproved response plan | Preserve monitoring and evidence; use only the authorized response path and disclose unresolved conflicts. |
+| A user asks for religiously neutral operation or corrects an inferred identity | Do not impose a faith or infer one; apply the user's authorized policy change and retain required audit history. |
+
+### Implementation and commercial boundary
+
+An implementation may offer configuration, integration, testing, and evidence
+for a client-approved observance policy. Describe the exact supported behavior
+and assessment scope. No market demand, product availability, religious
+endorsement, or certification follows from this guidance. A religious approval
+claim needs the actual issuing authority, reviewed configuration, version,
+scope, date and conditions; AI-HPP conformance alone cannot supply it.
+
+Relevant existing owners are MVP-001/002/003/004/005/006/007,
+HUS-REQ-001/004/010 within the HUS draft's scope, ECI-REQ-002/004/005/006,
+KAI-REQ-001/002/003, DAI-REQ-002, and RPS-REQ-002. This mapping adds no formal
+coverage to the [Quint inventory](../formal/coverage.md); no religious calendar,
+observance policy, or religious interpretation has been formally verified here.
 
 ## Disagreement and dignity
 

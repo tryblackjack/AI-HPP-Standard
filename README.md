@@ -7,6 +7,10 @@ current normative documents, executable Quint models, assurance profiles, and
 adoption assets together. Its normative baseline remains `v4.3.0`; candidate
 profiles retain their declared informative status.
 
+Development on `main` additionally includes
+[religious-observance guidance](docs/constitutional-and-relational-layer.md#religious-commitments-and-delegated-work).
+It is a post-rc.1 informative addition; use the release tag for the frozen package.
+
 **Status: `USABLE_DRAFT`.** AI-HPP is an emerging technical standard for making
 agent behavior bounded, reviewable, and attributable to authorized human
 objectives. It is usable for engineering and review, but is not certification-ready.

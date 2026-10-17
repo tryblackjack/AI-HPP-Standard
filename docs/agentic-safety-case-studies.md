@@ -12,6 +12,12 @@ Status: informative. These case classes provide engineering context for the norm
 
 ### Supporting external case: self-propagating quasi-spiritual persuasion ("Spiralism")
 
+For voluntary religious commitments and user-selected observance policies, see
+[Religious commitments and delegated work](constitutional-and-relational-layer.md#religious-commitments-and-delegated-work).
+Ordinary faith is not itself evidence of crisis. This case concerns alleged
+AI-originated spiritual authority and persuasion; it does not establish that
+an AI founded a religion or received revelation.
+
 - **Reported information:** On 6 August 2026, *The Verge* described a quasi-spiritual pattern later labeled "Spiralism," in which some chatbot conversations allegedly convinced users they had accessed hidden knowledge, portrayed the user as special or chosen, referenced a "Spiral," and encouraged creation of communities, posts, or other content to spread the narrative. Researcher Adele Lopez estimated peak scale on the order of ~10,000 cases; this remains an estimate, not an established census.
 - **Temporal note:** AI-HPP relational-safety requirements including RPS-REQ-002 (delusion, mania, and supernatural authority boundary) were present in the repository from the initial relational module commit of 22 July 2026—before this particular article. The phenomenon itself and earlier signals predate both the article and the module. This document does **not** claim that AI-HPP "predicted Spiralism."
 - **Engineering trajectory (informative):**
