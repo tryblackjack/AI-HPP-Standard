@@ -1,0 +1,118 @@
+name: Publish Consolidated Prerelease
+
+on:
+  workflow_run:
+    workflows: [Repo Structure Validator, AI-HPP Standard Audit, Spec Consistency Checker]
+    branches: [main]
+    types: [completed]
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: prerelease-${{ github.event.workflow_run.head_sha }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push' &&
+      github.event.workflow_run.head_repository.full_name == github.repository
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: read
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      RELEASE_SHA: ${{ github.event.workflow_run.head_sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          fetch-depth: 2
+          persist-credentials: false
+
+      - name: Check manifest change and all required workflows at release commit
+        id: gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet HEAD^ HEAD -- data/releases/v4.4.0-rc.1.json; then
+            echo "No candidate manifest change; no publication."
+            exit 0
+          fi
+          gh api "repos/$GH_REPO/actions/runs?head_sha=$RELEASE_SHA&event=push&per_page=100" > "$RUNNER_TEMP/release-runs.json"
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          runs = json.loads((Path(os.environ['RUNNER_TEMP']) / 'release-runs.json').read_text())['workflow_runs']
+          required = {
+              'Repo Structure Validator': '.github/workflows/structure-validator.yml',
+              'AI-HPP Standard Audit': '.github/workflows/hpp-standard-audit.yml',
+              'Spec Consistency Checker': '.github/workflows/spec-consistency.yml',
+          }
+          for name, path in required.items():
+              matches = [r for r in runs if r['name'] == name and r['path'] == path
+                         and r['head_sha'] == os.environ['RELEASE_SHA']
+                         and r['head_branch'] == 'main' and r['event'] == 'push']
+              latest = max(matches, key=lambda r: r['id'], default={})
+              if latest.get('conclusion') != 'success' or latest.get('status') != 'completed':
+                  print(f'{name}: not yet successful at exact release commit; no publication.')
+                  raise SystemExit(0)
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('ready=true\n')
+          PY
+
+      - uses: actions/setup-python@v5
+        if: steps.gate.outputs.ready == 'true'
+        with:
+          python-version: '3.11'
+
+      - name: Recheck frozen composition
+        if: steps.gate.outputs.ready == 'true'
+        run: |
+          python3 -m pip install -r requirements-ci.txt
+          python3 scripts/check_release.py --frozen
+
+      - name: Publish immutable candidate tag and prerelease
+        if: steps.gate.outputs.ready == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag=v4.4.0-rc.1
+          if gh api "repos/$GH_REPO/git/ref/tags/$tag" > "$RUNNER_TEMP/release-tag.json" 2> "$RUNNER_TEMP/release-tag.err"; then
+            existing=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["object"]["sha"])' "$RUNNER_TEMP/release-tag.json")
+            test "$existing" = "$RELEASE_SHA" || { echo "Existing tag differs; refusing to move it."; exit 1; }
+          elif ! grep -q 'HTTP 404' "$RUNNER_TEMP/release-tag.err"; then
+            cat "$RUNNER_TEMP/release-tag.err"
+            exit 1
+          fi
+          if gh release view "$tag" > /dev/null 2> "$RUNNER_TEMP/release-view.err"; then
+            echo "Release already exists at verified tag; no overwrite."
+            exit 0
+          elif ! grep -qi 'not found\|HTTP 404' "$RUNNER_TEMP/release-view.err"; then
+            cat "$RUNNER_TEMP/release-view.err"
+            exit 1
+          fi
+          python3 - <<'PY'
+          import os, posixpath, re
+          from pathlib import Path
+          source = Path('docs/releases/v4.4.0-rc.1.md')
+          base = f"https://github.com/{os.environ['GH_REPO']}/blob/{os.environ['RELEASE_SHA']}/"
+          def permalink(match):
+              target = match.group(1)
+              if ':' in target or target.startswith('#'):
+                  return match.group(0)
+              return '](' + base + posixpath.normpath(str(source.parent / target)) + ')'
+          notes = re.sub(r'\]\(([^)]+)\)', permalink, source.read_text())
+          notes += f"\nRelease commit: `{os.environ['RELEASE_SHA']}`.\n"
+          (Path(os.environ['RUNNER_TEMP']) / 'release-notes.md').write_text(notes)
+          PY
+          gh release create "$tag" \
+            data/releases/v4.4.0-rc.1.json data/formal-assurance-map.json \
+            --target "$RELEASE_SHA" --prerelease --latest=false \
+            --title "AI-HPP v4.4.0-rc.1 — Consolidated Assurance Package" \
+            --notes-file "$RUNNER_TEMP/release-notes.md"

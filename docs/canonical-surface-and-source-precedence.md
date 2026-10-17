@@ -5,6 +5,13 @@ Status: `ACTIVE_INFORMATIVE` repository-control document.
 This document identifies the active public AI-HPP surface. It does not promote
 archived material or create new substantive requirements.
 
+The current consolidated package is
+[`v4.4.0-rc.1`](releases/v4.4.0-rc.1.md). Its
+[manifest](../data/releases/v4.4.0-rc.1.json) identifies exact file bytes and
+document roles. The [formal coverage map](../formal/coverage.md) and release
+documents are `ACTIVE_INFORMATIVE`; packaging does not change the precedence
+below or promote candidate requirements.
+
 ## Classification
 
 | Class | Current owners | Effect |

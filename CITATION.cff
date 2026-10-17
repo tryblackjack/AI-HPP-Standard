@@ -6,6 +6,6 @@ authors:
   - family-names: "Vasiliev"
     given-names: "Evgeniy"
 repository-code: "https://github.com/tryblackjack/AI-HPP-Standard"
-version: "4.3.0"
-date-released: 2026-08-17
+version: "4.4.0-rc.1"
+date-released: 2026-10-17
 license: CC-BY-SA-4.0

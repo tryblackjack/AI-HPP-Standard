@@ -1,5 +1,12 @@
 # AI-HPP Standard
 
+**Current consolidated release candidate: `v4.4.0-rc.1`.** See the
+[release composition and migration guide](docs/releases/v4.4.0-rc.1.md) and
+[SHA-256 manifest](data/releases/v4.4.0-rc.1.json). This package freezes the
+current normative documents, executable Quint models, assurance profiles, and
+adoption assets together. Its normative baseline remains `v4.3.0`; candidate
+profiles retain their declared informative status.
+
 **Status: `USABLE_DRAFT`.** AI-HPP is an emerging technical standard for making
 agent behavior bounded, reviewable, and attributable to authorized human
 objectives. It is usable for engineering and review, but is not certification-ready.
@@ -19,6 +26,9 @@ The [formal models](formal/README.md) express replication, persistence,
 authority, evidence, and subject-integrity assurance as executable Quint state
 machines. They supply machine-checkable pseudocode without imposing a runtime
 language, library, or internal architecture.
+
+The [formal coverage map](formal/coverage.md) identifies the exact invariants,
+requirements they partially model, executable witnesses, and uncovered areas.
 
 ## Start here
 
@@ -155,6 +165,7 @@ configured checks are `python scripts/check_agentic_safety.py`,
 `python scripts/check_cyber_containment_profile.py`,
 `python scripts/check_subject_integrity_profile.py`, and
 `python scripts/check_assurance_protocol.py`, followed by
+`python scripts/check_release.py` and
 `PYTHONPATH=. pytest tests`. These checks establish repository consistency,
 not runtime AI-HPP conformance.
 
