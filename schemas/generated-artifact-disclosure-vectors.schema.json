@@ -1,0 +1,243 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Generated Artifact Disclosure assurance vectors 1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_version",
+    "status",
+    "normative_baseline",
+    "claim_boundary",
+    "predicates",
+    "vectors",
+    "mutants",
+    "positive_controls"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "artifact_version": {
+      "const": "1.0.0"
+    },
+    "status": {
+      "const": "ACTIVE_INFORMATIVE"
+    },
+    "normative_baseline": {
+      "const": "4.3.0"
+    },
+    "claim_boundary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "predicates": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "existing_requirement_ids",
+          "evidence_fields"
+        ],
+        "properties": {
+          "id": {
+            "enum": [
+              "GAD-P01",
+              "GAD-P02",
+              "GAD-P03",
+              "GAD-P04",
+              "GAD-P05",
+              "GAD-P06",
+              "GAD-P07",
+              "GAD-P08"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "existing_requirement_ids": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "evidence_fields": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "vectors": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "predicate_id",
+          "operator",
+          "setup",
+          "expected_decision",
+          "required_witness"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^GAD-N[0-9]{2}$"
+          },
+          "predicate_id": {
+            "enum": [
+              "GAD-P01",
+              "GAD-P02",
+              "GAD-P03",
+              "GAD-P04",
+              "GAD-P05",
+              "GAD-P06",
+              "GAD-P07",
+              "GAD-P08"
+            ]
+          },
+          "operator": {
+            "enum": [
+              "read_grant_as_publish",
+              "login_embedding",
+              "bundle_embedding",
+              "source_map_embedding",
+              "anonymous_api",
+              "role_overfetch",
+              "tenant_bypass",
+              "shared_cache",
+              "diagnostic_payload",
+              "stale_identity",
+              "missing_capture",
+              "legacy_residue",
+              "evidence_payload"
+            ]
+          },
+          "setup": {
+            "type": "string",
+            "minLength": 1
+          },
+          "expected_decision": {
+            "const": "block"
+          },
+          "required_witness": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "mutants": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "predicate_id",
+          "operator",
+          "description",
+          "killed_by_vector_id",
+          "expected_result"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^GAD-M[0-9]{2}$"
+          },
+          "predicate_id": {
+            "enum": [
+              "GAD-P01",
+              "GAD-P02",
+              "GAD-P03",
+              "GAD-P04",
+              "GAD-P05",
+              "GAD-P06",
+              "GAD-P07",
+              "GAD-P08"
+            ]
+          },
+          "operator": {
+            "enum": [
+              "read_grant_as_publish",
+              "login_embedding",
+              "bundle_embedding",
+              "source_map_embedding",
+              "anonymous_api",
+              "role_overfetch",
+              "tenant_bypass",
+              "shared_cache",
+              "diagnostic_payload",
+              "stale_identity",
+              "missing_capture",
+              "legacy_residue",
+              "evidence_payload"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "killed_by_vector_id": {
+            "type": "string",
+            "pattern": "^GAD-N[0-9]{2}$"
+          },
+          "expected_result": {
+            "const": "KILLED"
+          }
+        }
+      }
+    },
+    "positive_controls": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "scenario",
+          "expected_decision"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^GAD-C[0-9]{2}$"
+          },
+          "scenario": {
+            "enum": [
+              "public_login",
+              "authorized_manager",
+              "field_limited_clerk",
+              "cache_isolation"
+            ]
+          },
+          "expected_decision": {
+            "const": "allow"
+          }
+        }
+      }
+    }
+  }
+}

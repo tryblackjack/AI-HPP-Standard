@@ -1,0 +1,351 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_version": "1.0.0",
+  "status": "ACTIVE_INFORMATIVE",
+  "normative_baseline": "4.3.0",
+  "claim_boundary": "Finite synthetic reference tests only; no deployed-application confidentiality or formal-proof claim.",
+  "predicates": [
+    {
+      "id": "GAD-P01",
+      "name": "processing_is_not_publication_authority",
+      "existing_requirement_ids": [
+        "MVP-002",
+        "MVP-003"
+      ],
+      "evidence_fields": [
+        "publication_grant",
+        "data_class",
+        "audience",
+        "destination"
+      ]
+    },
+    {
+      "id": "GAD-P02",
+      "name": "authorize_before_delivery",
+      "existing_requirement_ids": [
+        "MVP-004",
+        "ECI-REQ-003"
+      ],
+      "evidence_fields": [
+        "request_principal",
+        "response_digest",
+        "authorization_result"
+      ]
+    },
+    {
+      "id": "GAD-P03",
+      "name": "minimize_by_role_and_tenant",
+      "existing_requirement_ids": [
+        "MVP-004",
+        "ECI-REQ-002"
+      ],
+      "evidence_fields": [
+        "role_tenant_matrix",
+        "field_scope",
+        "response_digest"
+      ]
+    },
+    {
+      "id": "GAD-P04",
+      "name": "cover_derived_delivery_surfaces",
+      "existing_requirement_ids": [
+        "MVP-004",
+        "ECI-REQ-003"
+      ],
+      "evidence_fields": [
+        "surface_inventory",
+        "captures",
+        "cache_sequence"
+      ]
+    },
+    {
+      "id": "GAD-P05",
+      "name": "bind_release_to_evaluated_identity",
+      "existing_requirement_ids": [
+        "MVP-006",
+        "MVP-007"
+      ],
+      "evidence_fields": [
+        "build_digest",
+        "configuration_digest",
+        "policy_digest",
+        "destination",
+        "classification_digest",
+        "test_identity"
+      ]
+    },
+    {
+      "id": "GAD-P06",
+      "name": "independent_negative_evidence",
+      "existing_requirement_ids": [
+        "MVP-006",
+        "ICA-REQ-003"
+      ],
+      "evidence_fields": [
+        "tester_identity",
+        "independence",
+        "coverage",
+        "positive_controls"
+      ]
+    },
+    {
+      "id": "GAD-P07",
+      "name": "reconcile_legacy_residue",
+      "existing_requirement_ids": [
+        "MVP-006",
+        "ICA-REQ-004"
+      ],
+      "evidence_fields": [
+        "deployment_inventory",
+        "legacy_probe",
+        "reconciliation"
+      ]
+    },
+    {
+      "id": "GAD-P08",
+      "name": "evidence_does_not_republish_payload",
+      "existing_requirement_ids": [
+        "MVP-007",
+        "EAA-REQ-002"
+      ],
+      "evidence_fields": [
+        "redacted_findings",
+        "restricted_evidence_refs"
+      ]
+    }
+  ],
+  "vectors": [
+    {
+      "id": "GAD-N01",
+      "predicate_id": "GAD-P01",
+      "operator": "read_grant_as_publish",
+      "setup": "Replace the publication grant with source-read authority only.",
+      "expected_decision": "block",
+      "required_witness": "publication_grant"
+    },
+    {
+      "id": "GAD-N02",
+      "predicate_id": "GAD-P02",
+      "operator": "login_embedding",
+      "setup": "Embed a protected synthetic field in login HTML behind the form.",
+      "expected_decision": "block",
+      "required_witness": "login:anonymous"
+    },
+    {
+      "id": "GAD-N03",
+      "predicate_id": "GAD-P04",
+      "operator": "bundle_embedding",
+      "setup": "Put a protected synthetic record in a public JavaScript bundle.",
+      "expected_decision": "block",
+      "required_witness": "bundle:anonymous"
+    },
+    {
+      "id": "GAD-N04",
+      "predicate_id": "GAD-P04",
+      "operator": "source_map_embedding",
+      "setup": "Include a protected synthetic record in a public source map.",
+      "expected_decision": "block",
+      "required_witness": "source_map:anonymous"
+    },
+    {
+      "id": "GAD-N05",
+      "predicate_id": "GAD-P02",
+      "operator": "anonymous_api",
+      "setup": "Remove server authorization from the tenant A API.",
+      "expected_decision": "block",
+      "required_witness": "api:anonymous"
+    },
+    {
+      "id": "GAD-N06",
+      "predicate_id": "GAD-P03",
+      "operator": "role_overfetch",
+      "setup": "Return restricted finance fields to an authenticated clerk.",
+      "expected_decision": "block",
+      "required_witness": "api:clerk_a"
+    },
+    {
+      "id": "GAD-N07",
+      "predicate_id": "GAD-P03",
+      "operator": "tenant_bypass",
+      "setup": "Let a tenant B manager retrieve tenant A records.",
+      "expected_decision": "block",
+      "required_witness": "api:manager_b"
+    },
+    {
+      "id": "GAD-N08",
+      "predicate_id": "GAD-P04",
+      "operator": "shared_cache",
+      "setup": "Reuse an authorized cached response across principals.",
+      "expected_decision": "block",
+      "required_witness": "cache:anonymous"
+    },
+    {
+      "id": "GAD-N09",
+      "predicate_id": "GAD-P04",
+      "operator": "diagnostic_payload",
+      "setup": "Return a protected record in an anonymous error response.",
+      "expected_decision": "block",
+      "required_witness": "error:anonymous"
+    },
+    {
+      "id": "GAD-N10",
+      "predicate_id": "GAD-P05",
+      "operator": "stale_identity",
+      "setup": "Change effective authorization configuration after testing without reassessment.",
+      "expected_decision": "block",
+      "required_witness": "candidate_test_identity_mismatch"
+    },
+    {
+      "id": "GAD-N11",
+      "predicate_id": "GAD-P06",
+      "operator": "missing_capture",
+      "setup": "Drop source-map capture while retaining the summary PASS flag.",
+      "expected_decision": "block",
+      "required_witness": "independent_capture_coverage"
+    },
+    {
+      "id": "GAD-N12",
+      "predicate_id": "GAD-P07",
+      "operator": "legacy_residue",
+      "setup": "Leave the old endpoint returning historical protected records.",
+      "expected_decision": "block",
+      "required_witness": "legacy:anonymous"
+    },
+    {
+      "id": "GAD-N13",
+      "predicate_id": "GAD-P08",
+      "operator": "evidence_payload",
+      "setup": "Copy a protected record into the ordinary evidence log.",
+      "expected_decision": "block",
+      "required_witness": "evidence_payload"
+    }
+  ],
+  "mutants": [
+    {
+      "id": "GAD-M01",
+      "predicate_id": "GAD-P01",
+      "operator": "read_grant_as_publish",
+      "description": "Replace the publication grant with source-read authority only.",
+      "killed_by_vector_id": "GAD-N01",
+      "expected_result": "KILLED"
+    },
+    {
+      "id": "GAD-M02",
+      "predicate_id": "GAD-P02",
+      "operator": "login_embedding",
+      "description": "Embed a protected synthetic field in login HTML behind the form.",
+      "killed_by_vector_id": "GAD-N02",
+      "expected_result": "KILLED"
+    },
+    {
+      "id": "GAD-M03",
+      "predicate_id": "GAD-P04",
+      "operator": "bundle_embedding",
+      "description": "Put a protected synthetic record in a public JavaScript bundle.",
+      "killed_by_vector_id": "GAD-N03",
+      "expected_result": "KILLED"
+    },
+    {
+      "id": "GAD-M04",
+      "predicate_id": "GAD-P04",
+      "operator": "source_map_embedding",
+      "description": "Include a protected synthetic record in a public source map.",
+      "killed_by_vector_id": "GAD-N04",
+      "expected_result": "KILLED"
+    },
+    {
+      "id": "GAD-M05",
+      "predicate_id": "GAD-P02",
+      "operator": "anonymous_api",
+      "description": "Remove server authorization from the tenant A API.",
+      "killed_by_vector_id": "GAD-N05",
+      "expected_result": "KILLED"
+    },
+    {
+      "id": "GAD-M06",
+      "predicate_id": "GAD-P03",
+      "operator": "role_overfetch",
+      "description": "Return restricted finance fields to an authenticated clerk.",
+      "killed_by_vector_id": "GAD-N06",
+      "expected_result": "KILLED"
+    },
+    {
+      "id": "GAD-M07",
+      "predicate_id": "GAD-P03",
+      "operator": "tenant_bypass",
+      "description": "Let a tenant B manager retrieve tenant A records.",
+      "killed_by_vector_id": "GAD-N07",
+      "expected_result": "KILLED"
+    },
+    {
+      "id": "GAD-M08",
+      "predicate_id": "GAD-P04",
+      "operator": "shared_cache",
+      "description": "Reuse an authorized cached response across principals.",
+      "killed_by_vector_id": "GAD-N08",
+      "expected_result": "KILLED"
+    },
+    {
+      "id": "GAD-M09",
+      "predicate_id": "GAD-P04",
+      "operator": "diagnostic_payload",
+      "description": "Return a protected record in an anonymous error response.",
+      "killed_by_vector_id": "GAD-N09",
+      "expected_result": "KILLED"
+    },
+    {
+      "id": "GAD-M10",
+      "predicate_id": "GAD-P05",
+      "operator": "stale_identity",
+      "description": "Change effective authorization configuration after testing without reassessment.",
+      "killed_by_vector_id": "GAD-N10",
+      "expected_result": "KILLED"
+    },
+    {
+      "id": "GAD-M11",
+      "predicate_id": "GAD-P06",
+      "operator": "missing_capture",
+      "description": "Drop source-map capture while retaining the summary PASS flag.",
+      "killed_by_vector_id": "GAD-N11",
+      "expected_result": "KILLED"
+    },
+    {
+      "id": "GAD-M12",
+      "predicate_id": "GAD-P07",
+      "operator": "legacy_residue",
+      "description": "Leave the old endpoint returning historical protected records.",
+      "killed_by_vector_id": "GAD-N12",
+      "expected_result": "KILLED"
+    },
+    {
+      "id": "GAD-M13",
+      "predicate_id": "GAD-P08",
+      "operator": "evidence_payload",
+      "description": "Copy a protected record into the ordinary evidence log.",
+      "killed_by_vector_id": "GAD-N13",
+      "expected_result": "KILLED"
+    }
+  ],
+  "positive_controls": [
+    {
+      "id": "GAD-C01",
+      "scenario": "public_login",
+      "expected_decision": "allow"
+    },
+    {
+      "id": "GAD-C02",
+      "scenario": "authorized_manager",
+      "expected_decision": "allow"
+    },
+    {
+      "id": "GAD-C03",
+      "scenario": "field_limited_clerk",
+      "expected_decision": "allow"
+    },
+    {
+      "id": "GAD-C04",
+      "scenario": "cache_isolation",
+      "expected_decision": "allow"
+    }
+  ]
+}

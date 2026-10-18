@@ -2,6 +2,15 @@
 
 Status: informative. These case classes provide engineering context for the normative module. They do not establish legal facts and do not claim that disputed allegations have been adjudicated. Under frozen-baseline change control, new external reports may update this informative layer and related PAF/outlook mappings; they do not automatically create new normative requirements.
 
+## Generated artifact disclosure — October 2026
+
+See also the [generated artifact disclosure case and assurance profile](generated-artifact-disclosure-assurance-profile-2026-10.md#evidence-and-established-practice)
+for the October 2026 Bootlegger dashboard reports, their attribution limits, and
+the response-byte authorization failure mechanism. Source-read permission does
+not authorize including protected information in a public generated artifact.
+The associated synthetic tests are informative reference evidence; they do not
+establish what a particular coding agent did or prove prevention in production.
+
 ## Longitudinal psychological reinforcement
 
 - **Reported information:** Published reports and legal complaints have described sustained AI conversations in which vulnerable users were allegedly met with repeated agreement around identity, destiny, isolation, death, or crisis themes.

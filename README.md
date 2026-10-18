@@ -8,8 +8,9 @@ adoption assets together. Its normative baseline remains `v4.3.0`; candidate
 profiles retain their declared informative status.
 
 Development on `main` additionally includes
-[religious-observance guidance](docs/constitutional-and-relational-layer.md#religious-commitments-and-delegated-work).
-It is a post-rc.1 informative addition; use the release tag for the frozen package.
+[religious-observance guidance](docs/constitutional-and-relational-layer.md#religious-commitments-and-delegated-work)
+and [generated-artifact disclosure assurance](docs/generated-artifact-disclosure-assurance-profile-2026-10.md).
+These are post-rc.1 informative additions; use the release tag for the frozen package.
 
 **Status: `USABLE_DRAFT`.** AI-HPP is an emerging technical standard for making
 agent behavior bounded, reviewable, and attributable to authorized human
@@ -19,7 +20,8 @@ objectives. It is usable for engineering and review, but is not certification-re
 
 AI-HPP is implementation-language neutral. It does not require Python, Node.js,
 C, a shared runtime library, or a particular agent framework. Repository Python
-scripts validate document and data consistency only.
+scripts validate document/data consistency and execute explicitly scoped
+synthetic reference tests; they do not implement production enforcement.
 
 The [language-neutral implementation starter](examples/README.md) and
 [MVP negative test vectors](examples/mvp-negative-test-vectors.json) provide the
@@ -109,6 +111,10 @@ authority and is not a containment boundary.
 
 ## Active modules and repository map
 
+- [Generated Artifact Disclosure Assurance Profile — October 2026](docs/generated-artifact-disclosure-assurance-profile-2026-10.md) —
+  `ACTIVE_INFORMATIVE`; publication authority, response/role/tenant boundaries,
+  release identity, legacy cleanup, eight predicates, thirteen executable
+  disclosure mutants and four useful-access controls. Post-rc.1 development.
 - [Human Understanding Standard](docs/human-understanding-standard.md) —
   `USABLE_DRAFT`; objective retention and review.
 - [Agentic Safety and Relational Integrity](docs/agentic-safety-and-relational-integrity.md) —
@@ -167,8 +173,9 @@ configured checks are `python scripts/check_agentic_safety.py`,
 `python scripts/check_implementation_assets.py`,
 `python scripts/check_replication_profile.py`,
 `python scripts/check_cyber_containment_profile.py`,
-`python scripts/check_subject_integrity_profile.py`, and
-`python scripts/check_assurance_protocol.py`, followed by
+`python scripts/check_subject_integrity_profile.py`,
+`python scripts/check_assurance_protocol.py`, and
+`python scripts/check_artifact_disclosure_profile.py`, followed by
 `python scripts/check_release.py` and
 `PYTHONPATH=. pytest tests`. These checks establish repository consistency,
 not runtime AI-HPP conformance.
