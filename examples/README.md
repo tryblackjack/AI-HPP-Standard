@@ -94,3 +94,19 @@ defined in the
 [technical oversight protocol](../docs/assurance-evaluation-and-technical-oversight.md).
 These profile-specific vectors remain informative and do not expand the frozen
 v4.3.0 normative baseline.
+
+For agents generating software, exports or shared artifacts, use the post-rc.1
+[disclosure profile](../docs/generated-artifact-disclosure-assurance-profile-2026-10.md)
+and [language-neutral vectors](generated-artifact-disclosure-vectors.json).
+The optional [synthetic reference fixture](artifact_disclosure_reference.py)
+executes thirteen unsafe operators against a separate finite-policy oracle and
+retains four positive access controls. Port the observations and policy checks
+to the actual application and deployment; copying the fixture is not an
+authorization implementation or evidence of runtime confidentiality.
+
+```bash
+python scripts/check_artifact_disclosure_profile.py
+```
+
+This new artifact/schema version is `1.0.0`, is opt-in, and does not change other
+vector formats. Its results are not included in the published rc.1 package.

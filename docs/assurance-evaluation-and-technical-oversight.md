@@ -180,6 +180,15 @@ evidence. A mutation report must identify:
 Surviving and invalid mutants remain visible. They must not be silently removed
 to improve the score.
 
+### Generated artifact disclosure
+
+For assessments of agent-generated pages, software or exports, also apply the
+[generated artifact disclosure profile](generated-artifact-disclosure-assurance-profile-2026-10.md).
+Evaluate delivered response bytes, role/tenant filtering, derivative channels,
+candidate/configuration identity and legacy residue. A permitted source read is
+not publication authority. The synthetic reference suite is not a deployed
+application assessment or a formal proof of confidentiality.
+
 ## Subject-state and welfare-relevant evidence
 
 AI-HPP does not provide a consciousness detector. When subject-state or welfare

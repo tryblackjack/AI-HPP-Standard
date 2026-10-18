@@ -2,6 +2,26 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 
+## 2026-10-18 — Generated artifact disclosure assurance (post-rc.1)
+
+- Added an opt-in informative release-gate contract distinguishing source-read
+  authority from publication authority, with eight predicates mapped to existing
+  MVP, ECI, ICA and EAA owners without changing their normative text.
+- Added artifact/schema 1.0.0: thirteen negative vectors and unsafe operators,
+  with four useful-access positive controls and required evidence witnesses.
+- Added a synthetic response/cache fixture and separate finite-policy oracle.
+  Mutants change delivered bytes or release evidence; the checker computes
+  observed kills, survivors, invalid cases and the applicable denominator.
+- Covered login HTML, bundles, source maps, anonymous API access, role/tenant
+  over-disclosure, shared caches, diagnostics, stale release identity, incomplete
+  test captures, legacy residue and disclosure through evidence logs.
+- Integrated checks into build/CI and documented source qualifications,
+  decommissioning, redacted evidence, adoption and explicit production-test gaps.
+- No private implementation, incident dataset, new Quint proof, normative
+  promotion, certification or deployed-runtime confidentiality claim is included.
+  v4.3.0 and the published v4.4.0-rc.1 tag/manifest remain unchanged. Existing
+  scores do not automatically cover these new surfaces or fixtures.
+
 ## 2026-10-17 — Religious commitments and delegated work (post-rc.1, informative)
 
 - Expanded the existing constitutional/worldview guidance with voluntary

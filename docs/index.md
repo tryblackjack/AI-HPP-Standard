@@ -31,6 +31,7 @@ not active normative text.
 
 ## Active informative material
 
+- [Generated Artifact Disclosure Assurance Profile — October 2026](generated-artifact-disclosure-assurance-profile-2026-10.md) — post-rc.1 candidate release gate, eight predicates, thirteen executable disclosure mutants and four useful-access controls; no normative or whole-application proof claim.
 - [Architecture](architecture.md) and [Glossary](glossary.md)
 - [Formal Core Invariants](../formal/README.md) — executable Quint models of replication, persistence, authority, evidence, and subject-integrity assurance; informative, not a runtime implementation.
 - [Formal Coverage and Gaps](../formal/coverage.md) — invariant-to-requirement mapping, executable witnesses, abstraction limits, and requirements without formal coverage.

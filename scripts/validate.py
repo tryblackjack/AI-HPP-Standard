@@ -3,6 +3,12 @@
 from pathlib import Path
 
 REQUIRED = [
+    "docs/generated-artifact-disclosure-assurance-profile-2026-10.md",
+    "examples/generated-artifact-disclosure-vectors.json",
+    "examples/artifact_disclosure_reference.py",
+    "schemas/generated-artifact-disclosure-vectors.schema.json",
+    "scripts/check_artifact_disclosure_profile.py",
+    "tests/test_artifact_disclosure.py",
     "docs/releases/v4.4.0-rc.1.md",
     "data/releases/v4.4.0-rc.1.json",
     "data/formal-assurance-map.json",
