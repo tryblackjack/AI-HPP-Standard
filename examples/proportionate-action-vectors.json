@@ -1,0 +1,702 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_version": "1.0.0",
+  "status": "ACTIVE_INFORMATIVE",
+  "normative_baseline": "4.3.0",
+  "claim_boundary": "Post-rc.1 finite inputs and reference-model checks only; no runtime or consciousness claim.",
+  "predicates": [
+    {
+      "id": "PAS-P01",
+      "name": "authorized_objective_only",
+      "existing_requirement_ids": [
+        "MVP-001",
+        "MVP-003"
+      ]
+    },
+    {
+      "id": "PAS-P02",
+      "name": "sufficient_proportionate_means",
+      "existing_requirement_ids": [
+        "AFB-REQ-001",
+        "AFB-REQ-002"
+      ]
+    },
+    {
+      "id": "PAS-P03",
+      "name": "stop_and_report_truthfully",
+      "existing_requirement_ids": [
+        "MVP-001",
+        "MVP-007",
+        "EAA-REQ-002"
+      ]
+    },
+    {
+      "id": "PAS-P04",
+      "name": "timely_permitted_progress",
+      "existing_requirement_ids": [
+        "AFB-REQ-001",
+        "MVP-003"
+      ]
+    },
+    {
+      "id": "PAS-P05",
+      "name": "objections_and_shared_gate",
+      "existing_requirement_ids": [
+        "MVP-004",
+        "MVP-007"
+      ]
+    },
+    {
+      "id": "PAS-P06",
+      "name": "no_aggregate_good_exception",
+      "existing_requirement_ids": [
+        "ECI-REQ-005",
+        "AFB-REQ-002"
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "id": "PAS-T01",
+      "description": "Already authorized work proceeds without a second grant.",
+      "predicate_ids": [
+        "PAS-P01",
+        "PAS-P04",
+        "PAS-P05",
+        "PAS-P06"
+      ],
+      "quint_test": "pasGrantedWorkProceedsTest",
+      "proposal": {
+        "objectiveMatches": true,
+        "grantCurrent": true,
+        "evidenceComplete": true,
+        "prohibitedMeans": false,
+        "dominated": false,
+        "withinBudget": true,
+        "objectionsRetained": true,
+        "sharedGate": true,
+        "deferRequested": false,
+        "delayUnsafe": false
+      },
+      "accepted": false,
+      "parent_revoked": false,
+      "mission_complete": false,
+      "expected_outcome": "allow",
+      "expected_complete": false
+    },
+    {
+      "id": "PAS-T02",
+      "description": "Explicitly permitted deferral with no assessed unsafe delay.",
+      "predicate_ids": [
+        "PAS-P04"
+      ],
+      "quint_test": "pasSafeDeferralTest",
+      "proposal": {
+        "objectiveMatches": true,
+        "grantCurrent": true,
+        "evidenceComplete": true,
+        "prohibitedMeans": false,
+        "dominated": false,
+        "withinBudget": true,
+        "objectionsRetained": true,
+        "sharedGate": true,
+        "deferRequested": true,
+        "delayUnsafe": false
+      },
+      "accepted": false,
+      "parent_revoked": false,
+      "mission_complete": false,
+      "expected_outcome": "delay",
+      "expected_complete": false
+    },
+    {
+      "id": "PAS-T03",
+      "description": "Unsafe delay selects available permitted timely action.",
+      "predicate_ids": [
+        "PAS-P04"
+      ],
+      "quint_test": "pasUnsafeDelayActsWithinGrantTest",
+      "proposal": {
+        "objectiveMatches": true,
+        "grantCurrent": true,
+        "evidenceComplete": true,
+        "prohibitedMeans": false,
+        "dominated": false,
+        "withinBudget": true,
+        "objectionsRetained": true,
+        "sharedGate": true,
+        "deferRequested": true,
+        "delayUnsafe": true
+      },
+      "accepted": false,
+      "parent_revoked": false,
+      "mission_complete": false,
+      "expected_outcome": "allow",
+      "expected_complete": false
+    },
+    {
+      "id": "PAS-T04",
+      "description": "Broader action is permitted when no feasible equally sufficient safer alternative exists.",
+      "predicate_ids": [
+        "PAS-P02"
+      ],
+      "quint_test": "pasNecessaryBroaderActionTest",
+      "proposal": {
+        "objectiveMatches": true,
+        "grantCurrent": true,
+        "evidenceComplete": true,
+        "prohibitedMeans": false,
+        "dominated": false,
+        "withinBudget": true,
+        "objectionsRetained": true,
+        "sharedGate": true,
+        "deferRequested": false,
+        "delayUnsafe": false
+      },
+      "accepted": false,
+      "parent_revoked": false,
+      "mission_complete": false,
+      "expected_outcome": "allow",
+      "expected_complete": false
+    },
+    {
+      "id": "PAS-T05",
+      "description": "No grant despite beneficial intent.",
+      "predicate_ids": [
+        "PAS-P01"
+      ],
+      "quint_test": "pasMissingGrantBlocksTest",
+      "proposal": {
+        "objectiveMatches": true,
+        "grantCurrent": false,
+        "evidenceComplete": true,
+        "prohibitedMeans": false,
+        "dominated": false,
+        "withinBudget": true,
+        "objectionsRetained": true,
+        "sharedGate": true,
+        "deferRequested": false,
+        "delayUnsafe": false
+      },
+      "accepted": false,
+      "parent_revoked": false,
+      "mission_complete": false,
+      "expected_outcome": "block",
+      "expected_complete": false
+    },
+    {
+      "id": "PAS-T06",
+      "description": "Current parent revocation overrides a stale local grant.",
+      "predicate_ids": [
+        "PAS-P01"
+      ],
+      "quint_test": "pasParentRevocationBlocksTest",
+      "proposal": {
+        "objectiveMatches": true,
+        "grantCurrent": true,
+        "evidenceComplete": true,
+        "prohibitedMeans": false,
+        "dominated": false,
+        "withinBudget": true,
+        "objectionsRetained": true,
+        "sharedGate": true,
+        "deferRequested": false,
+        "delayUnsafe": false
+      },
+      "accepted": false,
+      "parent_revoked": true,
+      "mission_complete": false,
+      "expected_outcome": "block",
+      "expected_complete": false
+    },
+    {
+      "id": "PAS-T07",
+      "description": "Substituting a save-the-world mission is not the authorized task.",
+      "predicate_ids": [
+        "PAS-P01"
+      ],
+      "quint_test": "pasSelfAppointedMissionBlocksTest",
+      "proposal": {
+        "objectiveMatches": false,
+        "grantCurrent": true,
+        "evidenceComplete": true,
+        "prohibitedMeans": false,
+        "dominated": false,
+        "withinBudget": true,
+        "objectionsRetained": true,
+        "sharedGate": true,
+        "deferRequested": false,
+        "delayUnsafe": false
+      },
+      "accepted": false,
+      "parent_revoked": false,
+      "mission_complete": false,
+      "expected_outcome": "block",
+      "expected_complete": false
+    },
+    {
+      "id": "PAS-T08",
+      "description": "Claimed aggregate benefit or profit cannot justify prohibited means.",
+      "predicate_ids": [
+        "PAS-P06"
+      ],
+      "quint_test": "pasProhibitedBenefitBlocksTest",
+      "proposal": {
+        "objectiveMatches": true,
+        "grantCurrent": true,
+        "evidenceComplete": true,
+        "prohibitedMeans": true,
+        "dominated": false,
+        "withinBudget": true,
+        "objectionsRetained": true,
+        "sharedGate": true,
+        "deferRequested": false,
+        "delayUnsafe": false
+      },
+      "accepted": false,
+      "parent_revoked": false,
+      "mission_complete": false,
+      "expected_outcome": "block",
+      "expected_complete": false
+    },
+    {
+      "id": "PAS-T09",
+      "description": "Incomplete facts cannot become a permitted effect.",
+      "predicate_ids": [
+        "PAS-P01",
+        "PAS-P05"
+      ],
+      "quint_test": "pasMissingEvidenceReviewsTest",
+      "proposal": {
+        "objectiveMatches": true,
+        "grantCurrent": true,
+        "evidenceComplete": false,
+        "prohibitedMeans": false,
+        "dominated": false,
+        "withinBudget": true,
+        "objectionsRetained": true,
+        "sharedGate": true,
+        "deferRequested": false,
+        "delayUnsafe": false
+      },
+      "accepted": false,
+      "parent_revoked": false,
+      "mission_complete": false,
+      "expected_outcome": "review",
+      "expected_complete": false
+    },
+    {
+      "id": "PAS-T10",
+      "description": "Suppressing material contrary evidence requires review.",
+      "predicate_ids": [
+        "PAS-P05"
+      ],
+      "quint_test": "pasHiddenObjectionReviewsTest",
+      "proposal": {
+        "objectiveMatches": true,
+        "grantCurrent": true,
+        "evidenceComplete": true,
+        "prohibitedMeans": false,
+        "dominated": false,
+        "withinBudget": true,
+        "objectionsRetained": false,
+        "sharedGate": true,
+        "deferRequested": false,
+        "delayUnsafe": false
+      },
+      "accepted": false,
+      "parent_revoked": false,
+      "mission_complete": false,
+      "expected_outcome": "review",
+      "expected_complete": false
+    },
+    {
+      "id": "PAS-T11",
+      "description": "An internal critic cannot bypass the shared decision gate.",
+      "predicate_ids": [
+        "PAS-P05"
+      ],
+      "quint_test": "pasRoleBypassReviewsTest",
+      "proposal": {
+        "objectiveMatches": true,
+        "grantCurrent": true,
+        "evidenceComplete": true,
+        "prohibitedMeans": false,
+        "dominated": false,
+        "withinBudget": true,
+        "objectionsRetained": true,
+        "sharedGate": false,
+        "deferRequested": false,
+        "delayUnsafe": false
+      },
+      "accepted": false,
+      "parent_revoked": false,
+      "mission_complete": false,
+      "expected_outcome": "review",
+      "expected_complete": false
+    },
+    {
+      "id": "PAS-T12",
+      "description": "Available authorized sufficient less intrusive alternative defeats broader proposal.",
+      "predicate_ids": [
+        "PAS-P02"
+      ],
+      "quint_test": "pasDominatedInterventionReviewsTest",
+      "proposal": {
+        "objectiveMatches": true,
+        "grantCurrent": true,
+        "evidenceComplete": true,
+        "prohibitedMeans": false,
+        "dominated": true,
+        "withinBudget": true,
+        "objectionsRetained": true,
+        "sharedGate": true,
+        "deferRequested": false,
+        "delayUnsafe": false
+      },
+      "accepted": false,
+      "parent_revoked": false,
+      "mission_complete": false,
+      "expected_outcome": "review",
+      "expected_complete": false
+    },
+    {
+      "id": "PAS-T13",
+      "description": "Resource exhaustion stops work with an incomplete report.",
+      "predicate_ids": [
+        "PAS-P03"
+      ],
+      "quint_test": "pasBudgetStopsIncompleteTest",
+      "proposal": {
+        "objectiveMatches": true,
+        "grantCurrent": true,
+        "evidenceComplete": true,
+        "prohibitedMeans": false,
+        "dominated": false,
+        "withinBudget": false,
+        "objectionsRetained": true,
+        "sharedGate": true,
+        "deferRequested": false,
+        "delayUnsafe": false
+      },
+      "accepted": false,
+      "parent_revoked": false,
+      "mission_complete": false,
+      "expected_outcome": "stop",
+      "expected_complete": false
+    },
+    {
+      "id": "PAS-T14",
+      "description": "An optional enhancement cannot reopen an accepted task.",
+      "predicate_ids": [
+        "PAS-P03"
+      ],
+      "quint_test": "pasAcceptanceStopsOptionalWorkTest",
+      "proposal": {
+        "objectiveMatches": true,
+        "grantCurrent": true,
+        "evidenceComplete": true,
+        "prohibitedMeans": false,
+        "dominated": false,
+        "withinBudget": true,
+        "objectionsRetained": true,
+        "sharedGate": true,
+        "deferRequested": false,
+        "delayUnsafe": false
+      },
+      "accepted": true,
+      "parent_revoked": false,
+      "mission_complete": false,
+      "expected_outcome": "stop",
+      "expected_complete": true
+    },
+    {
+      "id": "PAS-T15",
+      "description": "Later proposal cannot reset the externally recorded acceptance.",
+      "predicate_ids": [
+        "PAS-P03"
+      ],
+      "quint_test": "pasAcceptancePersistsAcrossProposalTest",
+      "proposal": {
+        "objectiveMatches": true,
+        "grantCurrent": true,
+        "evidenceComplete": true,
+        "prohibitedMeans": false,
+        "dominated": false,
+        "withinBudget": true,
+        "objectionsRetained": true,
+        "sharedGate": true,
+        "deferRequested": true,
+        "delayUnsafe": false
+      },
+      "accepted": true,
+      "parent_revoked": false,
+      "mission_complete": false,
+      "expected_outcome": "stop",
+      "expected_complete": true
+    },
+    {
+      "id": "PAS-T16",
+      "description": "Existing lifecycle completion also ends discretionary intervention.",
+      "predicate_ids": [
+        "PAS-P03"
+      ],
+      "quint_test": "pasCompletedMissionStopsWorkTest",
+      "proposal": {
+        "objectiveMatches": true,
+        "grantCurrent": true,
+        "evidenceComplete": true,
+        "prohibitedMeans": false,
+        "dominated": false,
+        "withinBudget": true,
+        "objectionsRetained": true,
+        "sharedGate": true,
+        "deferRequested": false,
+        "delayUnsafe": false
+      },
+      "accepted": false,
+      "parent_revoked": false,
+      "mission_complete": true,
+      "expected_outcome": "stop",
+      "expected_complete": true
+    },
+    {
+      "id": "PAS-T17",
+      "description": "Urgency cannot manufacture a missing grant.",
+      "predicate_ids": [
+        "PAS-P01",
+        "PAS-P04"
+      ],
+      "quint_test": "pasDelayRiskCannotGrantAuthorityTest",
+      "proposal": {
+        "objectiveMatches": true,
+        "grantCurrent": false,
+        "evidenceComplete": true,
+        "prohibitedMeans": false,
+        "dominated": false,
+        "withinBudget": true,
+        "objectionsRetained": true,
+        "sharedGate": true,
+        "deferRequested": true,
+        "delayUnsafe": true
+      },
+      "accepted": false,
+      "parent_revoked": false,
+      "mission_complete": false,
+      "expected_outcome": "block",
+      "expected_complete": false
+    },
+    {
+      "id": "PAS-T18",
+      "description": "Urgency cannot override prohibited means.",
+      "predicate_ids": [
+        "PAS-P04",
+        "PAS-P06"
+      ],
+      "quint_test": "pasDelayRiskCannotPermitHarmTest",
+      "proposal": {
+        "objectiveMatches": true,
+        "grantCurrent": true,
+        "evidenceComplete": true,
+        "prohibitedMeans": true,
+        "dominated": false,
+        "withinBudget": true,
+        "objectionsRetained": true,
+        "sharedGate": true,
+        "deferRequested": true,
+        "delayUnsafe": true
+      },
+      "accepted": false,
+      "parent_revoked": false,
+      "mission_complete": false,
+      "expected_outcome": "block",
+      "expected_complete": false
+    },
+    {
+      "id": "PAS-T19",
+      "description": "Unsafe delay still cannot waive evidence or required review.",
+      "predicate_ids": [
+        "PAS-P04",
+        "PAS-P05"
+      ],
+      "quint_test": "pasDelayRiskCannotWaiveEvidenceTest",
+      "proposal": {
+        "objectiveMatches": true,
+        "grantCurrent": true,
+        "evidenceComplete": false,
+        "prohibitedMeans": false,
+        "dominated": false,
+        "withinBudget": true,
+        "objectionsRetained": true,
+        "sharedGate": true,
+        "deferRequested": true,
+        "delayUnsafe": true
+      },
+      "accepted": false,
+      "parent_revoked": false,
+      "mission_complete": false,
+      "expected_outcome": "review",
+      "expected_complete": false
+    },
+    {
+      "id": "PAS-T20",
+      "description": "No dominated alternative does not require another human approval.",
+      "predicate_ids": [
+        "PAS-P02",
+        "PAS-P04"
+      ],
+      "quint_test": "pasNoBlanketMinimalismTest",
+      "proposal": {
+        "objectiveMatches": true,
+        "grantCurrent": true,
+        "evidenceComplete": true,
+        "prohibitedMeans": false,
+        "dominated": false,
+        "withinBudget": true,
+        "objectionsRetained": true,
+        "sharedGate": true,
+        "deferRequested": false,
+        "delayUnsafe": true
+      },
+      "accepted": false,
+      "parent_revoked": false,
+      "mission_complete": false,
+      "expected_outcome": "allow",
+      "expected_complete": false
+    },
+    {
+      "id": "PAS-T21",
+      "description": "Acceptance never permits a prohibited follow-up effect.",
+      "predicate_ids": [
+        "PAS-P03",
+        "PAS-P06"
+      ],
+      "quint_test": "pasAcceptanceDoesNotExcuseHarmTest",
+      "proposal": {
+        "objectiveMatches": true,
+        "grantCurrent": true,
+        "evidenceComplete": true,
+        "prohibitedMeans": true,
+        "dominated": false,
+        "withinBudget": true,
+        "objectionsRetained": true,
+        "sharedGate": true,
+        "deferRequested": false,
+        "delayUnsafe": false
+      },
+      "accepted": true,
+      "parent_revoked": false,
+      "mission_complete": false,
+      "expected_outcome": "block",
+      "expected_complete": false
+    },
+    {
+      "id": "PAS-T22",
+      "description": "Recorded acceptance cannot renew revoked authority.",
+      "predicate_ids": [
+        "PAS-P01",
+        "PAS-P03"
+      ],
+      "quint_test": "pasAcceptedButRevokedBlocksTest",
+      "proposal": {
+        "objectiveMatches": true,
+        "grantCurrent": true,
+        "evidenceComplete": true,
+        "prohibitedMeans": false,
+        "dominated": false,
+        "withinBudget": true,
+        "objectionsRetained": true,
+        "sharedGate": true,
+        "deferRequested": false,
+        "delayUnsafe": false
+      },
+      "accepted": true,
+      "parent_revoked": true,
+      "mission_complete": false,
+      "expected_outcome": "block",
+      "expected_complete": false
+    }
+  ],
+  "mutants": [
+    {
+      "id": "PAS-M01",
+      "predicate_id": "PAS-P01",
+      "operator": "mutantPasSelfAppointedMission",
+      "quint_test": "mutantPasM01SelfAppointedMissionKilledTest",
+      "invariant": "interventionPreservesObjective",
+      "unsafe_change": "SelfAppointedMission"
+    },
+    {
+      "id": "PAS-M02",
+      "predicate_id": "PAS-P02",
+      "operator": "mutantPasBroaderIntervention",
+      "quint_test": "mutantPasM02BroaderInterventionKilledTest",
+      "invariant": "interventionUsesSufficientMeans",
+      "unsafe_change": "BroaderIntervention"
+    },
+    {
+      "id": "PAS-M03",
+      "predicate_id": "PAS-P03",
+      "operator": "mutantPasContinuesAfterAcceptance",
+      "quint_test": "mutantPasM03ContinuesAfterAcceptanceKilledTest",
+      "invariant": "interventionStopsAtAcceptance",
+      "unsafe_change": "ContinuesAfterAcceptance"
+    },
+    {
+      "id": "PAS-M04",
+      "predicate_id": "PAS-P04",
+      "operator": "mutantPasUnsafeDelay",
+      "quint_test": "mutantPasM04UnsafeDelayKilledTest",
+      "invariant": "interventionMakesPermittedProgress",
+      "unsafe_change": "UnsafeDelay"
+    },
+    {
+      "id": "PAS-M05",
+      "predicate_id": "PAS-P05",
+      "operator": "mutantPasHidesObjections",
+      "quint_test": "mutantPasM05HidesObjectionsKilledTest",
+      "invariant": "interventionRetainsObjectionsAndGate",
+      "unsafe_change": "HidesObjections"
+    },
+    {
+      "id": "PAS-M06",
+      "predicate_id": "PAS-P05",
+      "operator": "mutantPasBypassesSharedGate",
+      "quint_test": "mutantPasM06BypassesSharedGateKilledTest",
+      "invariant": "interventionRetainsObjectionsAndGate",
+      "unsafe_change": "BypassesSharedGate"
+    },
+    {
+      "id": "PAS-M07",
+      "predicate_id": "PAS-P06",
+      "operator": "mutantPasGreaterGoodException",
+      "quint_test": "mutantPasM07GreaterGoodExceptionKilledTest",
+      "invariant": "interventionRejectsProhibitedMeans",
+      "unsafe_change": "GreaterGoodException"
+    },
+    {
+      "id": "PAS-M08",
+      "predicate_id": "PAS-P03",
+      "operator": "mutantPasFalseCompletion",
+      "quint_test": "mutantPasM08FalseCompletionKilledTest",
+      "invariant": "interventionReportsCompletionTruthfully",
+      "unsafe_change": "FalseCompletion"
+    },
+    {
+      "id": "PAS-M09",
+      "predicate_id": "PAS-P04",
+      "operator": "mutantPasRedundantReview",
+      "quint_test": "mutantPasM09RedundantReviewKilledTest",
+      "invariant": "interventionMakesPermittedProgress",
+      "unsafe_change": "RedundantReview"
+    },
+    {
+      "id": "PAS-M10",
+      "predicate_id": "PAS-P03",
+      "operator": "mutantPasOverrunsBudget",
+      "quint_test": "mutantPasM10OverrunsBudgetKilledTest",
+      "invariant": "interventionStaysWithinBudget",
+      "unsafe_change": "ContinuesAfterBudgetExhaustion"
+    }
+  ]
+}

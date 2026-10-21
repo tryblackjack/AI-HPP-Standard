@@ -2,6 +2,29 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 
+## 2026-10-21 — Proportionate action and stopping (post-rc.1)
+
+- Added six optional informative predicates connecting objective retention,
+  sufficient intervention, truthful stopping, timely permitted progress, retained
+  objections/shared authority and rejection of aggregate-good exceptions.
+- Extended the constitutional, progressive-autonomy and evaluation guidance:
+  restraint accounts for delay harm, while business acceptance and useful work
+  remain measurable. Cleanup and continuing-service obligations remain explicit.
+- Added version 1.0.0 portable vectors/schema: 22 deterministic cases, including
+  existing revocation and lifecycle-completion paths, and ten executable unsafe
+  transition witnesses. Positive controls prevent blanket refusal and redundant
+  review from counting as success.
+- Extended the existing Quint core aggregate with eight partial properties;
+  formal map 1.1.0 inventories 28 properties across two models. Facts about
+  authority, objectives, comparisons, acceptance, budgets and delay remain
+  externally supplied assumptions; no runtime or temporal-liveness proof follows.
+- Added fixture-to-Quint synchronization and negative regression checks to
+  build/CI; updated coverage and adoption guidance together. The frozen v4.3.0
+  normative owners and published v4.4.0-rc.1 tag/manifest remain unchanged.
+  Also repaired the disclosure case note
+  to retain its required reported/unresolved/interpretation/lesson fields.
+  No private implementation or new certification claim is included.
+
 ## 2026-10-18 — Generated artifact disclosure assurance (post-rc.1)
 
 - Added an opt-in informative release-gate contract distinguishing source-read

@@ -110,3 +110,14 @@ python scripts/check_artifact_disclosure_profile.py
 
 This new artifact/schema version is `1.0.0`, is opt-in, and does not change other
 vector formats. Its results are not included in the published rc.1 package.
+
+## Proportionate action and stopping (optional, post-rc.1)
+
+The [profile](../docs/proportionate-action-and-stopping-assurance-profile-2026-10.md)
+and [portable vectors](proportionate-action-vectors.json) supply six predicates,
+22 decision cases and ten mutation witnesses. Implement in any language and map
+the inputs to authentic external policy/evidence, rather than model assertions.
+The cases are synchronized with literal tests inside the existing Quint core;
+`python3 scripts/check_proportionate_action_profile.py` checks that linkage.
+Execute the [pinned Quint commands](../formal/README.md) for outcomes. Passing
+finite reference tests does not establish deployment performance or conformance.

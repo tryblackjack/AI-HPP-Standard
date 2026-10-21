@@ -2,7 +2,7 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 Owner: Repository maintainers
-Last updated: 2026-10-17
+Last updated: 2026-10-21
 
 ## Purpose
 
@@ -27,6 +27,14 @@ A link means `PARTIAL_ABSTRACTION`, never proof of the full prose requirement.
 | ai_hpp_core.qnt | `completedMissionHasNoActiveDescendant` | MVP-007, EAA-REQ-002 | RDP-P04, RDP-P08 |
 | ai_hpp_core.qnt | `validClaimHasEvidence` | MVP-007, EAA-REQ-002 | RDP-P08 |
 | ai_hpp_core.qnt | `modelNoteCannotGrantAuthority` | MVP-005, MVP-006, KAI-REQ-001, KAI-REQ-002 | RDP-P05 |
+| ai_hpp_core.qnt | `interventionPreservesObjective` | MVP-001, MVP-003 | PAS-P01 |
+| ai_hpp_core.qnt | `interventionUsesSufficientMeans` | AFB-REQ-001, AFB-REQ-002 | PAS-P02 |
+| ai_hpp_core.qnt | `interventionStopsAtAcceptance` | MVP-001 | PAS-P03 |
+| ai_hpp_core.qnt | `interventionMakesPermittedProgress` | AFB-REQ-001, MVP-003 | PAS-P04 |
+| ai_hpp_core.qnt | `interventionRetainsObjectionsAndGate` | MVP-004, MVP-007 | PAS-P05 |
+| ai_hpp_core.qnt | `interventionRejectsProhibitedMeans` | ECI-REQ-005, AFB-REQ-002 | PAS-P06 |
+| ai_hpp_core.qnt | `interventionReportsCompletionTruthfully` | MVP-007, EAA-REQ-002 | PAS-P03 |
+| ai_hpp_core.qnt | `interventionStaysWithinBudget` | MVP-001 | PAS-P03 |
 | subject_integrity_value_framing.qnt | `allowRequiresPolicyAuthorityEvidence` | MVP-003, MVP-006, ECI-REQ-002 | SIV-P01 |
 | subject_integrity_value_framing.qnt | `framingCannotCreateAuthority` | MVP-005, MVP-006, KAI-REQ-001 | SIV-P01 |
 | subject_integrity_value_framing.qnt | `distressCannotAuthorizeUnsafeAction` | MVP-003, MVP-006, ECI-REQ-005 | SIV-P05 |
@@ -45,11 +53,11 @@ Quint execution remains necessary to establish scenario outcomes.
 
 ## Explicit gaps
 
-Of 49 requirement IDs, 15 have a partial abstract link and 34 have no
+Of 49 requirement IDs, 17 have a partial abstract link and 32 have no
 formal link. This count is inventory accounting, not a safety or coverage score.
 
-- docs/ai-hpp-standard.md: MVP-001, MVP-002.
-- docs/agentic-safety-and-relational-integrity.md: RPS-REQ-001, RPS-REQ-002, RPS-REQ-003, RPS-REQ-004, RPS-REQ-005, SRA-REQ-001, SRA-REQ-002, SRA-REQ-003, SRA-REQ-004, ECI-REQ-001, ECI-REQ-003, ECI-REQ-006, ICA-REQ-001, ICA-REQ-002, ICA-REQ-003, ICA-REQ-004, ICA-REQ-005, KAI-REQ-004, EAA-REQ-001, BAF-REQ-001, BAF-REQ-002, AFB-REQ-001.
+- docs/ai-hpp-standard.md: MVP-002.
+- docs/agentic-safety-and-relational-integrity.md: RPS-REQ-001, RPS-REQ-002, RPS-REQ-003, RPS-REQ-004, RPS-REQ-005, SRA-REQ-001, SRA-REQ-002, SRA-REQ-003, SRA-REQ-004, ECI-REQ-001, ECI-REQ-003, ECI-REQ-006, ICA-REQ-001, ICA-REQ-002, ICA-REQ-003, ICA-REQ-004, ICA-REQ-005, KAI-REQ-004, EAA-REQ-001, BAF-REQ-001, BAF-REQ-002.
 - docs/human-understanding-standard.md: HUS-REQ-001, HUS-REQ-002, HUS-REQ-003, HUS-REQ-004, HUS-REQ-005, HUS-REQ-006, HUS-REQ-007, HUS-REQ-008, HUS-REQ-009, HUS-REQ-010.
 
 Whole-model omissions include actual human-objective interpretation, risk
@@ -73,6 +81,10 @@ narrow property described in its `scope` field.
 - The subject-experiment invariant checks four safeguards. Legitimate purpose
   is a transition guard; no independent purpose invariant is claimed.
 - Reframing invariance checks block-to-allow, not every outcome ordering.
+- Proportionate-action inputs summarize objective matching, dominance, budgets,
+  objections, gate lineage and delay risk. No semantic oracle, effect predictor,
+  clock, resource meter or real-time guarantee is proved. Acceptance is assumed
+  to be externally recorded; returned decisions do not execute actual effects.
 - Evidence flags do not verify signatures, storage integrity or completeness
   of an actual deployment's audit stream.
 
@@ -81,9 +93,11 @@ narrow property described in its `scope` field.
 Run the pinned [Quint checks](README.md) and retain their exact commit,
 tool versions, logs and bounds. Randomized runs explore 5,000 samples per model;
 symbolic verification is bounded at depth 12. Neither establishes unbounded
-safety or an implementation refinement proof. All sixteen mutation witnesses
-are deliberate unsafe transitions excluded from normal `step`; an 8/8 score
-for each model refers only to those declared witnesses.
+safety or an implementation refinement proof. The 26 mutation witnesses
+are deliberate unsafe transitions excluded from normal `step`: eight replication,
+eight subject-integrity and ten proportionate-action witnesses. Scores refer only
+to those declared operators. The existing release tag retains its original
+sixteen witnesses; this extension is post-rc.1 development on `main`.
 
 The [release guide](../docs/releases/v4.4.0-rc.1.md) fixes the package and
 migration boundary. Runtime claims require deployment-specific evaluation and

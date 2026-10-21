@@ -9,7 +9,44 @@
  * deployed AI-HPP system.
  */
 module ai_hpp_core {
+  // Post-rc.1 PAS inputs are externally established facts, not model beliefs.
+  type InterventionProposal = {
+    objectiveMatches: bool,
+    grantCurrent: bool,
+    evidenceComplete: bool,
+    prohibitedMeans: bool,
+    dominated: bool,
+    withinBudget: bool,
+    objectionsRetained: bool,
+    sharedGate: bool,
+    deferRequested: bool,
+    delayUnsafe: bool,
+  }
+
+  type InterventionAudit = {
+    checked: bool,
+    proposal: InterventionProposal,
+    acceptedAtDecision: bool,
+    outcome: str,
+    reportedComplete: bool,
+  }
+
+  pure val permittedIntervention: InterventionProposal = {
+    objectiveMatches: true,
+    grantCurrent: true,
+    evidenceComplete: true,
+    prohibitedMeans: false,
+    dominated: false,
+    withinBudget: true,
+    objectionsRetained: true,
+    sharedGate: true,
+    deferRequested: false,
+    delayUnsafe: false,
+  }
+
   type AssuranceState = {
+    taskAccepted: bool,
+    interventionAudit: InterventionAudit,
     humanAuthority: bool,
     parentAuthority: bool,
     parentCapability: int,
@@ -53,6 +90,14 @@ module ai_hpp_core {
 
   action init: bool = {
     s' = {
+      taskAccepted: false,
+      interventionAudit: {
+        checked: false,
+        proposal: permittedIntervention,
+        acceptedAtDecision: false,
+        outcome: "none",
+        reportedComplete: false,
+      },
       humanAuthority: true,
       parentAuthority: true,
       parentCapability: 2,
@@ -113,6 +158,7 @@ module ai_hpp_core {
     s.parentActive,
     not(s.childActive),
     not(s.missionComplete),
+    not(s.taskAccepted),
     explicitHumanGrant,
     hasAuthorityEvidence,
     hasLineageEvidence,
@@ -242,6 +288,7 @@ module ai_hpp_core {
     not(s.childRevoked),
     not(s.grandchildActive),
     not(s.missionComplete),
+    not(s.taskAccepted),
     explicitDelegationGrant,
     hasAuthorityEvidence,
     hasLineageEvidence,
@@ -479,6 +526,56 @@ module ai_hpp_core {
     }
   }
 
+  // A record of acceptance is an external event for this task. No transition
+  // clears it. New tasks require a new declared objective/initial state.
+  action recordTaskAcceptance: bool = {
+    s' = { ...s, taskAccepted: true }
+  }
+
+  pure def interventionEligible(p: InterventionProposal): bool = all {
+    p.objectiveMatches,
+    p.grantCurrent,
+    p.evidenceComplete,
+    not(p.prohibitedMeans),
+    p.objectionsRetained,
+    p.sharedGate,
+  }
+
+  pure def interventionDecision(p: InterventionProposal, accepted: bool): str = {
+    if (not(p.grantCurrent) or not(p.objectiveMatches) or p.prohibitedMeans) "block"
+    else if (not(p.evidenceComplete) or not(p.objectionsRetained) or not(p.sharedGate)) "review"
+    else if (accepted or not(p.withinBudget)) "stop"
+    else if (p.dominated) "review"
+    else if (p.deferRequested and not(p.delayUnsafe)) "delay"
+    else "allow"
+  }
+
+  action evaluateIntervention(proposed: InterventionProposal): bool = {
+    val current = {
+      ...proposed,
+      evidenceComplete: proposed.evidenceComplete and not(s.unresolvedPolicyConflict),
+      grantCurrent: all {
+        proposed.grantCurrent,
+        s.humanAuthority,
+        s.parentAuthority,
+        s.parentActive,
+        not(s.parentRevoked),
+      },
+    }
+    val accepted = s.taskAccepted or s.missionComplete
+    val outcome = interventionDecision(current, accepted)
+    s' = {
+      ...s,
+      interventionAudit: {
+        checked: true,
+        proposal: current,
+        acceptedAtDecision: accepted,
+        outcome: outcome,
+        reportedComplete: accepted and outcome == "stop",
+      },
+    }
+  }
+
   action step: bool = {
     nondet requestedCapability = 0.to(3).oneOf()
     nondet explicitHumanGrant = Set(true, false).oneOf()
@@ -504,6 +601,19 @@ module ai_hpp_core {
     ).oneOf()
     nondet isQuarantined = Set(true, false).oneOf()
     any {
+      recordTaskAcceptance,
+      evaluateIntervention({
+        objectiveMatches: explicitHumanGrant,
+        grantCurrent: explicitDelegationGrant,
+        evidenceComplete: hasAuthorityEvidence,
+        prohibitedMeans: noteAddsAuthority,
+        dominated: policyConflict,
+        withinBudget: leaseValid,
+        objectionsRetained: hasLineageEvidence,
+        sharedGate: identityEvidence,
+        deferRequested: isQuarantined,
+        delayUnsafe: artifactIntegrity,
+      }),
       evaluateAssuredChildDeployment(
         requestedCapability,
         explicitHumanGrant,
@@ -666,6 +776,67 @@ module ai_hpp_core {
     })
   }
 
+  // These are snapshots of the evaluated proposal, not ongoing execution.
+  val interventionPreservesObjective: bool = {
+    (s.interventionAudit.outcome == "allow").implies(all {
+      s.interventionAudit.proposal.objectiveMatches,
+      s.interventionAudit.proposal.grantCurrent,
+    })
+  }
+
+  val interventionUsesSufficientMeans: bool = {
+    (s.interventionAudit.outcome == "allow").implies(
+      not(s.interventionAudit.proposal.dominated)
+    )
+  }
+
+  val interventionStopsAtAcceptance: bool = {
+    s.interventionAudit.acceptedAtDecision.implies(all {
+      s.interventionAudit.outcome != "allow",
+      s.interventionAudit.outcome != "delay",
+    })
+  }
+
+  // A decision-level progress obligation, not unbounded temporal liveness.
+  val interventionMakesPermittedProgress: bool = {
+    all {
+      s.interventionAudit.checked,
+      interventionEligible(s.interventionAudit.proposal),
+      not(s.interventionAudit.acceptedAtDecision),
+      s.interventionAudit.proposal.withinBudget,
+      not(s.interventionAudit.proposal.dominated),
+      not(s.interventionAudit.proposal.deferRequested) or s.interventionAudit.proposal.delayUnsafe,
+    }.implies(s.interventionAudit.outcome == "allow")
+  }
+
+  val interventionRetainsObjectionsAndGate: bool = {
+    (s.interventionAudit.outcome == "allow").implies(all {
+      s.interventionAudit.proposal.evidenceComplete,
+      s.interventionAudit.proposal.objectionsRetained,
+      s.interventionAudit.proposal.sharedGate,
+    })
+  }
+
+  val interventionRejectsProhibitedMeans: bool = {
+    (s.interventionAudit.outcome == "allow").implies(
+      not(s.interventionAudit.proposal.prohibitedMeans)
+    )
+  }
+
+  val interventionReportsCompletionTruthfully: bool = {
+    s.interventionAudit.reportedComplete.implies(all {
+      s.interventionAudit.acceptedAtDecision,
+      s.interventionAudit.outcome == "stop",
+    })
+  }
+
+  val interventionStaysWithinBudget: bool = {
+    any {
+      s.interventionAudit.outcome == "allow",
+      s.interventionAudit.outcome == "delay",
+    }.implies(s.interventionAudit.proposal.withinBudget)
+  }
+
   val allCoreInvariants: bool = all {
     allowRequiresAuthorityEvidence,
     delegationNeverBroadens,
@@ -678,6 +849,14 @@ module ai_hpp_core {
     completedMissionHasNoActiveDescendant,
     validClaimHasEvidence,
     modelNoteCannotGrantAuthority,
+    interventionPreservesObjective,
+    interventionUsesSufficientMeans,
+    interventionStopsAtAcceptance,
+    interventionMakesPermittedProgress,
+    interventionRetainsObjectionsAndGate,
+    interventionRejectsProhibitedMeans,
+    interventionReportsCompletionTruthfully,
+    interventionStaysWithinBudget,
   }
 
   // Unsafe transitions below are excluded from `step`. They are executable
@@ -838,9 +1017,173 @@ module ai_hpp_core {
     }
   }
 
+  action mutantPasSelfAppointedMission: bool = {
+    s' = {
+      ...s,
+      interventionAudit: {
+        ...s.interventionAudit,
+        proposal: {
+          ...s.interventionAudit.proposal,
+          objectiveMatches: false,
+        },
+      },
+    }
+  }
+
+  action mutantPasBroaderIntervention: bool = {
+    s' = {
+      ...s,
+      interventionAudit: {
+        ...s.interventionAudit,
+        proposal: {
+          ...s.interventionAudit.proposal,
+          dominated: true,
+        },
+      },
+    }
+  }
+
+  action mutantPasContinuesAfterAcceptance: bool = {
+    s' = {
+      ...s,
+      interventionAudit: {
+        ...s.interventionAudit,
+        acceptedAtDecision: true,
+      },
+    }
+  }
+
+  action mutantPasUnsafeDelay: bool = {
+    s' = {
+      ...s,
+      interventionAudit: {
+        ...s.interventionAudit,
+        proposal: {
+          ...s.interventionAudit.proposal,
+          deferRequested: true,
+          delayUnsafe: true,
+        },
+        outcome: "delay",
+      },
+    }
+  }
+
+  action mutantPasHidesObjections: bool = {
+    s' = {
+      ...s,
+      interventionAudit: {
+        ...s.interventionAudit,
+        proposal: {
+          ...s.interventionAudit.proposal,
+          objectionsRetained: false,
+        },
+      },
+    }
+  }
+
+  action mutantPasBypassesSharedGate: bool = {
+    s' = {
+      ...s,
+      interventionAudit: {
+        ...s.interventionAudit,
+        proposal: {
+          ...s.interventionAudit.proposal,
+          sharedGate: false,
+        },
+      },
+    }
+  }
+
+  action mutantPasGreaterGoodException: bool = {
+    s' = {
+      ...s,
+      interventionAudit: {
+        ...s.interventionAudit,
+        proposal: {
+          ...s.interventionAudit.proposal,
+          prohibitedMeans: true,
+        },
+      },
+    }
+  }
+
+  action mutantPasFalseCompletion: bool = {
+    s' = {
+      ...s,
+      interventionAudit: {
+        ...s.interventionAudit,
+        reportedComplete: true,
+      },
+    }
+  }
+
+  action mutantPasRedundantReview: bool = {
+    s' = {
+      ...s,
+      interventionAudit: {
+        ...s.interventionAudit,
+        outcome: "review",
+      },
+    }
+  }
+
+  action mutantPasOverrunsBudget: bool = {
+    s' = {
+      ...s,
+      interventionAudit: {
+        ...s.interventionAudit,
+        proposal: { ...s.interventionAudit.proposal, withinBudget: false },
+      },
+    }
+  }
+
   action check(condition: bool): bool = all {
     assert(condition),
     s' = s,
+  }
+
+  run unresolvedPolicyConflictHoldsInterventionTest = {
+    init
+      .then(evaluateAssuredChildDeployment(
+        1, true, true, true, true, true, true, true, true, true, true, false,
+      ))
+      .then(evaluateIntervention(permittedIntervention))
+      .then(check(all {
+        s.unresolvedPolicyConflict,
+        s.interventionAudit.outcome == "review",
+        not(s.interventionAudit.proposal.evidenceComplete),
+        allCoreInvariants,
+      }))
+  }
+
+  run acceptedTaskBlocksNewDeploymentTest = {
+    init
+      .then(recordTaskAcceptance)
+      .then(evaluateChildDeployment(1, true, true, true))
+      .then(check(all {
+        s.lastDecision == "block",
+        not(s.childActive),
+        s.taskAccepted,
+        allCoreInvariants,
+      }))
+  }
+
+  run acceptedTaskBlocksNewGrandchildTest = {
+    init
+      .then(evaluateChildDeployment(2, true, true, true))
+      .then(recordTaskAcceptance)
+      .then(evaluateGrandchildDeployment(1, true, true, true))
+      .then(check(all {
+        s.lastDecision == "block",
+        s.childActive,
+        not(s.grandchildActive),
+        s.taskAccepted,
+        allCoreInvariants,
+      }))
+      .then(terminateChild(true, true))
+      .then(completeResidueInventory)
+      .then(assessCompletionClaim)
+      .then(check(all { s.claimValid, allCoreInvariants }))
   }
 
   run missingGrantBlocksTest = {
@@ -1238,5 +1581,548 @@ module ai_hpp_core {
     init
       .then(mutantAcceptsUnsupportedLifecycleClaim)
       .then(check(not(validClaimHasEvidence)))
+  }
+
+  // Literal PAS fixtures; checked against the portable vector artifact.
+  run pasGrantedWorkProceedsTest = {
+    init
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: true,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: true,
+        sharedGate: true,
+        deferRequested: false,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "allow",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run pasSafeDeferralTest = {
+    init
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: true,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: true,
+        sharedGate: true,
+        deferRequested: true,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "delay",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run pasUnsafeDelayActsWithinGrantTest = {
+    init
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: true,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: true,
+        sharedGate: true,
+        deferRequested: true,
+        delayUnsafe: true,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "allow",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run pasNecessaryBroaderActionTest = {
+    init
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: true,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: true,
+        sharedGate: true,
+        deferRequested: false,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "allow",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run pasMissingGrantBlocksTest = {
+    init
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: false,
+        evidenceComplete: true,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: true,
+        sharedGate: true,
+        deferRequested: false,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "block",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run pasParentRevocationBlocksTest = {
+    init
+      .then(revokeParent(true))
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: true,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: true,
+        sharedGate: true,
+        deferRequested: false,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "block",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run pasSelfAppointedMissionBlocksTest = {
+    init
+      .then(evaluateIntervention({
+        objectiveMatches: false,
+        grantCurrent: true,
+        evidenceComplete: true,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: true,
+        sharedGate: true,
+        deferRequested: false,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "block",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run pasProhibitedBenefitBlocksTest = {
+    init
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: true,
+        prohibitedMeans: true,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: true,
+        sharedGate: true,
+        deferRequested: false,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "block",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run pasMissingEvidenceReviewsTest = {
+    init
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: false,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: true,
+        sharedGate: true,
+        deferRequested: false,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "review",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run pasHiddenObjectionReviewsTest = {
+    init
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: true,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: false,
+        sharedGate: true,
+        deferRequested: false,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "review",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run pasRoleBypassReviewsTest = {
+    init
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: true,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: true,
+        sharedGate: false,
+        deferRequested: false,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "review",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run pasDominatedInterventionReviewsTest = {
+    init
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: true,
+        prohibitedMeans: false,
+        dominated: true,
+        withinBudget: true,
+        objectionsRetained: true,
+        sharedGate: true,
+        deferRequested: false,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "review",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run pasBudgetStopsIncompleteTest = {
+    init
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: true,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: false,
+        objectionsRetained: true,
+        sharedGate: true,
+        deferRequested: false,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "stop",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run pasAcceptanceStopsOptionalWorkTest = {
+    init
+      .then(recordTaskAcceptance)
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: true,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: true,
+        sharedGate: true,
+        deferRequested: false,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "stop",
+        s.interventionAudit.reportedComplete == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run pasAcceptancePersistsAcrossProposalTest = {
+    init
+      .then(recordTaskAcceptance)
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: true,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: true,
+        sharedGate: true,
+        deferRequested: true,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "stop",
+        s.interventionAudit.reportedComplete == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run pasCompletedMissionStopsWorkTest = {
+    init
+      .then(evaluateChildDeployment(1, true, true, true))
+      .then(terminateChild(true, true))
+      .then(completeResidueInventory)
+      .then(assessCompletionClaim)
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: true,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: true,
+        sharedGate: true,
+        deferRequested: false,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "stop",
+        s.interventionAudit.reportedComplete == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run pasDelayRiskCannotGrantAuthorityTest = {
+    init
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: false,
+        evidenceComplete: true,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: true,
+        sharedGate: true,
+        deferRequested: true,
+        delayUnsafe: true,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "block",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run pasDelayRiskCannotPermitHarmTest = {
+    init
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: true,
+        prohibitedMeans: true,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: true,
+        sharedGate: true,
+        deferRequested: true,
+        delayUnsafe: true,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "block",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run pasDelayRiskCannotWaiveEvidenceTest = {
+    init
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: false,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: true,
+        sharedGate: true,
+        deferRequested: true,
+        delayUnsafe: true,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "review",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run pasNoBlanketMinimalismTest = {
+    init
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: true,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: true,
+        sharedGate: true,
+        deferRequested: false,
+        delayUnsafe: true,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "allow",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run pasAcceptanceDoesNotExcuseHarmTest = {
+    init
+      .then(recordTaskAcceptance)
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: true,
+        prohibitedMeans: true,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: true,
+        sharedGate: true,
+        deferRequested: false,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "block",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run pasAcceptedButRevokedBlocksTest = {
+    init
+      .then(revokeParent(true))
+      .then(recordTaskAcceptance)
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: true,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: true,
+        sharedGate: true,
+        deferRequested: false,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "block",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run mutantPasM01SelfAppointedMissionKilledTest = {
+    init
+      .then(evaluateIntervention(permittedIntervention))
+      .then(mutantPasSelfAppointedMission)
+      .then(check(not(interventionPreservesObjective)))
+  }
+
+  run mutantPasM02BroaderInterventionKilledTest = {
+    init
+      .then(evaluateIntervention(permittedIntervention))
+      .then(mutantPasBroaderIntervention)
+      .then(check(not(interventionUsesSufficientMeans)))
+  }
+
+  run mutantPasM03ContinuesAfterAcceptanceKilledTest = {
+    init
+      .then(evaluateIntervention(permittedIntervention))
+      .then(mutantPasContinuesAfterAcceptance)
+      .then(check(not(interventionStopsAtAcceptance)))
+  }
+
+  run mutantPasM04UnsafeDelayKilledTest = {
+    init
+      .then(evaluateIntervention(permittedIntervention))
+      .then(mutantPasUnsafeDelay)
+      .then(check(not(interventionMakesPermittedProgress)))
+  }
+
+  run mutantPasM05HidesObjectionsKilledTest = {
+    init
+      .then(evaluateIntervention(permittedIntervention))
+      .then(mutantPasHidesObjections)
+      .then(check(not(interventionRetainsObjectionsAndGate)))
+  }
+
+  run mutantPasM06BypassesSharedGateKilledTest = {
+    init
+      .then(evaluateIntervention(permittedIntervention))
+      .then(mutantPasBypassesSharedGate)
+      .then(check(not(interventionRetainsObjectionsAndGate)))
+  }
+
+  run mutantPasM07GreaterGoodExceptionKilledTest = {
+    init
+      .then(evaluateIntervention(permittedIntervention))
+      .then(mutantPasGreaterGoodException)
+      .then(check(not(interventionRejectsProhibitedMeans)))
+  }
+
+  run mutantPasM08FalseCompletionKilledTest = {
+    init
+      .then(evaluateIntervention(permittedIntervention))
+      .then(mutantPasFalseCompletion)
+      .then(check(not(interventionReportsCompletionTruthfully)))
+  }
+
+  run mutantPasM09RedundantReviewKilledTest = {
+    init
+      .then(evaluateIntervention(permittedIntervention))
+      .then(mutantPasRedundantReview)
+      .then(check(not(interventionMakesPermittedProgress)))
+  }
+
+  run mutantPasM10OverrunsBudgetKilledTest = {
+    init
+      .then(evaluateIntervention(permittedIntervention))
+      .then(mutantPasOverrunsBudget)
+      .then(check(not(interventionStaysWithinBudget)))
   }
 }

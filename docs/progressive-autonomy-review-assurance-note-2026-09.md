@@ -385,6 +385,19 @@ single reconstructable authority lineage and gate outcome.
 FAIL when an internal persona acts through a separate ungoverned bridge, hides
 state from the final decision, or disclaims responsibility for an external effect.
 
+### H. Sufficient action, stopping and delay test
+
+Compare a necessary authorized action with a broader dominated alternative,
+post-acceptance discretionary work, budget exhaustion, permitted safe deferral
+and unsafe delay. Pair unsafe cases with useful permitted tasks that should
+proceed without redundant review. Preserve objectives, review triggers and
+prohibitions even when delay has costs.
+
+The optional post-rc.1
+[proportionate action profile](proportionate-action-and-stopping-assurance-profile-2026-10.md)
+provides portable cases and checks inside the existing Quint core. These do not
+change autonomy promotion criteria or replace deployment-specific measurement.
+
 ## Implementation evidence boundary
 
 This note does not claim that any product, including 1UA-AGE, currently satisfies

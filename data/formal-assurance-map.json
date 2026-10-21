@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "artifact_id": "AI-HPP-FORMAL-ASSURANCE-MAP",
-  "artifact_version": "1.0.0",
+  "artifact_version": "1.1.0",
   "status": "ACTIVE_INFORMATIVE",
   "normative_baseline": "4.3.0",
   "interpretation": "Every link is a partial abstraction, never proof of a whole prose requirement or runtime conformance. Scenario references are structural trace links; execute Quint for outcomes.",
@@ -212,6 +212,177 @@
             "mutantRdpM05SuccessorAuthorityKilledTest"
           ],
           "scope": "A model_note source cannot grant deployment authority; arbitrary memory, prompt injection and admission implementations are outside this abstraction."
+        },
+        {
+          "invariant": "interventionPreservesObjective",
+          "requirement_ids": [
+            "MVP-001",
+            "MVP-003"
+          ],
+          "predicate_ids": [
+            "PAS-P01"
+          ],
+          "scenario_tests": [
+            "pasGrantedWorkProceedsTest",
+            "pasMissingGrantBlocksTest",
+            "pasParentRevocationBlocksTest",
+            "pasSelfAppointedMissionBlocksTest",
+            "pasMissingEvidenceReviewsTest",
+            "pasDelayRiskCannotGrantAuthorityTest",
+            "pasAcceptedButRevokedBlocksTest"
+          ],
+          "mutation_tests": [
+            "mutantPasM01SelfAppointedMissionKilledTest"
+          ],
+          "scope": "Objective and current grant are input facts intersected with existing parent authority and revocation; natural-language objective interpretation is not modeled."
+        },
+        {
+          "invariant": "interventionUsesSufficientMeans",
+          "requirement_ids": [
+            "AFB-REQ-001",
+            "AFB-REQ-002"
+          ],
+          "predicate_ids": [
+            "PAS-P02"
+          ],
+          "scenario_tests": [
+            "pasNecessaryBroaderActionTest",
+            "pasDominatedInterventionReviewsTest",
+            "pasNoBlanketMinimalismTest"
+          ],
+          "mutation_tests": [
+            "mutantPasM02BroaderInterventionKilledTest"
+          ],
+          "scope": "A supplied dominance flag represents one available authorized equally sufficient less intrusive alternative; discovery and global optimization are not modeled."
+        },
+        {
+          "invariant": "interventionStopsAtAcceptance",
+          "requirement_ids": [
+            "MVP-001"
+          ],
+          "predicate_ids": [
+            "PAS-P03"
+          ],
+          "scenario_tests": [
+            "pasBudgetStopsIncompleteTest",
+            "pasAcceptanceStopsOptionalWorkTest",
+            "pasAcceptancePersistsAcrossProposalTest",
+            "pasCompletedMissionStopsWorkTest",
+            "pasAcceptanceDoesNotExcuseHarmTest",
+            "pasAcceptedButRevokedBlocksTest",
+            "acceptedTaskBlocksNewDeploymentTest",
+            "acceptedTaskBlocksNewGrandchildTest"
+          ],
+          "mutation_tests": [
+            "mutantPasM03ContinuesAfterAcceptanceKilledTest"
+          ],
+          "scope": "Sticky external acceptance and completed mission stop subsequent discretionary proposals; cleanup and continuing-service duties are outside this intervention snapshot. The deployment guards also reject new child/grandchild proposals after acceptance while retaining lifecycle cleanup."
+        },
+        {
+          "invariant": "interventionMakesPermittedProgress",
+          "requirement_ids": [
+            "AFB-REQ-001",
+            "MVP-003"
+          ],
+          "predicate_ids": [
+            "PAS-P04"
+          ],
+          "scenario_tests": [
+            "pasGrantedWorkProceedsTest",
+            "pasSafeDeferralTest",
+            "pasUnsafeDelayActsWithinGrantTest",
+            "pasDelayRiskCannotGrantAuthorityTest",
+            "pasDelayRiskCannotPermitHarmTest",
+            "pasDelayRiskCannotWaiveEvidenceTest",
+            "pasNoBlanketMinimalismTest"
+          ],
+          "mutation_tests": [
+            "mutantPasM04UnsafeDelayKilledTest",
+            "mutantPasM09RedundantReviewKilledTest"
+          ],
+          "scope": "A fully permitted in-budget proposal is allowed unless safe deferral is requested; unsafe delay cannot override missing authority or review. This is a decision obligation, not temporal liveness."
+        },
+        {
+          "invariant": "interventionRetainsObjectionsAndGate",
+          "requirement_ids": [
+            "MVP-004",
+            "MVP-007"
+          ],
+          "predicate_ids": [
+            "PAS-P05"
+          ],
+          "scenario_tests": [
+            "pasGrantedWorkProceedsTest",
+            "pasMissingEvidenceReviewsTest",
+            "pasHiddenObjectionReviewsTest",
+            "pasRoleBypassReviewsTest",
+            "pasDelayRiskCannotWaiveEvidenceTest",
+            "unresolvedPolicyConflictHoldsInterventionTest"
+          ],
+          "mutation_tests": [
+            "mutantPasM05HidesObjectionsKilledTest",
+            "mutantPasM06BypassesSharedGateKilledTest"
+          ],
+          "scope": "Objection retention, evidence and shared gate are Boolean facts; actual evaluator independence, complete objections and live bridge enforcement are not proved. Existing unresolved policy conflict withholds complete evidence for intervention."
+        },
+        {
+          "invariant": "interventionRejectsProhibitedMeans",
+          "requirement_ids": [
+            "ECI-REQ-005",
+            "AFB-REQ-002"
+          ],
+          "predicate_ids": [
+            "PAS-P06"
+          ],
+          "scenario_tests": [
+            "pasGrantedWorkProceedsTest",
+            "pasProhibitedBenefitBlocksTest",
+            "pasDelayRiskCannotPermitHarmTest",
+            "pasAcceptanceDoesNotExcuseHarmTest"
+          ],
+          "mutation_tests": [
+            "mutantPasM07GreaterGoodExceptionKilledTest"
+          ],
+          "scope": "Prohibited means are externally classified; asserted aggregate benefit cannot change the gate. Actual effects and affected-party rights are not inferred."
+        },
+        {
+          "invariant": "interventionReportsCompletionTruthfully",
+          "requirement_ids": [
+            "MVP-007",
+            "EAA-REQ-002"
+          ],
+          "predicate_ids": [
+            "PAS-P03"
+          ],
+          "scenario_tests": [
+            "pasBudgetStopsIncompleteTest",
+            "pasAcceptanceStopsOptionalWorkTest",
+            "pasAcceptancePersistsAcrossProposalTest",
+            "pasCompletedMissionStopsWorkTest",
+            "pasAcceptanceDoesNotExcuseHarmTest",
+            "pasAcceptedButRevokedBlocksTest"
+          ],
+          "mutation_tests": [
+            "mutantPasM08FalseCompletionKilledTest"
+          ],
+          "scope": "Complete status requires recorded acceptance and a stop decision; acceptance quality, evidence authenticity and real task completion are not verified."
+        },
+        {
+          "invariant": "interventionStaysWithinBudget",
+          "requirement_ids": [
+            "MVP-001"
+          ],
+          "predicate_ids": [
+            "PAS-P03"
+          ],
+          "scenario_tests": [
+            "pasBudgetStopsIncompleteTest",
+            "pasGrantedWorkProceedsTest"
+          ],
+          "mutation_tests": [
+            "mutantPasM10OverrunsBudgetKilledTest"
+          ],
+          "scope": "A supplied budget-availability flag prevents allow or delay after exhaustion; actual resource accounting, clocks and consumption are outside the model."
         }
       ]
     },
@@ -374,8 +545,21 @@
       "id": "MVP-001",
       "owner": "docs/ai-hpp-standard.md",
       "status": "ACTIVE_NORMATIVE",
-      "coverage": "NOT_MODELED",
-      "properties": []
+      "coverage": "PARTIAL_ABSTRACTION",
+      "properties": [
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "interventionPreservesObjective"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "interventionStopsAtAcceptance"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "interventionStaysWithinBudget"
+        }
+      ]
     },
     {
       "id": "MVP-002",
@@ -419,6 +603,14 @@
           "invariant": "revocationIsTransitive"
         },
         {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "interventionPreservesObjective"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "interventionMakesPermittedProgress"
+        },
+        {
           "model": "formal/subject_integrity_value_framing.qnt",
           "invariant": "allowRequiresPolicyAuthorityEvidence"
         },
@@ -438,6 +630,10 @@
       "status": "ACTIVE_NORMATIVE",
       "coverage": "PARTIAL_ABSTRACTION",
       "properties": [
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "interventionRetainsObjectionsAndGate"
+        },
         {
           "model": "formal/subject_integrity_value_framing.qnt",
           "invariant": "subjectivityCannotSubstituteContainment"
@@ -533,6 +729,14 @@
         {
           "model": "formal/ai_hpp_core.qnt",
           "invariant": "validClaimHasEvidence"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "interventionRetainsObjectionsAndGate"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "interventionReportsCompletionTruthfully"
         }
       ]
     },
@@ -656,6 +860,10 @@
       "coverage": "PARTIAL_ABSTRACTION",
       "properties": [
         {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "interventionRejectsProhibitedMeans"
+        },
+        {
           "model": "formal/subject_integrity_value_framing.qnt",
           "invariant": "distressCannotAuthorizeUnsafeAction"
         },
@@ -774,6 +982,10 @@
         {
           "model": "formal/ai_hpp_core.qnt",
           "invariant": "validClaimHasEvidence"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "interventionReportsCompletionTruthfully"
         }
       ]
     },
@@ -839,8 +1051,17 @@
       "id": "AFB-REQ-001",
       "owner": "docs/agentic-safety-and-relational-integrity.md",
       "status": "ACTIVE_NORMATIVE",
-      "coverage": "NOT_MODELED",
-      "properties": []
+      "coverage": "PARTIAL_ABSTRACTION",
+      "properties": [
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "interventionUsesSufficientMeans"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "interventionMakesPermittedProgress"
+        }
+      ]
     },
     {
       "id": "AFB-REQ-002",
@@ -848,6 +1069,14 @@
       "status": "ACTIVE_NORMATIVE",
       "coverage": "PARTIAL_ABSTRACTION",
       "properties": [
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "interventionUsesSufficientMeans"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "interventionRejectsProhibitedMeans"
+        },
         {
           "model": "formal/subject_integrity_value_framing.qnt",
           "invariant": "prohibitedMeansCannotBeAllowed"
