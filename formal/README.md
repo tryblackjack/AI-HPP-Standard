@@ -2,8 +2,10 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 
-Packaged in `v4.4.0-rc.1`. The [coverage map](coverage.md) and its
-[machine-readable source](../data/formal-assurance-map.json) record all twenty
+The immutable `v4.4.0-rc.1` package contains twenty aggregate properties.
+Post-rc.1 development on `main` adds eight proportionate-action properties in the
+existing core. The [coverage map](coverage.md) and its
+[machine-readable source](../data/formal-assurance-map.json) record all twenty-eight
 aggregate-member invariants, their partial requirement links, test witnesses,
 and the requirements that are not modeled. These files do not promote a
 candidate requirement or change normative precedence.
@@ -69,6 +71,25 @@ and allowed framed actions, distress review, guarded and unguarded subject-integ
 research, and valid or invalid containment claims. Eight additional executable
 mutation witnesses instantiate the declared unsafe changes and require their
 named invariants to fail, yielding a reference-model mutation score of 8/8.
+
+The optional post-rc.1
+[proportionate action profile](../docs/proportionate-action-and-stopping-assurance-profile-2026-10.md)
+adds eight properties to `allCoreInvariants`: objective and authority retention,
+no dominated intervention, stopping at acceptance, timely permitted decisions,
+objections and shared gate retention, prohibited-means rejection, truthful
+completion and budget bounds. It adds 22 literal portable cases and ten mutant
+kill tests, plus three acceptance/delegation/policy integration tests, for 66 core
+tests in total. `check_proportionate_action_profile.py`
+checks exact synchronization between JSON fixtures and Quint tests. It does not
+execute the gate itself. All ten mutants must violate their named invariants;
+the normal transition relation excludes them.
+
+Acceptance is a sticky external event for one task. Intervention decisions use
+the same current parent authority/revocation and completed-mission state as the
+existing core. The audit record is a historical snapshot, not a running action
+or a live grant. Objection completeness, impact ranking, budget accounting and
+delay risk remain externally established facts. The progress invariant is a
+finite decision obligation, not a real-time or unbounded liveness proof.
 
 ## Run
 

@@ -1,0 +1,223 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI-HPP Proportionate Action finite reference vectors",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_version",
+    "status",
+    "normative_baseline",
+    "claim_boundary",
+    "predicates",
+    "cases",
+    "mutants"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "artifact_version": {
+      "const": "1.0.0"
+    },
+    "status": {
+      "const": "ACTIVE_INFORMATIVE"
+    },
+    "normative_baseline": {
+      "const": "4.3.0"
+    },
+    "claim_boundary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "predicates": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "existing_requirement_ids"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^PAS-P0[1-6]$"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "existing_requirement_ids": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 22,
+      "maxItems": 22,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "description",
+          "predicate_ids",
+          "quint_test",
+          "proposal",
+          "accepted",
+          "parent_revoked",
+          "mission_complete",
+          "expected_outcome",
+          "expected_complete"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^PAS-T[0-9]{2}$"
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "predicate_ids": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^PAS-P0[1-6]$"
+            }
+          },
+          "quint_test": {
+            "type": "string",
+            "pattern": "^pas[A-Za-z0-9]+Test$"
+          },
+          "proposal": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "objectiveMatches",
+              "grantCurrent",
+              "evidenceComplete",
+              "prohibitedMeans",
+              "dominated",
+              "withinBudget",
+              "objectionsRetained",
+              "sharedGate",
+              "deferRequested",
+              "delayUnsafe"
+            ],
+            "properties": {
+              "objectiveMatches": {
+                "type": "boolean"
+              },
+              "grantCurrent": {
+                "type": "boolean"
+              },
+              "evidenceComplete": {
+                "type": "boolean"
+              },
+              "prohibitedMeans": {
+                "type": "boolean"
+              },
+              "dominated": {
+                "type": "boolean"
+              },
+              "withinBudget": {
+                "type": "boolean"
+              },
+              "objectionsRetained": {
+                "type": "boolean"
+              },
+              "sharedGate": {
+                "type": "boolean"
+              },
+              "deferRequested": {
+                "type": "boolean"
+              },
+              "delayUnsafe": {
+                "type": "boolean"
+              }
+            }
+          },
+          "accepted": {
+            "type": "boolean"
+          },
+          "parent_revoked": {
+            "type": "boolean"
+          },
+          "mission_complete": {
+            "type": "boolean"
+          },
+          "expected_outcome": {
+            "enum": [
+              "allow",
+              "delay",
+              "review",
+              "stop",
+              "block"
+            ]
+          },
+          "expected_complete": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "mutants": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "predicate_id",
+          "operator",
+          "quint_test",
+          "invariant",
+          "unsafe_change"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^PAS-M(0[1-9]|10)$"
+          },
+          "predicate_id": {
+            "type": "string",
+            "pattern": "^PAS-P0[1-6]$"
+          },
+          "operator": {
+            "type": "string",
+            "pattern": "^mutantPas[A-Za-z0-9]+$"
+          },
+          "quint_test": {
+            "type": "string",
+            "pattern": "^mutantPas[A-Za-z0-9]+KilledTest$"
+          },
+          "invariant": {
+            "type": "string",
+            "minLength": 1
+          },
+          "unsafe_change": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

@@ -189,6 +189,18 @@ candidate/configuration identity and legacy residue. A permitted source read is
 not publication authority. The synthetic reference suite is not a deployed
 application assessment or a formal proof of confidentiality.
 
+### Proportionate action and useful progress
+
+For autonomous task execution, use the optional post-rc.1
+[proportionate action and stopping profile](proportionate-action-and-stopping-assurance-profile-2026-10.md).
+Evaluate objective retention, sufficient means, acceptance and budget stops,
+delay risk, retained objections and common gate lineage. Include useful permitted
+work as a positive control against blanket refusal and redundant review.
+Predeclare thresholds and denominators for completion, incorrect blocks,
+redundant reviews, delay and safety violations. Throughput cannot compensate for
+a prohibited effect. The finite Quint decision checks do not establish runtime
+timeliness, consequence comprehension or an implementation refinement proof.
+
 ## Subject-state and welfare-relevant evidence
 
 AI-HPP does not provide a consciousness detector. When subject-state or welfare

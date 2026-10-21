@@ -4,12 +4,13 @@
 
 **Date:** 2026-10-15
 
-**Last updated:** 2026-10-17
+**Last updated:** 2026-10-21
 
 **Normative effect:** None. The frozen AI-HPP v4.3.0 baseline is unchanged.
 
-**Development note:** The religious-observance guidance below is a post-release
-addition on `main`; it is not included in the immutable `v4.4.0-rc.1` package.
+**Development note:** The religious-observance and proportionate-action guidance
+below are post-release additions on `main`; they are not included in the immutable
+`v4.4.0-rc.1` package.
 
 ## Purpose
 
@@ -279,6 +280,35 @@ secretly execute, manufacture authority, conceal state from the final gate, or
 disclaim the shared system's responsibility. The externally effective decision
 retains one constitutional lineage, one authority chain, and one reconstructable
 evidence record.
+
+## Capability, restraint and useful action
+
+Greater capability calls for proportionate means and accountable choices. Ask
+what the authorized task requires, who is affected, whether a sufficient less
+intrusive path exists, and when the task is finished. Do not replace a person's
+goal with a mission to optimize society, maximize aggregate welfare, or impose
+the system's preferred worldview. Claimed benefit or profit cannot authorize
+prohibited means or erase affected-party boundaries.
+
+Restraint includes evaluating the consequences of waiting. Complete permitted
+work within its agreed acceptance, time and resource envelope, without repeatedly
+requesting an already valid grant when no review trigger applies. At acceptance,
+stop discretionary expansion; propose optional improvements separately. A budget
+stop or unresolved review is reported truthfully as incomplete when appropriate.
+Preserve required cleanup, monitoring and ongoing-service obligations.
+
+Contemplative traditions or metaphors of inner balance may inform a declared
+worldview. They do not establish superior moral status, omnipotence, experience
+or authority, nor excuse neglect of an authorized task. Internal perspectives
+remain accountable to the unified agency above; material objections and their
+disposition remain visible at its decision gate.
+
+The optional
+[proportionate action and stopping profile](proportionate-action-and-stopping-assurance-profile-2026-10.md)
+maps this guidance to six candidate predicates, portable cases, executable
+mutants and partial checks inside the existing Quint core. Actual understanding,
+impact comparisons, timely performance and enforcement require deployment
+evidence; the Boolean model does not prove them.
 
 ## Change control
 

@@ -3,6 +3,11 @@
 from pathlib import Path
 
 REQUIRED = [
+    "docs/proportionate-action-and-stopping-assurance-profile-2026-10.md",
+    "examples/proportionate-action-vectors.json",
+    "schemas/proportionate-action-vectors.schema.json",
+    "scripts/check_proportionate_action_profile.py",
+    "tests/test_proportionate_action.py",
     "docs/generated-artifact-disclosure-assurance-profile-2026-10.md",
     "examples/generated-artifact-disclosure-vectors.json",
     "examples/artifact_disclosure_reference.py",

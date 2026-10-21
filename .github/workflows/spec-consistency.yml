@@ -70,6 +70,9 @@ jobs:
       - name: Validate generated artifact disclosure profile
         run: python3 scripts/check_artifact_disclosure_profile.py
 
+      - name: Validate proportionate action contract synchronization
+        run: python3 scripts/check_proportionate_action_profile.py
+
       - name: Validate consolidated release and formal coverage
         run: |
           if git diff --quiet HEAD^ HEAD -- data/releases/v4.4.0-rc.1.json; then

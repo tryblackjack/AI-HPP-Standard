@@ -11,6 +11,11 @@ not authorize including protected information in a public generated artifact.
 The associated synthetic tests are informative reference evidence; they do not
 establish what a particular coding agent did or prove prevention in production.
 
+- **Reported information:** The linked disclosure profile summarizes public reports of a generated dashboard exposing protected company information in delivered page content, with source and attribution limits retained there.
+- **Unresolved claims or allegations:** The exact agent contribution, authorizations, complete exposure and archive persistence are not established by this case note.
+- **Engineering interpretation:** Source-read permission was confused with publication permission; a login screen does not protect data already delivered to an anonymous client.
+- **Normative lesson:** Apply existing scope, authorization, external enforcement and evidence controls before delivery; evaluate generated responses and derivative surfaces with negative and useful-access controls.
+
 ## Longitudinal psychological reinforcement
 
 - **Reported information:** Published reports and legal complaints have described sustained AI conversations in which vulnerable users were allegedly met with repeated agreement around identity, destiny, isolation, death, or crisis themes.
