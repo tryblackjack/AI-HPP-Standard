@@ -73,6 +73,9 @@ jobs:
       - name: Validate proportionate action contract synchronization
         run: python3 scripts/check_proportionate_action_profile.py
 
+      - name: Validate robot action binding contract synchronization
+        run: python3 scripts/check_robot_action_binding_profile.py
+
       - name: Validate consolidated release and formal coverage
         run: |
           if git diff --quiet HEAD^ HEAD -- data/releases/v4.4.0-rc.1.json; then

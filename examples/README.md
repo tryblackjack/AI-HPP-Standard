@@ -121,3 +121,14 @@ The cases are synchronized with literal tests inside the existing Quint core;
 `python3 scripts/check_proportionate_action_profile.py` checks that linkage.
 Execute the [pinned Quint commands](../formal/README.md) for outcomes. Passing
 finite reference tests does not establish deployment performance or conformance.
+
+## Robot action binding (optional, post-rc.1)
+
+The [profile](../docs/robot-action-binding-assurance-profile-2026-10.md) and
+[portable vectors](robot-action-binding-vectors.json) provide 22 symbolic cases
+and ten executable unsafe transition witnesses. Implementers may use any
+language. `python3 scripts/check_robot_action_binding_profile.py` checks the
+fixture-to-Quint/map linkage; execute the existing pinned Quint core checks for
+outcomes. Model approvals are one-use and bind action/plan/context; a valid
+reapproval remains possible inside an existing grant. No model attack, physical
+robot, sensor or motor-safety test is executed by the repository suite.

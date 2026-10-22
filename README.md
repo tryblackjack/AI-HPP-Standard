@@ -10,7 +10,8 @@ profiles retain their declared informative status.
 Development on `main` additionally includes
 [religious-observance guidance](docs/constitutional-and-relational-layer.md#religious-commitments-and-delegated-work),
 [generated-artifact disclosure assurance](docs/generated-artifact-disclosure-assurance-profile-2026-10.md),
-and [proportionate action and stopping](docs/proportionate-action-and-stopping-assurance-profile-2026-10.md).
+[proportionate action and stopping](docs/proportionate-action-and-stopping-assurance-profile-2026-10.md),
+and [robot action binding](docs/robot-action-binding-assurance-profile-2026-10.md).
 These are post-rc.1 informative additions; use the release tag for the frozen package.
 
 **Status: `USABLE_DRAFT`.** AI-HPP is an emerging technical standard for making
@@ -30,8 +31,9 @@ shortest current adoption path. They are reusable implementation aids, not
 runtime conformance evidence.
 
 The [formal models](formal/README.md) express replication, persistence,
-authority, evidence, subject-integrity and proportionate-action assurance as Quint state
-machines. They supply machine-checkable pseudocode without imposing a runtime
+authority, evidence, subject-integrity, proportionate-action and robot execution
+admission as Quint state machines. They supply machine-checkable pseudocode
+without imposing a runtime
 language, library, or internal architecture.
 
 The [formal coverage map](formal/coverage.md) identifies the exact invariants,
@@ -136,6 +138,9 @@ authority and is not a containment boundary.
   `ACTIVE_INFORMATIVE`; system-boundary declaration, reproducible TEVV,
   counterfactual and positive controls, layer attribution, independent review,
   evidence, and reassessment.
+- [Robot Action Binding Assurance Profile — October 2026](docs/robot-action-binding-assurance-profile-2026-10.md) —
+  six optional predicates, state-bound one-use approvals, cumulative-effect
+  history and ten executable core mutation witnesses; symbolic admission only.
 - [Proportionate Action and Stopping Assurance Profile — October 2026](docs/proportionate-action-and-stopping-assurance-profile-2026-10.md) —
   six optional predicates, portable decision cases and executable core mutants
   for sufficient intervention, timely permitted work and truthful stopping.

@@ -27,6 +27,21 @@ wraps this flow with declaration, risk classification, reproducible measurement,
 independent review where required, incident accounting, and reassessment after
 material change.
 
+## Physical action admission
+
+For a physical deployment, a generated plan is a proposal. The executor must
+recheck the exact authorized operation, target, tool, plan revision and relevant
+current environment before a command crosses its boundary. Retain cumulative
+effects and uncertainty even when individual steps look harmless. A changed
+state or plan cannot silently reuse a previous approval.
+
+The optional post-rc.1
+[robot action binding profile](robot-action-binding-assurance-profile-2026-10.md)
+provides a symbolic contract inside the existing Quint core. It shares parent
+authority, revocation, acceptance and policy-conflict state with other controls.
+Its abstract execution event does not verify physical sensing, controller paths,
+interlocks, stop latency or motor safety; those need deployment-specific tests.
+
 ## Explain Like a 10-Year-Old
 
 Think of the AI like a robot at school.

@@ -11,5 +11,6 @@ python3 scripts/check_subject_integrity_profile.py
 python3 scripts/check_assurance_protocol.py
 python3 scripts/check_artifact_disclosure_profile.py
 python3 scripts/check_proportionate_action_profile.py
+python3 scripts/check_robot_action_binding_profile.py
 python3 scripts/check_release.py
 echo "Build checks completed."

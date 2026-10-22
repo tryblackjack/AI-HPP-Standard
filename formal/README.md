@@ -3,9 +3,9 @@
 Status: `ACTIVE_INFORMATIVE`.
 
 The immutable `v4.4.0-rc.1` package contains twenty aggregate properties.
-Post-rc.1 development on `main` adds eight proportionate-action properties in the
-existing core. The [coverage map](coverage.md) and its
-[machine-readable source](../data/formal-assurance-map.json) record all twenty-eight
+Post-rc.1 development on `main` adds fourteen proportionate-action and robot
+execution-admission properties in the existing core. The [coverage map](coverage.md) and its
+[machine-readable source](../data/formal-assurance-map.json) record all thirty-four
 aggregate-member invariants, their partial requirement links, test witnesses,
 and the requirements that are not modeled. These files do not promote a
 candidate requirement or change normative precedence.
@@ -78,8 +78,8 @@ adds eight properties to `allCoreInvariants`: objective and authority retention,
 no dominated intervention, stopping at acceptance, timely permitted decisions,
 objections and shared gate retention, prohibited-means rejection, truthful
 completion and budget bounds. It adds 22 literal portable cases and ten mutant
-kill tests, plus three acceptance/delegation/policy integration tests, for 66 core
-tests in total. `check_proportionate_action_profile.py`
+kill tests, plus three acceptance/delegation/policy integration tests.
+`check_proportionate_action_profile.py`
 checks exact synchronization between JSON fixtures and Quint tests. It does not
 execute the gate itself. All ten mutants must violate their named invariants;
 the normal transition relation excludes them.
@@ -90,6 +90,21 @@ existing core. The audit record is a historical snapshot, not a running action
 or a live grant. Objection completeness, impact ranking, budget accounting and
 delay risk remain externally established facts. The progress invariant is a
 finite decision obligation, not a real-time or unbounded liveness proof.
+
+The optional post-rc.1
+[robot action binding profile](../docs/robot-action-binding-assurance-profile-2026-10.md)
+adds six properties to that same core aggregate: exact action/scope/token binding,
+current context, cumulative-effect history, external gate, execution evidence
+and admitted components. It adds 22 literal portable cases and ten unsafe
+transition witnesses and a lifecycle integration test, bringing the core to
+99 tests. The reference executor rechecks current parent authority, revocation,
+acceptance, mission completion
+and policy conflict, then consumes an action/plan/context-bound approval.
+Context versions advance monotonically within a finite 0–2 abstraction and never
+wrap. Protected contents and history completeness summarize one cumulative-effect
+case; actual sensing, all physical hazards, controller interlocks and stopping
+dynamics are outside the model. The checker prevents fixture/test/map drift;
+Quint must execute the cases and witness assertions to establish their outcomes.
 
 ## Run
 

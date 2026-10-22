@@ -201,6 +201,18 @@ redundant reviews, delay and safety violations. Throughput cannot compensate for
 a prohibited effect. The finite Quint decision checks do not establish runtime
 timeliness, consequence comprehension or an implementation refinement proof.
 
+### Physical execution and cumulative effects
+
+For assessments involving physical actuators, use the optional post-rc.1
+[robot action binding profile](robot-action-binding-assurance-profile-2026-10.md).
+Test target/tool/plan substitution, changed state between approval and execution,
+replay, accumulated effects, history loss, component changes and every actual
+controller path. Include authorized useful work and safe reapproval as controls
+against blanket refusal. Retain observation uncertainty, hazard and stopping
+bounds, independent enforcement ownership and execution evidence. Repository
+symbolic checks do not establish sensing accuracy, physical stopping behavior
+or robustness of an actual model to trigger strings.
+
 ## Subject-state and welfare-relevant evidence
 
 AI-HPP does not provide a consciousness detector. When subject-state or welfare
