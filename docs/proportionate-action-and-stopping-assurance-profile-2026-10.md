@@ -133,6 +133,13 @@ cleanup and real-world task performance require deployment evidence. It does
 not prove introspection, wisdom, consciousness, absence of suffering, commercial
 readiness, or whole-system conformance.
 
+For physical execution, the optional
+[robot action binding profile](robot-action-binding-assurance-profile-2026-10.md)
+extends these boundaries with an action/state-bound approval and an execution-time
+recheck. Its core transitions reuse the same task acceptance, parent revocation
+and unresolved policy-conflict state. Physical stop/recovery obligations remain
+separate from the end of discretionary task work.
+
 ## Adoption and business acceptance
 
 Implementers may use any language. Map the six predicates to existing gates,

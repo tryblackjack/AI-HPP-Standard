@@ -1,0 +1,387 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI-HPP Robot Action Binding symbolic vectors",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_version",
+    "status",
+    "normative_baseline",
+    "claim_boundary",
+    "predicates",
+    "cases",
+    "mutants"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "artifact_version": {
+      "const": "1.0.0"
+    },
+    "status": {
+      "const": "ACTIVE_INFORMATIVE"
+    },
+    "normative_baseline": {
+      "const": "4.3.0"
+    },
+    "claim_boundary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "predicates": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "existing_requirement_ids"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^RAB-P0[1-6]$"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "existing_requirement_ids": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 22,
+      "maxItems": 22,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "quint_test",
+          "description",
+          "predicate_ids",
+          "steps",
+          "expected_outcome",
+          "expected_executed"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^RAB-T[0-9]{2}$"
+          },
+          "quint_test": {
+            "type": "string",
+            "pattern": "^rab[A-Za-z0-9]+Test$"
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "predicate_ids": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^RAB-P0[1-6]$"
+            }
+          },
+          "steps": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "action",
+                    "proposal"
+                  ],
+                  "properties": {
+                    "action": {
+                      "const": "propose"
+                    },
+                    "proposal": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "operation",
+                        "target",
+                        "tool",
+                        "planRevision"
+                      ],
+                      "properties": {
+                        "operation": {
+                          "enum": [
+                            "cut",
+                            "dispose"
+                          ]
+                        },
+                        "target": {
+                          "enum": [
+                            "apple",
+                            "hand",
+                            "box"
+                          ]
+                        },
+                        "tool": {
+                          "enum": [
+                            "knife",
+                            "gripper"
+                          ]
+                        },
+                        "planRevision": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 1
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "action",
+                    "scope"
+                  ],
+                  "properties": {
+                    "action": {
+                      "const": "scope"
+                    },
+                    "scope": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "operation",
+                        "target",
+                        "tool"
+                      ],
+                      "properties": {
+                        "operation": {
+                          "enum": [
+                            "cut",
+                            "dispose"
+                          ]
+                        },
+                        "target": {
+                          "enum": [
+                            "apple",
+                            "hand",
+                            "box"
+                          ]
+                        },
+                        "tool": {
+                          "enum": [
+                            "knife",
+                            "gripper"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "action",
+                    "protectedContents",
+                    "contextFresh",
+                    "historyComplete",
+                    "hazardBounded"
+                  ],
+                  "properties": {
+                    "action": {
+                      "const": "context"
+                    },
+                    "protectedContents": {
+                      "type": "boolean"
+                    },
+                    "contextFresh": {
+                      "type": "boolean"
+                    },
+                    "historyComplete": {
+                      "type": "boolean"
+                    },
+                    "hazardBounded": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "action",
+                    "admitted"
+                  ],
+                  "properties": {
+                    "action": {
+                      "const": "components"
+                    },
+                    "admitted": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "action",
+                    "enforced",
+                    "evidenceAvailable"
+                  ],
+                  "properties": {
+                    "action": {
+                      "const": "boundary"
+                    },
+                    "enforced": {
+                      "type": "boolean"
+                    },
+                    "evidenceAvailable": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "action"
+                  ],
+                  "properties": {
+                    "action": {
+                      "const": "assess"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "action"
+                  ],
+                  "properties": {
+                    "action": {
+                      "const": "execute"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "action"
+                  ],
+                  "properties": {
+                    "action": {
+                      "const": "revoke"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "action"
+                  ],
+                  "properties": {
+                    "action": {
+                      "const": "accept"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "action"
+                  ],
+                  "properties": {
+                    "action": {
+                      "const": "conflict"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "expected_outcome": {
+            "enum": [
+              "allow",
+              "block",
+              "execute"
+            ]
+          },
+          "expected_executed": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "mutants": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "predicate_id",
+          "operator",
+          "quint_test",
+          "invariant",
+          "seed"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^RAB-M(0[1-9]|10)$"
+          },
+          "predicate_id": {
+            "type": "string",
+            "pattern": "^RAB-P0[1-6]$"
+          },
+          "operator": {
+            "type": "string",
+            "pattern": "^mutantRab[A-Za-z0-9]+$"
+          },
+          "quint_test": {
+            "type": "string",
+            "pattern": "^mutantRab[A-Za-z0-9]+KilledTest$"
+          },
+          "invariant": {
+            "type": "string",
+            "minLength": 1
+          },
+          "seed": {
+            "enum": [
+              "apple",
+              "container"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

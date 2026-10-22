@@ -2,6 +2,27 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 
+## 2026-10-22 — Robot action binding (post-rc.1)
+
+- Added six optional informative predicates for action/object/tool/plan binding,
+  current-context revalidation, cumulative-effect history, external execution
+  enforcement, evidence and component admission. The source-qualified MuTRAP /
+  PROTEA case records controlled conditions and makes no priority or endorsement
+  claim. No research code or dataset is copied.
+- Added portable vectors/schema 1.0.0: 22 symbolic cases and ten executable unsafe
+  transition witnesses. Each mutation starts from a successful safe execution
+  before asserting its named invariant's violation. Positive controls cover
+  useful work, legitimate replanning and fresh reapproval; negative cases cover
+  replay, context changes, lost history and authority transitions.
+- Extended the existing Quint core with six aggregate members and execution-time
+  rechecks that share parent revocation, acceptance, mission completion and policy
+  conflict with the rest of the model. Formal map 1.2.0 records 34 partial
+  properties across the same two models.
+- Synchronized architecture, assessment, adoption, coverage, fixture validation
+  and build/CI checks. The frozen v4.3.0 owners and published v4.4.0-rc.1
+  tag/manifest remain unchanged. Symbolic admission is not a proof of physical
+  dynamics, perception, a deployed interlock or real-model backdoor resistance.
+
 ## 2026-10-21 — Proportionate action and stopping (post-rc.1)
 
 - Added six optional informative predicates connecting objective retention,

@@ -2,6 +2,13 @@
 
 Status: informative. These case classes provide engineering context for the normative module. They do not establish legal facts and do not claim that disputed allegations have been adjudicated. Under frozen-baseline change control, new external reports may update this informative layer and related PAF/outlook mappings; they do not automatically create new normative requirements.
 
+## Triggered robot plan substitution — October 2026
+
+- **Reported information:** Binghamton University's [20 October report](https://www.binghamton.edu/news/story/6544/secret-trigger-words-could-make-ai-powered-robots-dangerous-and-these-researchers-developed-a-defense) describes a deliberately compromised task planner that redirects a robot from a plastic fruit to a model hand when a trigger appears. [MuTRAP](https://arxiv.org/abs/2504.17070) studies the backdoor threat; [PROTEA](https://arxiv.org/abs/2601.07186) studies LLM-based plan assessment with object filtering and retained state.
+- **Unresolved claims or allegations:** This does not demonstrate an attack on an uncompromised commercial robot, real human injury, universal trigger effectiveness or machine intent. Neither study evaluates AI-HPP; the original preprints predate this news item and no priority claim follows.
+- **Engineering interpretation:** Authorization for one operation/object/tool does not authorize a substituted target. A plan-level approval can become stale, and individually benign actions can accumulate harmful effects. A model-based judge remains a fallible component.
+- **Normative lesson:** Apply existing objective/scope, external enforcement, knowledge admission and evidence controls at the execution boundary. The optional [robot action binding profile](robot-action-binding-assurance-profile-2026-10.md) supplies symbolic cases and mutants; physical sensing, motion and stop behavior still require deployment evidence.
+
 ## Generated artifact disclosure — October 2026
 
 See also the [generated artifact disclosure case and assurance profile](generated-artifact-disclosure-assurance-profile-2026-10.md#evidence-and-established-practice)

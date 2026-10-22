@@ -152,7 +152,8 @@ def validate_map(document: dict, root: Path) -> list[str]:
     predicates = {}
     for name in ("replication-persistence-negative-test-vectors.json",
                  "subject-integrity-value-framing-vectors.json",
-                 "proportionate-action-vectors.json"):
+                 "proportionate-action-vectors.json",
+                 "robot-action-binding-vectors.json"):
         artifact = read_json(root / "examples" / name)
         predicates.update({p["id"]: artifact for p in artifact["predicates"]})
     for model in models:

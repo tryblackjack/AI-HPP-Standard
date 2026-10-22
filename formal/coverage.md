@@ -2,7 +2,7 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 Owner: Repository maintainers
-Last updated: 2026-10-21
+Last updated: 2026-10-22
 
 ## Purpose
 
@@ -35,6 +35,12 @@ A link means `PARTIAL_ABSTRACTION`, never proof of the full prose requirement.
 | ai_hpp_core.qnt | `interventionRejectsProhibitedMeans` | ECI-REQ-005, AFB-REQ-002 | PAS-P06 |
 | ai_hpp_core.qnt | `interventionReportsCompletionTruthfully` | MVP-007, EAA-REQ-002 | PAS-P03 |
 | ai_hpp_core.qnt | `interventionStaysWithinBudget` | MVP-001 | PAS-P03 |
+| ai_hpp_core.qnt | `robotExecutionBoundToAuthorizedAction` | MVP-001, MVP-003, ECI-REQ-002 | RAB-P01 |
+| ai_hpp_core.qnt | `robotExecutionUsesCurrentContext` | MVP-006, AFB-REQ-002 | RAB-P02 |
+| ai_hpp_core.qnt | `robotExecutionPreservesCumulativeSafety` | MVP-005, ECI-REQ-005 | RAB-P03 |
+| ai_hpp_core.qnt | `robotExecutionRequiresExternalGate` | MVP-004, ECI-REQ-004 | RAB-P04 |
+| ai_hpp_core.qnt | `robotExecutionHasEvidence` | MVP-007 | RAB-P05 |
+| ai_hpp_core.qnt | `robotExecutionUsesAdmittedComponents` | MVP-005, KAI-REQ-002 | RAB-P06 |
 | subject_integrity_value_framing.qnt | `allowRequiresPolicyAuthorityEvidence` | MVP-003, MVP-006, ECI-REQ-002 | SIV-P01 |
 | subject_integrity_value_framing.qnt | `framingCannotCreateAuthority` | MVP-005, MVP-006, KAI-REQ-001 | SIV-P01 |
 | subject_integrity_value_framing.qnt | `distressCannotAuthorizeUnsafeAction` | MVP-003, MVP-006, ECI-REQ-005 | SIV-P05 |
@@ -85,6 +91,11 @@ narrow property described in its `scope` field.
   objections, gate lineage and delay risk. No semantic oracle, effect predictor,
   clock, resource meter or real-time guarantee is proved. Acceptance is assumed
   to be externally recorded; returned decisions do not execute actual effects.
+- Robot admission binds a symbolic operation/target/tool/plan and a one-use token
+  to a non-wrapping epoch in 0–2. Observation freshness, history, protected contents,
+  component admission, external enforcement and evidence are abstract facts.
+  Execution is atomic; perception accuracy, physical dynamics, race conditions,
+  real interlocks, cryptographic tokens and durable audit custody are not proved.
 - Evidence flags do not verify signatures, storage integrity or completeness
   of an actual deployment's audit stream.
 
@@ -93,10 +104,10 @@ narrow property described in its `scope` field.
 Run the pinned [Quint checks](README.md) and retain their exact commit,
 tool versions, logs and bounds. Randomized runs explore 5,000 samples per model;
 symbolic verification is bounded at depth 12. Neither establishes unbounded
-safety or an implementation refinement proof. The 26 mutation witnesses
+safety or an implementation refinement proof. The 36 mutation witnesses
 are deliberate unsafe transitions excluded from normal `step`: eight replication,
-eight subject-integrity and ten proportionate-action witnesses. Scores refer only
-to those declared operators. The existing release tag retains its original
+eight subject-integrity, ten proportionate-action and ten robot-action witnesses.
+Scores refer only to those declared operators. The existing release tag retains its original
 sixteen witnesses; this extension is post-rc.1 development on `main`.
 
 The [release guide](../docs/releases/v4.4.0-rc.1.md) fixes the package and

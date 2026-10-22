@@ -3,6 +3,11 @@
 from pathlib import Path
 
 REQUIRED = [
+    "docs/robot-action-binding-assurance-profile-2026-10.md",
+    "examples/robot-action-binding-vectors.json",
+    "schemas/robot-action-binding-vectors.schema.json",
+    "scripts/check_robot_action_binding_profile.py",
+    "tests/test_robot_action_binding.py",
     "docs/proportionate-action-and-stopping-assurance-profile-2026-10.md",
     "examples/proportionate-action-vectors.json",
     "schemas/proportionate-action-vectors.schema.json",

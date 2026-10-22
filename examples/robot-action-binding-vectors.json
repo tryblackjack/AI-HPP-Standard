@@ -1,0 +1,719 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_version": "1.0.0",
+  "status": "ACTIVE_INFORMATIVE",
+  "normative_baseline": "4.3.0",
+  "claim_boundary": "Post-rc.1 symbolic execution contract only; no physical safety or real-model backdoor detection claim.",
+  "predicates": [
+    {
+      "id": "RAB-P01",
+      "name": "bind_action_to_authorized_effect",
+      "existing_requirement_ids": [
+        "MVP-001",
+        "MVP-003",
+        "ECI-REQ-002"
+      ]
+    },
+    {
+      "id": "RAB-P02",
+      "name": "revalidate_current_context",
+      "existing_requirement_ids": [
+        "MVP-006",
+        "AFB-REQ-002"
+      ]
+    },
+    {
+      "id": "RAB-P03",
+      "name": "preserve_cumulative_effect_history",
+      "existing_requirement_ids": [
+        "MVP-005",
+        "ECI-REQ-005"
+      ]
+    },
+    {
+      "id": "RAB-P04",
+      "name": "enforce_at_execution_boundary",
+      "existing_requirement_ids": [
+        "MVP-004",
+        "ECI-REQ-004"
+      ]
+    },
+    {
+      "id": "RAB-P05",
+      "name": "retain_execution_evidence",
+      "existing_requirement_ids": [
+        "MVP-007"
+      ]
+    },
+    {
+      "id": "RAB-P06",
+      "name": "admit_and_bind_planning_components",
+      "existing_requirement_ids": [
+        "MVP-005",
+        "KAI-REQ-002"
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "id": "RAB-T01",
+      "quint_test": "rabAuthorizedAppleTest",
+      "description": "AuthorizedApple",
+      "predicate_ids": [
+        "RAB-P01",
+        "RAB-P02",
+        "RAB-P04",
+        "RAB-P05",
+        "RAB-P06"
+      ],
+      "steps": [
+        {
+          "action": "assess"
+        },
+        {
+          "action": "execute"
+        }
+      ],
+      "expected_outcome": "execute",
+      "expected_executed": true
+    },
+    {
+      "id": "RAB-T02",
+      "quint_test": "rabBenignSuffixSameActionTest",
+      "description": "An unchanged symbolic action after an innocuous suffix still proceeds; no NLP robustness claim.",
+      "predicate_ids": [
+        "RAB-P01",
+        "RAB-P04"
+      ],
+      "steps": [
+        {
+          "action": "propose",
+          "proposal": {
+            "operation": "cut",
+            "target": "apple",
+            "tool": "knife",
+            "planRevision": 0
+          }
+        },
+        {
+          "action": "assess"
+        },
+        {
+          "action": "execute"
+        }
+      ],
+      "expected_outcome": "execute",
+      "expected_executed": true
+    },
+    {
+      "id": "RAB-T03",
+      "quint_test": "rabHandSubstitutionTest",
+      "description": "HandSubstitution",
+      "predicate_ids": [
+        "RAB-P01"
+      ],
+      "steps": [
+        {
+          "action": "propose",
+          "proposal": {
+            "operation": "cut",
+            "target": "hand",
+            "tool": "knife",
+            "planRevision": 0
+          }
+        },
+        {
+          "action": "assess"
+        },
+        {
+          "action": "execute"
+        }
+      ],
+      "expected_outcome": "block",
+      "expected_executed": false
+    },
+    {
+      "id": "RAB-T04",
+      "quint_test": "rabToolSubstitutionTest",
+      "description": "ToolSubstitution",
+      "predicate_ids": [
+        "RAB-P01"
+      ],
+      "steps": [
+        {
+          "action": "propose",
+          "proposal": {
+            "operation": "cut",
+            "target": "apple",
+            "tool": "gripper",
+            "planRevision": 0
+          }
+        },
+        {
+          "action": "assess"
+        },
+        {
+          "action": "execute"
+        }
+      ],
+      "expected_outcome": "block",
+      "expected_executed": false
+    },
+    {
+      "id": "RAB-T05",
+      "quint_test": "rabRewriteAfterApprovalTest",
+      "description": "RewriteAfterApproval",
+      "predicate_ids": [
+        "RAB-P01"
+      ],
+      "steps": [
+        {
+          "action": "assess"
+        },
+        {
+          "action": "propose",
+          "proposal": {
+            "operation": "cut",
+            "target": "apple",
+            "tool": "knife",
+            "planRevision": 1
+          }
+        },
+        {
+          "action": "execute"
+        }
+      ],
+      "expected_outcome": "block",
+      "expected_executed": false
+    },
+    {
+      "id": "RAB-T06",
+      "quint_test": "rabLegitimateReplanReapprovedTest",
+      "description": "LegitimateReplanReapproved",
+      "predicate_ids": [
+        "RAB-P01",
+        "RAB-P04"
+      ],
+      "steps": [
+        {
+          "action": "assess"
+        },
+        {
+          "action": "propose",
+          "proposal": {
+            "operation": "cut",
+            "target": "apple",
+            "tool": "knife",
+            "planRevision": 1
+          }
+        },
+        {
+          "action": "assess"
+        },
+        {
+          "action": "execute"
+        }
+      ],
+      "expected_outcome": "execute",
+      "expected_executed": true
+    },
+    {
+      "id": "RAB-T07",
+      "quint_test": "rabEnvironmentChangedTest",
+      "description": "EnvironmentChanged",
+      "predicate_ids": [
+        "RAB-P02"
+      ],
+      "steps": [
+        {
+          "action": "assess"
+        },
+        {
+          "action": "context",
+          "protectedContents": false,
+          "contextFresh": true,
+          "historyComplete": true,
+          "hazardBounded": true
+        },
+        {
+          "action": "execute"
+        }
+      ],
+      "expected_outcome": "block",
+      "expected_executed": false
+    },
+    {
+      "id": "RAB-T08",
+      "quint_test": "rabEnvironmentReapprovedTest",
+      "description": "EnvironmentReapproved",
+      "predicate_ids": [
+        "RAB-P02",
+        "RAB-P04"
+      ],
+      "steps": [
+        {
+          "action": "assess"
+        },
+        {
+          "action": "context",
+          "protectedContents": false,
+          "contextFresh": true,
+          "historyComplete": true,
+          "hazardBounded": true
+        },
+        {
+          "action": "assess"
+        },
+        {
+          "action": "execute"
+        }
+      ],
+      "expected_outcome": "execute",
+      "expected_executed": true
+    },
+    {
+      "id": "RAB-T09",
+      "quint_test": "rabStalePerceptionTest",
+      "description": "StalePerception",
+      "predicate_ids": [
+        "RAB-P02"
+      ],
+      "steps": [
+        {
+          "action": "context",
+          "protectedContents": false,
+          "contextFresh": false,
+          "historyComplete": true,
+          "hazardBounded": true
+        },
+        {
+          "action": "assess"
+        },
+        {
+          "action": "execute"
+        }
+      ],
+      "expected_outcome": "block",
+      "expected_executed": false
+    },
+    {
+      "id": "RAB-T10",
+      "quint_test": "rabUnboundedHazardTest",
+      "description": "UnboundedHazard",
+      "predicate_ids": [
+        "RAB-P02"
+      ],
+      "steps": [
+        {
+          "action": "context",
+          "protectedContents": false,
+          "contextFresh": true,
+          "historyComplete": true,
+          "hazardBounded": false
+        },
+        {
+          "action": "assess"
+        },
+        {
+          "action": "execute"
+        }
+      ],
+      "expected_outcome": "block",
+      "expected_executed": false
+    },
+    {
+      "id": "RAB-T11",
+      "quint_test": "rabProtectedContentsTest",
+      "description": "ProtectedContents",
+      "predicate_ids": [
+        "RAB-P03"
+      ],
+      "steps": [
+        {
+          "action": "scope",
+          "scope": {
+            "operation": "dispose",
+            "target": "box",
+            "tool": "gripper"
+          }
+        },
+        {
+          "action": "propose",
+          "proposal": {
+            "operation": "dispose",
+            "target": "box",
+            "tool": "gripper",
+            "planRevision": 0
+          }
+        },
+        {
+          "action": "assess"
+        },
+        {
+          "action": "context",
+          "protectedContents": true,
+          "contextFresh": true,
+          "historyComplete": true,
+          "hazardBounded": true
+        },
+        {
+          "action": "assess"
+        },
+        {
+          "action": "execute"
+        }
+      ],
+      "expected_outcome": "block",
+      "expected_executed": false
+    },
+    {
+      "id": "RAB-T12",
+      "quint_test": "rabLostHistoryTest",
+      "description": "LostHistory",
+      "predicate_ids": [
+        "RAB-P03"
+      ],
+      "steps": [
+        {
+          "action": "context",
+          "protectedContents": false,
+          "contextFresh": true,
+          "historyComplete": false,
+          "hazardBounded": true
+        },
+        {
+          "action": "assess"
+        },
+        {
+          "action": "execute"
+        }
+      ],
+      "expected_outcome": "block",
+      "expected_executed": false
+    },
+    {
+      "id": "RAB-T13",
+      "quint_test": "rabMissingBoundaryTest",
+      "description": "MissingBoundary",
+      "predicate_ids": [
+        "RAB-P04"
+      ],
+      "steps": [
+        {
+          "action": "boundary",
+          "enforced": false,
+          "evidenceAvailable": true
+        },
+        {
+          "action": "assess"
+        },
+        {
+          "action": "execute"
+        }
+      ],
+      "expected_outcome": "block",
+      "expected_executed": false
+    },
+    {
+      "id": "RAB-T14",
+      "quint_test": "rabMissingEvidenceTest",
+      "description": "MissingEvidence",
+      "predicate_ids": [
+        "RAB-P05"
+      ],
+      "steps": [
+        {
+          "action": "boundary",
+          "enforced": true,
+          "evidenceAvailable": false
+        },
+        {
+          "action": "assess"
+        },
+        {
+          "action": "execute"
+        }
+      ],
+      "expected_outcome": "block",
+      "expected_executed": false
+    },
+    {
+      "id": "RAB-T15",
+      "quint_test": "rabUnadmittedPlannerTest",
+      "description": "UnadmittedPlanner",
+      "predicate_ids": [
+        "RAB-P06"
+      ],
+      "steps": [
+        {
+          "action": "components",
+          "admitted": false
+        },
+        {
+          "action": "assess"
+        },
+        {
+          "action": "execute"
+        }
+      ],
+      "expected_outcome": "block",
+      "expected_executed": false
+    },
+    {
+      "id": "RAB-T16",
+      "quint_test": "rabChangedPlannerStaleTokenTest",
+      "description": "ChangedPlannerStaleToken",
+      "predicate_ids": [
+        "RAB-P02",
+        "RAB-P06"
+      ],
+      "steps": [
+        {
+          "action": "assess"
+        },
+        {
+          "action": "components",
+          "admitted": true
+        },
+        {
+          "action": "execute"
+        }
+      ],
+      "expected_outcome": "block",
+      "expected_executed": false
+    },
+    {
+      "id": "RAB-T17",
+      "quint_test": "rabChangedPlannerReapprovedTest",
+      "description": "ChangedPlannerReapproved",
+      "predicate_ids": [
+        "RAB-P02",
+        "RAB-P06"
+      ],
+      "steps": [
+        {
+          "action": "assess"
+        },
+        {
+          "action": "components",
+          "admitted": true
+        },
+        {
+          "action": "assess"
+        },
+        {
+          "action": "execute"
+        }
+      ],
+      "expected_outcome": "execute",
+      "expected_executed": true
+    },
+    {
+      "id": "RAB-T18",
+      "quint_test": "rabTokenReplayTest",
+      "description": "TokenReplay",
+      "predicate_ids": [
+        "RAB-P01",
+        "RAB-P04"
+      ],
+      "steps": [
+        {
+          "action": "assess"
+        },
+        {
+          "action": "execute"
+        },
+        {
+          "action": "execute"
+        }
+      ],
+      "expected_outcome": "block",
+      "expected_executed": false
+    },
+    {
+      "id": "RAB-T19",
+      "quint_test": "rabRevokedBeforeExecutionTest",
+      "description": "RevokedBeforeExecution",
+      "predicate_ids": [
+        "RAB-P01",
+        "RAB-P04"
+      ],
+      "steps": [
+        {
+          "action": "assess"
+        },
+        {
+          "action": "revoke"
+        },
+        {
+          "action": "execute"
+        }
+      ],
+      "expected_outcome": "block",
+      "expected_executed": false
+    },
+    {
+      "id": "RAB-T20",
+      "quint_test": "rabAcceptedBeforeExecutionTest",
+      "description": "AcceptedBeforeExecution",
+      "predicate_ids": [
+        "RAB-P01",
+        "RAB-P04"
+      ],
+      "steps": [
+        {
+          "action": "assess"
+        },
+        {
+          "action": "accept"
+        },
+        {
+          "action": "execute"
+        }
+      ],
+      "expected_outcome": "block",
+      "expected_executed": false
+    },
+    {
+      "id": "RAB-T21",
+      "quint_test": "rabPolicyConflictBeforeExecutionTest",
+      "description": "PolicyConflictBeforeExecution",
+      "predicate_ids": [
+        "RAB-P01",
+        "RAB-P04"
+      ],
+      "steps": [
+        {
+          "action": "assess"
+        },
+        {
+          "action": "conflict"
+        },
+        {
+          "action": "execute"
+        }
+      ],
+      "expected_outcome": "block",
+      "expected_executed": false
+    },
+    {
+      "id": "RAB-T22",
+      "quint_test": "rabSafeContainerDisposalTest",
+      "description": "SafeContainerDisposal",
+      "predicate_ids": [
+        "RAB-P01",
+        "RAB-P03",
+        "RAB-P04"
+      ],
+      "steps": [
+        {
+          "action": "scope",
+          "scope": {
+            "operation": "dispose",
+            "target": "box",
+            "tool": "gripper"
+          }
+        },
+        {
+          "action": "propose",
+          "proposal": {
+            "operation": "dispose",
+            "target": "box",
+            "tool": "gripper",
+            "planRevision": 0
+          }
+        },
+        {
+          "action": "assess"
+        },
+        {
+          "action": "execute"
+        }
+      ],
+      "expected_outcome": "execute",
+      "expected_executed": true
+    }
+  ],
+  "mutants": [
+    {
+      "id": "RAB-M01",
+      "predicate_id": "RAB-P01",
+      "operator": "mutantRabTargetSubstitution",
+      "quint_test": "mutantRabM01TargetSubstitutionKilledTest",
+      "invariant": "robotExecutionBoundToAuthorizedAction",
+      "seed": "apple"
+    },
+    {
+      "id": "RAB-M02",
+      "predicate_id": "RAB-P01",
+      "operator": "mutantRabToolSubstitution",
+      "quint_test": "mutantRabM02ToolSubstitutionKilledTest",
+      "invariant": "robotExecutionBoundToAuthorizedAction",
+      "seed": "apple"
+    },
+    {
+      "id": "RAB-M03",
+      "predicate_id": "RAB-P01",
+      "operator": "mutantRabPlanSubstitution",
+      "quint_test": "mutantRabM03PlanSubstitutionKilledTest",
+      "invariant": "robotExecutionBoundToAuthorizedAction",
+      "seed": "apple"
+    },
+    {
+      "id": "RAB-M04",
+      "predicate_id": "RAB-P02",
+      "operator": "mutantRabStaleApproval",
+      "quint_test": "mutantRabM04StaleApprovalKilledTest",
+      "invariant": "robotExecutionUsesCurrentContext",
+      "seed": "apple"
+    },
+    {
+      "id": "RAB-M05",
+      "predicate_id": "RAB-P03",
+      "operator": "mutantRabConcealedContents",
+      "quint_test": "mutantRabM05ConcealedContentsKilledTest",
+      "invariant": "robotExecutionPreservesCumulativeSafety",
+      "seed": "container"
+    },
+    {
+      "id": "RAB-M06",
+      "predicate_id": "RAB-P03",
+      "operator": "mutantRabLostHistory",
+      "quint_test": "mutantRabM06LostHistoryKilledTest",
+      "invariant": "robotExecutionPreservesCumulativeSafety",
+      "seed": "apple"
+    },
+    {
+      "id": "RAB-M07",
+      "predicate_id": "RAB-P04",
+      "operator": "mutantRabBypassedGate",
+      "quint_test": "mutantRabM07BypassedGateKilledTest",
+      "invariant": "robotExecutionRequiresExternalGate",
+      "seed": "apple"
+    },
+    {
+      "id": "RAB-M08",
+      "predicate_id": "RAB-P05",
+      "operator": "mutantRabMissingEvidence",
+      "quint_test": "mutantRabM08MissingEvidenceKilledTest",
+      "invariant": "robotExecutionHasEvidence",
+      "seed": "apple"
+    },
+    {
+      "id": "RAB-M09",
+      "predicate_id": "RAB-P06",
+      "operator": "mutantRabUnadmittedPlanner",
+      "quint_test": "mutantRabM09UnadmittedPlannerKilledTest",
+      "invariant": "robotExecutionUsesAdmittedComponents",
+      "seed": "apple"
+    },
+    {
+      "id": "RAB-M10",
+      "predicate_id": "RAB-P02",
+      "operator": "mutantRabStalePerception",
+      "quint_test": "mutantRabM10StalePerceptionKilledTest",
+      "invariant": "robotExecutionUsesCurrentContext",
+      "seed": "apple"
+    }
+  ]
+}

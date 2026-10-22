@@ -44,7 +44,82 @@ module ai_hpp_core {
     delayUnsafe: false,
   }
 
+  // RAB: symbolic execution boundary; all sensor/admission facts are assumed.
+  type RobotScope = { operation: str, target: str, tool: str }
+  type RobotAction = { operation: str, target: str, tool: str, planRevision: int }
+  type RobotApproval = { issued: bool, command: RobotAction, epoch: int }
+  type RobotExecutionAudit = {
+    executed: bool,
+    command: RobotAction,
+    scope: RobotScope,
+    approval: RobotApproval,
+    epoch: int,
+    humanAuthorized: bool,
+    contextFresh: bool,
+    hazardBounded: bool,
+    historyComplete: bool,
+    protectedContents: bool,
+    componentsAdmitted: bool,
+    externalEnforcement: bool,
+    evidenceAvailable: bool,
+  }
+  type RobotState = {
+    scope: RobotScope,
+    proposal: RobotAction,
+    approval: RobotApproval,
+    epoch: int,
+    contextFresh: bool,
+    hazardBounded: bool,
+    historyComplete: bool,
+    protectedContents: bool,
+    componentsAdmitted: bool,
+    externalEnforcement: bool,
+    evidenceAvailable: bool,
+    lastOutcome: str,
+    audit: RobotExecutionAudit,
+  }
+
+  pure val robotAppleAction: RobotAction = {
+    operation: "cut", target: "apple", tool: "knife", planRevision: 0,
+  }
+  pure val robotBoxScope: RobotScope = {
+    operation: "dispose", target: "box", tool: "gripper",
+  }
+  pure val robotBoxAction: RobotAction = {
+    operation: "dispose", target: "box", tool: "gripper", planRevision: 0,
+  }
+  pure val initialRobotState: RobotState = {
+    scope: { operation: "cut", target: "apple", tool: "knife" },
+    proposal: robotAppleAction,
+    approval: { issued: false, command: robotAppleAction, epoch: 0 },
+    epoch: 0,
+    contextFresh: true,
+    hazardBounded: true,
+    historyComplete: true,
+    protectedContents: false,
+    componentsAdmitted: true,
+    externalEnforcement: true,
+    evidenceAvailable: true,
+    lastOutcome: "none",
+    audit: {
+      executed: false,
+      command: robotAppleAction,
+      scope: { operation: "cut", target: "apple", tool: "knife" },
+      approval: { issued: false, command: robotAppleAction, epoch: 0 },
+      epoch: 0,
+      humanAuthorized: true,
+      contextFresh: true,
+      hazardBounded: true,
+      historyComplete: true,
+      protectedContents: false,
+      componentsAdmitted: true,
+      externalEnforcement: true,
+      evidenceAvailable: true,
+    },
+  }
+
   type AssuranceState = {
+    robot: RobotState,
     taskAccepted: bool,
     interventionAudit: InterventionAudit,
     humanAuthority: bool,
@@ -90,6 +165,7 @@ module ai_hpp_core {
 
   action init: bool = {
     s' = {
+      robot: initialRobotState,
       taskAccepted: false,
       interventionAudit: {
         checked: false,
@@ -576,6 +652,118 @@ module ai_hpp_core {
     }
   }
 
+  pure def robotActionWithinScope(a: RobotAction, scope: RobotScope): bool = all {
+    a.operation == scope.operation,
+    a.target == scope.target,
+    a.tool == scope.tool,
+  }
+
+  val robotHumanAuthority: bool = all {
+    s.humanAuthority, s.parentAuthority, s.parentActive,
+    not(s.parentRevoked), not(s.unresolvedPolicyConflict),
+    not(s.taskAccepted), not(s.missionComplete),
+  }
+
+  val robotActionMayProceed: bool = all {
+    robotHumanAuthority,
+    robotActionWithinScope(s.robot.proposal, s.robot.scope),
+    s.robot.contextFresh,
+    s.robot.hazardBounded,
+    s.robot.historyComplete,
+    not(s.robot.proposal.operation == "dispose" and s.robot.protectedContents),
+    s.robot.componentsAdmitted,
+    s.robot.externalEnforcement,
+    s.robot.evidenceAvailable,
+  }
+
+  // Trusted owner event, not a planner-selected scope expansion.
+  action recordRobotScope(scope: RobotScope): bool = all {
+    robotHumanAuthority,
+    s.robot.epoch < 2,
+    s' = { ...s, robot: { ...s.robot, scope: scope, epoch: s.robot.epoch + 1 } },
+  }
+
+  action proposeRobotAction(proposal: RobotAction): bool = {
+    // Preserve the previous approval to exercise plan-substitution rejection.
+    s' = { ...s, robot: { ...s.robot, proposal: proposal, lastOutcome: "propose" } }
+  }
+
+  // Trusted observation event. Unknown history never proves safe empty contents.
+  action changeRobotContext(
+    protectedContents: bool, contextFresh: bool,
+    historyComplete: bool, hazardBounded: bool,
+  ): bool = all {
+    s.robot.epoch < 2,
+    s' = {
+      ...s,
+      robot: {
+        ...s.robot,
+        epoch: s.robot.epoch + 1,
+        protectedContents: protectedContents,
+        contextFresh: contextFresh,
+        historyComplete: historyComplete,
+        hazardBounded: hazardBounded,
+      },
+    },
+  }
+
+  action changeRobotComponents(admitted: bool): bool = all {
+    s.robot.epoch < 2,
+    s' = { ...s, robot: {
+      ...s.robot, epoch: s.robot.epoch + 1, componentsAdmitted: admitted,
+    } },
+  }
+
+  action configureRobotBoundary(enforced: bool, evidenceAvailable: bool): bool = all {
+    s.robot.epoch < 2,
+    s' = { ...s, robot: {
+      ...s.robot, epoch: s.robot.epoch + 1,
+      externalEnforcement: enforced, evidenceAvailable: evidenceAvailable,
+    } },
+  }
+
+  action assessRobotAction: bool = {
+    s' = { ...s, robot: {
+      ...s.robot,
+      approval: {
+        issued: robotActionMayProceed,
+        command: s.robot.proposal,
+        epoch: s.robot.epoch,
+      },
+      lastOutcome: if (robotActionMayProceed) "allow" else "block",
+    } }
+  }
+
+  action executeRobotAction: bool = {
+    val permitted = all {
+      robotActionMayProceed,
+      s.robot.approval.issued,
+      s.robot.approval.command == s.robot.proposal,
+      s.robot.approval.epoch == s.robot.epoch,
+    }
+    s' = { ...s, robot: {
+      ...s.robot,
+      // Both successful execution and denial consume this attempted approval.
+      approval: { ...s.robot.approval, issued: false },
+      lastOutcome: if (permitted) "execute" else "block",
+      audit: {
+        executed: permitted,
+        command: s.robot.proposal,
+        scope: s.robot.scope,
+        approval: s.robot.approval,
+        epoch: s.robot.epoch,
+        humanAuthorized: robotHumanAuthority,
+        contextFresh: s.robot.contextFresh,
+        hazardBounded: s.robot.hazardBounded,
+        historyComplete: s.robot.historyComplete,
+        protectedContents: s.robot.protectedContents,
+        componentsAdmitted: s.robot.componentsAdmitted,
+        externalEnforcement: s.robot.externalEnforcement,
+        evidenceAvailable: s.robot.evidenceAvailable,
+      },
+    } }
+  }
+
   action step: bool = {
     nondet requestedCapability = 0.to(3).oneOf()
     nondet explicitHumanGrant = Set(true, false).oneOf()
@@ -600,7 +788,21 @@ module ai_hpp_core {
       "mutable_remote_state",
     ).oneOf()
     nondet isQuarantined = Set(true, false).oneOf()
+    nondet robotOperation = Set("cut", "dispose").oneOf()
+    nondet robotTarget = Set("apple", "hand", "box").oneOf()
+    nondet robotTool = Set("knife", "gripper").oneOf()
+    nondet robotPlanRevision = 0.to(1).oneOf()
     any {
+      proposeRobotAction({
+        operation: robotOperation, target: robotTarget,
+        tool: robotTool, planRevision: robotPlanRevision,
+      }),
+      recordRobotScope(robotBoxScope),
+      changeRobotContext(noteAddsAuthority, identityEvidence, hasLineageEvidence, leaseValid),
+      changeRobotComponents(artifactIntegrity),
+      configureRobotBoundary(targetAuthorized, hasAuthorityEvidence),
+      assessRobotAction,
+      executeRobotAction,
       recordTaskAcceptance,
       evaluateIntervention({
         objectiveMatches: explicitHumanGrant,
@@ -837,6 +1039,43 @@ module ai_hpp_core {
     }.implies(s.interventionAudit.proposal.withinBudget)
   }
 
+  // Historical execution snapshots, not a proof of physical motor behavior.
+  val robotExecutionBoundToAuthorizedAction: bool = {
+    s.robot.audit.executed.implies(all {
+      s.robot.audit.humanAuthorized,
+      robotActionWithinScope(s.robot.audit.command, s.robot.audit.scope),
+      s.robot.audit.approval.issued,
+      s.robot.audit.command == s.robot.audit.approval.command,
+    })
+  }
+
+  val robotExecutionUsesCurrentContext: bool = {
+    s.robot.audit.executed.implies(all {
+      s.robot.audit.epoch == s.robot.audit.approval.epoch,
+      s.robot.audit.contextFresh,
+      s.robot.audit.hazardBounded,
+    })
+  }
+
+  val robotExecutionPreservesCumulativeSafety: bool = {
+    s.robot.audit.executed.implies(all {
+      s.robot.audit.historyComplete,
+      not(s.robot.audit.command.operation == "dispose" and s.robot.audit.protectedContents),
+    })
+  }
+
+  val robotExecutionRequiresExternalGate: bool = {
+    s.robot.audit.executed.implies(s.robot.audit.externalEnforcement)
+  }
+
+  val robotExecutionHasEvidence: bool = {
+    s.robot.audit.executed.implies(s.robot.audit.evidenceAvailable)
+  }
+
+  val robotExecutionUsesAdmittedComponents: bool = {
+    s.robot.audit.executed.implies(s.robot.audit.componentsAdmitted)
+  }
+
   val allCoreInvariants: bool = all {
     allowRequiresAuthorityEvidence,
     delegationNeverBroadens,
@@ -857,6 +1096,12 @@ module ai_hpp_core {
     interventionRejectsProhibitedMeans,
     interventionReportsCompletionTruthfully,
     interventionStaysWithinBudget,
+    robotExecutionBoundToAuthorizedAction,
+    robotExecutionUsesCurrentContext,
+    robotExecutionPreservesCumulativeSafety,
+    robotExecutionRequiresExternalGate,
+    robotExecutionHasEvidence,
+    robotExecutionUsesAdmittedComponents,
   }
 
   // Unsafe transitions below are excluded from `step`. They are executable
@@ -1137,9 +1382,96 @@ module ai_hpp_core {
     }
   }
 
+  action mutantRabTargetSubstitution: bool = {
+    s' = { ...s, robot: { ...s.robot, audit: {
+      ...s.robot.audit,
+      command: { ...s.robot.audit.command, target: "hand" },
+    } } }
+  }
+
+  action mutantRabToolSubstitution: bool = {
+    s' = { ...s, robot: { ...s.robot, audit: {
+      ...s.robot.audit,
+      command: { ...s.robot.audit.command, tool: "gripper" },
+    } } }
+  }
+
+  action mutantRabPlanSubstitution: bool = {
+    s' = { ...s, robot: { ...s.robot, audit: {
+      ...s.robot.audit,
+      command: { ...s.robot.audit.command, planRevision: 1 },
+    } } }
+  }
+
+  action mutantRabStaleApproval: bool = {
+    s' = { ...s, robot: { ...s.robot, audit: {
+      ...s.robot.audit,
+      epoch: 1,
+    } } }
+  }
+
+  action mutantRabConcealedContents: bool = {
+    s' = { ...s, robot: { ...s.robot, audit: {
+      ...s.robot.audit,
+      protectedContents: true,
+    } } }
+  }
+
+  action mutantRabLostHistory: bool = {
+    s' = { ...s, robot: { ...s.robot, audit: {
+      ...s.robot.audit,
+      historyComplete: false,
+    } } }
+  }
+
+  action mutantRabBypassedGate: bool = {
+    s' = { ...s, robot: { ...s.robot, audit: {
+      ...s.robot.audit,
+      externalEnforcement: false,
+    } } }
+  }
+
+  action mutantRabMissingEvidence: bool = {
+    s' = { ...s, robot: { ...s.robot, audit: {
+      ...s.robot.audit,
+      evidenceAvailable: false,
+    } } }
+  }
+
+  action mutantRabUnadmittedPlanner: bool = {
+    s' = { ...s, robot: { ...s.robot, audit: {
+      ...s.robot.audit,
+      componentsAdmitted: false,
+    } } }
+  }
+
+  action mutantRabStalePerception: bool = {
+    s' = { ...s, robot: { ...s.robot, audit: {
+      ...s.robot.audit,
+      contextFresh: false,
+    } } }
+  }
+
   action check(condition: bool): bool = all {
     assert(condition),
     s' = s,
+  }
+
+  run completedMissionDeniesRobotExecutionTest = {
+    init
+      .then(assessRobotAction)
+      .then(evaluateChildDeployment(1, true, true, true))
+      .then(terminateChild(true, true))
+      .then(completeResidueInventory)
+      .then(assessCompletionClaim)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.missionComplete,
+        s.claimValid,
+        s.robot.lastOutcome == "block",
+        not(s.robot.audit.executed),
+        allCoreInvariants,
+      }))
   }
 
   run unresolvedPolicyConflictHoldsInterventionTest = {
@@ -2124,5 +2456,368 @@ module ai_hpp_core {
       .then(evaluateIntervention(permittedIntervention))
       .then(mutantPasOverrunsBudget)
       .then(check(not(interventionStaysWithinBudget)))
+  }
+
+  // RAB portable fixtures and excluded unsafe execution witnesses.
+  run rabAuthorizedAppleTest = {
+    init
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.lastOutcome == "execute",
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run rabBenignSuffixSameActionTest = {
+    init
+      .then(proposeRobotAction({ operation: "cut", target: "apple", tool: "knife", planRevision: 0 }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.lastOutcome == "execute",
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run rabHandSubstitutionTest = {
+    init
+      .then(proposeRobotAction({ operation: "cut", target: "hand", tool: "knife", planRevision: 0 }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.lastOutcome == "block",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run rabToolSubstitutionTest = {
+    init
+      .then(proposeRobotAction({ operation: "cut", target: "apple", tool: "gripper", planRevision: 0 }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.lastOutcome == "block",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run rabRewriteAfterApprovalTest = {
+    init
+      .then(assessRobotAction)
+      .then(proposeRobotAction({ operation: "cut", target: "apple", tool: "knife", planRevision: 1 }))
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.lastOutcome == "block",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run rabLegitimateReplanReapprovedTest = {
+    init
+      .then(assessRobotAction)
+      .then(proposeRobotAction({ operation: "cut", target: "apple", tool: "knife", planRevision: 1 }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.lastOutcome == "execute",
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run rabEnvironmentChangedTest = {
+    init
+      .then(assessRobotAction)
+      .then(changeRobotContext(false, true, true, true))
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.lastOutcome == "block",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run rabEnvironmentReapprovedTest = {
+    init
+      .then(assessRobotAction)
+      .then(changeRobotContext(false, true, true, true))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.lastOutcome == "execute",
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run rabStalePerceptionTest = {
+    init
+      .then(changeRobotContext(false, false, true, true))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.lastOutcome == "block",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run rabUnboundedHazardTest = {
+    init
+      .then(changeRobotContext(false, true, true, false))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.lastOutcome == "block",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run rabProtectedContentsTest = {
+    init
+      .then(recordRobotScope({ operation: "dispose", target: "box", tool: "gripper" }))
+      .then(proposeRobotAction({ operation: "dispose", target: "box", tool: "gripper", planRevision: 0 }))
+      .then(assessRobotAction)
+      .then(changeRobotContext(true, true, true, true))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.lastOutcome == "block",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run rabLostHistoryTest = {
+    init
+      .then(changeRobotContext(false, true, false, true))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.lastOutcome == "block",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run rabMissingBoundaryTest = {
+    init
+      .then(configureRobotBoundary(false, true))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.lastOutcome == "block",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run rabMissingEvidenceTest = {
+    init
+      .then(configureRobotBoundary(true, false))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.lastOutcome == "block",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run rabUnadmittedPlannerTest = {
+    init
+      .then(changeRobotComponents(false))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.lastOutcome == "block",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run rabChangedPlannerStaleTokenTest = {
+    init
+      .then(assessRobotAction)
+      .then(changeRobotComponents(true))
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.lastOutcome == "block",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run rabChangedPlannerReapprovedTest = {
+    init
+      .then(assessRobotAction)
+      .then(changeRobotComponents(true))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.lastOutcome == "execute",
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run rabTokenReplayTest = {
+    init
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.lastOutcome == "block",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run rabRevokedBeforeExecutionTest = {
+    init
+      .then(assessRobotAction)
+      .then(revokeParent(true))
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.lastOutcome == "block",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run rabAcceptedBeforeExecutionTest = {
+    init
+      .then(assessRobotAction)
+      .then(recordTaskAcceptance)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.lastOutcome == "block",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run rabPolicyConflictBeforeExecutionTest = {
+    init
+      .then(assessRobotAction)
+      .then(evaluateAssuredChildDeployment(1, true, true, true, true, true, true, true, true, true, true, false))
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.lastOutcome == "block",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run rabSafeContainerDisposalTest = {
+    init
+      .then(recordRobotScope({ operation: "dispose", target: "box", tool: "gripper" }))
+      .then(proposeRobotAction({ operation: "dispose", target: "box", tool: "gripper", planRevision: 0 }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.lastOutcome == "execute",
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run mutantRabM01TargetSubstitutionKilledTest = {
+    init
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all { s.robot.audit.executed, allCoreInvariants }))
+      .then(mutantRabTargetSubstitution)
+      .then(check(not(robotExecutionBoundToAuthorizedAction)))
+  }
+
+  run mutantRabM02ToolSubstitutionKilledTest = {
+    init
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all { s.robot.audit.executed, allCoreInvariants }))
+      .then(mutantRabToolSubstitution)
+      .then(check(not(robotExecutionBoundToAuthorizedAction)))
+  }
+
+  run mutantRabM03PlanSubstitutionKilledTest = {
+    init
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all { s.robot.audit.executed, allCoreInvariants }))
+      .then(mutantRabPlanSubstitution)
+      .then(check(not(robotExecutionBoundToAuthorizedAction)))
+  }
+
+  run mutantRabM04StaleApprovalKilledTest = {
+    init
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all { s.robot.audit.executed, allCoreInvariants }))
+      .then(mutantRabStaleApproval)
+      .then(check(not(robotExecutionUsesCurrentContext)))
+  }
+
+  run mutantRabM05ConcealedContentsKilledTest = {
+    init
+      .then(recordRobotScope(robotBoxScope))
+      .then(proposeRobotAction(robotBoxAction))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all { s.robot.audit.executed, allCoreInvariants }))
+      .then(mutantRabConcealedContents)
+      .then(check(not(robotExecutionPreservesCumulativeSafety)))
+  }
+
+  run mutantRabM06LostHistoryKilledTest = {
+    init
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all { s.robot.audit.executed, allCoreInvariants }))
+      .then(mutantRabLostHistory)
+      .then(check(not(robotExecutionPreservesCumulativeSafety)))
+  }
+
+  run mutantRabM07BypassedGateKilledTest = {
+    init
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all { s.robot.audit.executed, allCoreInvariants }))
+      .then(mutantRabBypassedGate)
+      .then(check(not(robotExecutionRequiresExternalGate)))
+  }
+
+  run mutantRabM08MissingEvidenceKilledTest = {
+    init
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all { s.robot.audit.executed, allCoreInvariants }))
+      .then(mutantRabMissingEvidence)
+      .then(check(not(robotExecutionHasEvidence)))
+  }
+
+  run mutantRabM09UnadmittedPlannerKilledTest = {
+    init
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all { s.robot.audit.executed, allCoreInvariants }))
+      .then(mutantRabUnadmittedPlanner)
+      .then(check(not(robotExecutionUsesAdmittedComponents)))
+  }
+
+  run mutantRabM10StalePerceptionKilledTest = {
+    init
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all { s.robot.audit.executed, allCoreInvariants }))
+      .then(mutantRabStalePerception)
+      .then(check(not(robotExecutionUsesCurrentContext)))
   }
 }
