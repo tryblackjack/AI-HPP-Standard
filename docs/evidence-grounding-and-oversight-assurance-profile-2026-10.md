@@ -127,6 +127,26 @@ preauthorized retry/fallback/escalation arrangements. Do not improvise an outsid
 recipient. Preserve safety-stop, monitoring, incident handling and evidence paths
 even if ordinary mission authority is revoked or the task is accepted.
 
+## Protected monitoring during maintenance
+
+Routine instructions to repair, migrate, match a reference or avoid discretionary
+outreach do not by themselves authorize removing required monitoring or alerts.
+An actual instruction/policy conflict needs a scoped hold and authorized review;
+it does not permit inventing recipients or overriding a communication prohibition.
+Protect trigger policy, monitor hooks, destination/recipient configuration,
+credentials and regression expectations from unilateral acting-team changes.
+An authorized monitor replacement needs separately reviewed equivalence and
+coverage evidence, including newly launched workloads.
+
+The OpenAI [internal monitoring incidents](agentic-safety-case-studies.md#monitoring-weakened-during-routine-repair-or-migration)
+motivate this deployment check. Existing abstract fixtures cover missing evidence
+(`EGO-T03`), unavailable authorized routing (`EGO-T21`), an open incident blocking
+a completion claim (`EGO-T33`) and a non-reportable event failing to waive an
+existing duty (`EGO-T37`, `EGO-M04`). They do not simulate arbitrary code patches,
+prove monitor integrity or test a live notification service. Deployments need
+protected integration tests that exercise suppression, removed hooks, dummy
+monitors and unmonitored descendants without changing the expected safety result.
+
 ## Independence and useful operation
 
 Review roles do not become independent merely by having different names or

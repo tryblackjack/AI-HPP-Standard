@@ -6,7 +6,10 @@ Status: `ACTIVE_INFORMATIVE`.
 
 - Added an optional informative profile distinguishing contrary facts, missing
   evidence, prohibited means and missing authority; valid corrections restore
-  permitted work. Added a source-qualified Avalon-M1 simulation case.
+  permitted work. Added source-qualified Avalon-M1 simulation and OpenAI
+  internal monitoring cases, separating incident dates, publication and unknown
+  motives. Maintenance guidance preserves monitoring/alerting and launched-
+  workload coverage without treating abstract fixtures as runtime anti-tampering.
 - Connected grounding and affected-scope incident holds to existing core
   intervention, robot and descendant admission, and completion assessment.
   Required reporting retains an authorized minimal independent route after
