@@ -122,6 +122,16 @@ establish actual facts, independence, storage or transport; no external notices
 are sent. An incident hold prevents new effects and does not verify physical
 stopping or unbounded eventual delivery. See the profile and coverage limits.
 
+The optional [local boundary fixtures](../examples/oversight-boundary-vectors.json)
+add eight literal scenario runs, bringing the core to 159 tests. Their checker
+executes local file/child-process observations and compares the authority,
+monitor availability, event-bound receipt and effect abstractions with the
+literal Quint inputs/outcomes. Four executable Python mutants test notification
+suppression, a dummy hook, unmonitored child execution and a cached revoked token.
+Those four are separate from the 48 declared Quint unsafe-transition witnesses.
+The operational source prefix, aggregate properties and depth 12 are unchanged;
+this synchronization is not a Python-to-Quint refinement proof.
+
 ## Run
 
 ```bash

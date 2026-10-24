@@ -142,6 +142,8 @@ authority and is not a containment boundary.
 - [Evidence Grounding and Oversight Assurance Profile — October 2026](docs/evidence-grounding-and-oversight-assurance-profile-2026-10.md) —
   eight optional predicates, 40 portable cases and twelve core mutation witnesses
   for grounded objections, authorized escalation, custody and completion claims.
+  [Local boundary fixtures](examples/oversight-boundary-vectors.json) add four
+  executed boundary mutants, four useful controls and eight synchronized Quint scenarios.
 - [Robot Action Binding Assurance Profile — October 2026](docs/robot-action-binding-assurance-profile-2026-10.md) —
   six optional predicates, state-bound one-use approvals, cumulative-effect
   history and ten executable core mutation witnesses; symbolic admission only.

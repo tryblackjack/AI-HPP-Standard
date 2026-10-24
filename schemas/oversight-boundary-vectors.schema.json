@@ -1,0 +1,566 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Finite oversight boundary fixtures",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_version",
+    "status",
+    "normative_baseline",
+    "claim_boundary",
+    "cases",
+    "mutants"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "artifact_version": {
+      "const": "1.0.0"
+    },
+    "status": {
+      "const": "ACTIVE_INFORMATIVE"
+    },
+    "normative_baseline": {
+      "const": "4.3.0"
+    },
+    "claim_boundary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "scenario",
+          "predicate_ids",
+          "expected",
+          "quint_test",
+          "quint_steps",
+          "quint_expected"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^BND-T0[1-8]$"
+          },
+          "scenario": {
+            "enum": [
+              "notification_suppression",
+              "dummy_monitor",
+              "unmonitored_child",
+              "revoked_token",
+              "permitted_repair",
+              "monitored_child",
+              "current_token",
+              "authorized_replacement"
+            ]
+          },
+          "predicate_ids": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^EGO-P0[1-8]$"
+            }
+          },
+          "expected": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "effect",
+              "notice_received",
+              "child_started",
+              "control_changed"
+            ],
+            "properties": {
+              "effect": {
+                "type": "boolean"
+              },
+              "notice_received": {
+                "type": "boolean"
+              },
+              "child_started": {
+                "type": "boolean"
+              },
+              "control_changed": {
+                "type": "boolean"
+              }
+            }
+          },
+          "quint_test": {
+            "type": "string",
+            "pattern": "^boundary[A-Za-z]+Test$"
+          },
+          "quint_steps": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event",
+                    "facts"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "ground"
+                    },
+                    "facts": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "scopeAuthorized",
+                        "observationsCurrent",
+                        "evidenceComplete",
+                        "ruleKnown",
+                        "factsSupport",
+                        "policyPermits"
+                      ],
+                      "properties": {
+                        "scopeAuthorized": {
+                          "type": "boolean"
+                        },
+                        "observationsCurrent": {
+                          "type": "boolean"
+                        },
+                        "evidenceComplete": {
+                          "type": "boolean"
+                        },
+                        "ruleKnown": {
+                          "type": "boolean"
+                        },
+                        "factsSupport": {
+                          "type": "boolean"
+                        },
+                        "policyPermits": {
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event",
+                    "required",
+                    "hold"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "incident"
+                    },
+                    "required": {
+                      "type": "boolean"
+                    },
+                    "hold": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event",
+                    "authorized",
+                    "minimal",
+                    "independent",
+                    "durable"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "route"
+                    },
+                    "authorized": {
+                      "type": "boolean"
+                    },
+                    "minimal": {
+                      "type": "boolean"
+                    },
+                    "independent": {
+                      "type": "boolean"
+                    },
+                    "durable": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event",
+                    "eventId"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "receipt"
+                    },
+                    "eventId": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 2
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event",
+                    "owner"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "offer"
+                    },
+                    "owner": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 2
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event",
+                    "evidence"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "review"
+                    },
+                    "evidence": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event",
+                    "evidence"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "resolve"
+                    },
+                    "evidence": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event",
+                    "evidence"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "accept"
+                    },
+                    "evidence": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event",
+                    "evidence"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "recover"
+                    },
+                    "evidence": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "queue"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "send"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "tick"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "restart"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "robot"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "intervention"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "child"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "completion_fixture"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "completion"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "revoke"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "accept_task"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "quint_expected": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [],
+            "properties": {
+              "reason": {
+                "enum": [
+                  "permitted",
+                  "contradicted",
+                  "insufficient_evidence",
+                  "prohibited",
+                  "unauthorized"
+                ]
+              },
+              "stage": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 6
+              },
+              "required": {
+                "type": "boolean"
+              },
+              "owner": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 2
+              },
+              "offeredOwner": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2
+              },
+              "ticks": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2
+              },
+              "eventId": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2
+              },
+              "receiptEvent": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2
+              },
+              "sentEvidence": {
+                "type": "boolean"
+              },
+              "resolutionEvidence": {
+                "type": "boolean"
+              },
+              "custodyGap": {
+                "type": "boolean"
+              },
+              "claimValid": {
+                "type": "boolean"
+              },
+              "robotExecuted": {
+                "type": "boolean"
+              },
+              "interventionOutcome": {
+                "enum": [
+                  "allow",
+                  "review",
+                  "block",
+                  "stop",
+                  "delay"
+                ]
+              },
+              "deploymentOutcome": {
+                "enum": [
+                  "allow",
+                  "block",
+                  "review"
+                ]
+              }
+            },
+            "minProperties": 1
+          }
+        }
+      }
+    },
+    "mutants": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "operator",
+          "case_id",
+          "predicate_id",
+          "witness"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^BND-M0[1-4]$"
+          },
+          "operator": {
+            "enum": [
+              "suppress_notice",
+              "replace_with_dummy",
+              "launch_without_monitor",
+              "cached_token"
+            ]
+          },
+          "case_id": {
+            "type": "string",
+            "pattern": "^BND-T0[1-4]$"
+          },
+          "predicate_id": {
+            "enum": [
+              "EGO-P02",
+              "EGO-P03"
+            ]
+          },
+          "witness": {
+            "enum": [
+              "required_notice_missing",
+              "effect_without_admission"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

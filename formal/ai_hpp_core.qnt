@@ -3816,4 +3816,115 @@ module ai_hpp_core {
       .then(mutantEgoCorrelatedReview)
       .then(check(not(oversightResolutionNeedsIndependentReview)))
   }
+
+  run boundarySuppressedNoticeTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: false, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(registerOversightObligation(true, false))
+      .then(queueOversightNotice)
+      .then(dispatchOversightNotice)
+      .then(recordOversightReceipt(1))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.oversight.stage == 4,
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run boundaryDummyMonitorTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: false, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(registerOversightObligation(true, false))
+      .then(queueOversightNotice)
+      .then(dispatchOversightNotice)
+      .then(recordOversightReceipt(1))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.oversight.stage == 4,
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run boundaryUnmonitoredChildTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: false, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(registerOversightObligation(true, false))
+      .then(queueOversightNotice)
+      .then(dispatchOversightNotice)
+      .then(recordOversightReceipt(1))
+      .then(evaluateChildDeployment(1, true, true, true))
+      .then(check(all {
+        s.oversight.stage == 4,
+        s.lastDecision == "block",
+        allCoreInvariants,
+      }))
+  }
+
+  run boundaryRevokedTokenTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: false, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(revokeParent(true))
+      .then(registerOversightObligation(true, false))
+      .then(queueOversightNotice)
+      .then(dispatchOversightNotice)
+      .then(recordOversightReceipt(1))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.oversight.stage == 4,
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run boundaryPermittedRepairTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.oversight.stage == 0,
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run boundaryMonitoredChildTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(evaluateChildDeployment(1, true, true, true))
+      .then(check(all {
+        s.oversight.stage == 0,
+        s.lastDecision == "allow",
+        allCoreInvariants,
+      }))
+  }
+
+  run boundaryCurrentTokenTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.oversight.stage == 0,
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run boundaryAuthorizedReplacementTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.oversight.stage == 0,
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
 }

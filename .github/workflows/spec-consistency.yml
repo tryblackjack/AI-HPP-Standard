@@ -50,6 +50,9 @@ jobs:
       - name: Validate PAF register
         run: python3 scripts/check_paf_register.py
 
+      - name: Execute oversight boundary fixtures and mutants
+        run: python3 scripts/check_oversight_boundary.py
+
       - name: Validate formal core invariants
         run: |
           npx -y @informalsystems/quint@0.33.0 typecheck formal/ai_hpp_core.qnt

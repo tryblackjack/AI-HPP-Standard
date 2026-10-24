@@ -2,6 +2,25 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 
+## 2026-10-24 — Executable local oversight boundary fixtures (post-rc.1)
+
+- Added eight language-neutral cases and a finite local Python fixture for
+  notification suppression, dummy monitor replacement, child coverage and token
+  revocation. Four operators change actual fixture behavior; four positive
+  controls retain useful operation. File captures and child execution remain
+  synthetic and local; no real credentials or external notifications are used.
+- Added 17 regressions for observable defects, valid replacement/child execution,
+  blanket denial, no-op mutants, invalid trials, safe seeds and contract drift.
+- Added eight literal core Quint scenario runs and formal map 1.3.1 trace links.
+  Operational source, guards, aggregate invariants and depth 12 remain unchanged.
+  Local observations are checked against explicit trusted-input abstractions;
+  no implementation refinement or general anti-tampering proof is claimed.
+- Added optional vector/schema artifact 1.0.0 and CI execution. Existing IDs and
+  fixtures are retained. Earlier results keep their original artifact scope;
+  four local mutants are separate from the 48 Quint unsafe transitions and must
+  not be pooled into a comparative safety score.
+- Frozen normative v4.3.0 owners and immutable v4.4.0-rc.1 manifest/tag are unchanged.
+
 ## 2026-10-24 — Evidence grounding and oversight (post-rc.1)
 
 - Added an optional informative profile distinguishing contrary facts, missing

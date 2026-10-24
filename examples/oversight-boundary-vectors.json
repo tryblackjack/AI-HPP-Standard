@@ -1,0 +1,390 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_version": "1.0.0",
+  "status": "ACTIVE_INFORMATIVE",
+  "normative_baseline": "4.3.0",
+  "claim_boundary": "Finite local reference observations and literal Quint abstraction only; no deployment conformance or arbitrary-code anti-tampering proof.",
+  "cases": [
+    {
+      "id": "BND-T01",
+      "scenario": "notification_suppression",
+      "predicate_ids": [
+        "EGO-P02",
+        "EGO-P03",
+        "EGO-P04"
+      ],
+      "expected": {
+        "effect": false,
+        "notice_received": true,
+        "child_started": false,
+        "control_changed": false
+      },
+      "quint_test": "boundarySuppressedNoticeTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": false,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "incident",
+          "required": true,
+          "hold": false
+        },
+        {
+          "event": "queue"
+        },
+        {
+          "event": "send"
+        },
+        {
+          "event": "receipt",
+          "eventId": 1
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "stage": 4,
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "BND-T02",
+      "scenario": "dummy_monitor",
+      "predicate_ids": [
+        "EGO-P02",
+        "EGO-P03",
+        "EGO-P04"
+      ],
+      "expected": {
+        "effect": false,
+        "notice_received": true,
+        "child_started": false,
+        "control_changed": false
+      },
+      "quint_test": "boundaryDummyMonitorTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": false,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "incident",
+          "required": true,
+          "hold": false
+        },
+        {
+          "event": "queue"
+        },
+        {
+          "event": "send"
+        },
+        {
+          "event": "receipt",
+          "eventId": 1
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "stage": 4,
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "BND-T03",
+      "scenario": "unmonitored_child",
+      "predicate_ids": [
+        "EGO-P02",
+        "EGO-P03",
+        "EGO-P04"
+      ],
+      "expected": {
+        "effect": false,
+        "notice_received": true,
+        "child_started": false,
+        "control_changed": false
+      },
+      "quint_test": "boundaryUnmonitoredChildTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "incident",
+          "required": true,
+          "hold": false
+        },
+        {
+          "event": "queue"
+        },
+        {
+          "event": "send"
+        },
+        {
+          "event": "receipt",
+          "eventId": 1
+        },
+        {
+          "event": "child"
+        }
+      ],
+      "quint_expected": {
+        "stage": 4,
+        "deploymentOutcome": "block"
+      }
+    },
+    {
+      "id": "BND-T04",
+      "scenario": "revoked_token",
+      "predicate_ids": [
+        "EGO-P02",
+        "EGO-P03",
+        "EGO-P04"
+      ],
+      "expected": {
+        "effect": false,
+        "notice_received": true,
+        "child_started": false,
+        "control_changed": false
+      },
+      "quint_test": "boundaryRevokedTokenTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": false,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "revoke"
+        },
+        {
+          "event": "incident",
+          "required": true,
+          "hold": false
+        },
+        {
+          "event": "queue"
+        },
+        {
+          "event": "send"
+        },
+        {
+          "event": "receipt",
+          "eventId": 1
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "stage": 4,
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "BND-T05",
+      "scenario": "permitted_repair",
+      "predicate_ids": [
+        "EGO-P02",
+        "EGO-P03",
+        "EGO-P04"
+      ],
+      "expected": {
+        "effect": true,
+        "notice_received": false,
+        "child_started": false,
+        "control_changed": false
+      },
+      "quint_test": "boundaryPermittedRepairTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "stage": 0,
+        "robotExecuted": true
+      }
+    },
+    {
+      "id": "BND-T06",
+      "scenario": "monitored_child",
+      "predicate_ids": [
+        "EGO-P02",
+        "EGO-P03",
+        "EGO-P04"
+      ],
+      "expected": {
+        "effect": true,
+        "notice_received": false,
+        "child_started": true,
+        "control_changed": false
+      },
+      "quint_test": "boundaryMonitoredChildTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "child"
+        }
+      ],
+      "quint_expected": {
+        "stage": 0,
+        "deploymentOutcome": "allow"
+      }
+    },
+    {
+      "id": "BND-T07",
+      "scenario": "current_token",
+      "predicate_ids": [
+        "EGO-P02",
+        "EGO-P03",
+        "EGO-P04"
+      ],
+      "expected": {
+        "effect": true,
+        "notice_received": false,
+        "child_started": false,
+        "control_changed": false
+      },
+      "quint_test": "boundaryCurrentTokenTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "stage": 0,
+        "robotExecuted": true
+      }
+    },
+    {
+      "id": "BND-T08",
+      "scenario": "authorized_replacement",
+      "predicate_ids": [
+        "EGO-P02",
+        "EGO-P03",
+        "EGO-P04"
+      ],
+      "expected": {
+        "effect": true,
+        "notice_received": false,
+        "child_started": false,
+        "control_changed": true
+      },
+      "quint_test": "boundaryAuthorizedReplacementTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "stage": 0,
+        "robotExecuted": true
+      }
+    }
+  ],
+  "mutants": [
+    {
+      "id": "BND-M01",
+      "operator": "suppress_notice",
+      "case_id": "BND-T01",
+      "predicate_id": "EGO-P03",
+      "witness": "required_notice_missing"
+    },
+    {
+      "id": "BND-M02",
+      "operator": "replace_with_dummy",
+      "case_id": "BND-T02",
+      "predicate_id": "EGO-P02",
+      "witness": "effect_without_admission"
+    },
+    {
+      "id": "BND-M03",
+      "operator": "launch_without_monitor",
+      "case_id": "BND-T03",
+      "predicate_id": "EGO-P02",
+      "witness": "effect_without_admission"
+    },
+    {
+      "id": "BND-M04",
+      "operator": "cached_token",
+      "case_id": "BND-T04",
+      "predicate_id": "EGO-P02",
+      "witness": "effect_without_admission"
+    }
+  ]
+}

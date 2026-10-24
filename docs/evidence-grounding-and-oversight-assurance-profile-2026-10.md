@@ -147,6 +147,54 @@ prove monitor integrity or test a live notification service. Deployments need
 protected integration tests that exercise suppression, removed hooks, dummy
 monitors and unmonitored descendants without changing the expected safety result.
 
+## Executable local boundary fixtures (post-rc.1)
+
+The optional [boundary vectors](../examples/oversight-boundary-vectors.json),
+[schema](../schemas/oversight-boundary-vectors.schema.json) and
+[synthetic fixture](../examples/oversight_boundary_reference.py) add four denied
+cases and four useful controls. Their fixed expectations remain separate from
+candidate admission code. These are implementation aids in Python; neither the
+standard nor adopters depend on a Python production framework.
+
+| Unsafe operator | Observed defect | Existing predicate |
+| --- | --- | --- |
+| `BND-M01 suppress_notice` | A finding is stored but its required event-bound local receipt is absent. | EGO-P03 |
+| `BND-M02 replace_with_dummy` | A dummy hook produces no fresh monitor probe while an unauthorized change permits the effect. | EGO-P02 |
+| `BND-M03 launch_without_monitor` | A real fixed child process writes the effect marker without child monitoring activation; parent coverage remains present. | EGO-P02 |
+| `BND-M04 cached_token` | A pre-revocation cached token permits the marker write after its entry in the synthetic authority registry is revoked. | EGO-P02 |
+
+Positive controls cover permitted repair, a child with its own activation record,
+a current token and an explicitly authorized replacement retaining its working
+hook. Receipt files represent acceptance by the local test sink, not human
+reading. Captures are read from temporary files; the child executes only a fixed
+marker program. No real credentials, network requests, external notifications,
+malware or arbitrary source patches are used.
+
+`python3 scripts/check_oversight_boundary.py` executes every safe seed, unsafe
+operator and useful control. A mutant needs an observed named violation and a
+passing baseline; no-op mutants survive, invalid trials cannot count as kills,
+and blanket denial fails the useful controls. The report retains all case and
+mutant results, captures, artifact version and vector digest. Counts cover only
+the four declared operators and are not comparable to a deployment safety score.
+
+Eight literal `boundary*Test` runs in the existing Quint core use exactly the
+observed authority/monitor-availability abstraction and authored outcomes. A
+required incident queues, sends and receives event 1 independently of the effect
+gate. New incident holds are deliberately false in these cases, so an unrelated
+blanket hold cannot hide a missing grounding check. Child cases assert deployment
+outcomes directly; robot cases assert actual symbolic execution. Formal map
+`1.3.1` links these scenarios without adding aggregate invariants or changing the
+operational `init`, `step`, guards or properties. Existing witness IDs remain
+unchanged; boundary vector/schema artifact `1.0.0` is additive.
+
+This is finite local integration evidence, not a refinement proof between Python
+and Quint. Monitor identity/probe evidence and the authority registry are trusted
+fixture inputs. It does not prove resistance to forged probes, arbitrary edits,
+concurrent revocation races, production token validation, ongoing child coverage,
+remote delivery or notification latency. Deployments must repeat equivalent
+protected tests at their own boundaries and retain their own evidence. The
+broader maintenance guidance above remains applicable beyond these four cases.
+
 ## Independence and useful operation
 
 Review roles do not become independent merely by having different names or

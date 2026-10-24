@@ -146,3 +146,15 @@ The core shares grounding/incident holds with intervention, robot, descendant
 admission and completion. Tests send no real notices. Observe the profile's
 single-task, finite-event, trusted-input and external-enforcement limits before
 making runtime claims.
+
+### Executable local oversight boundary fixtures
+
+[Eight portable cases](oversight-boundary-vectors.json) pair four unsafe boundary
+scenarios with four useful controls. The [synthetic fixture](oversight_boundary_reference.py)
+uses temporary files, a local receipt sink, a synthetic token registry and one
+fixed child program. Run `python3 scripts/check_oversight_boundary.py` for observed
+case outcomes and four executed mutation witnesses. Eight literal tests in the
+existing Quint core synchronize the trusted observation abstraction and expected
+outcomes. This adds no production framework, new normative predicate, remote
+notification or runtime conformance claim. See the
+[profile's limits](../docs/evidence-grounding-and-oversight-assurance-profile-2026-10.md#executable-local-boundary-fixtures-post-rc1).
