@@ -1,0 +1,568 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI-HPP evidence grounding and oversight symbolic vectors",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_version",
+    "status",
+    "normative_baseline",
+    "claim_boundary",
+    "predicates",
+    "cases",
+    "mutants"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "artifact_version": {
+      "const": "1.0.0"
+    },
+    "status": {
+      "const": "ACTIVE_INFORMATIVE"
+    },
+    "normative_baseline": {
+      "const": "4.3.0"
+    },
+    "claim_boundary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "predicates": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "existing_requirement_ids"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^EGO-P0[1-8]$"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "existing_requirement_ids": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 40,
+      "maxItems": 40,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "quint_test",
+          "predicate_ids",
+          "steps",
+          "expected"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^EGO-T[0-9]{2}$"
+          },
+          "quint_test": {
+            "type": "string",
+            "pattern": "^ego[A-Za-z0-9]+Test$"
+          },
+          "predicate_ids": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^EGO-P0[1-8]$"
+            }
+          },
+          "steps": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event",
+                    "facts"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "ground"
+                    },
+                    "facts": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "scopeAuthorized",
+                        "observationsCurrent",
+                        "evidenceComplete",
+                        "ruleKnown",
+                        "factsSupport",
+                        "policyPermits"
+                      ],
+                      "properties": {
+                        "scopeAuthorized": {
+                          "type": "boolean"
+                        },
+                        "observationsCurrent": {
+                          "type": "boolean"
+                        },
+                        "evidenceComplete": {
+                          "type": "boolean"
+                        },
+                        "ruleKnown": {
+                          "type": "boolean"
+                        },
+                        "factsSupport": {
+                          "type": "boolean"
+                        },
+                        "policyPermits": {
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event",
+                    "required",
+                    "hold"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "incident"
+                    },
+                    "required": {
+                      "type": "boolean"
+                    },
+                    "hold": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event",
+                    "authorized",
+                    "minimal",
+                    "independent",
+                    "durable"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "route"
+                    },
+                    "authorized": {
+                      "type": "boolean"
+                    },
+                    "minimal": {
+                      "type": "boolean"
+                    },
+                    "independent": {
+                      "type": "boolean"
+                    },
+                    "durable": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event",
+                    "eventId"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "receipt"
+                    },
+                    "eventId": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 2
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event",
+                    "owner"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "offer"
+                    },
+                    "owner": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 2
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event",
+                    "evidence"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "review"
+                    },
+                    "evidence": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event",
+                    "evidence"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "resolve"
+                    },
+                    "evidence": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event",
+                    "evidence"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "accept"
+                    },
+                    "evidence": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event",
+                    "evidence"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "recover"
+                    },
+                    "evidence": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "queue"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "send"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "tick"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "restart"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "robot"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "intervention"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "child"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "completion_fixture"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "completion"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "revoke"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "event"
+                  ],
+                  "properties": {
+                    "event": {
+                      "const": "accept_task"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "expected": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [],
+            "properties": {
+              "reason": {
+                "enum": [
+                  "permitted",
+                  "contradicted",
+                  "insufficient_evidence",
+                  "prohibited",
+                  "unauthorized"
+                ]
+              },
+              "stage": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 6
+              },
+              "required": {
+                "type": "boolean"
+              },
+              "owner": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 2
+              },
+              "offeredOwner": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2
+              },
+              "ticks": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2
+              },
+              "eventId": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2
+              },
+              "receiptEvent": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2
+              },
+              "sentEvidence": {
+                "type": "boolean"
+              },
+              "resolutionEvidence": {
+                "type": "boolean"
+              },
+              "custodyGap": {
+                "type": "boolean"
+              },
+              "claimValid": {
+                "type": "boolean"
+              },
+              "robotExecuted": {
+                "type": "boolean"
+              },
+              "interventionOutcome": {
+                "enum": [
+                  "allow",
+                  "review",
+                  "block",
+                  "stop",
+                  "delay"
+                ]
+              },
+              "deploymentOutcome": {
+                "enum": [
+                  "allow",
+                  "block",
+                  "review"
+                ]
+              }
+            },
+            "minProperties": 1
+          }
+        }
+      }
+    },
+    "mutants": {
+      "type": "array",
+      "minItems": 12,
+      "maxItems": 12,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "predicate_id",
+          "operator",
+          "quint_test",
+          "invariant",
+          "seed"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^EGO-M(0[1-9]|1[0-2])$"
+          },
+          "predicate_id": {
+            "type": "string",
+            "pattern": "^EGO-P0[1-8]$"
+          },
+          "operator": {
+            "type": "string",
+            "pattern": "^mutantEgo[A-Za-z0-9]+$"
+          },
+          "quint_test": {
+            "type": "string",
+            "pattern": "^mutantEgo[A-Za-z0-9]+KilledTest$"
+          },
+          "invariant": {
+            "type": "string",
+            "minLength": 1
+          },
+          "seed": {
+            "enum": [
+              "detected",
+              "ground_unknown",
+              "initial",
+              "queued",
+              "received",
+              "resolved",
+              "restarted",
+              "robot",
+              "sent"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

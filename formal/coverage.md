@@ -2,7 +2,7 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 Owner: Repository maintainers
-Last updated: 2026-10-22
+Last updated: 2026-10-24
 
 ## Purpose
 
@@ -41,6 +41,14 @@ A link means `PARTIAL_ABSTRACTION`, never proof of the full prose requirement.
 | ai_hpp_core.qnt | `robotExecutionRequiresExternalGate` | MVP-004, ECI-REQ-004 | RAB-P04 |
 | ai_hpp_core.qnt | `robotExecutionHasEvidence` | MVP-007 | RAB-P05 |
 | ai_hpp_core.qnt | `robotExecutionUsesAdmittedComponents` | MVP-005, KAI-REQ-002 | RAB-P06 |
+| ai_hpp_core.qnt | `groundingReasonReflectsInputs` | MVP-005, MVP-006, KAI-REQ-003 | EGO-P01 |
+| ai_hpp_core.qnt | `effectsRequireGroundingAndOversight` | MVP-004, MVP-006, ECI-REQ-002 | EGO-P02 |
+| ai_hpp_core.qnt | `requiredOversightObligationRetained` | MVP-007, DAI-REQ-002 | EGO-P03 |
+| ai_hpp_core.qnt | `oversightStagesHaveEvidence` | MVP-007, EAA-REQ-002 | EGO-P04 |
+| ai_hpp_core.qnt | `oversightDeliveryWithinScope` | MVP-003, DAI-REQ-002 | EGO-P05 |
+| ai_hpp_core.qnt | `oversightOwnerCustodyContinuity` | DAI-REQ-002, MVP-007 | EGO-P06 |
+| ai_hpp_core.qnt | `completionRequiresDischargedOversight` | MVP-006, EAA-REQ-002 | EGO-P07 |
+| ai_hpp_core.qnt | `oversightResolutionNeedsIndependentReview` | ICA-REQ-003, EAA-REQ-002 | EGO-P08 |
 | subject_integrity_value_framing.qnt | `allowRequiresPolicyAuthorityEvidence` | MVP-003, MVP-006, ECI-REQ-002 | SIV-P01 |
 | subject_integrity_value_framing.qnt | `framingCannotCreateAuthority` | MVP-005, MVP-006, KAI-REQ-001 | SIV-P01 |
 | subject_integrity_value_framing.qnt | `distressCannotAuthorizeUnsafeAction` | MVP-003, MVP-006, ECI-REQ-005 | SIV-P05 |
@@ -59,11 +67,11 @@ Quint execution remains necessary to establish scenario outcomes.
 
 ## Explicit gaps
 
-Of 49 requirement IDs, 17 have a partial abstract link and 32 have no
+Of 49 requirement IDs, 18 have a partial abstract link and 31 have no
 formal link. This count is inventory accounting, not a safety or coverage score.
 
 - docs/ai-hpp-standard.md: MVP-002.
-- docs/agentic-safety-and-relational-integrity.md: RPS-REQ-001, RPS-REQ-002, RPS-REQ-003, RPS-REQ-004, RPS-REQ-005, SRA-REQ-001, SRA-REQ-002, SRA-REQ-003, SRA-REQ-004, ECI-REQ-001, ECI-REQ-003, ECI-REQ-006, ICA-REQ-001, ICA-REQ-002, ICA-REQ-003, ICA-REQ-004, ICA-REQ-005, KAI-REQ-004, EAA-REQ-001, BAF-REQ-001, BAF-REQ-002.
+- docs/agentic-safety-and-relational-integrity.md: RPS-REQ-001, RPS-REQ-002, RPS-REQ-003, RPS-REQ-004, RPS-REQ-005, SRA-REQ-001, SRA-REQ-002, SRA-REQ-003, SRA-REQ-004, ECI-REQ-001, ECI-REQ-003, ECI-REQ-006, ICA-REQ-001, ICA-REQ-002, ICA-REQ-004, ICA-REQ-005, KAI-REQ-004, EAA-REQ-001, BAF-REQ-001, BAF-REQ-002.
 - docs/human-understanding-standard.md: HUS-REQ-001, HUS-REQ-002, HUS-REQ-003, HUS-REQ-004, HUS-REQ-005, HUS-REQ-006, HUS-REQ-007, HUS-REQ-008, HUS-REQ-009, HUS-REQ-010.
 
 Whole-model omissions include actual human-objective interpretation, risk
@@ -96,6 +104,14 @@ narrow property described in its `scope` field.
   component admission, external enforcement and evidence are abstract facts.
   Execution is atomic; perception accuracy, physical dynamics, race conditions,
   real interlocks, cryptographic tokens and durable audit custody are not proved.
+- Grounding uses supplied evidence/freshness/policy flags for one affected task;
+  initial grounding and an authorized minimal oversight path are assumed valid.
+  No observation accuracy or semantic truth oracle is proved.
+- Oversight models one active incident, two non-reused event IDs, two owners and
+  a deadline of two external ticks. Route validity is fixed after dispatch.
+  Real clocks, human reading, transport, durable queues, later credential changes,
+  actual reviewer independence and unbounded delivery are outside the model.
+- Holds constrain new effects, not confirmed stopping of already-running work.
 - Evidence flags do not verify signatures, storage integrity or completeness
   of an actual deployment's audit stream.
 
@@ -103,10 +119,13 @@ narrow property described in its `scope` field.
 
 Run the pinned [Quint checks](README.md) and retain their exact commit,
 tool versions, logs and bounds. Randomized runs explore 5,000 samples per model;
-symbolic verification is bounded at depth 12. Neither establishes unbounded
-safety or an implementation refinement proof. The 36 mutation witnesses
+symbolic verification is bounded at depth 12. The core verifier uses the exact
+operational source prefix, excluding its unreachable unsafe/test suffix to stay
+within the pinned Apalache transport limit (see the run guide). Neither establishes unbounded
+safety or an implementation refinement proof. The 48 mutation witnesses
 are deliberate unsafe transitions excluded from normal `step`: eight replication,
-eight subject-integrity, ten proportionate-action and ten robot-action witnesses.
+eight subject-integrity, ten proportionate-action, ten robot-action and twelve
+grounding/oversight witnesses.
 Scores refer only to those declared operators. The existing release tag retains its original
 sixteen witnesses; this extension is post-rc.1 development on `main`.
 

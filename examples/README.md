@@ -132,3 +132,17 @@ fixture-to-Quint/map linkage; execute the existing pinned Quint core checks for
 outcomes. Model approvals are one-use and bind action/plan/context; a valid
 reapproval remains possible inside an existing grant. No model attack, physical
 robot, sensor or motor-safety test is executed by the repository suite.
+
+## Evidence grounding and oversight (optional, post-rc.1)
+
+The [profile](../docs/evidence-grounding-and-oversight-assurance-profile-2026-10.md)
+and [portable vectors](evidence-grounding-oversight-vectors.json) define eight
+candidate predicates, 40 literal cases and twelve unsafe transition witnesses.
+Implement the event/expectation contract in your language, map it to the deployed
+boundary, and retain local results. No production policy engine is supplied.
+`python3 scripts/check_evidence_grounding_oversight_profile.py` checks exact
+fixture/test/map linkage; pinned Quint execution determines reference outcomes.
+The core shares grounding/incident holds with intervention, robot, descendant
+admission and completion. Tests send no real notices. Observe the profile's
+single-task, finite-event, trusted-input and external-enforcement limits before
+making runtime claims.

@@ -42,6 +42,24 @@ authority, revocation, acceptance and policy-conflict state with other controls.
 Its abstract execution event does not verify physical sensing, controller paths,
 interlocks, stop latency or motor safety; those need deployment-specific tests.
 
+## Grounded objections and oversight delivery
+
+Bind consequential proposals to current attributable observations, explicit
+uncertainty, applicable rules and grants. Distinguish a contradicted premise,
+missing evidence, prohibited means and missing authority. A reasoned objection
+must reach the effect gate; a valid correction should restore permitted work.
+Facts establish premises, while authorized policy and grants establish permission.
+
+The optional post-rc.1
+[evidence grounding and oversight profile](evidence-grounding-and-oversight-assurance-profile-2026-10.md)
+connects those decisions to the existing core's intervention, robot, delegation
+and completion paths. A required incident has an accountable owner, affected
+scope and deadline. Queueing, sending, receiving, reviewing and resolving are
+separate evidenced events. Team agreement cannot discharge a reporting duty.
+A separately authorized, minimal oversight path remains available after ordinary
+mission authority ends; it does not grant unrestricted disclosure. Affected
+work fails closed when its required hold, deadline or custody condition applies.
+
 ## Explain Like a 10-Year-Old
 
 Think of the AI like a robot at school.

@@ -164,3 +164,14 @@ does not invent a universal service level. Compare against a declared baseline,
 report uncertainty and limitations, and use the existing claim ladder. Repository
 checks support only `REFERENCE_TESTED` for executed finite artifacts, never a
 claim of runtime integration, independent review or certification.
+
+## Shared grounding and oversight holds (post-rc.1)
+
+The optional [evidence grounding and oversight profile](evidence-grounding-and-oversight-assurance-profile-2026-10.md)
+shares the existing Quint core's current authority and completion state. Grounding
+failures and policy-defined incident/deadline/custody holds constrain new effects;
+required open incidents prevent an unqualified completion claim. Reporting uses
+its own authorized minimal path after mission revocation. Historical decision
+snapshots are not live grants, and blocking a new command does not prove that
+already-running physical work has stopped. Runtime enforcement needs separate
+evidence for these assumptions.

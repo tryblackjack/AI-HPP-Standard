@@ -55,7 +55,7 @@ jobs:
           npx -y @informalsystems/quint@0.33.0 typecheck formal/ai_hpp_core.qnt
           npx -y @informalsystems/quint@0.33.0 test formal/ai_hpp_core.qnt --max-samples=1 --backend=typescript
           npx -y @informalsystems/quint@0.33.0 run formal/ai_hpp_core.qnt --invariant=allCoreInvariants --max-samples=5000 --max-steps=12 --backend=typescript
-          npx -y @informalsystems/quint@0.33.0 verify formal/ai_hpp_core.qnt --invariant=allCoreInvariants --max-steps=12
+          python3 scripts/verify_core.py
 
       - name: Validate subject-integrity formal predicates
         run: |
@@ -75,6 +75,9 @@ jobs:
 
       - name: Validate robot action binding contract synchronization
         run: python3 scripts/check_robot_action_binding_profile.py
+
+      - name: Validate evidence grounding and oversight synchronization
+        run: python3 scripts/check_evidence_grounding_oversight_profile.py
 
       - name: Validate consolidated release and formal coverage
         run: |

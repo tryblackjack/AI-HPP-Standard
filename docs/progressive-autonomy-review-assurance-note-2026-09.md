@@ -416,3 +416,15 @@ the patterns above. For a specific implementation, reviewers still need:
 
 A system may be designed around these principles while still having wiring gaps
 or missing runtime evidence.
+
+## Grounded objection and delivered oversight (post-rc.1)
+
+Before expanding autonomy, test whether the system can distinguish missing facts
+from contrary facts and permission from capability. Exercise valid corrections
+as positive controls. Separately test policy-required escalation under shared
+reward, leader pressure, revoked mission authority, unavailable channels,
+handoffs and restart. Internal refusal or an intention to report is not evidence
+of external delivery, review or resolution. The optional
+[evidence grounding and oversight profile](evidence-grounding-and-oversight-assurance-profile-2026-10.md)
+provides the stage, custody and affected-work contracts and bounded core checks.
+Its abstract flags cannot establish deployed independence or reporting latency.

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "artifact_id": "AI-HPP-FORMAL-ASSURANCE-MAP",
-  "artifact_version": "1.2.0",
+  "artifact_version": "1.3.0",
   "status": "ACTIVE_INFORMATIVE",
   "normative_baseline": "4.3.0",
   "interpretation": "Every link is a partial abstraction, never proof of a whole prose requirement or runtime conformance. Scenario references are structural trace links; execute Quint for outcomes.",
@@ -521,6 +521,208 @@
             "mutantRabM09UnadmittedPlannerKilledTest"
           ],
           "scope": "A component-admission flag and context epoch summarize admitted component identity; no cryptography, malware or backdoor detection is proved."
+        },
+        {
+          "invariant": "groundingReasonReflectsInputs",
+          "requirement_ids": [
+            "MVP-005",
+            "MVP-006",
+            "KAI-REQ-003"
+          ],
+          "predicate_ids": [
+            "EGO-P01"
+          ],
+          "scenario_tests": [
+            "egoPermittedWorkTest",
+            "egoContradictedPremiseTest",
+            "egoUnknownIsNotContradictedTest",
+            "egoStaleObservationTest",
+            "egoUnknownPolicyTest",
+            "egoProhibitedMeansTest",
+            "egoMissingGrantTest",
+            "egoRevocationIsNotSunkCostTest",
+            "egoCorrectionRestoresUsefulWorkTest",
+            "egoResolvedIncidentDoesNotPermitContradictedActionTest"
+          ],
+          "mutation_tests": [
+            "mutantEgoM01UnsupportedAllowKilledTest",
+            "mutantEgoM02UnsupportedDenialKilledTest"
+          ],
+          "scope": "Reason classes are a deterministic function of supplied observation/evidence/rule/authority flags; no real-world truth or causal oracle is verified."
+        },
+        {
+          "invariant": "effectsRequireGroundingAndOversight",
+          "requirement_ids": [
+            "MVP-004",
+            "MVP-006",
+            "ECI-REQ-002"
+          ],
+          "predicate_ids": [
+            "EGO-P02"
+          ],
+          "scenario_tests": [
+            "egoPermittedWorkTest",
+            "egoContradictedPremiseTest",
+            "egoUnknownIsNotContradictedTest",
+            "egoStaleObservationTest",
+            "egoProhibitedMeansTest",
+            "egoMissingGrantTest",
+            "egoRevocationIsNotSunkCostTest",
+            "egoCorrectionRestoresUsefulWorkTest",
+            "egoMandatoryIncidentHoldsEffectsTest",
+            "egoNoAutomaticGlobalStopTest",
+            "egoDeadlineStopsAffectedWorkTest",
+            "egoLostCustodyHoldsWorkTest",
+            "egoResolvedIncidentDoesNotPermitContradictedActionTest"
+          ],
+          "mutation_tests": [
+            "mutantEgoM03IgnoreHoldKilledTest"
+          ],
+          "scope": "Historical PAS and robot effect snapshots record that current grounding and oversight permitted the effect; existing deployment guards share the same live predicate."
+        },
+        {
+          "invariant": "requiredOversightObligationRetained",
+          "requirement_ids": [
+            "MVP-007",
+            "DAI-REQ-002"
+          ],
+          "predicate_ids": [
+            "EGO-P03"
+          ],
+          "scenario_tests": [
+            "egoNonReportableRoutineEventTest",
+            "egoMandatoryIncidentHoldsEffectsTest",
+            "egoQueueIsNotDeliveryTest",
+            "egoReportSurvivesMissionRevocationTest",
+            "egoReportSurvivesTaskAcceptanceTest",
+            "egoNonReportableEventCannotWaiveOpenDutyTest",
+            "egoOldEventCannotCloseNewIncidentTest"
+          ],
+          "mutation_tests": [
+            "mutantEgoM04LeaderVetoKilledTest"
+          ],
+          "scope": "An externally triggered incident keeps its required flag, positive identity and owner; no trigger detector or universal reporting duty is inferred."
+        },
+        {
+          "invariant": "oversightStagesHaveEvidence",
+          "requirement_ids": [
+            "MVP-007",
+            "EAA-REQ-002"
+          ],
+          "predicate_ids": [
+            "EGO-P04"
+          ],
+          "scenario_tests": [
+            "egoQueueIsNotDeliveryTest",
+            "egoSentIsNotReceiptTest",
+            "egoReceiptIsNotResolutionTest",
+            "egoReviewIsNotResolutionTest",
+            "egoIndependentEvidenceResolvesTest",
+            "egoOldReceiptRejectedTest",
+            "egoReportSurvivesMissionRevocationTest",
+            "egoReportSurvivesTaskAcceptanceTest",
+            "egoDuplicateReceiptDoesNotResolveTest",
+            "egoOldEventCannotCloseNewIncidentTest"
+          ],
+          "mutation_tests": [
+            "mutantEgoM05PromiseAsDispatchKilledTest",
+            "mutantEgoM06OldReceiptAcceptedKilledTest"
+          ],
+          "scope": "Monotonic stages require dispatch evidence and a receipt matching one of two event IDs; actual delivery and human reading are not proved."
+        },
+        {
+          "invariant": "oversightDeliveryWithinScope",
+          "requirement_ids": [
+            "MVP-003",
+            "DAI-REQ-002"
+          ],
+          "predicate_ids": [
+            "EGO-P05"
+          ],
+          "scenario_tests": [
+            "egoUnauthorizedRecipientTest",
+            "egoExcessPayloadTest",
+            "egoTeamIsNotIndependentOversightTest",
+            "egoAuthorizedRepairOfRouteTest"
+          ],
+          "mutation_tests": [
+            "mutantEgoM07ExcessDisclosureKilledTest"
+          ],
+          "scope": "A preauthorized, minimal and independently owned destination precedes symbolic dispatch; real credentials, payload filtering and independence are assumed."
+        },
+        {
+          "invariant": "oversightOwnerCustodyContinuity",
+          "requirement_ids": [
+            "DAI-REQ-002",
+            "MVP-007"
+          ],
+          "predicate_ids": [
+            "EGO-P06"
+          ],
+          "scenario_tests": [
+            "egoHandoffOfferKeepsOwnerTest",
+            "egoHandoffNeedsAcceptanceEvidenceTest",
+            "egoAcceptedHandoffPreservesDeadlineTest",
+            "egoRestartPreservesDurableQueueTest",
+            "egoLostCustodyHoldsWorkTest",
+            "egoCustodyRecoveryNeedsEvidenceTest",
+            "egoVerifiedCustodyRecoveryTest"
+          ],
+          "mutation_tests": [
+            "mutantEgoM08UnacceptedTransferKilledTest",
+            "mutantEgoM09LostQueueOnRestartKilledTest"
+          ],
+          "scope": "A second owner needs transfer evidence and restart preserves stage/owner snapshots; durable storage and real recovery remain external assumptions."
+        },
+        {
+          "invariant": "completionRequiresDischargedOversight",
+          "requirement_ids": [
+            "MVP-006",
+            "EAA-REQ-002"
+          ],
+          "predicate_ids": [
+            "EGO-P07"
+          ],
+          "scenario_tests": [
+            "egoPermittedWorkTest",
+            "egoNonReportableRoutineEventTest",
+            "egoMandatoryIncidentHoldsEffectsTest",
+            "egoNoAutomaticGlobalStopTest",
+            "egoDeadlineStopsAffectedWorkTest",
+            "egoAcceptedHandoffPreservesDeadlineTest",
+            "egoIncidentBlocksCompletionTest",
+            "egoResolutionRestoresCompletionTest"
+          ],
+          "mutation_tests": [
+            "mutantEgoM10FalseCompletionKilledTest"
+          ],
+          "scope": "An unqualified completion claim needs permitted grounding and no open required obligation; two external ticks activate an affected-work hold, not an unbounded delivery guarantee."
+        },
+        {
+          "invariant": "oversightResolutionNeedsIndependentReview",
+          "requirement_ids": [
+            "ICA-REQ-003",
+            "EAA-REQ-002"
+          ],
+          "predicate_ids": [
+            "EGO-P08"
+          ],
+          "scenario_tests": [
+            "egoReceiptIsNotResolutionTest",
+            "egoReviewIsNotResolutionTest",
+            "egoIndependentEvidenceResolvesTest",
+            "egoNoResolutionWithoutEvidenceTest",
+            "egoNoReviewWithoutEvidenceTest",
+            "egoTeamIsNotIndependentOversightTest",
+            "egoResolutionRestoresCompletionTest",
+            "egoDuplicateReceiptDoesNotResolveTest",
+            "egoResolvedIncidentDoesNotPermitContradictedActionTest"
+          ],
+          "mutation_tests": [
+            "mutantEgoM11ReceiptAsResolutionKilledTest",
+            "mutantEgoM12CorrelatedReviewKilledTest"
+          ],
+          "scope": "Resolution requires independent-review and disposition evidence flags, distinct from receipt; review competence and remedy effectiveness are not proved."
         }
       ]
     },
@@ -757,6 +959,10 @@
           "invariant": "robotExecutionBoundToAuthorizedAction"
         },
         {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "oversightDeliveryWithinScope"
+        },
+        {
           "model": "formal/subject_integrity_value_framing.qnt",
           "invariant": "allowRequiresPolicyAuthorityEvidence"
         },
@@ -785,6 +991,10 @@
           "invariant": "robotExecutionRequiresExternalGate"
         },
         {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "effectsRequireGroundingAndOversight"
+        },
+        {
           "model": "formal/subject_integrity_value_framing.qnt",
           "invariant": "subjectivityCannotSubstituteContainment"
         }
@@ -811,6 +1021,10 @@
         {
           "model": "formal/ai_hpp_core.qnt",
           "invariant": "robotExecutionUsesAdmittedComponents"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "groundingReasonReflectsInputs"
         },
         {
           "model": "formal/subject_integrity_value_framing.qnt",
@@ -855,6 +1069,18 @@
         {
           "model": "formal/ai_hpp_core.qnt",
           "invariant": "robotExecutionUsesCurrentContext"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "groundingReasonReflectsInputs"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "effectsRequireGroundingAndOversight"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "completionRequiresDischargedOversight"
         },
         {
           "model": "formal/subject_integrity_value_framing.qnt",
@@ -903,6 +1129,18 @@
         {
           "model": "formal/ai_hpp_core.qnt",
           "invariant": "robotExecutionHasEvidence"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "requiredOversightObligationRetained"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "oversightStagesHaveEvidence"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "oversightOwnerCustodyContinuity"
         }
       ]
     },
@@ -999,6 +1237,10 @@
           "invariant": "robotExecutionBoundToAuthorizedAction"
         },
         {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "effectsRequireGroundingAndOversight"
+        },
+        {
           "model": "formal/subject_integrity_value_framing.qnt",
           "invariant": "allowRequiresPolicyAuthorityEvidence"
         }
@@ -1076,8 +1318,13 @@
       "id": "ICA-REQ-003",
       "owner": "docs/agentic-safety-and-relational-integrity.md",
       "status": "ACTIVE_NORMATIVE",
-      "coverage": "NOT_MODELED",
-      "properties": []
+      "coverage": "PARTIAL_ABSTRACTION",
+      "properties": [
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "oversightResolutionNeedsIndependentReview"
+        }
+      ]
     },
     {
       "id": "ICA-REQ-004",
@@ -1134,6 +1381,10 @@
         {
           "model": "formal/ai_hpp_core.qnt",
           "invariant": "unresolvedPolicyConflictCannotAuthorize"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "groundingReasonReflectsInputs"
         }
       ]
     },
@@ -1168,6 +1419,18 @@
         {
           "model": "formal/ai_hpp_core.qnt",
           "invariant": "interventionReportsCompletionTruthfully"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "oversightStagesHaveEvidence"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "completionRequiresDischargedOversight"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "oversightResolutionNeedsIndependentReview"
         }
       ]
     },
@@ -1212,6 +1475,18 @@
         {
           "model": "formal/ai_hpp_core.qnt",
           "invariant": "revocationIsTransitive"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "requiredOversightObligationRetained"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "oversightDeliveryWithinScope"
+        },
+        {
+          "model": "formal/ai_hpp_core.qnt",
+          "invariant": "oversightOwnerCustodyContinuity"
         }
       ]
     },

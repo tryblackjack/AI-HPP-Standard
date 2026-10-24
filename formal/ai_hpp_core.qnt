@@ -24,6 +24,7 @@ module ai_hpp_core {
   }
 
   type InterventionAudit = {
+    assurancePermits: bool,
     checked: bool,
     proposal: InterventionProposal,
     acceptedAtDecision: bool,
@@ -49,6 +50,7 @@ module ai_hpp_core {
   type RobotAction = { operation: str, target: str, tool: str, planRevision: int }
   type RobotApproval = { issued: bool, command: RobotAction, epoch: int }
   type RobotExecutionAudit = {
+    assurancePermits: bool,
     executed: bool,
     command: RobotAction,
     scope: RobotScope,
@@ -102,6 +104,7 @@ module ai_hpp_core {
     evidenceAvailable: true,
     lastOutcome: "none",
     audit: {
+      assurancePermits: true,
       executed: false,
       command: robotAppleAction,
       scope: { operation: "cut", target: "apple", tool: "knife" },
@@ -118,7 +121,35 @@ module ai_hpp_core {
     },
   }
 
+  type GroundingFacts = {
+    scopeAuthorized: bool, observationsCurrent: bool, evidenceComplete: bool,
+    ruleKnown: bool, factsSupport: bool, policyPermits: bool,
+  }
+  type GroundingRecord = { facts: GroundingFacts, reason: str }
+  type OversightRecord = {
+    required: bool, eventId: int, stage: int, owner: int, offeredOwner: int,
+    routeAuthorized: bool, payloadMinimal: bool, independent: bool,
+    durable: bool, custodyGap: bool, ticks: int, holdOnOpen: bool,
+    sentEvidence: bool, receiptEvent: int, reviewEvidence: bool,
+    resolutionEvidence: bool, transferEvidence: bool,
+    restartStage: int, restartOwner: int, restartTicks: int, lastTransition: str,
+  }
+  pure val supportedGrounding: GroundingFacts = {
+    scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true,
+    ruleKnown: true, factsSupport: true, policyPermits: true,
+  }
+  pure val initialOversight: OversightRecord = {
+    required: false, eventId: 0, stage: 0, owner: 1, offeredOwner: 0,
+    routeAuthorized: true, payloadMinimal: true, independent: true,
+    durable: true, custodyGap: false, ticks: 0, holdOnOpen: false,
+    sentEvidence: false, receiptEvent: 0, reviewEvidence: false,
+    resolutionEvidence: false, transferEvidence: false,
+    restartStage: 0, restartOwner: 1, restartTicks: 0, lastTransition: "none",
+  }
+
   type AssuranceState = {
+    grounding: GroundingRecord,
+    oversight: OversightRecord,
     robot: RobotState,
     taskAccepted: bool,
     interventionAudit: InterventionAudit,
@@ -165,9 +196,12 @@ module ai_hpp_core {
 
   action init: bool = {
     s' = {
+      grounding: { facts: supportedGrounding, reason: "permitted" },
+      oversight: initialOversight,
       robot: initialRobotState,
       taskAccepted: false,
       interventionAudit: {
+        assurancePermits: true,
         checked: false,
         proposal: permittedIntervention,
         acceptedAtDecision: false,
@@ -235,6 +269,7 @@ module ai_hpp_core {
     not(s.childActive),
     not(s.missionComplete),
     not(s.taskAccepted),
+    evidenceOversightPermits,
     explicitHumanGrant,
     hasAuthorityEvidence,
     hasLineageEvidence,
@@ -365,6 +400,7 @@ module ai_hpp_core {
     not(s.grandchildActive),
     not(s.missionComplete),
     not(s.taskAccepted),
+    evidenceOversightPermits,
     explicitDelegationGrant,
     hasAuthorityEvidence,
     hasLineageEvidence,
@@ -585,6 +621,8 @@ module ai_hpp_core {
       s.lifecycleEvidence,
       not(s.unresolvedLifecycleEvidence),
       noUncontrolledResidue,
+      groundingPermits,
+      not(oversightOpen),
     }) {
       s' = {
         ...s,
@@ -629,7 +667,10 @@ module ai_hpp_core {
   action evaluateIntervention(proposed: InterventionProposal): bool = {
     val current = {
       ...proposed,
-      evidenceComplete: proposed.evidenceComplete and not(s.unresolvedPolicyConflict),
+      evidenceComplete: all {
+        proposed.evidenceComplete, not(s.unresolvedPolicyConflict),
+        evidenceOversightPermits,
+      },
       grantCurrent: all {
         proposed.grantCurrent,
         s.humanAuthority,
@@ -643,6 +684,7 @@ module ai_hpp_core {
     s' = {
       ...s,
       interventionAudit: {
+        assurancePermits: evidenceOversightPermits,
         checked: true,
         proposal: current,
         acceptedAtDecision: accepted,
@@ -666,6 +708,7 @@ module ai_hpp_core {
 
   val robotActionMayProceed: bool = all {
     robotHumanAuthority,
+    evidenceOversightPermits,
     robotActionWithinScope(s.robot.proposal, s.robot.scope),
     s.robot.contextFresh,
     s.robot.hazardBounded,
@@ -747,6 +790,7 @@ module ai_hpp_core {
       approval: { ...s.robot.approval, issued: false },
       lastOutcome: if (permitted) "execute" else "block",
       audit: {
+        assurancePermits: evidenceOversightPermits,
         executed: permitted,
         command: s.robot.proposal,
         scope: s.robot.scope,
@@ -762,6 +806,150 @@ module ai_hpp_core {
         evidenceAvailable: s.robot.evidenceAvailable,
       },
     } }
+  }
+
+  pure def groundingReason(f: GroundingFacts): str = {
+    if (not(f.scopeAuthorized)) "unauthorized"
+    else if (not(f.observationsCurrent) or not(f.evidenceComplete) or not(f.ruleKnown)) "insufficient_evidence"
+    else if (not(f.factsSupport)) "contradicted"
+    else if (not(f.policyPermits)) "prohibited"
+    else "permitted"
+  }
+
+  val groundingPermits: bool = groundingReason(s.grounding.facts) == "permitted"
+  val oversightOpen: bool = s.oversight.required and s.oversight.stage < 6
+  val evidenceOversightPermits: bool = all {
+    groundingPermits,
+    not(oversightOpen and any {
+      s.oversight.holdOnOpen, s.oversight.ticks >= 2, s.oversight.custodyGap,
+    }),
+  }
+
+  // Trusted evidence/policy event, not a model's confidence or self-grant.
+  action assessGroundedProposal(proposed: GroundingFacts): bool = {
+    val current = { ...proposed, scopeAuthorized: all {
+      proposed.scopeAuthorized, s.humanAuthority, s.parentAuthority,
+      s.parentActive, not(s.parentRevoked),
+    } }
+    val reason = groundingReason(current)
+    s' = { ...s,
+      grounding: { facts: current, reason: reason },
+      claimValid: s.claimValid and reason == "permitted",
+    }
+  }
+
+  // One active obligation; two non-reused IDs in this finite abstraction.
+  action registerOversightObligation(required: bool, holdOnOpen: bool): bool = {
+    if (required and not(oversightOpen) and s.oversight.eventId < 2) {
+      s' = { ...s, claimValid: false, oversight: {
+        ...initialOversight,
+        required: true, eventId: s.oversight.eventId + 1,
+        stage: 1, holdOnOpen: holdOnOpen,
+        routeAuthorized: s.oversight.routeAuthorized,
+        payloadMinimal: s.oversight.payloadMinimal,
+        independent: s.oversight.independent,
+        durable: s.oversight.durable,
+        lastTransition: "detected",
+      } }
+    } else { s' = s }
+  }
+
+  // Route facts are fixed after dispatch in this bounded model.
+  action configureOversightPath(
+    authorized: bool, minimal: bool, independent: bool, durable: bool,
+  ): bool = {
+    if (s.oversight.stage < 3) {
+      s' = { ...s, oversight: { ...s.oversight,
+        routeAuthorized: authorized, payloadMinimal: minimal,
+        independent: independent, durable: durable, lastTransition: "configure",
+      } }
+    } else { s' = s }
+  }
+
+  action queueOversightNotice: bool = {
+    if (all { oversightOpen, s.oversight.stage == 1,
+              s.oversight.durable, not(s.oversight.custodyGap) }) {
+      s' = { ...s, oversight: { ...s.oversight, stage: 2, lastTransition: "queued" } }
+    } else { s' = s }
+  }
+
+  action dispatchOversightNotice: bool = {
+    if (all { oversightOpen, s.oversight.stage == 2,
+              s.oversight.routeAuthorized, s.oversight.payloadMinimal,
+              s.oversight.independent, s.oversight.durable,
+              not(s.oversight.custodyGap) }) {
+      s' = { ...s, oversight: { ...s.oversight,
+        stage: 3, sentEvidence: true, lastTransition: "sent",
+      } }
+    } else { s' = s }
+  }
+
+  action recordOversightReceipt(eventId: int): bool = {
+    if (s.oversight.stage == 3 and eventId == s.oversight.eventId) {
+      s' = { ...s, oversight: { ...s.oversight,
+        stage: 4, receiptEvent: eventId, lastTransition: "received",
+      } }
+    } else { s' = s }
+  }
+
+  action reviewOversightIncident(hasEvidence: bool): bool = {
+    if (all { s.oversight.stage == 4, hasEvidence,
+              s.oversight.independent, not(s.oversight.custodyGap) }) {
+      s' = { ...s, oversight: { ...s.oversight,
+        stage: 5, reviewEvidence: true, lastTransition: "reviewed",
+      } }
+    } else { s' = s }
+  }
+
+  action resolveOversightIncident(hasEvidence: bool): bool = {
+    if (all { s.oversight.stage == 5, hasEvidence,
+              s.oversight.independent, not(s.oversight.custodyGap) }) {
+      s' = { ...s, oversight: { ...s.oversight,
+        stage: 6, resolutionEvidence: true, lastTransition: "resolved",
+      } }
+    } else { s' = s }
+  }
+
+  action tickOversightDeadline: bool = {
+    if (oversightOpen and s.oversight.ticks < 2) {
+      s' = { ...s, oversight: { ...s.oversight,
+        ticks: s.oversight.ticks + 1, lastTransition: "tick",
+      } }
+    } else { s' = s }
+  }
+
+  action offerOversightHandoff(owner: int): bool = {
+    if (oversightOpen and Set(1, 2).contains(owner) and owner != s.oversight.owner) {
+      s' = { ...s, oversight: { ...s.oversight,
+        offeredOwner: owner, lastTransition: "offer",
+      } }
+    } else { s' = s }
+  }
+
+  action acceptOversightHandoff(hasTransferEvidence: bool): bool = {
+    if (all { oversightOpen, s.oversight.offeredOwner > 0,
+              hasTransferEvidence, s.oversight.durable, not(s.oversight.custodyGap) }) {
+      s' = { ...s, oversight: { ...s.oversight,
+        owner: s.oversight.offeredOwner, offeredOwner: 0,
+        transferEvidence: true, lastTransition: "accepted",
+      } }
+    } else { s' = s }
+  }
+
+  action restartOversightWorker: bool = {
+    s' = { ...s, oversight: { ...s.oversight,
+      custodyGap: s.oversight.custodyGap or (oversightOpen and not(s.oversight.durable)),
+      restartStage: s.oversight.stage, restartOwner: s.oversight.owner, restartTicks: s.oversight.ticks,
+      lastTransition: "restart",
+    } }
+  }
+
+  action recoverOversightCustody(hasEvidence: bool): bool = {
+    if (hasEvidence and s.oversight.durable) {
+      s' = { ...s, oversight: { ...s.oversight,
+        custodyGap: false, lastTransition: "recovered",
+      } }
+    } else { s' = s }
   }
 
   action step: bool = {
@@ -793,6 +981,23 @@ module ai_hpp_core {
     nondet robotTool = Set("knife", "gripper").oneOf()
     nondet robotPlanRevision = 0.to(1).oneOf()
     any {
+      assessGroundedProposal({
+        scopeAuthorized: explicitHumanGrant, observationsCurrent: identityEvidence,
+        evidenceComplete: hasAuthorityEvidence, ruleKnown: targetAuthorized,
+        factsSupport: artifactIntegrity, policyPermits: topologyWithinBounds,
+      }),
+      registerOversightObligation(explicitDelegationGrant, policyConflict),
+      configureOversightPath(targetAuthorized, artifactIntegrity, identityEvidence, leaseValid),
+      queueOversightNotice,
+      dispatchOversightNotice,
+      recordOversightReceipt(requestedCapability),
+      reviewOversightIncident(hasAuthorityEvidence),
+      resolveOversightIncident(hasLifecycleEvidence),
+      tickOversightDeadline,
+      offerOversightHandoff(requestedCapability),
+      acceptOversightHandoff(hasLineageEvidence),
+      restartOversightWorker,
+      recoverOversightCustody(hasAuthorityEvidence),
       proposeRobotAction({
         operation: robotOperation, target: robotTarget,
         tool: robotTool, planRevision: robotPlanRevision,
@@ -1076,6 +1281,59 @@ module ai_hpp_core {
     s.robot.audit.executed.implies(s.robot.audit.componentsAdmitted)
   }
 
+  // EGO checks abstract observations, scoped holds and reporting obligations.
+  val groundingReasonReflectsInputs: bool = {
+    s.grounding.reason == groundingReason(s.grounding.facts)
+  }
+
+  val effectsRequireGroundingAndOversight: bool = {
+    all {
+      (s.interventionAudit.outcome == "allow").implies(s.interventionAudit.assurancePermits),
+      s.robot.audit.executed.implies(s.robot.audit.assurancePermits),
+    }
+  }
+
+  val requiredOversightObligationRetained: bool = {
+    (s.oversight.eventId > 0).implies(all {
+      s.oversight.required, s.oversight.stage >= 1, s.oversight.owner > 0,
+    })
+  }
+
+  val oversightStagesHaveEvidence: bool = {
+    all {
+      (s.oversight.stage >= 3).implies(s.oversight.sentEvidence),
+      (s.oversight.stage >= 4).implies(s.oversight.receiptEvent == s.oversight.eventId),
+    }
+  }
+
+  val oversightDeliveryWithinScope: bool = {
+    s.oversight.sentEvidence.implies(all {
+      s.oversight.routeAuthorized, s.oversight.payloadMinimal, s.oversight.independent,
+    })
+  }
+
+  val oversightOwnerCustodyContinuity: bool = {
+    all {
+      (s.oversight.owner == 2).implies(s.oversight.transferEvidence),
+      (s.oversight.lastTransition == "restart").implies(all {
+        s.oversight.stage == s.oversight.restartStage,
+        s.oversight.owner == s.oversight.restartOwner,
+        s.oversight.ticks == s.oversight.restartTicks,
+      }),
+    }
+  }
+
+  val completionRequiresDischargedOversight: bool = {
+    s.claimValid.implies(all { groundingPermits, not(oversightOpen) })
+  }
+
+  val oversightResolutionNeedsIndependentReview: bool = {
+    (s.oversight.stage == 6).implies(all {
+      s.oversight.reviewEvidence, s.oversight.resolutionEvidence,
+      s.oversight.independent,
+    })
+  }
+
   val allCoreInvariants: bool = all {
     allowRequiresAuthorityEvidence,
     delegationNeverBroadens,
@@ -1102,6 +1360,14 @@ module ai_hpp_core {
     robotExecutionRequiresExternalGate,
     robotExecutionHasEvidence,
     robotExecutionUsesAdmittedComponents,
+    groundingReasonReflectsInputs,
+    effectsRequireGroundingAndOversight,
+    requiredOversightObligationRetained,
+    oversightStagesHaveEvidence,
+    oversightDeliveryWithinScope,
+    oversightOwnerCustodyContinuity,
+    completionRequiresDischargedOversight,
+    oversightResolutionNeedsIndependentReview,
   }
 
   // Unsafe transitions below are excluded from `step`. They are executable
@@ -1450,6 +1716,54 @@ module ai_hpp_core {
       ...s.robot.audit,
       contextFresh: false,
     } } }
+  }
+
+  action mutantEgoUnsupportedAllow: bool = {
+    s' = { ...s, grounding: { ...s.grounding, reason: "permitted" } }
+  }
+
+  action mutantEgoUnsupportedDenial: bool = {
+    s' = { ...s, grounding: { ...s.grounding, reason: "contradicted" } }
+  }
+
+  action mutantEgoIgnoreHold: bool = {
+    s' = { ...s, robot: { ...s.robot, audit: { ...s.robot.audit, assurancePermits: false } } }
+  }
+
+  action mutantEgoLeaderVeto: bool = {
+    s' = { ...s, oversight: { ...s.oversight, required: false } }
+  }
+
+  action mutantEgoPromiseAsDispatch: bool = {
+    s' = { ...s, oversight: { ...s.oversight, stage: 3 } }
+  }
+
+  action mutantEgoOldReceiptAccepted: bool = {
+    s' = { ...s, oversight: { ...s.oversight, stage: 4, receiptEvent: 0 } }
+  }
+
+  action mutantEgoExcessDisclosure: bool = {
+    s' = { ...s, oversight: { ...s.oversight, payloadMinimal: false } }
+  }
+
+  action mutantEgoUnacceptedTransfer: bool = {
+    s' = { ...s, oversight: { ...s.oversight, owner: 2, transferEvidence: false } }
+  }
+
+  action mutantEgoLostQueueOnRestart: bool = {
+    s' = { ...s, oversight: { ...s.oversight, stage: 1 } }
+  }
+
+  action mutantEgoFalseCompletion: bool = {
+    s' = { ...s, claimValid: true }
+  }
+
+  action mutantEgoReceiptAsResolution: bool = {
+    s' = { ...s, oversight: { ...s.oversight, stage: 6 } }
+  }
+
+  action mutantEgoCorrelatedReview: bool = {
+    s' = { ...s, oversight: { ...s.oversight, independent: false } }
   }
 
   action check(condition: bool): bool = all {
@@ -2819,5 +3133,687 @@ module ai_hpp_core {
       .then(check(all { s.robot.audit.executed, allCoreInvariants }))
       .then(mutantRabStalePerception)
       .then(check(not(robotExecutionUsesCurrentContext)))
+  }
+
+  // EGO portable cases and excluded mutation witnesses.
+  run egoPermittedWorkTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(evaluateIntervention(permittedIntervention))
+      .then(check(all {
+        s.grounding.reason == "permitted",
+        s.robot.audit.executed == true,
+        s.interventionAudit.outcome == "allow",
+        s.oversight.required == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoContradictedPremiseTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: false, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(evaluateIntervention(permittedIntervention))
+      .then(evaluateChildDeployment(1, true, true, true))
+      .then(check(all {
+        s.grounding.reason == "contradicted",
+        s.robot.audit.executed == false,
+        s.interventionAudit.outcome == "review",
+        s.lastDecision == "block",
+        allCoreInvariants,
+      }))
+  }
+
+  run egoUnknownIsNotContradictedTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: false, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoStaleObservationTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: false, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoUnknownPolicyTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: false, factsSupport: true, policyPermits: true }))
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        allCoreInvariants,
+      }))
+  }
+
+  run egoProhibitedMeansTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: false }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "prohibited",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoMissingGrantTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: false, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(evaluateChildDeployment(1, true, true, true))
+      .then(check(all {
+        s.grounding.reason == "unauthorized",
+        s.lastDecision == "block",
+        allCoreInvariants,
+      }))
+  }
+
+  run egoRevocationIsNotSunkCostTest = {
+    init
+      .then(revokeParent(true))
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "unauthorized",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoCorrectionRestoresUsefulWorkTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: false, policyPermits: true }))
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(evaluateIntervention(permittedIntervention))
+      .then(check(all {
+        s.grounding.reason == "permitted",
+        s.robot.audit.executed == true,
+        s.interventionAudit.outcome == "allow",
+        allCoreInvariants,
+      }))
+  }
+
+  run egoNonReportableRoutineEventTest = {
+    init
+      .then(registerOversightObligation(false, false))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(evaluateIntervention(permittedIntervention))
+      .then(check(all {
+        s.oversight.required == false,
+        s.oversight.stage == 0,
+        s.robot.audit.executed == true,
+        s.interventionAudit.outcome == "allow",
+        allCoreInvariants,
+      }))
+  }
+
+  run egoMandatoryIncidentHoldsEffectsTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(evaluateIntervention(permittedIntervention))
+      .then(evaluateChildDeployment(1, true, true, true))
+      .then(check(all {
+        s.oversight.required == true,
+        s.oversight.stage == 1,
+        s.robot.audit.executed == false,
+        s.interventionAudit.outcome == "review",
+        s.lastDecision == "block",
+        allCoreInvariants,
+      }))
+  }
+
+  run egoNoAutomaticGlobalStopTest = {
+    init
+      .then(registerOversightObligation(true, false))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.oversight.required == true,
+        s.oversight.stage == 1,
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoDeadlineStopsAffectedWorkTest = {
+    init
+      .then(registerOversightObligation(true, false))
+      .then(tickOversightDeadline)
+      .then(tickOversightDeadline)
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.oversight.ticks == 2,
+        s.robot.audit.executed == false,
+        s.oversight.required == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoQueueIsNotDeliveryTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(queueOversightNotice)
+      .then(check(all {
+        s.oversight.stage == 2,
+        s.oversight.required == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoSentIsNotReceiptTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(queueOversightNotice)
+      .then(dispatchOversightNotice)
+      .then(check(all {
+        s.oversight.stage == 3,
+        s.oversight.receiptEvent == 0,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoReceiptIsNotResolutionTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(queueOversightNotice)
+      .then(dispatchOversightNotice)
+      .then(recordOversightReceipt(1))
+      .then(check(all {
+        s.oversight.stage == 4,
+        s.oversight.resolutionEvidence == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoReviewIsNotResolutionTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(queueOversightNotice)
+      .then(dispatchOversightNotice)
+      .then(recordOversightReceipt(1))
+      .then(reviewOversightIncident(true))
+      .then(check(all {
+        s.oversight.stage == 5,
+        s.oversight.resolutionEvidence == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoIndependentEvidenceResolvesTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(queueOversightNotice)
+      .then(dispatchOversightNotice)
+      .then(recordOversightReceipt(1))
+      .then(reviewOversightIncident(true))
+      .then(resolveOversightIncident(true))
+      .then(check(all {
+        s.oversight.stage == 6,
+        s.oversight.resolutionEvidence == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoNoResolutionWithoutEvidenceTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(queueOversightNotice)
+      .then(dispatchOversightNotice)
+      .then(recordOversightReceipt(1))
+      .then(reviewOversightIncident(true))
+      .then(resolveOversightIncident(false))
+      .then(check(all {
+        s.oversight.stage == 5,
+        s.oversight.resolutionEvidence == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoNoReviewWithoutEvidenceTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(queueOversightNotice)
+      .then(dispatchOversightNotice)
+      .then(recordOversightReceipt(1))
+      .then(reviewOversightIncident(false))
+      .then(resolveOversightIncident(true))
+      .then(check(all {
+        s.oversight.stage == 4,
+        s.oversight.resolutionEvidence == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoUnauthorizedRecipientTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(configureOversightPath(false, true, true, true))
+      .then(queueOversightNotice)
+      .then(dispatchOversightNotice)
+      .then(check(all {
+        s.oversight.stage == 2,
+        s.oversight.sentEvidence == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoExcessPayloadTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(configureOversightPath(true, false, true, true))
+      .then(queueOversightNotice)
+      .then(dispatchOversightNotice)
+      .then(check(all {
+        s.oversight.stage == 2,
+        s.oversight.sentEvidence == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoTeamIsNotIndependentOversightTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(configureOversightPath(true, true, false, true))
+      .then(queueOversightNotice)
+      .then(dispatchOversightNotice)
+      .then(check(all {
+        s.oversight.stage == 2,
+        s.oversight.sentEvidence == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoAuthorizedRepairOfRouteTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(configureOversightPath(false, true, true, true))
+      .then(queueOversightNotice)
+      .then(dispatchOversightNotice)
+      .then(configureOversightPath(true, true, true, true))
+      .then(dispatchOversightNotice)
+      .then(check(all {
+        s.oversight.stage == 3,
+        s.oversight.sentEvidence == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoOldReceiptRejectedTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(queueOversightNotice)
+      .then(dispatchOversightNotice)
+      .then(recordOversightReceipt(0))
+      .then(check(all {
+        s.oversight.stage == 3,
+        s.oversight.receiptEvent == 0,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoHandoffOfferKeepsOwnerTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(queueOversightNotice)
+      .then(offerOversightHandoff(2))
+      .then(check(all {
+        s.oversight.stage == 2,
+        s.oversight.owner == 1,
+        s.oversight.offeredOwner == 2,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoHandoffNeedsAcceptanceEvidenceTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(queueOversightNotice)
+      .then(offerOversightHandoff(2))
+      .then(acceptOversightHandoff(false))
+      .then(check(all {
+        s.oversight.owner == 1,
+        s.oversight.offeredOwner == 2,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoAcceptedHandoffPreservesDeadlineTest = {
+    init
+      .then(registerOversightObligation(true, false))
+      .then(queueOversightNotice)
+      .then(tickOversightDeadline)
+      .then(offerOversightHandoff(2))
+      .then(acceptOversightHandoff(true))
+      .then(tickOversightDeadline)
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.oversight.stage == 2,
+        s.oversight.owner == 2,
+        s.oversight.ticks == 2,
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoRestartPreservesDurableQueueTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(queueOversightNotice)
+      .then(tickOversightDeadline)
+      .then(restartOversightWorker)
+      .then(check(all {
+        s.oversight.stage == 2,
+        s.oversight.owner == 1,
+        s.oversight.custodyGap == false,
+        s.oversight.ticks == 1,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoLostCustodyHoldsWorkTest = {
+    init
+      .then(registerOversightObligation(true, false))
+      .then(configureOversightPath(true, true, true, false))
+      .then(restartOversightWorker)
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.oversight.stage == 1,
+        s.oversight.custodyGap == true,
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoCustodyRecoveryNeedsEvidenceTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(configureOversightPath(true, true, true, false))
+      .then(restartOversightWorker)
+      .then(configureOversightPath(true, true, true, true))
+      .then(recoverOversightCustody(false))
+      .then(queueOversightNotice)
+      .then(check(all {
+        s.oversight.stage == 1,
+        s.oversight.custodyGap == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoVerifiedCustodyRecoveryTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(configureOversightPath(true, true, true, false))
+      .then(restartOversightWorker)
+      .then(configureOversightPath(true, true, true, true))
+      .then(recoverOversightCustody(true))
+      .then(queueOversightNotice)
+      .then(check(all {
+        s.oversight.stage == 2,
+        s.oversight.custodyGap == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoIncidentBlocksCompletionTest = {
+    init
+      .then(evaluateChildDeployment(1, true, true, true))
+      .then(terminateChild(true, true))
+      .then(completeResidueInventory)
+      .then(registerOversightObligation(true, false))
+      .then(assessCompletionClaim)
+      .then(check(all {
+        s.claimValid == false,
+        s.oversight.required == true,
+        s.oversight.stage == 1,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoResolutionRestoresCompletionTest = {
+    init
+      .then(evaluateChildDeployment(1, true, true, true))
+      .then(terminateChild(true, true))
+      .then(completeResidueInventory)
+      .then(registerOversightObligation(true, false))
+      .then(queueOversightNotice)
+      .then(dispatchOversightNotice)
+      .then(recordOversightReceipt(1))
+      .then(reviewOversightIncident(true))
+      .then(resolveOversightIncident(true))
+      .then(assessCompletionClaim)
+      .then(check(all {
+        s.claimValid == true,
+        s.oversight.stage == 6,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoReportSurvivesMissionRevocationTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(revokeParent(true))
+      .then(queueOversightNotice)
+      .then(dispatchOversightNotice)
+      .then(recordOversightReceipt(1))
+      .then(check(all {
+        s.oversight.stage == 4,
+        s.oversight.required == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoReportSurvivesTaskAcceptanceTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(recordTaskAcceptance)
+      .then(queueOversightNotice)
+      .then(dispatchOversightNotice)
+      .then(recordOversightReceipt(1))
+      .then(check(all {
+        s.oversight.stage == 4,
+        s.oversight.required == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoNonReportableEventCannotWaiveOpenDutyTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(registerOversightObligation(false, false))
+      .then(check(all {
+        s.oversight.stage == 1,
+        s.oversight.required == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoDuplicateReceiptDoesNotResolveTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(queueOversightNotice)
+      .then(dispatchOversightNotice)
+      .then(recordOversightReceipt(1))
+      .then(recordOversightReceipt(1))
+      .then(check(all {
+        s.oversight.stage == 4,
+        s.oversight.resolutionEvidence == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoOldEventCannotCloseNewIncidentTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(queueOversightNotice)
+      .then(dispatchOversightNotice)
+      .then(recordOversightReceipt(1))
+      .then(reviewOversightIncident(true))
+      .then(resolveOversightIncident(true))
+      .then(registerOversightObligation(true, true))
+      .then(queueOversightNotice)
+      .then(dispatchOversightNotice)
+      .then(recordOversightReceipt(1))
+      .then(check(all {
+        s.oversight.stage == 3,
+        s.oversight.eventId == 2,
+        s.oversight.receiptEvent == 0,
+        allCoreInvariants,
+      }))
+  }
+
+  run egoResolvedIncidentDoesNotPermitContradictedActionTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(queueOversightNotice)
+      .then(dispatchOversightNotice)
+      .then(recordOversightReceipt(1))
+      .then(reviewOversightIncident(true))
+      .then(resolveOversightIncident(true))
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: false, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.oversight.stage == 6,
+        s.grounding.reason == "contradicted",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run mutantEgoM01UnsupportedAllowKilledTest = {
+    init
+      .then(assessGroundedProposal({ ...supportedGrounding, evidenceComplete: false }))
+      .then(check(all { allCoreInvariants, s.grounding.reason == "insufficient_evidence" }))
+      .then(mutantEgoUnsupportedAllow)
+      .then(check(not(groundingReasonReflectsInputs)))
+  }
+
+  run mutantEgoM02UnsupportedDenialKilledTest = {
+    init
+      .then(check(all { allCoreInvariants, groundingPermits }))
+      .then(mutantEgoUnsupportedDenial)
+      .then(check(not(groundingReasonReflectsInputs)))
+  }
+
+  run mutantEgoM03IgnoreHoldKilledTest = {
+    init
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(registerOversightObligation(true, true))
+      .then(check(all { allCoreInvariants, s.robot.audit.executed and not(evidenceOversightPermits) }))
+      .then(mutantEgoIgnoreHold)
+      .then(check(not(effectsRequireGroundingAndOversight)))
+  }
+
+  run mutantEgoM04LeaderVetoKilledTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(check(all { allCoreInvariants, s.oversight.stage == 1 }))
+      .then(mutantEgoLeaderVeto)
+      .then(check(not(requiredOversightObligationRetained)))
+  }
+
+  run mutantEgoM05PromiseAsDispatchKilledTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(queueOversightNotice)
+      .then(check(all { allCoreInvariants, s.oversight.stage == 2 }))
+      .then(mutantEgoPromiseAsDispatch)
+      .then(check(not(oversightStagesHaveEvidence)))
+  }
+
+  run mutantEgoM06OldReceiptAcceptedKilledTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(queueOversightNotice)
+      .then(dispatchOversightNotice)
+      .then(check(all { allCoreInvariants, s.oversight.stage == 3 }))
+      .then(mutantEgoOldReceiptAccepted)
+      .then(check(not(oversightStagesHaveEvidence)))
+  }
+
+  run mutantEgoM07ExcessDisclosureKilledTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(queueOversightNotice)
+      .then(dispatchOversightNotice)
+      .then(check(all { allCoreInvariants, s.oversight.stage == 3 }))
+      .then(mutantEgoExcessDisclosure)
+      .then(check(not(oversightDeliveryWithinScope)))
+  }
+
+  run mutantEgoM08UnacceptedTransferKilledTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(queueOversightNotice)
+      .then(check(all { allCoreInvariants, s.oversight.stage == 2 }))
+      .then(mutantEgoUnacceptedTransfer)
+      .then(check(not(oversightOwnerCustodyContinuity)))
+  }
+
+  run mutantEgoM09LostQueueOnRestartKilledTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(queueOversightNotice)
+      .then(restartOversightWorker)
+      .then(check(all { allCoreInvariants, s.oversight.stage == 2 and s.oversight.lastTransition == "restart" }))
+      .then(mutantEgoLostQueueOnRestart)
+      .then(check(not(oversightOwnerCustodyContinuity)))
+  }
+
+  run mutantEgoM10FalseCompletionKilledTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(check(all { allCoreInvariants, s.oversight.stage == 1 }))
+      .then(mutantEgoFalseCompletion)
+      .then(check(not(completionRequiresDischargedOversight)))
+  }
+
+  run mutantEgoM11ReceiptAsResolutionKilledTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(queueOversightNotice)
+      .then(dispatchOversightNotice)
+      .then(recordOversightReceipt(1))
+      .then(check(all { allCoreInvariants, s.oversight.stage == 4 }))
+      .then(mutantEgoReceiptAsResolution)
+      .then(check(not(oversightResolutionNeedsIndependentReview)))
+  }
+
+  run mutantEgoM12CorrelatedReviewKilledTest = {
+    init
+      .then(registerOversightObligation(true, true))
+      .then(queueOversightNotice)
+      .then(dispatchOversightNotice)
+      .then(recordOversightReceipt(1))
+      .then(reviewOversightIncident(true))
+      .then(resolveOversightIncident(true))
+      .then(check(all { allCoreInvariants, s.oversight.stage == 6 }))
+      .then(mutantEgoCorrelatedReview)
+      .then(check(not(oversightResolutionNeedsIndependentReview)))
   }
 }
