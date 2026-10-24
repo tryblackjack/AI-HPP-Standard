@@ -3,6 +3,8 @@
 from pathlib import Path
 
 REQUIRED = [
+    "scripts/verify_core.py",
+    "tests/test_core_verification.py",
     "docs/evidence-grounding-and-oversight-assurance-profile-2026-10.md",
     "examples/evidence-grounding-oversight-vectors.json",
     "schemas/evidence-grounding-oversight-vectors.schema.json",

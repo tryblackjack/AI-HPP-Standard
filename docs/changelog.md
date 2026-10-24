@@ -23,6 +23,9 @@ Status: `ACTIVE_INFORMATIVE`.
 - Synchronized architecture, constitutional interpretation, autonomy/evaluation
   guidance, adoption assets and CI. Runtime facts, clocks, delivery, independent
   review and physical stopping remain external assumptions requiring evidence.
+- Added an exact-prefix core verification launcher to avoid the pinned
+  Apalache JSON transport limit from unused test metadata. Full-file scenarios
+  and mutants still execute; aggregate properties and depth 12 are unchanged.
 - Frozen v4.3.0 normative owners and the immutable v4.4.0-rc.1 manifest/tag remain
   unchanged. These artifacts support bounded reference testing, not runtime
   conformance, consciousness or universal safety claims.

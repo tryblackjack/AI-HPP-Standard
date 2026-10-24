@@ -119,7 +119,9 @@ narrow property described in its `scope` field.
 
 Run the pinned [Quint checks](README.md) and retain their exact commit,
 tool versions, logs and bounds. Randomized runs explore 5,000 samples per model;
-symbolic verification is bounded at depth 12. Neither establishes unbounded
+symbolic verification is bounded at depth 12. The core verifier uses the exact
+operational source prefix, excluding its unreachable unsafe/test suffix to stay
+within the pinned Apalache transport limit (see the run guide). Neither establishes unbounded
 safety or an implementation refinement proof. The 48 mutation witnesses
 are deliberate unsafe transitions excluded from normal `step`: eight replication,
 eight subject-integrity, ten proportionate-action, ten robot-action and twelve

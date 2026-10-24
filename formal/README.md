@@ -146,12 +146,20 @@ npx -y @informalsystems/quint@0.33.0 run \
 CI also performs bounded symbolic verification with Apalache:
 
 ```bash
-npx -y @informalsystems/quint@0.33.0 verify formal/ai_hpp_core.qnt \
-  --invariant=allCoreInvariants --max-steps=12
+python3 scripts/verify_core.py
 npx -y @informalsystems/quint@0.33.0 verify \
   formal/subject_integrity_value_framing.qnt \
   --invariant=allSubjectIntegrityInvariants --max-steps=12
 ```
+
+Quint 0.33.0 includes unused test declarations/type metadata in its Apalache
+payload. The full core harness exceeds Apalache 0.62.1's JSON string limit.
+`verify_core.py` retains the exact source prefix through `allCoreInvariants`
+and omits only the explicitly marked unsafe/test suffix. It rejects ordinary
+operational declarations in that suffix, prints the original source digest,
+and invokes the same pinned verifier at depth 12 on a temporary file. Missing
+operational dependencies fail Quint analysis. Scenario/mutation tests continue
+to execute the full original model. No guard, property or bound is relaxed.
 
 ## Interpretation
 
