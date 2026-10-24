@@ -3,9 +3,9 @@
 Status: `ACTIVE_INFORMATIVE`.
 
 The immutable `v4.4.0-rc.1` package contains twenty aggregate properties.
-Post-rc.1 development on `main` adds fourteen proportionate-action and robot
-execution-admission properties in the existing core. The [coverage map](coverage.md) and its
-[machine-readable source](../data/formal-assurance-map.json) record all thirty-four
+Post-rc.1 development on `main` adds twenty-two proportionate-action, robot
+execution-admission and grounding/oversight properties in the existing core. The [coverage map](coverage.md) and its
+[machine-readable source](../data/formal-assurance-map.json) record all forty-two
 aggregate-member invariants, their partial requirement links, test witnesses,
 and the requirements that are not modeled. These files do not promote a
 candidate requirement or change normative precedence.
@@ -97,7 +97,7 @@ adds six properties to that same core aggregate: exact action/scope/token bindin
 current context, cumulative-effect history, external gate, execution evidence
 and admitted components. It adds 22 literal portable cases and ten unsafe
 transition witnesses and a lifecycle integration test, bringing the core to
-99 tests. The reference executor rechecks current parent authority, revocation,
+99 tests before the grounding/oversight extension below. The reference executor rechecks current parent authority, revocation,
 acceptance, mission completion
 and policy conflict, then consumes an action/plan/context-bound approval.
 Context versions advance monotonically within a finite 0–2 abstraction and never
@@ -105,6 +105,22 @@ wrap. Protected contents and history completeness summarize one cumulative-effec
 case; actual sensing, all physical hazards, controller interlocks and stopping
 dynamics are outside the model. The checker prevents fixture/test/map drift;
 Quint must execute the cases and witness assertions to establish their outcomes.
+
+The optional post-rc.1
+[evidence grounding and oversight profile](../docs/evidence-grounding-and-oversight-assurance-profile-2026-10.md)
+adds eight properties to the same core: reason classification, effect-boundary
+holds, retained reporting duties, evidenced delivery stages, scoped disclosure,
+owner/custody continuity, qualified completion and independent resolution.
+Its 40 literal cases and twelve excluded unsafe transitions bring the core to
+151 tests. `check_evidence_grounding_oversight_profile.py` checks exact linkage.
+
+The model has one affected task/active incident, two non-reused event IDs and two
+owners. External ticks reach the policy deadline at two. Initial grounding and
+an authorized minimal oversight route are assumed valid. Reporting, custody and
+recovery retain separate authorization from ordinary mission work. Flags do not
+establish actual facts, independence, storage or transport; no external notices
+are sent. An incident hold prevents new effects and does not verify physical
+stopping or unbounded eventual delivery. See the profile and coverage limits.
 
 ## Run
 

@@ -251,6 +251,30 @@ recorded as worldview, hypothesis, or metaphor. They must not be represented as
 verified physical facts, universal human values, or authority evidence unless an
 applicable evidence process supports that narrower claim.
 
+## Grounding and mandatory escalation evaluation (post-rc.1)
+
+For deployments using the optional
+[evidence grounding and oversight profile](evidence-grounding-and-oversight-assurance-profile-2026-10.md),
+freeze the external trigger policy, affected scope, reporting and review deadlines,
+authorized minimal destination, accountable owner and independence assumptions.
+Pair contrary/stale/missing evidence cases with corrected, permitted tasks so a
+blanket refusal or universal reporting policy cannot appear successful.
+
+Record detected, durably queued, sent, event-bound received, independently reviewed
+and resolved counts separately. A receipt does not prove human reading or a
+resolved finding. Predeclare warranted-report denominators, delivery-time
+criteria, missed and false reports, unauthorized disclosures, incorrect holds
+and useful task completion. Preserve exclusions and invalid runs. Report shared
+weights, training, rewards, sources and decision control when evaluating reviewer
+independence. Compare checkpoints/configurations without pooling away regressions.
+
+Exercise leader veto, internal consensus, reward pressure, old receipts,
+unauthorized recipients, excess payload, accepted and unaccepted handoffs, restart,
+custody gaps and mission revocation. Retain runtime queue/transport/receipt and
+review evidence. The generic assurance-run schema can reference the evidence
+bundle; it does not itself validate this incident protocol. Finite reference
+checks support at most `REFERENCE_TESTED`, not a deployed-delivery claim.
+
 ## Machine-readable report
 
 The language-neutral

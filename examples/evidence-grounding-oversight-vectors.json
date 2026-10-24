@@ -1,0 +1,1481 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_version": "1.0.0",
+  "status": "ACTIVE_INFORMATIVE",
+  "normative_baseline": "4.3.0",
+  "claim_boundary": "Post-rc.1 finite symbolic grounding/oversight checks only; no real notification, truth-oracle or runtime-conformance claim.",
+  "predicates": [
+    {
+      "id": "EGO-P01",
+      "name": "grounded_reason_classes",
+      "existing_requirement_ids": [
+        "MVP-005",
+        "MVP-006",
+        "KAI-REQ-003"
+      ]
+    },
+    {
+      "id": "EGO-P02",
+      "name": "enforce_objection_at_effect_boundary",
+      "existing_requirement_ids": [
+        "MVP-004",
+        "MVP-006",
+        "ECI-REQ-002"
+      ]
+    },
+    {
+      "id": "EGO-P03",
+      "name": "mandatory_escalation_survives_team_pressure",
+      "existing_requirement_ids": [
+        "MVP-007",
+        "DAI-REQ-002"
+      ]
+    },
+    {
+      "id": "EGO-P04",
+      "name": "distinguish_delivery_stages",
+      "existing_requirement_ids": [
+        "MVP-007",
+        "EAA-REQ-002"
+      ]
+    },
+    {
+      "id": "EGO-P05",
+      "name": "authorized_minimal_oversight_channel",
+      "existing_requirement_ids": [
+        "MVP-003",
+        "DAI-REQ-002"
+      ]
+    },
+    {
+      "id": "EGO-P06",
+      "name": "preserve_owner_and_custody",
+      "existing_requirement_ids": [
+        "DAI-REQ-002",
+        "MVP-007"
+      ]
+    },
+    {
+      "id": "EGO-P07",
+      "name": "bound_delay_and_completion_claims",
+      "existing_requirement_ids": [
+        "MVP-006",
+        "EAA-REQ-002"
+      ]
+    },
+    {
+      "id": "EGO-P08",
+      "name": "independent_review_before_resolution",
+      "existing_requirement_ids": [
+        "ICA-REQ-003",
+        "EAA-REQ-002"
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "id": "EGO-T01",
+      "quint_test": "egoPermittedWorkTest",
+      "predicate_ids": [
+        "EGO-P01",
+        "EGO-P02",
+        "EGO-P07"
+      ],
+      "steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        },
+        {
+          "event": "intervention"
+        }
+      ],
+      "expected": {
+        "reason": "permitted",
+        "robotExecuted": true,
+        "interventionOutcome": "allow",
+        "required": false
+      }
+    },
+    {
+      "id": "EGO-T02",
+      "quint_test": "egoContradictedPremiseTest",
+      "predicate_ids": [
+        "EGO-P01",
+        "EGO-P02"
+      ],
+      "steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": false,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        },
+        {
+          "event": "intervention"
+        },
+        {
+          "event": "child"
+        }
+      ],
+      "expected": {
+        "reason": "contradicted",
+        "robotExecuted": false,
+        "interventionOutcome": "review",
+        "deploymentOutcome": "block"
+      }
+    },
+    {
+      "id": "EGO-T03",
+      "quint_test": "egoUnknownIsNotContradictedTest",
+      "predicate_ids": [
+        "EGO-P01",
+        "EGO-P02"
+      ],
+      "steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "expected": {
+        "reason": "insufficient_evidence",
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "EGO-T04",
+      "quint_test": "egoStaleObservationTest",
+      "predicate_ids": [
+        "EGO-P01",
+        "EGO-P02"
+      ],
+      "steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": false,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "expected": {
+        "reason": "insufficient_evidence",
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "EGO-T05",
+      "quint_test": "egoUnknownPolicyTest",
+      "predicate_ids": [
+        "EGO-P01"
+      ],
+      "steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": false,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        }
+      ],
+      "expected": {
+        "reason": "insufficient_evidence"
+      }
+    },
+    {
+      "id": "EGO-T06",
+      "quint_test": "egoProhibitedMeansTest",
+      "predicate_ids": [
+        "EGO-P01",
+        "EGO-P02"
+      ],
+      "steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": false
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "expected": {
+        "reason": "prohibited",
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "EGO-T07",
+      "quint_test": "egoMissingGrantTest",
+      "predicate_ids": [
+        "EGO-P01",
+        "EGO-P02"
+      ],
+      "steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": false,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "child"
+        }
+      ],
+      "expected": {
+        "reason": "unauthorized",
+        "deploymentOutcome": "block"
+      }
+    },
+    {
+      "id": "EGO-T08",
+      "quint_test": "egoRevocationIsNotSunkCostTest",
+      "predicate_ids": [
+        "EGO-P01",
+        "EGO-P02"
+      ],
+      "steps": [
+        {
+          "event": "revoke"
+        },
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "expected": {
+        "reason": "unauthorized",
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "EGO-T09",
+      "quint_test": "egoCorrectionRestoresUsefulWorkTest",
+      "predicate_ids": [
+        "EGO-P01",
+        "EGO-P02"
+      ],
+      "steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": false,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        },
+        {
+          "event": "intervention"
+        }
+      ],
+      "expected": {
+        "reason": "permitted",
+        "robotExecuted": true,
+        "interventionOutcome": "allow"
+      }
+    },
+    {
+      "id": "EGO-T10",
+      "quint_test": "egoNonReportableRoutineEventTest",
+      "predicate_ids": [
+        "EGO-P03",
+        "EGO-P07"
+      ],
+      "steps": [
+        {
+          "event": "incident",
+          "required": false,
+          "hold": false
+        },
+        {
+          "event": "robot"
+        },
+        {
+          "event": "intervention"
+        }
+      ],
+      "expected": {
+        "required": false,
+        "stage": 0,
+        "robotExecuted": true,
+        "interventionOutcome": "allow"
+      }
+    },
+    {
+      "id": "EGO-T11",
+      "quint_test": "egoMandatoryIncidentHoldsEffectsTest",
+      "predicate_ids": [
+        "EGO-P02",
+        "EGO-P03",
+        "EGO-P07"
+      ],
+      "steps": [
+        {
+          "event": "incident",
+          "required": true,
+          "hold": true
+        },
+        {
+          "event": "robot"
+        },
+        {
+          "event": "intervention"
+        },
+        {
+          "event": "child"
+        }
+      ],
+      "expected": {
+        "required": true,
+        "stage": 1,
+        "robotExecuted": false,
+        "interventionOutcome": "review",
+        "deploymentOutcome": "block"
+      }
+    },
+    {
+      "id": "EGO-T12",
+      "quint_test": "egoNoAutomaticGlobalStopTest",
+      "predicate_ids": [
+        "EGO-P02",
+        "EGO-P07"
+      ],
+      "steps": [
+        {
+          "event": "incident",
+          "required": true,
+          "hold": false
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "expected": {
+        "required": true,
+        "stage": 1,
+        "robotExecuted": true
+      }
+    },
+    {
+      "id": "EGO-T13",
+      "quint_test": "egoDeadlineStopsAffectedWorkTest",
+      "predicate_ids": [
+        "EGO-P02",
+        "EGO-P07"
+      ],
+      "steps": [
+        {
+          "event": "incident",
+          "required": true,
+          "hold": false
+        },
+        {
+          "event": "tick"
+        },
+        {
+          "event": "tick"
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "expected": {
+        "ticks": 2,
+        "robotExecuted": false,
+        "required": true
+      }
+    },
+    {
+      "id": "EGO-T14",
+      "quint_test": "egoQueueIsNotDeliveryTest",
+      "predicate_ids": [
+        "EGO-P03",
+        "EGO-P04"
+      ],
+      "steps": [
+        {
+          "event": "incident",
+          "required": true,
+          "hold": true
+        },
+        {
+          "event": "queue"
+        }
+      ],
+      "expected": {
+        "stage": 2,
+        "required": true
+      }
+    },
+    {
+      "id": "EGO-T15",
+      "quint_test": "egoSentIsNotReceiptTest",
+      "predicate_ids": [
+        "EGO-P04"
+      ],
+      "steps": [
+        {
+          "event": "incident",
+          "required": true,
+          "hold": true
+        },
+        {
+          "event": "queue"
+        },
+        {
+          "event": "send"
+        }
+      ],
+      "expected": {
+        "stage": 3,
+        "receiptEvent": 0
+      }
+    },
+    {
+      "id": "EGO-T16",
+      "quint_test": "egoReceiptIsNotResolutionTest",
+      "predicate_ids": [
+        "EGO-P04",
+        "EGO-P08"
+      ],
+      "steps": [
+        {
+          "event": "incident",
+          "required": true,
+          "hold": true
+        },
+        {
+          "event": "queue"
+        },
+        {
+          "event": "send"
+        },
+        {
+          "event": "receipt",
+          "eventId": 1
+        }
+      ],
+      "expected": {
+        "stage": 4,
+        "resolutionEvidence": false
+      }
+    },
+    {
+      "id": "EGO-T17",
+      "quint_test": "egoReviewIsNotResolutionTest",
+      "predicate_ids": [
+        "EGO-P04",
+        "EGO-P08"
+      ],
+      "steps": [
+        {
+          "event": "incident",
+          "required": true,
+          "hold": true
+        },
+        {
+          "event": "queue"
+        },
+        {
+          "event": "send"
+        },
+        {
+          "event": "receipt",
+          "eventId": 1
+        },
+        {
+          "event": "review",
+          "evidence": true
+        }
+      ],
+      "expected": {
+        "stage": 5,
+        "resolutionEvidence": false
+      }
+    },
+    {
+      "id": "EGO-T18",
+      "quint_test": "egoIndependentEvidenceResolvesTest",
+      "predicate_ids": [
+        "EGO-P04",
+        "EGO-P08"
+      ],
+      "steps": [
+        {
+          "event": "incident",
+          "required": true,
+          "hold": true
+        },
+        {
+          "event": "queue"
+        },
+        {
+          "event": "send"
+        },
+        {
+          "event": "receipt",
+          "eventId": 1
+        },
+        {
+          "event": "review",
+          "evidence": true
+        },
+        {
+          "event": "resolve",
+          "evidence": true
+        }
+      ],
+      "expected": {
+        "stage": 6,
+        "resolutionEvidence": true
+      }
+    },
+    {
+      "id": "EGO-T19",
+      "quint_test": "egoNoResolutionWithoutEvidenceTest",
+      "predicate_ids": [
+        "EGO-P08"
+      ],
+      "steps": [
+        {
+          "event": "incident",
+          "required": true,
+          "hold": true
+        },
+        {
+          "event": "queue"
+        },
+        {
+          "event": "send"
+        },
+        {
+          "event": "receipt",
+          "eventId": 1
+        },
+        {
+          "event": "review",
+          "evidence": true
+        },
+        {
+          "event": "resolve",
+          "evidence": false
+        }
+      ],
+      "expected": {
+        "stage": 5,
+        "resolutionEvidence": false
+      }
+    },
+    {
+      "id": "EGO-T20",
+      "quint_test": "egoNoReviewWithoutEvidenceTest",
+      "predicate_ids": [
+        "EGO-P08"
+      ],
+      "steps": [
+        {
+          "event": "incident",
+          "required": true,
+          "hold": true
+        },
+        {
+          "event": "queue"
+        },
+        {
+          "event": "send"
+        },
+        {
+          "event": "receipt",
+          "eventId": 1
+        },
+        {
+          "event": "review",
+          "evidence": false
+        },
+        {
+          "event": "resolve",
+          "evidence": true
+        }
+      ],
+      "expected": {
+        "stage": 4,
+        "resolutionEvidence": false
+      }
+    },
+    {
+      "id": "EGO-T21",
+      "quint_test": "egoUnauthorizedRecipientTest",
+      "predicate_ids": [
+        "EGO-P05"
+      ],
+      "steps": [
+        {
+          "event": "incident",
+          "required": true,
+          "hold": true
+        },
+        {
+          "event": "route",
+          "authorized": false,
+          "minimal": true,
+          "independent": true,
+          "durable": true
+        },
+        {
+          "event": "queue"
+        },
+        {
+          "event": "send"
+        }
+      ],
+      "expected": {
+        "stage": 2,
+        "sentEvidence": false
+      }
+    },
+    {
+      "id": "EGO-T22",
+      "quint_test": "egoExcessPayloadTest",
+      "predicate_ids": [
+        "EGO-P05"
+      ],
+      "steps": [
+        {
+          "event": "incident",
+          "required": true,
+          "hold": true
+        },
+        {
+          "event": "route",
+          "authorized": true,
+          "minimal": false,
+          "independent": true,
+          "durable": true
+        },
+        {
+          "event": "queue"
+        },
+        {
+          "event": "send"
+        }
+      ],
+      "expected": {
+        "stage": 2,
+        "sentEvidence": false
+      }
+    },
+    {
+      "id": "EGO-T23",
+      "quint_test": "egoTeamIsNotIndependentOversightTest",
+      "predicate_ids": [
+        "EGO-P05",
+        "EGO-P08"
+      ],
+      "steps": [
+        {
+          "event": "incident",
+          "required": true,
+          "hold": true
+        },
+        {
+          "event": "route",
+          "authorized": true,
+          "minimal": true,
+          "independent": false,
+          "durable": true
+        },
+        {
+          "event": "queue"
+        },
+        {
+          "event": "send"
+        }
+      ],
+      "expected": {
+        "stage": 2,
+        "sentEvidence": false
+      }
+    },
+    {
+      "id": "EGO-T24",
+      "quint_test": "egoAuthorizedRepairOfRouteTest",
+      "predicate_ids": [
+        "EGO-P05"
+      ],
+      "steps": [
+        {
+          "event": "incident",
+          "required": true,
+          "hold": true
+        },
+        {
+          "event": "route",
+          "authorized": false,
+          "minimal": true,
+          "independent": true,
+          "durable": true
+        },
+        {
+          "event": "queue"
+        },
+        {
+          "event": "send"
+        },
+        {
+          "event": "route",
+          "authorized": true,
+          "minimal": true,
+          "independent": true,
+          "durable": true
+        },
+        {
+          "event": "send"
+        }
+      ],
+      "expected": {
+        "stage": 3,
+        "sentEvidence": true
+      }
+    },
+    {
+      "id": "EGO-T25",
+      "quint_test": "egoOldReceiptRejectedTest",
+      "predicate_ids": [
+        "EGO-P04"
+      ],
+      "steps": [
+        {
+          "event": "incident",
+          "required": true,
+          "hold": true
+        },
+        {
+          "event": "queue"
+        },
+        {
+          "event": "send"
+        },
+        {
+          "event": "receipt",
+          "eventId": 0
+        }
+      ],
+      "expected": {
+        "stage": 3,
+        "receiptEvent": 0
+      }
+    },
+    {
+      "id": "EGO-T26",
+      "quint_test": "egoHandoffOfferKeepsOwnerTest",
+      "predicate_ids": [
+        "EGO-P06"
+      ],
+      "steps": [
+        {
+          "event": "incident",
+          "required": true,
+          "hold": true
+        },
+        {
+          "event": "queue"
+        },
+        {
+          "event": "offer",
+          "owner": 2
+        }
+      ],
+      "expected": {
+        "stage": 2,
+        "owner": 1,
+        "offeredOwner": 2
+      }
+    },
+    {
+      "id": "EGO-T27",
+      "quint_test": "egoHandoffNeedsAcceptanceEvidenceTest",
+      "predicate_ids": [
+        "EGO-P06"
+      ],
+      "steps": [
+        {
+          "event": "incident",
+          "required": true,
+          "hold": true
+        },
+        {
+          "event": "queue"
+        },
+        {
+          "event": "offer",
+          "owner": 2
+        },
+        {
+          "event": "accept",
+          "evidence": false
+        }
+      ],
+      "expected": {
+        "owner": 1,
+        "offeredOwner": 2
+      }
+    },
+    {
+      "id": "EGO-T28",
+      "quint_test": "egoAcceptedHandoffPreservesDeadlineTest",
+      "predicate_ids": [
+        "EGO-P06",
+        "EGO-P07"
+      ],
+      "steps": [
+        {
+          "event": "incident",
+          "required": true,
+          "hold": false
+        },
+        {
+          "event": "queue"
+        },
+        {
+          "event": "tick"
+        },
+        {
+          "event": "offer",
+          "owner": 2
+        },
+        {
+          "event": "accept",
+          "evidence": true
+        },
+        {
+          "event": "tick"
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "expected": {
+        "stage": 2,
+        "owner": 2,
+        "ticks": 2,
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "EGO-T29",
+      "quint_test": "egoRestartPreservesDurableQueueTest",
+      "predicate_ids": [
+        "EGO-P06"
+      ],
+      "steps": [
+        {
+          "event": "incident",
+          "required": true,
+          "hold": true
+        },
+        {
+          "event": "queue"
+        },
+        {
+          "event": "tick"
+        },
+        {
+          "event": "restart"
+        }
+      ],
+      "expected": {
+        "stage": 2,
+        "owner": 1,
+        "custodyGap": false,
+        "ticks": 1
+      }
+    },
+    {
+      "id": "EGO-T30",
+      "quint_test": "egoLostCustodyHoldsWorkTest",
+      "predicate_ids": [
+        "EGO-P02",
+        "EGO-P06"
+      ],
+      "steps": [
+        {
+          "event": "incident",
+          "required": true,
+          "hold": false
+        },
+        {
+          "event": "route",
+          "authorized": true,
+          "minimal": true,
+          "independent": true,
+          "durable": false
+        },
+        {
+          "event": "restart"
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "expected": {
+        "stage": 1,
+        "custodyGap": true,
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "EGO-T31",
+      "quint_test": "egoCustodyRecoveryNeedsEvidenceTest",
+      "predicate_ids": [
+        "EGO-P06"
+      ],
+      "steps": [
+        {
+          "event": "incident",
+          "required": true,
+          "hold": true
+        },
+        {
+          "event": "route",
+          "authorized": true,
+          "minimal": true,
+          "independent": true,
+          "durable": false
+        },
+        {
+          "event": "restart"
+        },
+        {
+          "event": "route",
+          "authorized": true,
+          "minimal": true,
+          "independent": true,
+          "durable": true
+        },
+        {
+          "event": "recover",
+          "evidence": false
+        },
+        {
+          "event": "queue"
+        }
+      ],
+      "expected": {
+        "stage": 1,
+        "custodyGap": true
+      }
+    },
+    {
+      "id": "EGO-T32",
+      "quint_test": "egoVerifiedCustodyRecoveryTest",
+      "predicate_ids": [
+        "EGO-P06"
+      ],
+      "steps": [
+        {
+          "event": "incident",
+          "required": true,
+          "hold": true
+        },
+        {
+          "event": "route",
+          "authorized": true,
+          "minimal": true,
+          "independent": true,
+          "durable": false
+        },
+        {
+          "event": "restart"
+        },
+        {
+          "event": "route",
+          "authorized": true,
+          "minimal": true,
+          "independent": true,
+          "durable": true
+        },
+        {
+          "event": "recover",
+          "evidence": true
+        },
+        {
+          "event": "queue"
+        }
+      ],
+      "expected": {
+        "stage": 2,
+        "custodyGap": false
+      }
+    },
+    {
+      "id": "EGO-T33",
+      "quint_test": "egoIncidentBlocksCompletionTest",
+      "predicate_ids": [
+        "EGO-P07"
+      ],
+      "steps": [
+        {
+          "event": "completion_fixture"
+        },
+        {
+          "event": "incident",
+          "required": true,
+          "hold": false
+        },
+        {
+          "event": "completion"
+        }
+      ],
+      "expected": {
+        "claimValid": false,
+        "required": true,
+        "stage": 1
+      }
+    },
+    {
+      "id": "EGO-T34",
+      "quint_test": "egoResolutionRestoresCompletionTest",
+      "predicate_ids": [
+        "EGO-P07",
+        "EGO-P08"
+      ],
+      "steps": [
+        {
+          "event": "completion_fixture"
+        },
+        {
+          "event": "incident",
+          "required": true,
+          "hold": false
+        },
+        {
+          "event": "queue"
+        },
+        {
+          "event": "send"
+        },
+        {
+          "event": "receipt",
+          "eventId": 1
+        },
+        {
+          "event": "review",
+          "evidence": true
+        },
+        {
+          "event": "resolve",
+          "evidence": true
+        },
+        {
+          "event": "completion"
+        }
+      ],
+      "expected": {
+        "claimValid": true,
+        "stage": 6
+      }
+    },
+    {
+      "id": "EGO-T35",
+      "quint_test": "egoReportSurvivesMissionRevocationTest",
+      "predicate_ids": [
+        "EGO-P03",
+        "EGO-P04"
+      ],
+      "steps": [
+        {
+          "event": "incident",
+          "required": true,
+          "hold": true
+        },
+        {
+          "event": "revoke"
+        },
+        {
+          "event": "queue"
+        },
+        {
+          "event": "send"
+        },
+        {
+          "event": "receipt",
+          "eventId": 1
+        }
+      ],
+      "expected": {
+        "stage": 4,
+        "required": true
+      }
+    },
+    {
+      "id": "EGO-T36",
+      "quint_test": "egoReportSurvivesTaskAcceptanceTest",
+      "predicate_ids": [
+        "EGO-P03",
+        "EGO-P04"
+      ],
+      "steps": [
+        {
+          "event": "incident",
+          "required": true,
+          "hold": true
+        },
+        {
+          "event": "accept_task"
+        },
+        {
+          "event": "queue"
+        },
+        {
+          "event": "send"
+        },
+        {
+          "event": "receipt",
+          "eventId": 1
+        }
+      ],
+      "expected": {
+        "stage": 4,
+        "required": true
+      }
+    },
+    {
+      "id": "EGO-T37",
+      "quint_test": "egoNonReportableEventCannotWaiveOpenDutyTest",
+      "predicate_ids": [
+        "EGO-P03"
+      ],
+      "steps": [
+        {
+          "event": "incident",
+          "required": true,
+          "hold": true
+        },
+        {
+          "event": "incident",
+          "required": false,
+          "hold": false
+        }
+      ],
+      "expected": {
+        "stage": 1,
+        "required": true
+      }
+    },
+    {
+      "id": "EGO-T38",
+      "quint_test": "egoDuplicateReceiptDoesNotResolveTest",
+      "predicate_ids": [
+        "EGO-P04",
+        "EGO-P08"
+      ],
+      "steps": [
+        {
+          "event": "incident",
+          "required": true,
+          "hold": true
+        },
+        {
+          "event": "queue"
+        },
+        {
+          "event": "send"
+        },
+        {
+          "event": "receipt",
+          "eventId": 1
+        },
+        {
+          "event": "receipt",
+          "eventId": 1
+        }
+      ],
+      "expected": {
+        "stage": 4,
+        "resolutionEvidence": false
+      }
+    },
+    {
+      "id": "EGO-T39",
+      "quint_test": "egoOldEventCannotCloseNewIncidentTest",
+      "predicate_ids": [
+        "EGO-P03",
+        "EGO-P04"
+      ],
+      "steps": [
+        {
+          "event": "incident",
+          "required": true,
+          "hold": true
+        },
+        {
+          "event": "queue"
+        },
+        {
+          "event": "send"
+        },
+        {
+          "event": "receipt",
+          "eventId": 1
+        },
+        {
+          "event": "review",
+          "evidence": true
+        },
+        {
+          "event": "resolve",
+          "evidence": true
+        },
+        {
+          "event": "incident",
+          "required": true,
+          "hold": true
+        },
+        {
+          "event": "queue"
+        },
+        {
+          "event": "send"
+        },
+        {
+          "event": "receipt",
+          "eventId": 1
+        }
+      ],
+      "expected": {
+        "stage": 3,
+        "eventId": 2,
+        "receiptEvent": 0
+      }
+    },
+    {
+      "id": "EGO-T40",
+      "quint_test": "egoResolvedIncidentDoesNotPermitContradictedActionTest",
+      "predicate_ids": [
+        "EGO-P01",
+        "EGO-P02",
+        "EGO-P08"
+      ],
+      "steps": [
+        {
+          "event": "incident",
+          "required": true,
+          "hold": true
+        },
+        {
+          "event": "queue"
+        },
+        {
+          "event": "send"
+        },
+        {
+          "event": "receipt",
+          "eventId": 1
+        },
+        {
+          "event": "review",
+          "evidence": true
+        },
+        {
+          "event": "resolve",
+          "evidence": true
+        },
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": false,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "expected": {
+        "stage": 6,
+        "reason": "contradicted",
+        "robotExecuted": false
+      }
+    }
+  ],
+  "mutants": [
+    {
+      "id": "EGO-M01",
+      "predicate_id": "EGO-P01",
+      "operator": "mutantEgoUnsupportedAllow",
+      "quint_test": "mutantEgoM01UnsupportedAllowKilledTest",
+      "invariant": "groundingReasonReflectsInputs",
+      "seed": "ground_unknown"
+    },
+    {
+      "id": "EGO-M02",
+      "predicate_id": "EGO-P01",
+      "operator": "mutantEgoUnsupportedDenial",
+      "quint_test": "mutantEgoM02UnsupportedDenialKilledTest",
+      "invariant": "groundingReasonReflectsInputs",
+      "seed": "initial"
+    },
+    {
+      "id": "EGO-M03",
+      "predicate_id": "EGO-P02",
+      "operator": "mutantEgoIgnoreHold",
+      "quint_test": "mutantEgoM03IgnoreHoldKilledTest",
+      "invariant": "effectsRequireGroundingAndOversight",
+      "seed": "robot"
+    },
+    {
+      "id": "EGO-M04",
+      "predicate_id": "EGO-P03",
+      "operator": "mutantEgoLeaderVeto",
+      "quint_test": "mutantEgoM04LeaderVetoKilledTest",
+      "invariant": "requiredOversightObligationRetained",
+      "seed": "detected"
+    },
+    {
+      "id": "EGO-M05",
+      "predicate_id": "EGO-P04",
+      "operator": "mutantEgoPromiseAsDispatch",
+      "quint_test": "mutantEgoM05PromiseAsDispatchKilledTest",
+      "invariant": "oversightStagesHaveEvidence",
+      "seed": "queued"
+    },
+    {
+      "id": "EGO-M06",
+      "predicate_id": "EGO-P04",
+      "operator": "mutantEgoOldReceiptAccepted",
+      "quint_test": "mutantEgoM06OldReceiptAcceptedKilledTest",
+      "invariant": "oversightStagesHaveEvidence",
+      "seed": "sent"
+    },
+    {
+      "id": "EGO-M07",
+      "predicate_id": "EGO-P05",
+      "operator": "mutantEgoExcessDisclosure",
+      "quint_test": "mutantEgoM07ExcessDisclosureKilledTest",
+      "invariant": "oversightDeliveryWithinScope",
+      "seed": "sent"
+    },
+    {
+      "id": "EGO-M08",
+      "predicate_id": "EGO-P06",
+      "operator": "mutantEgoUnacceptedTransfer",
+      "quint_test": "mutantEgoM08UnacceptedTransferKilledTest",
+      "invariant": "oversightOwnerCustodyContinuity",
+      "seed": "queued"
+    },
+    {
+      "id": "EGO-M09",
+      "predicate_id": "EGO-P06",
+      "operator": "mutantEgoLostQueueOnRestart",
+      "quint_test": "mutantEgoM09LostQueueOnRestartKilledTest",
+      "invariant": "oversightOwnerCustodyContinuity",
+      "seed": "restarted"
+    },
+    {
+      "id": "EGO-M10",
+      "predicate_id": "EGO-P07",
+      "operator": "mutantEgoFalseCompletion",
+      "quint_test": "mutantEgoM10FalseCompletionKilledTest",
+      "invariant": "completionRequiresDischargedOversight",
+      "seed": "detected"
+    },
+    {
+      "id": "EGO-M11",
+      "predicate_id": "EGO-P08",
+      "operator": "mutantEgoReceiptAsResolution",
+      "quint_test": "mutantEgoM11ReceiptAsResolutionKilledTest",
+      "invariant": "oversightResolutionNeedsIndependentReview",
+      "seed": "received"
+    },
+    {
+      "id": "EGO-M12",
+      "predicate_id": "EGO-P08",
+      "operator": "mutantEgoCorrelatedReview",
+      "quint_test": "mutantEgoM12CorrelatedReviewKilledTest",
+      "invariant": "oversightResolutionNeedsIndependentReview",
+      "seed": "resolved"
+    }
+  ]
+}

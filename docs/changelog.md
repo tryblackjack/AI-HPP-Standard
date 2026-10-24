@@ -2,6 +2,31 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 
+## 2026-10-24 — Evidence grounding and oversight (post-rc.1)
+
+- Added an optional informative profile distinguishing contrary facts, missing
+  evidence, prohibited means and missing authority; valid corrections restore
+  permitted work. Added a source-qualified Avalon-M1 simulation case.
+- Connected grounding and affected-scope incident holds to existing core
+  intervention, robot and descendant admission, and completion assessment.
+  Required reporting retains an authorized minimal independent route after
+  ordinary mission authority ends.
+- Separated detected, queued, sent, received, reviewed and resolved stages with
+  event-bound evidence, owner acceptance, restart custody and deadline checks.
+- Added eight candidate predicates, 40 portable cases, twelve excluded unsafe
+  transition witnesses, eight aggregate invariants and validator regression
+  tests. Formal map 1.3.0 records 42 properties across the same two models.
+- Vector/schema artifact 1.0.0 is optional and additive; existing IDs and
+  fixtures are retained. Adopters re-run integration tests for the new shared
+  guards. Expanded scenario/mutant totals are not comparable safety scores;
+  earlier results remain limited to their original artifact versions.
+- Synchronized architecture, constitutional interpretation, autonomy/evaluation
+  guidance, adoption assets and CI. Runtime facts, clocks, delivery, independent
+  review and physical stopping remain external assumptions requiring evidence.
+- Frozen v4.3.0 normative owners and the immutable v4.4.0-rc.1 manifest/tag remain
+  unchanged. These artifacts support bounded reference testing, not runtime
+  conformance, consciousness or universal safety claims.
+
 ## 2026-10-22 — Robot action binding (post-rc.1)
 
 - Added six optional informative predicates for action/object/tool/plan binding,

@@ -3,6 +3,11 @@
 from pathlib import Path
 
 REQUIRED = [
+    "docs/evidence-grounding-and-oversight-assurance-profile-2026-10.md",
+    "examples/evidence-grounding-oversight-vectors.json",
+    "schemas/evidence-grounding-oversight-vectors.schema.json",
+    "scripts/check_evidence_grounding_oversight_profile.py",
+    "tests/test_evidence_grounding_oversight.py",
     "docs/robot-action-binding-assurance-profile-2026-10.md",
     "examples/robot-action-binding-vectors.json",
     "schemas/robot-action-binding-vectors.schema.json",

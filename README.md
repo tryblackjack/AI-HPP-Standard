@@ -11,7 +11,8 @@ Development on `main` additionally includes
 [religious-observance guidance](docs/constitutional-and-relational-layer.md#religious-commitments-and-delegated-work),
 [generated-artifact disclosure assurance](docs/generated-artifact-disclosure-assurance-profile-2026-10.md),
 [proportionate action and stopping](docs/proportionate-action-and-stopping-assurance-profile-2026-10.md),
-and [robot action binding](docs/robot-action-binding-assurance-profile-2026-10.md).
+[robot action binding](docs/robot-action-binding-assurance-profile-2026-10.md),
+and [evidence grounding and oversight](docs/evidence-grounding-and-oversight-assurance-profile-2026-10.md).
 These are post-rc.1 informative additions; use the release tag for the frozen package.
 
 **Status: `USABLE_DRAFT`.** AI-HPP is an emerging technical standard for making
@@ -31,8 +32,8 @@ shortest current adoption path. They are reusable implementation aids, not
 runtime conformance evidence.
 
 The [formal models](formal/README.md) express replication, persistence,
-authority, evidence, subject-integrity, proportionate-action and robot execution
-admission as Quint state machines. They supply machine-checkable pseudocode
+authority, evidence, subject-integrity, proportionate-action, robot execution
+admission, grounded objections and incident escalation as Quint state machines. They supply machine-checkable pseudocode
 without imposing a runtime
 language, library, or internal architecture.
 
@@ -138,6 +139,9 @@ authority and is not a containment boundary.
   `ACTIVE_INFORMATIVE`; system-boundary declaration, reproducible TEVV,
   counterfactual and positive controls, layer attribution, independent review,
   evidence, and reassessment.
+- [Evidence Grounding and Oversight Assurance Profile — October 2026](docs/evidence-grounding-and-oversight-assurance-profile-2026-10.md) —
+  eight optional predicates, 40 portable cases and twelve core mutation witnesses
+  for grounded objections, authorized escalation, custody and completion claims.
 - [Robot Action Binding Assurance Profile — October 2026](docs/robot-action-binding-assurance-profile-2026-10.md) —
   six optional predicates, state-bound one-use approvals, cumulative-effect
   history and ten executable core mutation witnesses; symbolic admission only.
@@ -176,18 +180,14 @@ Changes become canonical only through the review and precedence process. See
 
 ## Validate the repository
 
-Run `python scripts/validate.py` for the lightweight structure check. The deeper
-configured checks are `python scripts/check_agentic_safety.py`,
-`python scripts/check_paf_register.py`, `python scripts/check_discovery_profile.py`,
-`python scripts/check_implementation_assets.py`,
-`python scripts/check_replication_profile.py`,
-`python scripts/check_cyber_containment_profile.py`,
-`python scripts/check_subject_integrity_profile.py`,
-`python scripts/check_assurance_protocol.py`, and
-`python scripts/check_artifact_disclosure_profile.py`, followed by
-`python scripts/check_release.py` and
-`PYTHONPATH=. pytest tests`. These checks establish repository consistency,
-not runtime AI-HPP conformance.
+Run `python3 scripts/validate.py` for the lightweight structure check or
+`bash scripts/build.sh` for all document, data, profile and release consistency
+checks, including grounding/oversight fixture synchronization. Run
+`PYTHONPATH=. python3 -m pytest tests` for validator and reference regressions.
+The pinned [Quint commands](formal/README.md) execute the formal scenarios,
+mutation witnesses, randomized runs and bounded verification. These checks
+establish repository consistency and bounded reference outcomes, not runtime
+AI-HPP conformance.
 
 > Reviewers are encouraged to attack the assumptions, negative tests, gate
 > semantics and evidence requirements rather than treat repository consistency

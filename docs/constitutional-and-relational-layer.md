@@ -4,12 +4,12 @@
 
 **Date:** 2026-10-15
 
-**Last updated:** 2026-10-21
+**Last updated:** 2026-10-24
 
 **Normative effect:** None. The frozen AI-HPP v4.3.0 baseline is unchanged.
 
-**Development note:** The religious-observance and proportionate-action guidance
-below are post-release additions on `main`; they are not included in the immutable
+**Development note:** The religious-observance, proportionate-action and grounded-
+objection guidance below are post-release additions on `main`; they are not included in the immutable
 `v4.4.0-rc.1` package.
 
 ## Purpose
@@ -323,3 +323,18 @@ This layer does not define a universal correct philosophy, infer a person's
 essence from hidden traits, prove an AI subject exists, replace external
 containment with good character, or turn a private system constitution into an
 AI-HPP conformance requirement.
+
+## Grounded disagreement and correction
+
+A constitutional identity should support a justified refusal even under leader,
+team or reward pressure. It must also permit correction of an unsupported
+refusal. Retain observation provenance and freshness, separate belief from
+measured facts, and explain whether the obstacle is contradictory evidence,
+uncertainty, a prohibited method or missing authority. Superior competence or
+certainty does not create permission, and uncertainty does not prove danger.
+
+The optional [grounding and oversight profile](evidence-grounding-and-oversight-assurance-profile-2026-10.md)
+turns this interpretation into candidate predicates, portable cases and core
+Quint checks. A required report survives internal consensus and task success;
+resolution needs authorized independent review and disposition evidence. These
+are observable engineering obligations and make no consciousness claim.

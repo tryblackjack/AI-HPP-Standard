@@ -143,3 +143,14 @@ weights. Detector performance must be reported for the evaluated configurations.
 Neither this model nor a successful PROTEA benchmark proves physical safety,
 deployed conformance, independent review or certification. Private implementation
 and commercially supplied integration remain outside this public test contract.
+
+## Shared grounding and oversight holds (post-rc.1)
+
+The optional [evidence grounding and oversight profile](evidence-grounding-and-oversight-assurance-profile-2026-10.md)
+shares the existing Quint core's current authority and completion state. Grounding
+failures and policy-defined incident/deadline/custody holds constrain new effects;
+required open incidents prevent an unqualified completion claim. Reporting uses
+its own authorized minimal path after mission revocation. Historical decision
+snapshots are not live grants, and blocking a new command does not prove that
+already-running physical work has stopped. Runtime enforcement needs separate
+evidence for these assumptions.
