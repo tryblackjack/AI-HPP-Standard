@@ -132,3 +132,13 @@ sixteen witnesses; this extension is post-rc.1 development on `main`.
 The [release guide](../docs/releases/v4.4.0-rc.1.md) fixes the package and
 migration boundary. Runtime claims require deployment-specific evaluation and
 evidence under the existing assurance protocol.
+
+## Local boundary observation links (post-rc.1)
+
+Formal map 1.3.1 adds eight `boundary*Test` scenario references and no new
+aggregate member. Six exercise robot execution/grounding; two assert descendant
+admission outcomes directly. Local observation-to-input checks are in
+`check_oversight_boundary.py`. Its four Python mutation witnesses are reported
+separately from the 48 Quint transition witnesses; neither total establishes
+runtime coverage. The exact operational core prefix is unchanged. Trusted probe,
+registry and incident-policy inputs do not prove real anti-tampering or refinement.

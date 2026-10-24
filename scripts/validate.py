@@ -3,6 +3,11 @@
 from pathlib import Path
 
 REQUIRED = [
+    "examples/oversight_boundary_reference.py",
+    "examples/oversight-boundary-vectors.json",
+    "schemas/oversight-boundary-vectors.schema.json",
+    "scripts/check_oversight_boundary.py",
+    "tests/test_oversight_boundary.py",
     "scripts/verify_core.py",
     "tests/test_core_verification.py",
     "docs/evidence-grounding-and-oversight-assurance-profile-2026-10.md",
