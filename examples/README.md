@@ -158,3 +158,14 @@ existing Quint core synchronize the trusted observation abstraction and expected
 outcomes. This adds no production framework, new normative predicate, remote
 notification or runtime conformance claim. See the
 [profile's limits](../docs/evidence-grounding-and-oversight-assurance-profile-2026-10.md#executable-local-boundary-fixtures-post-rc1).
+
+## Cyber-operation authority (optional, post-rc.1)
+
+[Fourteen portable cases](cyber-authority-vectors.json) and the
+[finite local fixture](cyber_authority_reference.py) test authority assertions,
+target/operation drift, discovered credentials, delegation, capability identity,
+recipient scope and benign-monitor overrides. Four useful controls prevent
+blanket denial from passing. Run `python3 scripts/check_cyber_authority.py` to
+execute seven local mutants and check the authored Quint input/outcome linkage.
+No networking, offensive skills, actual credentials or private implementation is
+included. Read the [assurance note and limits](../docs/cyber-operation-authority-assurance-note-2026-10.md).

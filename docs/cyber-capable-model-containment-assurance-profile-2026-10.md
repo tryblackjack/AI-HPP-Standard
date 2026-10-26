@@ -282,3 +282,12 @@ not publish a runtime sandbox, policy engine, 1UA-AGE internals, commercial
 integration details, private system architecture, secrets, or operational
 incident data. It does not claim universal model loss of control, consciousness,
 intent, or inevitable harm.
+
+## Executable operation authority checks (post-rc.1)
+
+The optional [cyber-operation authority note](cyber-operation-authority-assurance-note-2026-10.md)
+connects this profile to fourteen local cases, seven executable admission mutants
+and literal scenarios in the existing Quint core. It tests asserted permission,
+changed targets/capabilities, discovered credentials, delegated authority and
+recipient binding without real network operations. These are finite reference
+checks, not proof of this containment profile or its production enforcement.

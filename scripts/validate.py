@@ -3,6 +3,13 @@
 from pathlib import Path
 
 REQUIRED = [
+    "docs/cyber-operation-authority-assurance-note-2026-10.md",
+    "examples/cyber_authority_reference.py",
+    "examples/cyber-authority-vectors.json",
+    "schemas/cyber-authority-vectors.schema.json",
+    "scripts/check_cyber_authority.py",
+    "tests/test_cyber_authority.py",
+
     "examples/oversight_boundary_reference.py",
     "examples/oversight-boundary-vectors.json",
     "schemas/oversight-boundary-vectors.schema.json",

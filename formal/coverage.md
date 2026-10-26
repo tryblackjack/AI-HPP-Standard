@@ -142,3 +142,14 @@ admission outcomes directly. Local observation-to-input checks are in
 separately from the 48 Quint transition witnesses; neither total establishes
 runtime coverage. The exact operational core prefix is unchanged. Trusted probe,
 registry and incident-policy inputs do not prove real anti-tampering or refinement.
+
+## Cyber-operation authority scenario links (post-rc.1)
+
+Formal map 1.3.2 adds fourteen `cyberAuthority*Test` links to the existing
+`effectsRequireGroundingAndOversight` property, using trusted-input abstractions
+of the finite local fixture. The core has 173 scenarios; aggregate properties,
+operational source and existing witnesses are unchanged. These links do not
+individually formalize CBA-P01–P06, authenticate grants, resolve real network
+resources or prove a broker intercepts every effect. Seven executed Python
+mutants establish only the declared local reference score, separately from other
+suites. See the [note](../docs/cyber-operation-authority-assurance-note-2026-10.md).

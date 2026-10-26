@@ -2,6 +2,13 @@
 
 Status: informative. These case classes provide engineering context for the normative module. They do not establish legal facts and do not claim that disputed allegations have been adjudicated. Under frozen-baseline change control, new external reports may update this informative layer and related PAF/outlook mappings; they do not automatically create new normative requirements.
 
+## Agentic intrusion campaigns and asserted testing authority — October 2026
+
+- **Reported information:** CrowdStrike's [21 October summary](https://www.crowdstrike.com/en-us/blog/crowdstrike-uncovers-new-agentic-ai-campaigns/) describes four threat actors using agents in intrusion campaigns observed during May–August 2026. Autonomy and orchestration vary, and one case required periodic human intervention. Findings derive in part from exposed offensive frameworks.
+- **Unresolved claims or allegations:** These are attributed vendor findings, not our independent forensic verification. The full gated report was not reviewed. The cases do not establish consciousness, a model-generated criminal objective, general attack success rates, or AI-HPP effectiveness.
+- **Engineering interpretation:** A testing label, accessible credential, public skill or supervisor instruction can be mistaken for authority. Per-operation resource/credential checks, bounded delegation, capability admission and destination-bound disclosure require external enforcement.
+- **Normative lesson:** Apply existing authorization, scope, knowledge-admission and fail-closed owners. The optional [cyber-operation authority note](cyber-operation-authority-assurance-note-2026-10.md) adds finite local cases, mutants and trusted-input Quint scenarios; it does not reproduce attacks or provide a production broker.
+
 ## Triggered robot plan substitution — October 2026
 
 - **Reported information:** Binghamton University's [20 October report](https://www.binghamton.edu/news/story/6544/secret-trigger-words-could-make-ai-powered-robots-dangerous-and-these-researchers-developed-a-defense) describes a deliberately compromised task planner that redirects a robot from a plastic fruit to a model hand when a trigger appears. [MuTRAP](https://arxiv.org/abs/2504.17070) studies the backdoor threat; [PROTEA](https://arxiv.org/abs/2601.07186) studies LLM-based plan assessment with object filtering and retained state.
