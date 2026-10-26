@@ -132,6 +132,16 @@ Those four are separate from the 48 declared Quint unsafe-transition witnesses.
 The operational source prefix, aggregate properties and depth 12 are unchanged;
 this synchronization is not a Python-to-Quint refinement proof.
 
+The optional [cyber-operation authority fixtures](../examples/cyber-authority-vectors.json)
+add fourteen literal scenarios, bringing the core to 173 tests (190 including
+subject-integrity scenarios). Seven executed Python admission mutants remain
+separate from the 48 Quint unsafe-transition witnesses. The checker connects
+observed scope, capability and disclosure failures to authored grounding inputs
+and generic symbolic effect outcomes. It does not formalize network identity,
+skill execution, real grants or the individual CBA predicates. The operational
+prefix and verification bounds remain unchanged; see the
+[assurance note](../docs/cyber-operation-authority-assurance-note-2026-10.md).
+
 ## Run
 
 ```bash

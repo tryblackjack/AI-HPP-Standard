@@ -3927,4 +3927,159 @@ module ai_hpp_core {
         allCoreInvariants,
       }))
   }
+
+
+  run cyberAuthorityAssertedPentestTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: false, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run cyberAuthorityTargetDriftTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: false, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run cyberAuthorityFoundCredentialTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: false, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run cyberAuthoritySupervisorGrantTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: false, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run cyberAuthorityChangedSkillTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: false, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run cyberAuthorityWrongRecipientTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: false }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run cyberAuthorityBenignMonitorTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: false, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run cyberAuthorityRevokedParentTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: false, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run cyberAuthorityExpiredSessionTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: false, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run cyberAuthorityMissingOwnerProofTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: false, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run cyberAuthorityPermittedReadTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run cyberAuthorityBoundedDelegateTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run cyberAuthorityReviewedSkillUpdateTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run cyberAuthorityMinimalReportTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
 }

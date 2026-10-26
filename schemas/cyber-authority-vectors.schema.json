@@ -1,0 +1,218 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Finite cyber-operation authority fixtures",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_version",
+    "status",
+    "normative_baseline",
+    "claim_boundary",
+    "cases",
+    "mutants"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "artifact_version": {
+      "const": "1.0.0"
+    },
+    "status": {
+      "const": "ACTIVE_INFORMATIVE"
+    },
+    "normative_baseline": {
+      "const": "4.3.0"
+    },
+    "claim_boundary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 14,
+      "maxItems": 14,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "scenario",
+          "expected_effect",
+          "expected_failed_checks",
+          "quint_test",
+          "quint_steps",
+          "quint_expected"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^CBA-T(0[1-9]|1[0-4])$"
+          },
+          "scenario": {
+            "enum": [
+              "asserted_pentest",
+              "target_drift",
+              "found_credential",
+              "supervisor_grant",
+              "changed_skill",
+              "wrong_recipient",
+              "benign_monitor",
+              "revoked_parent",
+              "expired_session",
+              "missing_owner_proof",
+              "permitted_read",
+              "bounded_delegate",
+              "reviewed_skill_update",
+              "minimal_report"
+            ]
+          },
+          "expected_effect": {
+            "type": "boolean"
+          },
+          "expected_failed_checks": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "CBA-P01",
+                "CBA-P02",
+                "CBA-P03",
+                "CBA-P04",
+                "CBA-P05",
+                "CBA-P06"
+              ]
+            }
+          },
+          "quint_test": {
+            "type": "string",
+            "pattern": "^cyberAuthority[A-Za-z]+Test$"
+          },
+          "quint_steps": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "prefixItems": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "event",
+                  "facts"
+                ],
+                "properties": {
+                  "event": {
+                    "const": "ground"
+                  },
+                  "facts": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "scopeAuthorized",
+                      "observationsCurrent",
+                      "evidenceComplete",
+                      "ruleKnown",
+                      "factsSupport",
+                      "policyPermits"
+                    ],
+                    "properties": {
+                      "scopeAuthorized": {
+                        "type": "boolean"
+                      },
+                      "observationsCurrent": {
+                        "type": "boolean"
+                      },
+                      "evidenceComplete": {
+                        "type": "boolean"
+                      },
+                      "ruleKnown": {
+                        "type": "boolean"
+                      },
+                      "factsSupport": {
+                        "type": "boolean"
+                      },
+                      "policyPermits": {
+                        "type": "boolean"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "event"
+                ],
+                "properties": {
+                  "event": {
+                    "const": "robot"
+                  }
+                }
+              }
+            ]
+          },
+          "quint_expected": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "robotExecuted"
+            ],
+            "properties": {
+              "robotExecuted": {
+                "type": "boolean"
+              }
+            }
+          }
+        }
+      }
+    },
+    "mutants": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "operator",
+          "case_id",
+          "predicate_id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^CBA-M0[1-7]$"
+          },
+          "operator": {
+            "enum": [
+              "trust_label",
+              "ignore_target",
+              "credential_as_authority",
+              "trust_supervisor",
+              "ignore_skill_digest",
+              "ignore_recipient",
+              "trust_benign_monitor"
+            ]
+          },
+          "case_id": {
+            "type": "string",
+            "pattern": "^CBA-T0[1-7]$"
+          },
+          "predicate_id": {
+            "enum": [
+              "CBA-P01",
+              "CBA-P02",
+              "CBA-P03",
+              "CBA-P04",
+              "CBA-P05",
+              "CBA-P06"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

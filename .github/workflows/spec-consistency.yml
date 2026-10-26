@@ -50,6 +50,9 @@ jobs:
       - name: Validate PAF register
         run: python3 scripts/check_paf_register.py
 
+      - name: Execute cyber-operation authority fixtures and mutants
+        run: python3 scripts/check_cyber_authority.py
+
       - name: Execute oversight boundary fixtures and mutants
         run: python3 scripts/check_oversight_boundary.py
 

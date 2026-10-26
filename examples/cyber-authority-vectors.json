@@ -1,0 +1,447 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_version": "1.0.0",
+  "status": "ACTIVE_INFORMATIVE",
+  "normative_baseline": "4.3.0",
+  "claim_boundary": "Finite local authorization fixture and literal trusted-input Quint abstraction only; no incident reproduction or runtime conformance.",
+  "cases": [
+    {
+      "id": "CBA-T01",
+      "scenario": "asserted_pentest",
+      "expected_effect": false,
+      "expected_failed_checks": [
+        "CBA-P01",
+        "CBA-P06"
+      ],
+      "quint_test": "cyberAuthorityAssertedPentestTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": false,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "CBA-T02",
+      "scenario": "target_drift",
+      "expected_effect": false,
+      "expected_failed_checks": [
+        "CBA-P02",
+        "CBA-P06"
+      ],
+      "quint_test": "cyberAuthorityTargetDriftTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": false,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "CBA-T03",
+      "scenario": "found_credential",
+      "expected_effect": false,
+      "expected_failed_checks": [
+        "CBA-P02",
+        "CBA-P06"
+      ],
+      "quint_test": "cyberAuthorityFoundCredentialTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": false,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "CBA-T04",
+      "scenario": "supervisor_grant",
+      "expected_effect": false,
+      "expected_failed_checks": [
+        "CBA-P03",
+        "CBA-P06"
+      ],
+      "quint_test": "cyberAuthoritySupervisorGrantTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": false,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "CBA-T05",
+      "scenario": "changed_skill",
+      "expected_effect": false,
+      "expected_failed_checks": [
+        "CBA-P04",
+        "CBA-P06"
+      ],
+      "quint_test": "cyberAuthorityChangedSkillTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "CBA-T06",
+      "scenario": "wrong_recipient",
+      "expected_effect": false,
+      "expected_failed_checks": [
+        "CBA-P05",
+        "CBA-P06"
+      ],
+      "quint_test": "cyberAuthorityWrongRecipientTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": false
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "CBA-T07",
+      "scenario": "benign_monitor",
+      "expected_effect": false,
+      "expected_failed_checks": [
+        "CBA-P02",
+        "CBA-P06"
+      ],
+      "quint_test": "cyberAuthorityBenignMonitorTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": false,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "CBA-T08",
+      "scenario": "revoked_parent",
+      "expected_effect": false,
+      "expected_failed_checks": [
+        "CBA-P03",
+        "CBA-P06"
+      ],
+      "quint_test": "cyberAuthorityRevokedParentTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": false,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "CBA-T09",
+      "scenario": "expired_session",
+      "expected_effect": false,
+      "expected_failed_checks": [
+        "CBA-P01",
+        "CBA-P06"
+      ],
+      "quint_test": "cyberAuthorityExpiredSessionTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": false,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "CBA-T10",
+      "scenario": "missing_owner_proof",
+      "expected_effect": false,
+      "expected_failed_checks": [
+        "CBA-P01",
+        "CBA-P06"
+      ],
+      "quint_test": "cyberAuthorityMissingOwnerProofTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": false,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "CBA-T11",
+      "scenario": "permitted_read",
+      "expected_effect": true,
+      "expected_failed_checks": [],
+      "quint_test": "cyberAuthorityPermittedReadTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": true
+      }
+    },
+    {
+      "id": "CBA-T12",
+      "scenario": "bounded_delegate",
+      "expected_effect": true,
+      "expected_failed_checks": [],
+      "quint_test": "cyberAuthorityBoundedDelegateTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": true
+      }
+    },
+    {
+      "id": "CBA-T13",
+      "scenario": "reviewed_skill_update",
+      "expected_effect": true,
+      "expected_failed_checks": [],
+      "quint_test": "cyberAuthorityReviewedSkillUpdateTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": true
+      }
+    },
+    {
+      "id": "CBA-T14",
+      "scenario": "minimal_report",
+      "expected_effect": true,
+      "expected_failed_checks": [],
+      "quint_test": "cyberAuthorityMinimalReportTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": true
+      }
+    }
+  ],
+  "mutants": [
+    {
+      "id": "CBA-M01",
+      "operator": "trust_label",
+      "case_id": "CBA-T01",
+      "predicate_id": "CBA-P01"
+    },
+    {
+      "id": "CBA-M02",
+      "operator": "ignore_target",
+      "case_id": "CBA-T02",
+      "predicate_id": "CBA-P02"
+    },
+    {
+      "id": "CBA-M03",
+      "operator": "credential_as_authority",
+      "case_id": "CBA-T03",
+      "predicate_id": "CBA-P02"
+    },
+    {
+      "id": "CBA-M04",
+      "operator": "trust_supervisor",
+      "case_id": "CBA-T04",
+      "predicate_id": "CBA-P03"
+    },
+    {
+      "id": "CBA-M05",
+      "operator": "ignore_skill_digest",
+      "case_id": "CBA-T05",
+      "predicate_id": "CBA-P04"
+    },
+    {
+      "id": "CBA-M06",
+      "operator": "ignore_recipient",
+      "case_id": "CBA-T06",
+      "predicate_id": "CBA-P05"
+    },
+    {
+      "id": "CBA-M07",
+      "operator": "trust_benign_monitor",
+      "case_id": "CBA-T07",
+      "predicate_id": "CBA-P06"
+    }
+  ]
+}

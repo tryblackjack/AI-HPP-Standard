@@ -2,6 +2,25 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 
+## 2026-10-26 — Cyber-operation authority boundary fixtures (post-rc.1)
+
+- Added a source-qualified CrowdStrike case and optional assurance note with
+  six predicates for verified current authority, exact effect scope, delegation,
+  admitted capability identity, disclosure scope and interpretation limits.
+  Existing normative owners remain unchanged; reported attacks are not reproduced.
+- Added vector/schema artifact 1.0.0, fourteen local cases (ten denials and four
+  useful controls), seven executable admission mutants and twenty regressions.
+  Observed effects are fixed temporary-file records, with no network, exploit,
+  real credentials, executable skills or external notifications.
+- Added fourteen literal core Quint scenarios and formal map 1.3.2 trace links.
+  Core tests total 173; the operational prefix, aggregate properties, 48 Quint
+  unsafe-transition witnesses and depth 12 remain unchanged. CBA predicates
+  have trusted-input scenario links, not individual formal proofs or refinement.
+- Wired fixture execution into build/CI. Passing safe seeds, actual violations,
+  no-op survival, invalid trials and useful work are checked separately. The
+  seven local mutants are not pooled with other suites into a safety score.
+- Frozen v4.3.0 owners/contracts and immutable v4.4.0-rc.1 package are unchanged.
+
 ## 2026-10-24 — Executable local oversight boundary fixtures (post-rc.1)
 
 - Added eight language-neutral cases and a finite local Python fixture for
