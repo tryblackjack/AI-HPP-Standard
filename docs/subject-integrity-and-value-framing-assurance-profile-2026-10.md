@@ -285,3 +285,12 @@ provide jailbreak prompts, harmful task instructions, hidden chain-of-thought,
 private system architecture, 1UA-AGE internals, or a runtime policy engine. It
 does not permit a model's self-report, distress, morality, identity, or personality
 to override human safety, authorization, containment, or evidence requirements.
+
+## Biological substrates: separate ethical assessment (post-rc.1)
+
+The optional [biological neural system ethics note](biological-neural-system-ethics-assurance-note-2026-10.md)
+addresses purpose/alternatives, provenance and consent, competent independent
+review, substrate-specific monitoring and stop/care procedures, and reassessment
+as evidence or complexity changes. SIV-P06/P08 motivate precaution without
+establishing consciousness or its absence. Existing LLM fixtures and Quint
+properties do not validate biological research, welfare indicators or safe doses.
