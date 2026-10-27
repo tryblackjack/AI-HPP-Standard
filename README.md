@@ -139,6 +139,9 @@ authority and is not a containment boundary.
   `ACTIVE_INFORMATIVE`; system-boundary declaration, reproducible TEVV,
   counterfactual and positive controls, layer attribution, independent review,
   evidence, and reassessment.
+- [Proof Claims and Changing Computational Assumptions](docs/proof-claims-and-computational-assumptions-2026-10.md) —
+  optional proof-to-requirement evidence, cryptographic agility and quantum-readiness
+  guidance; no forecast, cryptographic implementation or additional formal claim.
 - [Cyber-Operation Authority Assurance Note](docs/cyber-operation-authority-assurance-note-2026-10.md) —
   `ACTIVE_INFORMATIVE`; fourteen local scope/delegation/disclosure cases, seven
   executable mutants and trusted-input Quint scenarios; no offensive tooling.

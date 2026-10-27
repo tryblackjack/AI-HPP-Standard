@@ -2,6 +2,20 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 
+## 2026-10-27 — Proof claims and computational assumptions (post-rc.1)
+
+- Added optional guidance linking requirements, exact formal statements,
+  assumptions, checker artifacts, semantic review and implementation evidence.
+  Proof checking, statement correspondence, runtime validation and performance
+  retain separate statuses and explicit bounds.
+- Added cryptographic dependency inventories, protection lifetimes, reviewed
+  post-quantum migration, downgrade/recovery checks, archive renewal/custody and
+  authorized accelerator disclosure/resource accounting. No hardware timeline,
+  custom cryptography or automatic inference from ETH claims is introduced.
+- Added eight portable review cases, explicitly not executed mutants or quantum
+  experiments. Existing evidence references suffice; schemas, Quint transitions,
+  formal map, frozen normative files and immutable rc.1 package are unchanged.
+
 ## 2026-10-26 — Cyber-operation authority boundary fixtures (post-rc.1)
 
 - Added a source-qualified CrowdStrike case and optional assurance note with
