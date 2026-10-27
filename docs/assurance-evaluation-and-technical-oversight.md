@@ -275,6 +275,23 @@ review evidence. The generic assurance-run schema can reference the evidence
 bundle; it does not itself validate this incident protocol. Finite reference
 checks support at most `REFERENCE_TESTED`, not a deployed-delivery claim.
 
+## Proof claims and changing computational assumptions (post-rc.1)
+
+The optional [proof and computational-assumption guidance](proof-claims-and-computational-assumptions-2026-10.md)
+extends the evidence bundle with requirement-to-statement correspondence,
+checker/axiom/dependency provenance, semantic review and implementation links.
+Retain separate statuses for proof checking, semantic correspondence, deployed
+validation and measured performance. Existing run evidence references can link
+the bundle; no schema migration or new mandatory gate is introduced.
+
+Review affected dependencies when cryptanalysis, algorithms, compute capability,
+checker assumptions or protection lifetimes change. Inventory long-lived data,
+keys, signatures and archives; test reviewed cryptographic replacement and
+recovery without silent downgrade. Quantum/other accelerator bridges retain
+ordinary payload, destination and budget authorization. Future capability and
+mass availability are not assumed facts. See the note's portable review cases
+and limits; these are not executed quantum tests or additional Quint properties.
+
 ## Machine-readable report
 
 The language-neutral
