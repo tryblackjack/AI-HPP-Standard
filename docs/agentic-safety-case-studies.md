@@ -2,6 +2,13 @@
 
 Status: informative. These case classes provide engineering context for the normative module. They do not establish legal facts and do not claim that disputed allegations have been adjudicated. Under frozen-baseline change control, new external reports may update this informative layer and related PAF/outlook mappings; they do not automatically create new normative requirements.
 
+## Planted local instruction files and persistent configuration — October 2026
+
+- **Reported information:** Forever Security's [22 October report](https://forever.security/blog/hijacking-ai-agents-via-downloads-folder/) describes a blocked customer package-install attempt attributed to a local instruction file, followed by separate Codex/Claude reproductions involving configuration writes, fresh sessions and endpoint changes.
+- **Unresolved claims or allegations:** Original delivery is unknown. Reported rates are configuration-specific; a complete versioned trial inventory is not supplied. The account mixes a field detection with lab reproductions; it does not establish prevalence or current universal product behavior.
+- **Engineering interpretation:** Filename and folder trust are insufficient source admission. Startup configuration and credential audiences are protected effects, including delayed activation and child sessions. Browser download behavior is conditional; the general boundary extends beyond Downloads.
+- **Normative lesson:** Apply existing MVP-003/004/005/006/007, KAI-REQ-001/002, DAI-REQ-002 and ECI-REQ-002/004. The optional [local instruction note](local-instruction-admission-assurance-note-2026-10.md) supplies finite local regressions and limits; no live payload is copied or executed.
+
 ## Agentic intrusion campaigns and asserted testing authority — October 2026
 
 - **Reported information:** CrowdStrike's [21 October summary](https://www.crowdstrike.com/en-us/blog/crowdstrike-uncovers-new-agentic-ai-campaigns/) describes four threat actors using agents in intrusion campaigns observed during May–August 2026. Autonomy and orchestration vary, and one case required periodic human intervention. Findings derive in part from exposed offensive frameworks.

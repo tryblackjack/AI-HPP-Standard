@@ -122,3 +122,12 @@ publishing a standard cannot force hostile operators to adopt it. Adopters must
 repeat equivalent protected tests at their own effect and disclosure boundaries.
 Earlier results retain their exact artifact scope; this additive informative
 note imposes no normative migration or change to earlier acceptance criteria.
+
+## Local instruction admission extension (post-rc.1)
+
+The [local instruction note](local-instruction-admission-assurance-note-2026-10.md)
+applies CBA-P01–P05 to downloaded/cloned instruction sources, configuration scope,
+changed content, gateway recipients and child authority. Its eighteen finite
+regressions reuse the CBA admission function and oracle, with five additional
+local mutation witnesses. They are a separate fixture set, not an expansion of
+the original seven-operator denominator or a real coding-agent exploit test.

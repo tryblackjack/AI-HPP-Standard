@@ -3,6 +3,10 @@
 from pathlib import Path
 
 REQUIRED = [
+    "docs/local-instruction-admission-assurance-note-2026-10.md",
+    "docs/biological-neural-system-ethics-assurance-note-2026-10.md",
+    "examples/local_instruction_reference.py",
+    "tests/test_local_instruction_authority.py",
     "docs/cyber-operation-authority-assurance-note-2026-10.md",
     "examples/cyber_authority_reference.py",
     "examples/cyber-authority-vectors.json",

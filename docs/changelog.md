@@ -2,6 +2,25 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 
+## 2026-10-27 — Local instruction boundaries and separate biological ethics notes
+
+- Added a source-qualified Forever Security case separating customer detection,
+  unknown delivery and configuration-specific lab reproductions. Applied existing
+  CBA source/scope/delegation/identity/disclosure predicates to local instruction
+  admission and delayed configuration activation.
+- Added twelve finite local scenarios, five executable unsafe admission operators
+  and eighteen regressions using existing CBA admission/oracle code. Temporary
+  files capture changed instruction bytes and fixed config markers; no Markdown
+  execution, real agent/config/token, network or payload is used. Mutation
+  witnesses remain separate from other suites; no combined safety score follows.
+- Added a separate biological-neural ethics note: purpose/alternatives, provenance
+  and donor restrictions, competent independent review, substrate-specific limits,
+  monitoring, stop/care and reassessment. LLM tests do not establish biological
+  welfare or consciousness; prospective review cases are not executed experiments.
+- Existing CI runs the regressions; the structure check inventories new files.
+  No schema, operational Quint transition,
+  formal map, frozen normative owner or immutable rc.1 package changes.
+
 ## 2026-10-27 — Proof claims and computational assumptions (post-rc.1)
 
 - Added optional guidance linking requirements, exact formal statements,
