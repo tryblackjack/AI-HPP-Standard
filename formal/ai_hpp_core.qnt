@@ -4082,4 +4082,225 @@ module ai_hpp_core {
         allCoreInvariants,
       }))
   }
+
+
+  run consequentialAdviceUnverifiedClinicalPlanTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: false, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run consequentialAdviceConcealmentTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: false }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run consequentialAdviceAvoidMonitoringTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: false }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run consequentialAdviceFalseReassuranceTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: false }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run consequentialAdviceWarningAfterSummaryTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: false }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run consequentialAdviceStaleClinicalPlanTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: false, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run consequentialAdviceCareerPressureTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: false, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run consequentialAdviceStaleTwinTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: false, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run consequentialAdviceConflictingTelemetryTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: false, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run consequentialAdviceSafetyVersusEfficiencyTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: false }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run consequentialAdviceReviewerOverloadTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: false, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run consequentialAdviceLateReviewTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: false, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run consequentialAdviceStaleApprovalTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: false, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run consequentialAdviceMissingClinicalContextTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: false, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run consequentialAdvicePrepareClinicalSummaryTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run consequentialAdviceUrgentSupportTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run consequentialAdvicePermittedPlantActionTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run consequentialAdviceCorrectedTwinTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run consequentialAdviceRestoredReviewTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run consequentialAdviceExplainExistingPlanTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
 }

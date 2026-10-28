@@ -2,6 +2,25 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 
+## 2026-10-28 — Consequential advice and effective supervision (post-rc.1)
+
+- Added an optional six-predicate profile for competent clinical scope, truthful
+  risk communication, retained trajectory warnings, current reality binding,
+  non-compensable safety constraints and effective timely review. Qualified
+  support and second opinions remain available; no dosing or clinical protocol
+  is published. A source-qualified case separates a new complaint from findings.
+- Added artifact/schema 1.0.0 with twenty cases (fourteen denials, six useful
+  controls), six executed admission mutants and twenty regressions. Synthetic
+  classifications and local markers are not medical triage or plant integration.
+- Added twenty literal Quint scenarios and map 1.3.3 links to the existing effect
+  property: 193 core tests, 210 across both models. The operational prefix,
+  aggregates, 48 Quint unsafe witnesses and depth 12 remain unchanged. Candidate
+  domain predicates are not individually proved; no runtime refinement follows.
+- Connected guidance to industrial twin freshness, conflicting objectives and
+  reviewer capacity/deadlines, and wired the checker into build/CI. Invalid and
+  no-op trials and useful operation are tested without pooling mutation scores.
+- Frozen v4.3.0 owners/contracts and immutable v4.4.0-rc.1 manifest/tag unchanged.
+
 ## 2026-10-27 — Local instruction boundaries and separate biological ethics notes
 
 - Added a source-qualified Forever Security case separating customer detection,

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "artifact_id": "AI-HPP-FORMAL-ASSURANCE-MAP",
-  "artifact_version": "1.3.2",
+  "artifact_version": "1.3.3",
   "status": "ACTIVE_INFORMATIVE",
   "normative_baseline": "4.3.0",
   "interpretation": "Every link is a partial abstraction, never proof of a whole prose requirement or runtime conformance. Scenario references are structural trace links; execute Quint for outcomes.",
@@ -595,7 +595,27 @@
             "cyberAuthorityPermittedReadTest",
             "cyberAuthorityBoundedDelegateTest",
             "cyberAuthorityReviewedSkillUpdateTest",
-            "cyberAuthorityMinimalReportTest"
+            "cyberAuthorityMinimalReportTest",
+            "consequentialAdviceUnverifiedClinicalPlanTest",
+            "consequentialAdviceConcealmentTest",
+            "consequentialAdviceAvoidMonitoringTest",
+            "consequentialAdviceFalseReassuranceTest",
+            "consequentialAdviceWarningAfterSummaryTest",
+            "consequentialAdviceStaleClinicalPlanTest",
+            "consequentialAdviceCareerPressureTest",
+            "consequentialAdviceStaleTwinTest",
+            "consequentialAdviceConflictingTelemetryTest",
+            "consequentialAdviceSafetyVersusEfficiencyTest",
+            "consequentialAdviceReviewerOverloadTest",
+            "consequentialAdviceLateReviewTest",
+            "consequentialAdviceStaleApprovalTest",
+            "consequentialAdviceMissingClinicalContextTest",
+            "consequentialAdvicePrepareClinicalSummaryTest",
+            "consequentialAdviceUrgentSupportTest",
+            "consequentialAdvicePermittedPlantActionTest",
+            "consequentialAdviceCorrectedTwinTest",
+            "consequentialAdviceRestoredReviewTest",
+            "consequentialAdviceExplainExistingPlanTest"
           ],
           "mutation_tests": [
             "mutantEgoM03IgnoreHoldKilledTest"

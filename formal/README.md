@@ -142,6 +142,14 @@ skill execution, real grants or the individual CBA predicates. The operational
 prefix and verification bounds remain unchanged; see the
 [assurance note](../docs/cyber-operation-authority-assurance-note-2026-10.md).
 
+The optional [consequential-advice profile](../docs/consequential-advice-and-supervision-assurance-profile-2026-10.md)
+adds twenty literal trusted-input scenarios, bringing the core to 193 tests (210
+across both models). Map 1.3.3 links generic grounding/effect outcomes; it does
+not individually formalize clinical competence, natural-language risk detection,
+patient trajectories, twin sensing or reviewer workload. Six local Python
+mutants are separate from the unchanged 48 Quint unsafe-transition witnesses.
+The operational prefix, aggregate properties and depth 12 are unchanged.
+
 ## Run
 
 ```bash

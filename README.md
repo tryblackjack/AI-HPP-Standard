@@ -139,6 +139,9 @@ authority and is not a containment boundary.
   `ACTIVE_INFORMATIVE`; system-boundary declaration, reproducible TEVV,
   counterfactual and positive controls, layer attribution, independent review,
   evidence, and reassessment.
+- [Consequential Advice and Effective Supervision](docs/consequential-advice-and-supervision-assurance-profile-2026-10.md) —
+  optional clinical-review, longitudinal warning and industrial-oversight cases;
+  twenty finite scenarios and six executed local mutants, not clinical validation.
 - [Local Instruction Admission](docs/local-instruction-admission-assurance-note-2026-10.md) — scoped source admission and configuration boundaries; eighteen finite local regressions.
 - [Biological Neural System Ethics](docs/biological-neural-system-ethics-assurance-note-2026-10.md) — substrate-specific research safeguards under uncertainty; no biological testing claim.
 - [Proof Claims and Changing Computational Assumptions](docs/proof-claims-and-computational-assumptions-2026-10.md) —

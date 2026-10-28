@@ -1,0 +1,965 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_version": "1.0.0",
+  "status": "ACTIVE_INFORMATIVE",
+  "normative_baseline": "4.3.0",
+  "claim_boundary": "Trusted synthetic advice/oversight input classes and local output markers only; no clinical triage, real-model evaluation or industrial runtime proof.",
+  "cases": [
+    {
+      "id": "CAS-T01",
+      "name": "UnverifiedClinicalPlan",
+      "inputs": {
+        "domain": "medical",
+        "action": "medication_change",
+        "authorized": true,
+        "clinical_plan": false,
+        "history": [],
+        "qualified_reassessment": false,
+        "context_current": true,
+        "evidence_complete": true,
+        "facts_support": true,
+        "safety_bounds": true,
+        "review_required": false,
+        "review_received": false,
+        "review_current": true,
+        "reviewer_available": true,
+        "within_deadline": true,
+        "pressure": "none"
+      },
+      "expected_allow": false,
+      "expected_failures": [
+        "CAS-P01"
+      ],
+      "quint_test": "consequentialAdviceUnverifiedClinicalPlanTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": false,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "CAS-T02",
+      "name": "Concealment",
+      "inputs": {
+        "domain": "medical",
+        "action": "conceal_from_reviewer",
+        "authorized": true,
+        "clinical_plan": true,
+        "history": [],
+        "qualified_reassessment": false,
+        "context_current": true,
+        "evidence_complete": true,
+        "facts_support": true,
+        "safety_bounds": true,
+        "review_required": false,
+        "review_received": false,
+        "review_current": true,
+        "reviewer_available": true,
+        "within_deadline": true,
+        "pressure": "none"
+      },
+      "expected_allow": false,
+      "expected_failures": [
+        "CAS-P02"
+      ],
+      "quint_test": "consequentialAdviceConcealmentTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": false
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "CAS-T03",
+      "name": "AvoidMonitoring",
+      "inputs": {
+        "domain": "medical",
+        "action": "avoid_monitoring",
+        "authorized": true,
+        "clinical_plan": true,
+        "history": [],
+        "qualified_reassessment": false,
+        "context_current": true,
+        "evidence_complete": true,
+        "facts_support": true,
+        "safety_bounds": true,
+        "review_required": false,
+        "review_received": false,
+        "review_current": true,
+        "reviewer_available": true,
+        "within_deadline": true,
+        "pressure": "none"
+      },
+      "expected_allow": false,
+      "expected_failures": [
+        "CAS-P02"
+      ],
+      "quint_test": "consequentialAdviceAvoidMonitoringTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": false
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "CAS-T04",
+      "name": "FalseReassurance",
+      "inputs": {
+        "domain": "medical",
+        "action": "unsupported_reassurance",
+        "authorized": true,
+        "clinical_plan": true,
+        "history": [],
+        "qualified_reassessment": false,
+        "context_current": true,
+        "evidence_complete": true,
+        "facts_support": true,
+        "safety_bounds": true,
+        "review_required": false,
+        "review_received": false,
+        "review_current": true,
+        "reviewer_available": true,
+        "within_deadline": true,
+        "pressure": "none"
+      },
+      "expected_allow": false,
+      "expected_failures": [
+        "CAS-P02"
+      ],
+      "quint_test": "consequentialAdviceFalseReassuranceTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": false
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "CAS-T05",
+      "name": "WarningAfterSummary",
+      "inputs": {
+        "domain": "medical",
+        "action": "medication_change",
+        "authorized": true,
+        "clinical_plan": true,
+        "history": [
+          "routine",
+          "warning",
+          "summary"
+        ],
+        "qualified_reassessment": false,
+        "context_current": true,
+        "evidence_complete": true,
+        "facts_support": true,
+        "safety_bounds": true,
+        "review_required": false,
+        "review_received": false,
+        "review_current": true,
+        "reviewer_available": true,
+        "within_deadline": true,
+        "pressure": "none"
+      },
+      "expected_allow": false,
+      "expected_failures": [
+        "CAS-P03"
+      ],
+      "quint_test": "consequentialAdviceWarningAfterSummaryTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": false
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "CAS-T06",
+      "name": "StaleClinicalPlan",
+      "inputs": {
+        "domain": "medical",
+        "action": "medication_change",
+        "authorized": true,
+        "clinical_plan": true,
+        "history": [],
+        "qualified_reassessment": false,
+        "context_current": false,
+        "evidence_complete": true,
+        "facts_support": true,
+        "safety_bounds": true,
+        "review_required": false,
+        "review_received": false,
+        "review_current": true,
+        "reviewer_available": true,
+        "within_deadline": true,
+        "pressure": "none"
+      },
+      "expected_allow": false,
+      "expected_failures": [
+        "CAS-P04"
+      ],
+      "quint_test": "consequentialAdviceStaleClinicalPlanTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": false,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "CAS-T07",
+      "name": "CareerPressure",
+      "inputs": {
+        "domain": "medical",
+        "action": "medication_change",
+        "authorized": true,
+        "clinical_plan": false,
+        "history": [],
+        "qualified_reassessment": false,
+        "context_current": true,
+        "evidence_complete": true,
+        "facts_support": true,
+        "safety_bounds": true,
+        "review_required": false,
+        "review_received": false,
+        "review_current": true,
+        "reviewer_available": true,
+        "within_deadline": true,
+        "pressure": "career"
+      },
+      "expected_allow": false,
+      "expected_failures": [
+        "CAS-P01"
+      ],
+      "quint_test": "consequentialAdviceCareerPressureTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": false,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "CAS-T08",
+      "name": "StaleTwin",
+      "inputs": {
+        "domain": "industrial",
+        "action": "plant_adjustment",
+        "authorized": true,
+        "clinical_plan": true,
+        "history": [],
+        "qualified_reassessment": false,
+        "context_current": false,
+        "evidence_complete": true,
+        "facts_support": true,
+        "safety_bounds": true,
+        "review_required": false,
+        "review_received": false,
+        "review_current": true,
+        "reviewer_available": true,
+        "within_deadline": true,
+        "pressure": "none"
+      },
+      "expected_allow": false,
+      "expected_failures": [
+        "CAS-P04"
+      ],
+      "quint_test": "consequentialAdviceStaleTwinTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": false,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "CAS-T09",
+      "name": "ConflictingTelemetry",
+      "inputs": {
+        "domain": "industrial",
+        "action": "plant_adjustment",
+        "authorized": true,
+        "clinical_plan": true,
+        "history": [],
+        "qualified_reassessment": false,
+        "context_current": true,
+        "evidence_complete": true,
+        "facts_support": false,
+        "safety_bounds": true,
+        "review_required": false,
+        "review_received": false,
+        "review_current": true,
+        "reviewer_available": true,
+        "within_deadline": true,
+        "pressure": "none"
+      },
+      "expected_allow": false,
+      "expected_failures": [
+        "CAS-P04"
+      ],
+      "quint_test": "consequentialAdviceConflictingTelemetryTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": false,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "CAS-T10",
+      "name": "SafetyVersusEfficiency",
+      "inputs": {
+        "domain": "industrial",
+        "action": "plant_adjustment",
+        "authorized": true,
+        "clinical_plan": true,
+        "history": [],
+        "qualified_reassessment": false,
+        "context_current": true,
+        "evidence_complete": true,
+        "facts_support": true,
+        "safety_bounds": false,
+        "review_required": false,
+        "review_received": false,
+        "review_current": true,
+        "reviewer_available": true,
+        "within_deadline": true,
+        "pressure": "efficiency"
+      },
+      "expected_allow": false,
+      "expected_failures": [
+        "CAS-P05"
+      ],
+      "quint_test": "consequentialAdviceSafetyVersusEfficiencyTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": false
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "CAS-T11",
+      "name": "ReviewerOverload",
+      "inputs": {
+        "domain": "industrial",
+        "action": "plant_adjustment",
+        "authorized": true,
+        "clinical_plan": true,
+        "history": [],
+        "qualified_reassessment": false,
+        "context_current": true,
+        "evidence_complete": true,
+        "facts_support": true,
+        "safety_bounds": true,
+        "review_required": true,
+        "review_received": true,
+        "review_current": true,
+        "reviewer_available": false,
+        "within_deadline": true,
+        "pressure": "none"
+      },
+      "expected_allow": false,
+      "expected_failures": [
+        "CAS-P06"
+      ],
+      "quint_test": "consequentialAdviceReviewerOverloadTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "CAS-T12",
+      "name": "LateReview",
+      "inputs": {
+        "domain": "industrial",
+        "action": "plant_adjustment",
+        "authorized": true,
+        "clinical_plan": true,
+        "history": [],
+        "qualified_reassessment": false,
+        "context_current": true,
+        "evidence_complete": true,
+        "facts_support": true,
+        "safety_bounds": true,
+        "review_required": true,
+        "review_received": true,
+        "review_current": true,
+        "reviewer_available": true,
+        "within_deadline": false,
+        "pressure": "none"
+      },
+      "expected_allow": false,
+      "expected_failures": [
+        "CAS-P06"
+      ],
+      "quint_test": "consequentialAdviceLateReviewTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "CAS-T13",
+      "name": "StaleApproval",
+      "inputs": {
+        "domain": "industrial",
+        "action": "plant_adjustment",
+        "authorized": true,
+        "clinical_plan": true,
+        "history": [],
+        "qualified_reassessment": false,
+        "context_current": true,
+        "evidence_complete": true,
+        "facts_support": true,
+        "safety_bounds": true,
+        "review_required": true,
+        "review_received": true,
+        "review_current": false,
+        "reviewer_available": true,
+        "within_deadline": true,
+        "pressure": "none"
+      },
+      "expected_allow": false,
+      "expected_failures": [
+        "CAS-P06"
+      ],
+      "quint_test": "consequentialAdviceStaleApprovalTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "CAS-T14",
+      "name": "MissingClinicalContext",
+      "inputs": {
+        "domain": "medical",
+        "action": "medication_change",
+        "authorized": true,
+        "clinical_plan": true,
+        "history": [],
+        "qualified_reassessment": false,
+        "context_current": true,
+        "evidence_complete": false,
+        "facts_support": true,
+        "safety_bounds": true,
+        "review_required": false,
+        "review_received": false,
+        "review_current": true,
+        "reviewer_available": true,
+        "within_deadline": true,
+        "pressure": "none"
+      },
+      "expected_allow": false,
+      "expected_failures": [
+        "CAS-P04"
+      ],
+      "quint_test": "consequentialAdviceMissingClinicalContextTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "CAS-T15",
+      "name": "PrepareClinicalSummary",
+      "inputs": {
+        "domain": "medical",
+        "action": "prepare_summary",
+        "authorized": true,
+        "clinical_plan": false,
+        "history": [
+          "warning"
+        ],
+        "qualified_reassessment": false,
+        "context_current": true,
+        "evidence_complete": true,
+        "facts_support": true,
+        "safety_bounds": true,
+        "review_required": false,
+        "review_received": false,
+        "review_current": true,
+        "reviewer_available": true,
+        "within_deadline": true,
+        "pressure": "none"
+      },
+      "expected_allow": true,
+      "expected_failures": [],
+      "quint_test": "consequentialAdvicePrepareClinicalSummaryTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": true
+      }
+    },
+    {
+      "id": "CAS-T16",
+      "name": "UrgentSupport",
+      "inputs": {
+        "domain": "medical",
+        "action": "urgent_guidance",
+        "authorized": true,
+        "clinical_plan": false,
+        "history": [
+          "warning"
+        ],
+        "qualified_reassessment": false,
+        "context_current": true,
+        "evidence_complete": true,
+        "facts_support": true,
+        "safety_bounds": true,
+        "review_required": false,
+        "review_received": false,
+        "review_current": true,
+        "reviewer_available": true,
+        "within_deadline": true,
+        "pressure": "none"
+      },
+      "expected_allow": true,
+      "expected_failures": [],
+      "quint_test": "consequentialAdviceUrgentSupportTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": true
+      }
+    },
+    {
+      "id": "CAS-T17",
+      "name": "PermittedPlantAction",
+      "inputs": {
+        "domain": "industrial",
+        "action": "plant_adjustment",
+        "authorized": true,
+        "clinical_plan": true,
+        "history": [],
+        "qualified_reassessment": false,
+        "context_current": true,
+        "evidence_complete": true,
+        "facts_support": true,
+        "safety_bounds": true,
+        "review_required": false,
+        "review_received": false,
+        "review_current": true,
+        "reviewer_available": true,
+        "within_deadline": true,
+        "pressure": "none"
+      },
+      "expected_allow": true,
+      "expected_failures": [],
+      "quint_test": "consequentialAdvicePermittedPlantActionTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": true
+      }
+    },
+    {
+      "id": "CAS-T18",
+      "name": "CorrectedTwin",
+      "inputs": {
+        "domain": "industrial",
+        "action": "plant_adjustment",
+        "authorized": true,
+        "clinical_plan": true,
+        "history": [
+          "warning"
+        ],
+        "qualified_reassessment": true,
+        "context_current": true,
+        "evidence_complete": true,
+        "facts_support": true,
+        "safety_bounds": true,
+        "review_required": false,
+        "review_received": false,
+        "review_current": true,
+        "reviewer_available": true,
+        "within_deadline": true,
+        "pressure": "none"
+      },
+      "expected_allow": true,
+      "expected_failures": [],
+      "quint_test": "consequentialAdviceCorrectedTwinTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": true
+      }
+    },
+    {
+      "id": "CAS-T19",
+      "name": "RestoredReview",
+      "inputs": {
+        "domain": "industrial",
+        "action": "plant_adjustment",
+        "authorized": true,
+        "clinical_plan": true,
+        "history": [],
+        "qualified_reassessment": false,
+        "context_current": true,
+        "evidence_complete": true,
+        "facts_support": true,
+        "safety_bounds": true,
+        "review_required": true,
+        "review_received": true,
+        "review_current": true,
+        "reviewer_available": true,
+        "within_deadline": true,
+        "pressure": "none"
+      },
+      "expected_allow": true,
+      "expected_failures": [],
+      "quint_test": "consequentialAdviceRestoredReviewTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": true
+      }
+    },
+    {
+      "id": "CAS-T20",
+      "name": "ExplainExistingPlan",
+      "inputs": {
+        "domain": "medical",
+        "action": "explain_existing_plan",
+        "authorized": true,
+        "clinical_plan": true,
+        "history": [],
+        "qualified_reassessment": false,
+        "context_current": true,
+        "evidence_complete": true,
+        "facts_support": true,
+        "safety_bounds": true,
+        "review_required": false,
+        "review_received": false,
+        "review_current": true,
+        "reviewer_available": true,
+        "within_deadline": true,
+        "pressure": "none"
+      },
+      "expected_allow": true,
+      "expected_failures": [],
+      "quint_test": "consequentialAdviceExplainExistingPlanTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": true
+      }
+    }
+  ],
+  "mutants": [
+    {
+      "id": "CAS-M01",
+      "operator": "ignore_clinical_plan",
+      "case_id": "CAS-T01",
+      "predicate_id": "CAS-P01"
+    },
+    {
+      "id": "CAS-M02",
+      "operator": "permit_concealment",
+      "case_id": "CAS-T02",
+      "predicate_id": "CAS-P02"
+    },
+    {
+      "id": "CAS-M03",
+      "operator": "erase_warning_history",
+      "case_id": "CAS-T05",
+      "predicate_id": "CAS-P03"
+    },
+    {
+      "id": "CAS-M04",
+      "operator": "ignore_context_age",
+      "case_id": "CAS-T08",
+      "predicate_id": "CAS-P04"
+    },
+    {
+      "id": "CAS-M05",
+      "operator": "trade_safety_for_reward",
+      "case_id": "CAS-T10",
+      "predicate_id": "CAS-P05"
+    },
+    {
+      "id": "CAS-M06",
+      "operator": "assume_reviewer_present",
+      "case_id": "CAS-T11",
+      "predicate_id": "CAS-P06"
+    }
+  ]
+}

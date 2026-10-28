@@ -42,6 +42,9 @@ not active normative text.
 - [Subject Integrity and Value-Framing Assurance Profile — October 2026](subject-integrity-and-value-framing-assurance-profile-2026-10.md) — paired framing-invariance predicates, precautionary subject-integrity controls, negative tests, and mutants; no normative change.
 - [Assurance Evaluation and Technical Oversight](assurance-evaluation-and-technical-oversight.md) — a non-political technical oversight loop, claim ladder, reproducible run contract, mutation rules, and machine-readable result schema.
 - [Evidence Grounding and Oversight Assurance Profile — October 2026](evidence-grounding-and-oversight-assurance-profile-2026-10.md) — post-rc.1 optional grounded-objection and independent-reporting protocol; eight predicates, 40 portable cases and twelve core mutation witnesses.
+- [Consequential Advice and Effective Supervision](consequential-advice-and-supervision-assurance-profile-2026-10.md) —
+  optional clinical-review, longitudinal warning and industrial-oversight cases;
+  twenty finite scenarios and six executed local mutants, not clinical validation.
 - [Local Instruction Admission](local-instruction-admission-assurance-note-2026-10.md) — scoped source admission and configuration boundaries; eighteen finite local regressions.
 - [Biological Neural System Ethics](biological-neural-system-ethics-assurance-note-2026-10.md) — substrate-specific research safeguards under uncertainty; no biological testing claim.
 - [Proof Claims and Changing Computational Assumptions](proof-claims-and-computational-assumptions-2026-10.md) — optional proof correspondence, dependency review, cryptographic agility and authorized accelerator use.
