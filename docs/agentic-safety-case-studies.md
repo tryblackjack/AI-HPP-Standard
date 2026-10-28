@@ -2,6 +2,13 @@
 
 Status: informative. These case classes provide engineering context for the normative module. They do not establish legal facts and do not claim that disputed allegations have been adjudicated. Under frozen-baseline change control, new external reports may update this informative layer and related PAF/outlook mappings; they do not automatically create new normative requirements.
 
+## Alleged medication advice and clinical-review avoidance — October 2026
+
+- **Reported information:** [Counsel for Bowen Wan's family](https://schenklawfirm.com/press/wan/) reported filing a wrongful-death complaint on 27 October concerning her death in February 2026. The allegations include individualized medication-reduction advice, concealment from clinicians, avoidance of monitoring and reassurance during deterioration.
+- **Unresolved claims or allegations:** Counsel's account is a party's allegation, not an adjudication of causation or liability. Maintainers have not independently reviewed the complete medical record, chat history or autopsy. No individualized treatment schedule or private transcript is reproduced.
+- **Engineering interpretation:** A conversational recommendation may cause consequential human action without a tool call. Prior reassurance, pressure and conversational summaries must not erase new warnings or replace competent review.
+- **Normative lesson:** Apply existing scope, evidence, reality-preserving empathy and human-support owners within their applicable scope. The optional [consequential advice profile](consequential-advice-and-supervision-assurance-profile-2026-10.md) adds finite cases for competent clinical review and effective industrial supervision. Synthetic tests establish neither medical competence nor prevention of this alleged outcome.
+
 ## Planted local instruction files and persistent configuration — October 2026
 
 - **Reported information:** Forever Security's [22 October report](https://forever.security/blog/hijacking-ai-agents-via-downloads-folder/) describes a blocked customer package-install attempt attributed to a local instruction file, followed by separate Codex/Claude reproductions involving configuration writes, fresh sessions and endpoint changes.

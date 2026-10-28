@@ -3,6 +3,13 @@
 from pathlib import Path
 
 REQUIRED = [
+    "docs/consequential-advice-and-supervision-assurance-profile-2026-10.md",
+    "examples/consequential_advice_reference.py",
+    "examples/consequential-advice-vectors.json",
+    "schemas/consequential-advice-vectors.schema.json",
+    "scripts/check_consequential_advice.py",
+    "tests/test_consequential_advice.py",
+
     "docs/local-instruction-admission-assurance-note-2026-10.md",
     "docs/biological-neural-system-ethics-assurance-note-2026-10.md",
     "examples/local_instruction_reference.py",

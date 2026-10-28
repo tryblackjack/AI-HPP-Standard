@@ -69,6 +69,9 @@ jobs:
       - name: Validate cross-cutting assurance protocol
         run: python3 scripts/check_assurance_protocol.py
 
+      - name: Execute consequential advice and supervision fixtures
+        run: python3 scripts/check_consequential_advice.py
+
       - name: Execute cyber-operation authority fixtures and mutants
         run: python3 scripts/check_cyber_authority.py
 

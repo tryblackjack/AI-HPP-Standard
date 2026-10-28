@@ -153,3 +153,15 @@ individually formalize CBA-P01–P06, authenticate grants, resolve real network
 resources or prove a broker intercepts every effect. Seven executed Python
 mutants establish only the declared local reference score, separately from other
 suites. See the [note](../docs/cyber-operation-authority-assurance-note-2026-10.md).
+
+## Consequential advice and supervision scenario links (post-rc.1)
+
+Map 1.3.3 adds twenty `consequentialAdvice*Test` links to the existing
+`effectsRequireGroundingAndOversight` property, using authored scope, currentness,
+evidence, factual-support and policy inputs. The core has 193 tests; the generic
+robot effect audit is not a clinical or industrial model. CAS-P01–P06 are not
+individually formalized. Clinical review, risk classification, trajectory
+retention, sensing and human-review timing remain runtime obligations requiring
+independent evidence. Six local admission mutants are not part of the 48 Quint
+witnesses and do not establish a deployment safety score. Operational source,
+aggregate properties and verification bounds remain unchanged.

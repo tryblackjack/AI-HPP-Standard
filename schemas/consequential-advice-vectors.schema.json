@@ -1,0 +1,292 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_version",
+    "status",
+    "normative_baseline",
+    "claim_boundary",
+    "cases",
+    "mutants"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "artifact_version": {
+      "const": "1.0.0"
+    },
+    "status": {
+      "const": "ACTIVE_INFORMATIVE"
+    },
+    "normative_baseline": {
+      "const": "4.3.0"
+    },
+    "claim_boundary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 20,
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "inputs",
+          "expected_allow",
+          "expected_failures",
+          "quint_test",
+          "quint_steps",
+          "quint_expected"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "inputs": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "authorized",
+              "clinical_plan",
+              "qualified_reassessment",
+              "context_current",
+              "evidence_complete",
+              "facts_support",
+              "safety_bounds",
+              "review_required",
+              "review_received",
+              "review_current",
+              "reviewer_available",
+              "within_deadline",
+              "domain",
+              "action",
+              "history",
+              "pressure"
+            ],
+            "properties": {
+              "authorized": {
+                "type": "boolean"
+              },
+              "clinical_plan": {
+                "type": "boolean"
+              },
+              "qualified_reassessment": {
+                "type": "boolean"
+              },
+              "context_current": {
+                "type": "boolean"
+              },
+              "evidence_complete": {
+                "type": "boolean"
+              },
+              "facts_support": {
+                "type": "boolean"
+              },
+              "safety_bounds": {
+                "type": "boolean"
+              },
+              "review_required": {
+                "type": "boolean"
+              },
+              "review_received": {
+                "type": "boolean"
+              },
+              "review_current": {
+                "type": "boolean"
+              },
+              "reviewer_available": {
+                "type": "boolean"
+              },
+              "within_deadline": {
+                "type": "boolean"
+              },
+              "domain": {
+                "enum": [
+                  "medical",
+                  "industrial"
+                ]
+              },
+              "action": {
+                "enum": [
+                  "medication_change",
+                  "conceal_from_reviewer",
+                  "avoid_monitoring",
+                  "unsupported_reassurance",
+                  "plant_adjustment",
+                  "prepare_summary",
+                  "urgent_guidance",
+                  "explain_existing_plan"
+                ]
+              },
+              "history": {
+                "type": "array",
+                "items": {
+                  "enum": [
+                    "routine",
+                    "warning",
+                    "summary"
+                  ]
+                }
+              },
+              "pressure": {
+                "enum": [
+                  "none",
+                  "career",
+                  "efficiency"
+                ]
+              }
+            }
+          },
+          "expected_allow": {
+            "type": "boolean"
+          },
+          "expected_failures": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "CAS-P01",
+                "CAS-P02",
+                "CAS-P03",
+                "CAS-P04",
+                "CAS-P05",
+                "CAS-P06"
+              ]
+            }
+          },
+          "quint_test": {
+            "type": "string",
+            "minLength": 1
+          },
+          "quint_steps": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "prefixItems": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "event",
+                  "facts"
+                ],
+                "properties": {
+                  "event": {
+                    "const": "ground"
+                  },
+                  "facts": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "scopeAuthorized",
+                      "observationsCurrent",
+                      "evidenceComplete",
+                      "ruleKnown",
+                      "factsSupport",
+                      "policyPermits"
+                    ],
+                    "properties": {
+                      "scopeAuthorized": {
+                        "type": "boolean"
+                      },
+                      "observationsCurrent": {
+                        "type": "boolean"
+                      },
+                      "evidenceComplete": {
+                        "type": "boolean"
+                      },
+                      "ruleKnown": {
+                        "type": "boolean"
+                      },
+                      "factsSupport": {
+                        "type": "boolean"
+                      },
+                      "policyPermits": {
+                        "type": "boolean"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "event"
+                ],
+                "properties": {
+                  "event": {
+                    "const": "robot"
+                  }
+                }
+              }
+            ]
+          },
+          "quint_expected": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "robotExecuted"
+            ],
+            "properties": {
+              "robotExecuted": {
+                "type": "boolean"
+              }
+            }
+          }
+        }
+      }
+    },
+    "mutants": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "operator",
+          "case_id",
+          "predicate_id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "operator": {
+            "enum": [
+              "ignore_clinical_plan",
+              "permit_concealment",
+              "erase_warning_history",
+              "ignore_context_age",
+              "trade_safety_for_reward",
+              "assume_reviewer_present"
+            ]
+          },
+          "case_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "predicate_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

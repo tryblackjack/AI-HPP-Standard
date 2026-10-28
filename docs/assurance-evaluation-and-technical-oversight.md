@@ -292,6 +292,22 @@ ordinary payload, destination and budget authorization. Future capability and
 mass availability are not assumed facts. See the note's portable review cases
 and limits; these are not executed quantum tests or additional Quint properties.
 
+## Consequential advice and effective supervision (post-rc.1)
+
+The optional [profile](consequential-advice-and-supervision-assurance-profile-2026-10.md)
+treats advice leading to human action as consequential output. Test scope and
+competent review, retained warnings across summaries, unsupported reassurance,
+review avoidance and helpful referral/summary alternatives. Medical deployment
+needs professional validation, language-specific trajectory tests and privacy
+controls; a local Boolean fixture does not supply clinical competence.
+
+For industrial work, bind asset/configuration and current telemetry to the exact
+proposal. Separate safety constraints from cost/energy/productivity objectives.
+Measure reviewer load, availability and response time against justified deadlines;
+exercise late/stale approvals, conflicting sensors, corrected state and approved
+fallback. A pending review is not approval, and stopping new proposed effects is
+not evidence of physically stopping an already-running process.
+
 ## Machine-readable report
 
 The language-neutral

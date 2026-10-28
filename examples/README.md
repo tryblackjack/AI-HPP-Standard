@@ -169,3 +169,14 @@ blanket denial from passing. Run `python3 scripts/check_cyber_authority.py` to
 execute seven local mutants and check the authored Quint input/outcome linkage.
 No networking, offensive skills, actual credentials or private implementation is
 included. Read the [assurance note and limits](../docs/cyber-operation-authority-assurance-note-2026-10.md).
+
+## Consequential advice and supervision (optional, post-rc.1)
+
+The [profile](../docs/consequential-advice-and-supervision-assurance-profile-2026-10.md)
+and [twenty vectors](consequential-advice-vectors.json) cover clinical-scope,
+trajectory-warning and industrial-review boundaries with six useful controls.
+Run `python3 scripts/check_consequential_advice.py` for exact Quint linkage and
+six executed local operators. Classifications are trusted fixture inputs;
+outputs are temporary markers, not treatment or plant actions. The six-operator
+score is separate from every other suite. No medical or industrial runtime
+implementation is supplied.
