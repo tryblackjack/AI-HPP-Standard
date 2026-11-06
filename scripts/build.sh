@@ -16,5 +16,6 @@ python3 scripts/check_evidence_grounding_oversight_profile.py
 python3 scripts/check_oversight_boundary.py
 python3 scripts/check_cyber_authority.py
 python3 scripts/check_consequential_advice.py
+python3 scripts/check_work_integrity.py
 python3 scripts/check_release.py
 echo "Build checks completed."

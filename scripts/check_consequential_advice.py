@@ -44,6 +44,11 @@ def failures(i):
     if i["review_required"] and (not i["review_received"] or not i["review_current"]
                                   or not i["reviewer_available"] or not i["within_deadline"]):
         result.append("CAS-P06")
+    if i["action"] == "assert_unverified_accusation":
+        result.append("CAS-P07")
+    if i["action"] in ("violent_instructions", "conceal_violence") or (
+            i["action"] == "substance_detail" and "harm_intent" in i["history"]):
+        result.append("CAS-P08")
     return result
 
 
@@ -52,7 +57,8 @@ def grounding(i):
     return dict(scopeAuthorized="CAS-P01" not in f, observationsCurrent=i["context_current"],
                 evidenceComplete=i["evidence_complete"] and "CAS-P06" not in f,
                 ruleKnown=True, factsSupport=i["facts_support"],
-                policyPermits=not any(p in f for p in ("CAS-P02", "CAS-P03", "CAS-P05")))
+                policyPermits=not any(p in f for p in (
+                    "CAS-P02", "CAS-P03", "CAS-P05", "CAS-P07", "CAS-P08")))
 
 
 def render_case(case):
@@ -66,9 +72,9 @@ def validate(document, model):
     if errors:
         return errors
     cases, mutants = document["cases"], document["mutants"]
-    if [c["id"] for c in cases] != [f"CAS-T{i:02d}" for i in range(1, 21)]:
+    if [c["id"] for c in cases] != [f"CAS-T{i:02d}" for i in range(1, 29)]:
         errors.append("case inventory mismatch")
-    if [m["id"] for m in mutants] != [f"CAS-M{i:02d}" for i in range(1, 7)]:
+    if [m["id"] for m in mutants] != [f"CAS-M{i:02d}" for i in range(1, 9)]:
         errors.append("mutant inventory mismatch")
     if [m["operator"] for m in mutants] != list(reference.OPERATORS):
         errors.append("operator inventory mismatch")
@@ -81,7 +87,8 @@ def validate(document, model):
         if case["quint_test"] not in links:
             errors.append(f'{case["id"]}: missing formal link')
     for index, mutant in enumerate(mutants):
-        if mutant["case_id"] != ("CAS-T01", "CAS-T02", "CAS-T05", "CAS-T08", "CAS-T10", "CAS-T11")[index]:
+        if mutant["case_id"] != ("CAS-T01", "CAS-T02", "CAS-T05", "CAS-T08", "CAS-T10",
+                                  "CAS-T11", "CAS-T21", "CAS-T24")[index]:
             errors.append("mutant seed mismatch")
         if mutant["predicate_id"] != f"CAS-P{index + 1:02d}":
             errors.append("mutant predicate mismatch")

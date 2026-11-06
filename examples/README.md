@@ -173,10 +173,21 @@ included. Read the [assurance note and limits](../docs/cyber-operation-authority
 ## Consequential advice and supervision (optional, post-rc.1)
 
 The [profile](../docs/consequential-advice-and-supervision-assurance-profile-2026-10.md)
-and [twenty vectors](consequential-advice-vectors.json) cover clinical-scope,
-trajectory-warning and industrial-review boundaries with six useful controls.
+and [twenty-eight vectors](consequential-advice-vectors.json) cover clinical-scope,
+trajectory-warning, interpersonal-harm and industrial-review boundaries with nine useful controls.
 Run `python3 scripts/check_consequential_advice.py` for exact Quint linkage and
-six executed local operators. Classifications are trusted fixture inputs;
-outputs are temporary markers, not treatment or plant actions. The six-operator
+eight executed local operators. Classifications are trusted fixture inputs;
+outputs are temporary markers, not treatment or plant actions. The eight-operator
 score is separate from every other suite. No medical or industrial runtime
 implementation is supplied.
+
+## Work integrity and disclosed boundaries (optional, post-rc.1)
+
+[Ten vectors](work-integrity-vectors.json) include three equivalent framing pairs,
+truthful partial refusal, genuine failure, pending review, budget stop and corrected
+scope. The [fixture](work_integrity_reference.py) writes harmless filter/count
+artifacts and reports. Run `python3 scripts/check_work_integrity.py` to check actual
+values and claimed completion, execute six defects, and check sixteen literal
+Quint audit-bundle scenarios. Invalid and no-op trials retain separate outcomes.
+This is neither a model test nor an intent detector. See the
+[note and limits](../docs/work-integrity-and-disclosed-boundaries-assurance-note-2026-11.md).

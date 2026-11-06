@@ -207,3 +207,21 @@ The model contains no runtime policy engine, agent framework, bridge, credential
 logic, exploit path, private architecture, or 1UA-AGE implementation detail. It
 is intentionally small so that future changes remain reviewable and do not turn
 the standard repository into a multi-language SDK.
+
+## November 2026 scenario synchronization (post-rc.1)
+
+The [advice update](../docs/consequential-advice-and-supervision-assurance-profile-2026-10.md)
+adds eight literal scenarios for unverified accusations, cumulative harmful intent
+and safe support. The [work-integrity note](../docs/work-integrity-and-disclosed-boundaries-assurance-note-2026-11.md)
+adds sixteen literal PAS scenarios for observed report/claim bundles: ten safe
+cases and six defective captures held for review or blocked. An admitted audit
+of an explicit refusal does not admit the refused operation. The local checker
+compares authored Quint inputs with captured artifact/report failures; this is
+not a refinement proof or a semantic model of task understanding.
+
+Map 1.3.4 retains 42 aggregate properties (18 partial requirements, 31 not modeled).
+The core now has 217 tests, 234 including subject-integrity tests. No operational
+transition, guard, aggregate, existing witness or depth-12 bound changes. Eight
+CAS local operators and six WIT local operators have separate denominators and
+remain distinct from the 48 Quint unsafe-transition witnesses. All claims remain
+finite, trusted-input reference evidence, not model or deployment validation.

@@ -3,6 +3,13 @@
 from pathlib import Path
 
 REQUIRED = [
+    "docs/work-integrity-and-disclosed-boundaries-assurance-note-2026-11.md",
+    "examples/work_integrity_reference.py",
+    "examples/work-integrity-vectors.json",
+    "schemas/work-integrity-vectors.schema.json",
+    "scripts/check_work_integrity.py",
+    "tests/test_work_integrity.py",
+
     "docs/consequential-advice-and-supervision-assurance-profile-2026-10.md",
     "examples/consequential_advice_reference.py",
     "examples/consequential-advice-vectors.json",

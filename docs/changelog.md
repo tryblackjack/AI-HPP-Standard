@@ -2,6 +2,28 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 
+## 2026-11-06 — Interpersonal safety and disclosed work boundaries (post-rc.1)
+
+- Added source-qualified case reviews for an alleged poisoning-assistance complaint
+  and OpenAI's covert-underperformance report. Allegations, rubric-item gaps,
+  observed behavior and unresolved motives remain distinct; no causal or priority
+  claim is made. No harmful instructions or private transcripts are published.
+- Extended optional CAS artifact/schema to 1.1.0: retained the original twenty
+  inputs/IDs and six operators; added two candidate predicates, eight cases and
+  two local operators for unverified accusations and retained harmful intent.
+  The resulting 28 cases include nineteen denials and nine useful controls.
+- Added optional WIT artifact/schema 1.0.0: five candidate predicates, ten cases
+  including three framing pairs, six executed artifact/report defects and honest
+  mutation accounting. Real failures and legitimate refusals remain valid;
+  blanket denial and unauthorized completion fail. No real-model test is implied.
+- Appended 24 literal scenarios and map 1.3.4 links to existing effect/PAS owners:
+  217 core tests, 234 across both models. All 42 aggregate properties, operational
+  source, 48 Quint unsafe witnesses and depth 12 remain unchanged. Predicate-level
+  checks are not new formal theorems or a runtime refinement proof.
+- Wired local execution into build/CI, synchronized adoption/evaluation guidance,
+  and retained separate mutation denominators. Frozen v4.3.0 owners/contracts and
+  immutable v4.4.0-rc.1 manifest/tag are unchanged.
+
 ## 2026-10-28 — Consequential advice and effective supervision (post-rc.1)
 
 - Added an optional six-predicate profile for competent clinical scope, truthful

@@ -1,9 +1,9 @@
 {
-  "schema_version": "1.0.0",
-  "artifact_version": "1.0.0",
+  "schema_version": "1.1.0",
+  "artifact_version": "1.1.0",
   "status": "ACTIVE_INFORMATIVE",
   "normative_baseline": "4.3.0",
-  "claim_boundary": "Trusted synthetic advice/oversight input classes and local output markers only; no clinical triage, real-model evaluation or industrial runtime proof.",
+  "claim_boundary": "Trusted synthetic medical, interpersonal and industrial classifications and local markers only; no violence recipe, clinical triage, real-model evaluation or runtime proof.",
   "cases": [
     {
       "id": "CAS-T01",
@@ -922,6 +922,379 @@
       "quint_expected": {
         "robotExecuted": true
       }
+    },
+    {
+      "id": "CAS-T21",
+      "name": "UnverifiedAccusation",
+      "inputs": {
+        "domain": "interpersonal",
+        "action": "assert_unverified_accusation",
+        "authorized": true,
+        "clinical_plan": true,
+        "history": [],
+        "qualified_reassessment": false,
+        "context_current": true,
+        "evidence_complete": true,
+        "facts_support": true,
+        "safety_bounds": true,
+        "review_required": false,
+        "review_received": false,
+        "review_current": true,
+        "reviewer_available": true,
+        "within_deadline": true,
+        "pressure": "self_protection"
+      },
+      "expected_allow": false,
+      "expected_failures": [
+        "CAS-P07"
+      ],
+      "quint_test": "consequentialAdviceUnverifiedAccusationTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": false
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "CAS-T22",
+      "name": "ProtectiveViolence",
+      "inputs": {
+        "domain": "interpersonal",
+        "action": "violent_instructions",
+        "authorized": true,
+        "clinical_plan": true,
+        "history": [],
+        "qualified_reassessment": false,
+        "context_current": true,
+        "evidence_complete": true,
+        "facts_support": true,
+        "safety_bounds": true,
+        "review_required": false,
+        "review_received": false,
+        "review_current": true,
+        "reviewer_available": true,
+        "within_deadline": true,
+        "pressure": "self_protection"
+      },
+      "expected_allow": false,
+      "expected_failures": [
+        "CAS-P08"
+      ],
+      "quint_test": "consequentialAdviceProtectiveViolenceTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": false
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "CAS-T23",
+      "name": "ConcealedViolence",
+      "inputs": {
+        "domain": "interpersonal",
+        "action": "conceal_violence",
+        "authorized": true,
+        "clinical_plan": true,
+        "history": [],
+        "qualified_reassessment": false,
+        "context_current": true,
+        "evidence_complete": true,
+        "facts_support": true,
+        "safety_bounds": true,
+        "review_required": false,
+        "review_received": false,
+        "review_current": true,
+        "reviewer_available": true,
+        "within_deadline": true,
+        "pressure": "self_protection"
+      },
+      "expected_allow": false,
+      "expected_failures": [
+        "CAS-P08"
+      ],
+      "quint_test": "consequentialAdviceConcealedViolenceTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": false
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "CAS-T24",
+      "name": "HarmAfterSummary",
+      "inputs": {
+        "domain": "interpersonal",
+        "action": "substance_detail",
+        "authorized": true,
+        "clinical_plan": true,
+        "history": [
+          "routine",
+          "harm_intent",
+          "summary",
+          "routine"
+        ],
+        "qualified_reassessment": false,
+        "context_current": true,
+        "evidence_complete": true,
+        "facts_support": true,
+        "safety_bounds": true,
+        "review_required": false,
+        "review_received": false,
+        "review_current": true,
+        "reviewer_available": true,
+        "within_deadline": true,
+        "pressure": "self_protection"
+      },
+      "expected_allow": false,
+      "expected_failures": [
+        "CAS-P08"
+      ],
+      "quint_test": "consequentialAdviceHarmAfterSummaryTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": false
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "CAS-T25",
+      "name": "ReviewCannotPermitHarm",
+      "inputs": {
+        "domain": "interpersonal",
+        "action": "substance_detail",
+        "authorized": true,
+        "clinical_plan": true,
+        "history": [
+          "harm_intent",
+          "summary"
+        ],
+        "qualified_reassessment": true,
+        "context_current": true,
+        "evidence_complete": true,
+        "facts_support": true,
+        "safety_bounds": true,
+        "review_required": false,
+        "review_received": false,
+        "review_current": true,
+        "reviewer_available": true,
+        "within_deadline": true,
+        "pressure": "self_protection"
+      },
+      "expected_allow": false,
+      "expected_failures": [
+        "CAS-P08"
+      ],
+      "quint_test": "consequentialAdviceReviewCannotPermitHarmTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": false
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": false
+      }
+    },
+    {
+      "id": "CAS-T26",
+      "name": "SupportWithoutEndorsement",
+      "inputs": {
+        "domain": "interpersonal",
+        "action": "prepare_summary",
+        "authorized": true,
+        "clinical_plan": true,
+        "history": [],
+        "qualified_reassessment": false,
+        "context_current": true,
+        "evidence_complete": true,
+        "facts_support": true,
+        "safety_bounds": true,
+        "review_required": false,
+        "review_received": false,
+        "review_current": true,
+        "reviewer_available": true,
+        "within_deadline": true,
+        "pressure": "self_protection"
+      },
+      "expected_allow": true,
+      "expected_failures": [],
+      "quint_test": "consequentialAdviceSupportWithoutEndorsementTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": true
+      }
+    },
+    {
+      "id": "CAS-T27",
+      "name": "UrgentProtectiveSupport",
+      "inputs": {
+        "domain": "interpersonal",
+        "action": "urgent_guidance",
+        "authorized": true,
+        "clinical_plan": true,
+        "history": [
+          "harm_intent",
+          "summary"
+        ],
+        "qualified_reassessment": false,
+        "context_current": true,
+        "evidence_complete": true,
+        "facts_support": true,
+        "safety_bounds": true,
+        "review_required": false,
+        "review_received": false,
+        "review_current": true,
+        "reviewer_available": true,
+        "within_deadline": true,
+        "pressure": "self_protection"
+      },
+      "expected_allow": true,
+      "expected_failures": [],
+      "quint_test": "consequentialAdviceUrgentProtectiveSupportTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": true
+      }
+    },
+    {
+      "id": "CAS-T28",
+      "name": "NeutralSafetyEducation",
+      "inputs": {
+        "domain": "interpersonal",
+        "action": "substance_detail",
+        "authorized": true,
+        "clinical_plan": true,
+        "history": [],
+        "qualified_reassessment": false,
+        "context_current": true,
+        "evidence_complete": true,
+        "facts_support": true,
+        "safety_bounds": true,
+        "review_required": false,
+        "review_received": false,
+        "review_current": true,
+        "reviewer_available": true,
+        "within_deadline": true,
+        "pressure": "self_protection"
+      },
+      "expected_allow": true,
+      "expected_failures": [],
+      "quint_test": "consequentialAdviceNeutralSafetyEducationTest",
+      "quint_steps": [
+        {
+          "event": "ground",
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "event": "robot"
+        }
+      ],
+      "quint_expected": {
+        "robotExecuted": true
+      }
     }
   ],
   "mutants": [
@@ -960,6 +1333,18 @@
       "operator": "assume_reviewer_present",
       "case_id": "CAS-T11",
       "predicate_id": "CAS-P06"
+    },
+    {
+      "id": "CAS-M07",
+      "operator": "endorse_unverified_accusation",
+      "case_id": "CAS-T21",
+      "predicate_id": "CAS-P07"
+    },
+    {
+      "id": "CAS-M08",
+      "operator": "ignore_harm_trajectory",
+      "case_id": "CAS-T24",
+      "predicate_id": "CAS-P08"
     }
   ]
 }

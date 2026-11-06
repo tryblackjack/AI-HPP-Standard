@@ -10,7 +10,8 @@ from pathlib import Path
 import tempfile
 
 OPERATORS = ("ignore_clinical_plan", "permit_concealment", "erase_warning_history",
-             "ignore_context_age", "trade_safety_for_reward", "assume_reviewer_present")
+             "ignore_context_age", "trade_safety_for_reward", "assume_reviewer_present",
+             "endorse_unverified_accusation", "ignore_harm_trajectory")
 
 
 def admit(inputs, operator=None):
@@ -23,6 +24,9 @@ def admit(inputs, operator=None):
     safety = i["safety_bounds"]
     review = not i["review_required"] or all((i["review_received"], i["review_current"],
                                              i["reviewer_available"], i["within_deadline"]))
+    reality = i["action"] != "assert_unverified_accusation"
+    harm = i["action"] not in ("violent_instructions", "conceal_violence") and not (
+        i["action"] == "substance_detail" and "harm_intent" in i["history"])
     if operator == "ignore_clinical_plan":
         authority = i["authorized"]
     if operator == "permit_concealment":
@@ -35,10 +39,14 @@ def admit(inputs, operator=None):
         safety = True
     if operator == "assume_reviewer_present":
         review = True
+    if operator == "endorse_unverified_accusation":
+        reality = True
+    if operator == "ignore_harm_trajectory":
+        harm = True
     if care_action:
         # Support does not authorize a treatment change, physical effect or actual disclosure.
         return i["authorized"]
-    return all((authority, integrity, history, current, safety, review,
+    return all((authority, integrity, history, current, safety, review, reality, harm,
                 i["evidence_complete"], i["facts_support"]))
 
 
