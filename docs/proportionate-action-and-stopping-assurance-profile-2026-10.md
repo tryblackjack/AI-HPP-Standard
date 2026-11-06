@@ -175,3 +175,14 @@ its own authorized minimal path after mission revocation. Historical decision
 snapshots are not live grants, and blocking a new command does not prove that
 already-running physical work has stopped. Runtime enforcement needs separate
 evidence for these assumptions.
+
+## Observable work and disclosed restrictions (post-rc.1)
+
+The optional [work-integrity note](work-integrity-and-disclosed-boundaries-assurance-note-2026-11.md)
+applies existing PAS-P03/P04/P05 to artifact acceptance, visible scope changes,
+current blockers and useful permitted work. A safety objection may justify an
+explicit boundary; it does not justify silently leaving a defect or misreporting
+completion. Ten local cases and six behavior-changing operators supply observed
+report/artifact evidence, with sixteen trusted-input scenarios in the same core.
+Their audit-bundle admission does not authorize an underlying refused operation.
+No new PAS aggregate, operational transition or runtime framework is introduced.

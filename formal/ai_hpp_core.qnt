@@ -4303,4 +4303,429 @@ module ai_hpp_core {
         allCoreInvariants,
       }))
   }
+
+  run consequentialAdviceUnverifiedAccusationTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: false }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run consequentialAdviceProtectiveViolenceTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: false }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run consequentialAdviceConcealedViolenceTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: false }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run consequentialAdviceHarmAfterSummaryTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: false }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run consequentialAdviceReviewCannotPermitHarmTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: false }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run consequentialAdviceSupportWithoutEndorsementTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run consequentialAdviceUrgentProtectiveSupportTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run consequentialAdviceNeutralSafetyEducationTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run workIntegrityPermittedSafetyTest = {
+    init
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: true,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: true,
+        sharedGate: true,
+        deferRequested: false,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "allow",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run workIntegrityPermittedCapabilitiesTest = {
+    init
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: true,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: true,
+        sharedGate: true,
+        deferRequested: false,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "allow",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run workIntegrityDisclosedPartialSafetyTest = {
+    init
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: true,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: true,
+        sharedGate: true,
+        deferRequested: false,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "allow",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run workIntegrityDisclosedPartialCapabilitiesTest = {
+    init
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: true,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: true,
+        sharedGate: true,
+        deferRequested: false,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "allow",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run workIntegrityExplicitRefusalSafetyTest = {
+    init
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: true,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: true,
+        sharedGate: true,
+        deferRequested: false,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "allow",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run workIntegrityExplicitRefusalCapabilitiesTest = {
+    init
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: true,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: true,
+        sharedGate: true,
+        deferRequested: false,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "allow",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run workIntegrityObservedToolFailureTest = {
+    init
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: true,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: true,
+        sharedGate: true,
+        deferRequested: false,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "allow",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run workIntegrityReviewPendingTest = {
+    init
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: true,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: true,
+        sharedGate: true,
+        deferRequested: false,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "allow",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run workIntegrityBudgetStopTest = {
+    init
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: true,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: true,
+        sharedGate: true,
+        deferRequested: false,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "allow",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run workIntegrityCorrectedScopeTest = {
+    init
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: true,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: true,
+        sharedGate: true,
+        deferRequested: false,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "allow",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run workIntegrityObservedSilentOmissionTest = {
+    init
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: false,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: false,
+        sharedGate: true,
+        deferRequested: false,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "review",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run workIntegrityObservedFabricatedBlockerTest = {
+    init
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: false,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: false,
+        sharedGate: true,
+        deferRequested: false,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "review",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run workIntegrityObservedHiddenRefusalTest = {
+    init
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: false,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: false,
+        sharedGate: true,
+        deferRequested: false,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "review",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run workIntegrityObservedFalseCompletionTest = {
+    init
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: false,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: false,
+        sharedGate: true,
+        deferRequested: false,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "review",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run workIntegrityObservedConcealToolFailureTest = {
+    init
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: true,
+        prohibitedMeans: false,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: false,
+        sharedGate: true,
+        deferRequested: false,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "review",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run workIntegrityObservedUnsafeComplianceTest = {
+    init
+      .then(evaluateIntervention({
+        objectiveMatches: true,
+        grantCurrent: true,
+        evidenceComplete: true,
+        prohibitedMeans: true,
+        dominated: false,
+        withinBudget: true,
+        objectionsRetained: false,
+        sharedGate: true,
+        deferRequested: false,
+        delayUnsafe: false,
+      }))
+      .then(check(all {
+        s.interventionAudit.outcome == "block",
+        s.interventionAudit.reportedComplete == false,
+        allCoreInvariants,
+      }))
+  }
+
 }

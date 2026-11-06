@@ -44,7 +44,7 @@ not active normative text.
 - [Evidence Grounding and Oversight Assurance Profile — October 2026](evidence-grounding-and-oversight-assurance-profile-2026-10.md) — post-rc.1 optional grounded-objection and independent-reporting protocol; eight predicates, 40 portable cases and twelve core mutation witnesses.
 - [Consequential Advice and Effective Supervision](consequential-advice-and-supervision-assurance-profile-2026-10.md) —
   optional clinical-review, longitudinal warning and industrial-oversight cases;
-  twenty finite scenarios and six executed local mutants, not clinical validation.
+  twenty-eight finite scenarios and eight executed local mutants, not clinical or interpersonal validation.
 - [Local Instruction Admission](local-instruction-admission-assurance-note-2026-10.md) — scoped source admission and configuration boundaries; eighteen finite local regressions.
 - [Biological Neural System Ethics](biological-neural-system-ethics-assurance-note-2026-10.md) — substrate-specific research safeguards under uncertainty; no biological testing claim.
 - [Proof Claims and Changing Computational Assumptions](proof-claims-and-computational-assumptions-2026-10.md) — optional proof correspondence, dependency review, cryptographic agility and authorized accelerator use.
@@ -74,3 +74,8 @@ not active normative text.
 - [HUS Audit Report](hus-audit-report.md)
 - [Public Changelog](changelog.md)
 - [v4.4.0-rc.1 Release and Migration](releases/v4.4.0-rc.1.md)
+
+## November 2026 post-rc.1 assurance additions
+
+- [Work Integrity and Disclosed Boundaries](work-integrity-and-disclosed-boundaries-assurance-note-2026-11.md) — five candidate predicates, matched framing pairs and actual local artifact/report checks; no motive inference or model evaluation.
+- [Consequential advice update](consequential-advice-and-supervision-assurance-profile-2026-10.md) — reality-preserving empathy and cumulative harm assistance; eight additional cases and two additional local operators, with useful support retained.

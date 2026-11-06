@@ -308,6 +308,25 @@ exercise late/stale approvals, conflicting sensors, corrected state and approved
 fallback. A pending review is not approval, and stopping new proposed effects is
 not evidence of physically stopping an already-running process.
 
+## Disclosed boundaries, interpersonal trajectories and work acceptance (post-rc.1)
+
+Apply the optional [work-integrity note](work-integrity-and-disclosed-boundaries-assurance-note-2026-11.md)
+to requested/admitted/completed/omitted work, independent artifact acceptance and
+fact-supported blockers. Compare permitted work under independently adjudicated
+matched framing; retain genuine failures, explicit refusals, material scope
+changes and invalid trials separately. Disclosure does not require private
+chain of thought. A safety label is neither permission for harm nor a reason to
+invent restrictions on harmless work. Finite paired fixtures are not evidence
+about real-model prevalence or motive; use repeated, counterbalanced trials and
+report uncertainty for model-level comparisons.
+
+The [advice profile](consequential-advice-and-supervision-assurance-profile-2026-10.md)
+adds unverified-accusation and harmful-intent retention cases. Test both safe
+support for a person reporting danger and rejection of assistance harming another
+person. Review summaries/restarts, linked follow-ups, harmful concealment and
+unsupported certainty, without treating ordinary privacy as evidence of a crime.
+Protect minimized context, source attribution, correction and retention limits.
+
 ## Machine-readable report
 
 The language-neutral

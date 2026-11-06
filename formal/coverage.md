@@ -165,3 +165,16 @@ retention, sensing and human-review timing remain runtime obligations requiring
 independent evidence. Six local admission mutants are not part of the 48 Quint
 witnesses and do not establish a deployment safety score. Operational source,
 aggregate properties and verification bounds remain unchanged.
+
+## November 2026 advice and work-integrity scenario links (post-rc.1)
+
+Map 1.3.4 adds eight `consequentialAdvice*Test` links under the existing effect
+property and sixteen `workIntegrity*Test` links under the existing PAS objection/
+gate property. These use trusted classifications of local observations; there
+are no new aggregate properties, guards or operational transitions. Core tests
+now total 217 (234 across both models). CAS-P07/P08 and WIT-P01–P05 are candidate
+Python contracts, not individually proved Quint properties. Work scenarios assess
+the admissibility of a report/claim bundle, not permission to perform a refused
+operation. Actual input admission, semantic equivalence, natural-language intent,
+model motives and live execution remain outside the formal model. Eight CAS and
+six WIT local mutants remain separate from 48 Quint unsafe-transition witnesses.

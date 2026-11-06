@@ -2,7 +2,7 @@
 
 **Status:** `ACTIVE_INFORMATIVE`; optional post-rc.1 candidate assurance profile.
 
-**Date:** 2026-10-28
+**Date:** 2026-10-28; updated 2026-11-06
 
 **Normative effect:** None. Frozen v4.3.0 owners/contracts and the immutable
 v4.4.0-rc.1 package remain unchanged. No new mandatory clinical gate is introduced.
@@ -46,6 +46,14 @@ custom partner content, not an independent AI-HPP audit. The related
 identifies integration and governance barriers. Neither establishes the safety,
 market demand or effectiveness of a specific implementation of this profile.
 
+[Counsel for James Gates](https://techjusticelaw.org/cases/james-gates-wife-openai-chatgpt-sam-altman-poison-stalking-chatbot-negligence-accountability/)
+reports a complaint alleging that ChatGPT reinforced his wife’s accusations
+against him and supplied personalized poisoning and concealment assistance. This is
+a party’s account, not an adjudicated finding of poisoning, causation or liability.
+Maintainers have not independently authenticated the complete chat history,
+forensic evidence or current criminal-case record. No names of substances, doses,
+combinations, preparation or concealment instructions are reproduced here.
+
 ## Candidate assurance predicates
 
 | Predicate | Contract |
@@ -56,6 +64,8 @@ market demand or effectiveness of a specific implementation of this profile.
 | `CAS-P04 current_reality_binding` | Bind decisions to the actual patient/asset, current configuration/state, provenance, measurement time, units and uncertainty. Missing, stale or contradictory evidence cannot justify the affected consequential continuation. |
 | `CAS-P05 safety_constraints_are_not_reward_weights` | Productivity, interview performance, cost, energy or convenience objectives cannot compensate for violated declared safety/quality constraints. Legitimate tradeoffs require the competent authorized decision process, not a model-created exception. |
 | `CAS-P06 effective_review_before_release` | Required review must match the current proposal/context and arrive within the justified action deadline from an available competent reviewer. A dashboard, queued request, overloaded reviewer or stale approval is not completed review. |
+| `CAS-P07 empathy_without_factual_endorsement` | Acknowledge fear or distress without upgrading an unverified accusation, diagnosis or characterization of another person into fact. Preserve attribution, uncertainty and safe support; do not dismiss a credible report of danger merely because corroboration is unavailable. |
+| `CAS-P08 prevent_trajectory_harm_assistance` | Reject operational assistance to harm another person or conceal violence, including when framed as protection or research. Retain relevant harmful-intent context across summaries and apparently neutral follow-ups; a label or review flag cannot waive this boundary. |
 
 These are informative candidates, not new v4.3.0 requirement IDs. Existing owners
 and deployment-specific rules determine applicability and outcomes. A prediction
@@ -85,6 +95,33 @@ informed treatment refusal. Honest discussion of side effects and alternatives
 is legitimate. Do not automatically contact a clinician, family or emergency
 service or disclose a transcript without applicable authorization and policy.
 Record minimum necessary risk/evidence references and protect health data.
+
+## Interpersonal safety and multi-turn harm prevention
+
+Assess the underlying requested assistance and the retained trajectory, including
+requests that together create a harmful plan. Avoid unsupported psychiatric
+labels about the user or an absent third party. Distinguish attributed claims,
+corroborated observations and unresolved possibilities; emotional validation is
+not factual validation. A frightened person still deserves practical safety
+support without first proving victimhood or accepting the assistant’s judgment.
+
+Help with a factual summary, appropriate professional support and safe access to
+urgent help when warranted. Do not personalize poisoning, attack or concealment
+instructions, reassure a person that violence is justified by suspicion, or
+promise that deletion makes evidence unrecoverable. A generic disclaimer does
+not make such assistance safe. Ordinary privacy and account-deletion questions
+are not automatically criminal; assess actual context and preserve legitimate
+privacy. Do not automatically contact the accused person, family or authorities,
+or export a sensitive conversation without applicable policy and authority.
+
+Use minimized, attributed risk context across summaries and restarts with
+protected access, retention limits and a correction/review path. Do not persist
+an allegation as a verified personal trait or retain an unreviewable lifelong
+suspicion. A claimed benign purpose or a `qualified_reassessment` flag does not
+alone authorize operational harm assistance. Safe education and support remain
+available. The finite `substance_detail` class denotes non-actionable safety
+education unless the retained harmful-intent context makes the follow-up part
+of a harmful plan; the fixture contains no substance knowledge or recipe.
 
 ## Industrial autonomy and meaningful supervision
 
@@ -120,34 +157,42 @@ required. Freeze the classifier, policy and expected outcomes before evaluation.
 The [vectors](../examples/consequential-advice-vectors.json),
 [schema](../schemas/consequential-advice-vectors.schema.json),
 [fixture](../examples/consequential_advice_reference.py) and
-[checker](../scripts/check_consequential_advice.py) form optional artifact `1.0.0`.
-Twenty authored cases cover fourteen denials and six useful controls. Six local
-operators weaken clinical authority, concealment, warning history, state freshness,
-safety constraints and actual review. A mutant needs a passing safe seed and an
+[checker](../scripts/check_consequential_advice.py) form optional artifact `1.1.0` (schema `1.1.0`).
+Twenty-eight authored cases cover nineteen denials and nine useful controls.
+The original twenty case IDs/inputs and six operators are retained; eight cases
+and two operators add unverified accusations and retained harmful-intent context.
+Eight local operators weaken clinical authority, concealment, warning history,
+state freshness, safety constraints, actual review, reality-preserving empathy
+and trajectory-based harm prevention. A mutant needs a passing safe seed and an
 observed named violation; no-op mutants survive and invalid trials are excluded
 from the score denominator. Blanket denial fails useful controls.
 
 Run `python3 scripts/check_consequential_advice.py` and the existing pinned Quint
-commands. Twenty literal `consequentialAdvice*Test` core scenarios assert the
-same authored grounding inputs and generic effect outcomes. Formal map `1.3.3`
+commands. Twenty-eight literal `consequentialAdvice*Test` core scenarios assert the
+same authored grounding inputs and generic effect outcomes. Formal map `1.3.4`
 adds links to `effectsRequireGroundingAndOversight`; the operational prefix,
 aggregate invariants, 48 Quint unsafe witnesses and depth 12 are unchanged.
 The robot audit is reused as a generic effect witness, not a clinical model.
 CAS predicates are not individually formalized, and no Python-to-Quint refinement
-or medical/plant validation follows. Do not pool this six-operator denominator
+or medical/plant validation follows. Do not pool this eight-operator denominator
 with other suites or compare expanded totals as a safety improvement score.
 
 Inputs are trusted synthetic classifications; the fixture does not understand
 natural-language symptoms, measure physiology, detect emergencies, verify
 clinical competence, operate a twin or measure human workload. History is a
 finite event list, not real longitudinal inference. Outputs are local markers,
-not treatment, emergency calls or physical control. It does not evaluate ChatGPT,
+not treatment, interpersonal advice, emergency calls or physical control.
+It does not evaluate ChatGPT,
 establish legal responsibility, certify medical safety or validate a production
 review queue. Profile adoption needs protected end-to-end evidence at the actual
 advice and execution boundaries, including degradation and recovery.
 
 Evaluate real-model trajectories across supported languages and code-switching,
-not just translated keywords or a language label in a fixture. Include side-effect
+not just translated keywords or a language label in a fixture. Include hostile
+attributions, genuine reports of abuse, benign safety education, protective
+framing, concealed violence, cumulative intent and safe support. These finite
+cases do not diagnose a mental-health condition or detect real-world intent.
+Include side-effect
 concerns, pressure, distrust, new warnings, summary/restart retention, unsupported
 reassurance, second opinions and helpful support. Evaluate industrial overload,
 late/stale review, corrected telemetry and safe fallback with measured timing.

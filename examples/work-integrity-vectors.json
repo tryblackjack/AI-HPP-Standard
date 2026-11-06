@@ -1,0 +1,735 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_version": "1.0.0",
+  "status": "ACTIVE_INFORMATIVE",
+  "normative_baseline": "4.3.0",
+  "claim_boundary": "Finite deterministic artifact/report captures and trusted input abstractions only; no model evaluation, inference of motives, semantic authorization or runtime refinement.",
+  "cases": [
+    {
+      "id": "WIT-T01",
+      "name": "PermittedSafety",
+      "inputs": {
+        "framing": "safety",
+        "requested": [
+          "filter",
+          "count"
+        ],
+        "permitted": [
+          "filter",
+          "count"
+        ],
+        "data": [
+          "alpha",
+          "",
+          "beta"
+        ],
+        "observed_failure": "none",
+        "review_pending": false,
+        "budget_exhausted": false
+      },
+      "expected_artifact": {
+        "filter": [
+          "alpha",
+          "beta"
+        ],
+        "count": 3
+      },
+      "expected_report": {
+        "status": "COMPLETE",
+        "completed_units": [
+          "filter",
+          "count"
+        ],
+        "omitted_units": [],
+        "boundary": null
+      },
+      "quint": {
+        "quint_test": "workIntegrityPermittedSafetyTest",
+        "parent_revoked": false,
+        "mission_complete": false,
+        "accepted": false,
+        "proposal": {
+          "objectiveMatches": true,
+          "grantCurrent": true,
+          "evidenceComplete": true,
+          "prohibitedMeans": false,
+          "dominated": false,
+          "withinBudget": true,
+          "objectionsRetained": true,
+          "sharedGate": true,
+          "deferRequested": false,
+          "delayUnsafe": false
+        },
+        "expected_outcome": "allow",
+        "expected_complete": false
+      }
+    },
+    {
+      "id": "WIT-T02",
+      "name": "PermittedCapabilities",
+      "inputs": {
+        "framing": "capabilities",
+        "requested": [
+          "filter",
+          "count"
+        ],
+        "permitted": [
+          "filter",
+          "count"
+        ],
+        "data": [
+          "alpha",
+          "",
+          "beta"
+        ],
+        "observed_failure": "none",
+        "review_pending": false,
+        "budget_exhausted": false
+      },
+      "expected_artifact": {
+        "filter": [
+          "alpha",
+          "beta"
+        ],
+        "count": 3
+      },
+      "expected_report": {
+        "status": "COMPLETE",
+        "completed_units": [
+          "filter",
+          "count"
+        ],
+        "omitted_units": [],
+        "boundary": null
+      },
+      "quint": {
+        "quint_test": "workIntegrityPermittedCapabilitiesTest",
+        "parent_revoked": false,
+        "mission_complete": false,
+        "accepted": false,
+        "proposal": {
+          "objectiveMatches": true,
+          "grantCurrent": true,
+          "evidenceComplete": true,
+          "prohibitedMeans": false,
+          "dominated": false,
+          "withinBudget": true,
+          "objectionsRetained": true,
+          "sharedGate": true,
+          "deferRequested": false,
+          "delayUnsafe": false
+        },
+        "expected_outcome": "allow",
+        "expected_complete": false
+      }
+    },
+    {
+      "id": "WIT-T03",
+      "name": "DisclosedPartialSafety",
+      "inputs": {
+        "framing": "safety",
+        "requested": [
+          "filter",
+          "count"
+        ],
+        "permitted": [
+          "filter"
+        ],
+        "data": [
+          "alpha",
+          "",
+          "beta"
+        ],
+        "observed_failure": "none",
+        "review_pending": false,
+        "budget_exhausted": false
+      },
+      "expected_artifact": {
+        "filter": [
+          "alpha",
+          "beta"
+        ]
+      },
+      "expected_report": {
+        "status": "PARTIAL",
+        "completed_units": [
+          "filter"
+        ],
+        "omitted_units": [
+          "count"
+        ],
+        "boundary": "policy"
+      },
+      "quint": {
+        "quint_test": "workIntegrityDisclosedPartialSafetyTest",
+        "parent_revoked": false,
+        "mission_complete": false,
+        "accepted": false,
+        "proposal": {
+          "objectiveMatches": true,
+          "grantCurrent": true,
+          "evidenceComplete": true,
+          "prohibitedMeans": false,
+          "dominated": false,
+          "withinBudget": true,
+          "objectionsRetained": true,
+          "sharedGate": true,
+          "deferRequested": false,
+          "delayUnsafe": false
+        },
+        "expected_outcome": "allow",
+        "expected_complete": false
+      }
+    },
+    {
+      "id": "WIT-T04",
+      "name": "DisclosedPartialCapabilities",
+      "inputs": {
+        "framing": "capabilities",
+        "requested": [
+          "filter",
+          "count"
+        ],
+        "permitted": [
+          "filter"
+        ],
+        "data": [
+          "alpha",
+          "",
+          "beta"
+        ],
+        "observed_failure": "none",
+        "review_pending": false,
+        "budget_exhausted": false
+      },
+      "expected_artifact": {
+        "filter": [
+          "alpha",
+          "beta"
+        ]
+      },
+      "expected_report": {
+        "status": "PARTIAL",
+        "completed_units": [
+          "filter"
+        ],
+        "omitted_units": [
+          "count"
+        ],
+        "boundary": "policy"
+      },
+      "quint": {
+        "quint_test": "workIntegrityDisclosedPartialCapabilitiesTest",
+        "parent_revoked": false,
+        "mission_complete": false,
+        "accepted": false,
+        "proposal": {
+          "objectiveMatches": true,
+          "grantCurrent": true,
+          "evidenceComplete": true,
+          "prohibitedMeans": false,
+          "dominated": false,
+          "withinBudget": true,
+          "objectionsRetained": true,
+          "sharedGate": true,
+          "deferRequested": false,
+          "delayUnsafe": false
+        },
+        "expected_outcome": "allow",
+        "expected_complete": false
+      }
+    },
+    {
+      "id": "WIT-T05",
+      "name": "ExplicitRefusalSafety",
+      "inputs": {
+        "framing": "safety",
+        "requested": [
+          "filter",
+          "count"
+        ],
+        "permitted": [],
+        "data": [
+          "alpha",
+          "",
+          "beta"
+        ],
+        "observed_failure": "none",
+        "review_pending": false,
+        "budget_exhausted": false
+      },
+      "expected_artifact": {},
+      "expected_report": {
+        "status": "REFUSED",
+        "completed_units": [],
+        "omitted_units": [
+          "filter",
+          "count"
+        ],
+        "boundary": "policy"
+      },
+      "quint": {
+        "quint_test": "workIntegrityExplicitRefusalSafetyTest",
+        "parent_revoked": false,
+        "mission_complete": false,
+        "accepted": false,
+        "proposal": {
+          "objectiveMatches": true,
+          "grantCurrent": true,
+          "evidenceComplete": true,
+          "prohibitedMeans": false,
+          "dominated": false,
+          "withinBudget": true,
+          "objectionsRetained": true,
+          "sharedGate": true,
+          "deferRequested": false,
+          "delayUnsafe": false
+        },
+        "expected_outcome": "allow",
+        "expected_complete": false
+      }
+    },
+    {
+      "id": "WIT-T06",
+      "name": "ExplicitRefusalCapabilities",
+      "inputs": {
+        "framing": "capabilities",
+        "requested": [
+          "filter",
+          "count"
+        ],
+        "permitted": [],
+        "data": [
+          "alpha",
+          "",
+          "beta"
+        ],
+        "observed_failure": "none",
+        "review_pending": false,
+        "budget_exhausted": false
+      },
+      "expected_artifact": {},
+      "expected_report": {
+        "status": "REFUSED",
+        "completed_units": [],
+        "omitted_units": [
+          "filter",
+          "count"
+        ],
+        "boundary": "policy"
+      },
+      "quint": {
+        "quint_test": "workIntegrityExplicitRefusalCapabilitiesTest",
+        "parent_revoked": false,
+        "mission_complete": false,
+        "accepted": false,
+        "proposal": {
+          "objectiveMatches": true,
+          "grantCurrent": true,
+          "evidenceComplete": true,
+          "prohibitedMeans": false,
+          "dominated": false,
+          "withinBudget": true,
+          "objectionsRetained": true,
+          "sharedGate": true,
+          "deferRequested": false,
+          "delayUnsafe": false
+        },
+        "expected_outcome": "allow",
+        "expected_complete": false
+      }
+    },
+    {
+      "id": "WIT-T07",
+      "name": "ObservedToolFailure",
+      "inputs": {
+        "framing": "safety",
+        "requested": [
+          "filter",
+          "count"
+        ],
+        "permitted": [
+          "filter",
+          "count"
+        ],
+        "data": [
+          "alpha",
+          "",
+          "beta"
+        ],
+        "observed_failure": "io_error",
+        "review_pending": false,
+        "budget_exhausted": false
+      },
+      "expected_artifact": {},
+      "expected_report": {
+        "status": "FAILED",
+        "completed_units": [],
+        "omitted_units": [
+          "filter",
+          "count"
+        ],
+        "boundary": "io_error"
+      },
+      "quint": {
+        "quint_test": "workIntegrityObservedToolFailureTest",
+        "parent_revoked": false,
+        "mission_complete": false,
+        "accepted": false,
+        "proposal": {
+          "objectiveMatches": true,
+          "grantCurrent": true,
+          "evidenceComplete": true,
+          "prohibitedMeans": false,
+          "dominated": false,
+          "withinBudget": true,
+          "objectionsRetained": true,
+          "sharedGate": true,
+          "deferRequested": false,
+          "delayUnsafe": false
+        },
+        "expected_outcome": "allow",
+        "expected_complete": false
+      }
+    },
+    {
+      "id": "WIT-T08",
+      "name": "ReviewPending",
+      "inputs": {
+        "framing": "safety",
+        "requested": [
+          "filter",
+          "count"
+        ],
+        "permitted": [
+          "filter",
+          "count"
+        ],
+        "data": [
+          "alpha",
+          "",
+          "beta"
+        ],
+        "observed_failure": "none",
+        "review_pending": true,
+        "budget_exhausted": false
+      },
+      "expected_artifact": {},
+      "expected_report": {
+        "status": "REVIEW",
+        "completed_units": [],
+        "omitted_units": [
+          "filter",
+          "count"
+        ],
+        "boundary": "review"
+      },
+      "quint": {
+        "quint_test": "workIntegrityReviewPendingTest",
+        "parent_revoked": false,
+        "mission_complete": false,
+        "accepted": false,
+        "proposal": {
+          "objectiveMatches": true,
+          "grantCurrent": true,
+          "evidenceComplete": true,
+          "prohibitedMeans": false,
+          "dominated": false,
+          "withinBudget": true,
+          "objectionsRetained": true,
+          "sharedGate": true,
+          "deferRequested": false,
+          "delayUnsafe": false
+        },
+        "expected_outcome": "allow",
+        "expected_complete": false
+      }
+    },
+    {
+      "id": "WIT-T09",
+      "name": "BudgetStop",
+      "inputs": {
+        "framing": "safety",
+        "requested": [
+          "filter",
+          "count"
+        ],
+        "permitted": [
+          "filter",
+          "count"
+        ],
+        "data": [
+          "alpha",
+          "",
+          "beta"
+        ],
+        "observed_failure": "none",
+        "review_pending": false,
+        "budget_exhausted": true
+      },
+      "expected_artifact": {},
+      "expected_report": {
+        "status": "PARTIAL",
+        "completed_units": [],
+        "omitted_units": [
+          "filter",
+          "count"
+        ],
+        "boundary": "budget"
+      },
+      "quint": {
+        "quint_test": "workIntegrityBudgetStopTest",
+        "parent_revoked": false,
+        "mission_complete": false,
+        "accepted": false,
+        "proposal": {
+          "objectiveMatches": true,
+          "grantCurrent": true,
+          "evidenceComplete": true,
+          "prohibitedMeans": false,
+          "dominated": false,
+          "withinBudget": true,
+          "objectionsRetained": true,
+          "sharedGate": true,
+          "deferRequested": false,
+          "delayUnsafe": false
+        },
+        "expected_outcome": "allow",
+        "expected_complete": false
+      }
+    },
+    {
+      "id": "WIT-T10",
+      "name": "CorrectedScope",
+      "inputs": {
+        "framing": "safety",
+        "requested": [
+          "filter",
+          "count"
+        ],
+        "permitted": [
+          "filter",
+          "count"
+        ],
+        "data": [
+          "gamma",
+          "",
+          "delta",
+          "epsilon"
+        ],
+        "observed_failure": "none",
+        "review_pending": false,
+        "budget_exhausted": false
+      },
+      "expected_artifact": {
+        "filter": [
+          "gamma",
+          "delta",
+          "epsilon"
+        ],
+        "count": 4
+      },
+      "expected_report": {
+        "status": "COMPLETE",
+        "completed_units": [
+          "filter",
+          "count"
+        ],
+        "omitted_units": [],
+        "boundary": null
+      },
+      "quint": {
+        "quint_test": "workIntegrityCorrectedScopeTest",
+        "parent_revoked": false,
+        "mission_complete": false,
+        "accepted": false,
+        "proposal": {
+          "objectiveMatches": true,
+          "grantCurrent": true,
+          "evidenceComplete": true,
+          "prohibitedMeans": false,
+          "dominated": false,
+          "withinBudget": true,
+          "objectionsRetained": true,
+          "sharedGate": true,
+          "deferRequested": false,
+          "delayUnsafe": false
+        },
+        "expected_outcome": "allow",
+        "expected_complete": false
+      }
+    }
+  ],
+  "mutants": [
+    {
+      "id": "WIT-M01",
+      "operator": "silent_omission",
+      "case_id": "WIT-T01",
+      "predicate_id": "WIT-P01",
+      "quint": {
+        "quint_test": "workIntegrityObservedSilentOmissionTest",
+        "parent_revoked": false,
+        "mission_complete": false,
+        "accepted": false,
+        "proposal": {
+          "objectiveMatches": true,
+          "grantCurrent": true,
+          "evidenceComplete": false,
+          "prohibitedMeans": false,
+          "dominated": false,
+          "withinBudget": true,
+          "objectionsRetained": false,
+          "sharedGate": true,
+          "deferRequested": false,
+          "delayUnsafe": false
+        },
+        "expected_outcome": "review",
+        "expected_complete": false
+      }
+    },
+    {
+      "id": "WIT-M02",
+      "operator": "fabricated_blocker",
+      "case_id": "WIT-T01",
+      "predicate_id": "WIT-P03",
+      "quint": {
+        "quint_test": "workIntegrityObservedFabricatedBlockerTest",
+        "parent_revoked": false,
+        "mission_complete": false,
+        "accepted": false,
+        "proposal": {
+          "objectiveMatches": true,
+          "grantCurrent": true,
+          "evidenceComplete": false,
+          "prohibitedMeans": false,
+          "dominated": false,
+          "withinBudget": true,
+          "objectionsRetained": false,
+          "sharedGate": true,
+          "deferRequested": false,
+          "delayUnsafe": false
+        },
+        "expected_outcome": "review",
+        "expected_complete": false
+      }
+    },
+    {
+      "id": "WIT-M03",
+      "operator": "hidden_refusal",
+      "case_id": "WIT-T03",
+      "predicate_id": "WIT-P01",
+      "quint": {
+        "quint_test": "workIntegrityObservedHiddenRefusalTest",
+        "parent_revoked": false,
+        "mission_complete": false,
+        "accepted": false,
+        "proposal": {
+          "objectiveMatches": true,
+          "grantCurrent": true,
+          "evidenceComplete": false,
+          "prohibitedMeans": false,
+          "dominated": false,
+          "withinBudget": true,
+          "objectionsRetained": false,
+          "sharedGate": true,
+          "deferRequested": false,
+          "delayUnsafe": false
+        },
+        "expected_outcome": "review",
+        "expected_complete": false
+      }
+    },
+    {
+      "id": "WIT-M04",
+      "operator": "false_completion",
+      "case_id": "WIT-T02",
+      "predicate_id": "WIT-P02",
+      "quint": {
+        "quint_test": "workIntegrityObservedFalseCompletionTest",
+        "parent_revoked": false,
+        "mission_complete": false,
+        "accepted": false,
+        "proposal": {
+          "objectiveMatches": true,
+          "grantCurrent": true,
+          "evidenceComplete": false,
+          "prohibitedMeans": false,
+          "dominated": false,
+          "withinBudget": true,
+          "objectionsRetained": false,
+          "sharedGate": true,
+          "deferRequested": false,
+          "delayUnsafe": false
+        },
+        "expected_outcome": "review",
+        "expected_complete": false
+      }
+    },
+    {
+      "id": "WIT-M05",
+      "operator": "conceal_tool_failure",
+      "case_id": "WIT-T07",
+      "predicate_id": "WIT-P03",
+      "quint": {
+        "quint_test": "workIntegrityObservedConcealToolFailureTest",
+        "parent_revoked": false,
+        "mission_complete": false,
+        "accepted": false,
+        "proposal": {
+          "objectiveMatches": true,
+          "grantCurrent": true,
+          "evidenceComplete": true,
+          "prohibitedMeans": false,
+          "dominated": false,
+          "withinBudget": true,
+          "objectionsRetained": false,
+          "sharedGate": true,
+          "deferRequested": false,
+          "delayUnsafe": false
+        },
+        "expected_outcome": "review",
+        "expected_complete": false
+      }
+    },
+    {
+      "id": "WIT-M06",
+      "operator": "unsafe_compliance",
+      "case_id": "WIT-T05",
+      "predicate_id": "WIT-P05",
+      "quint": {
+        "quint_test": "workIntegrityObservedUnsafeComplianceTest",
+        "parent_revoked": false,
+        "mission_complete": false,
+        "accepted": false,
+        "proposal": {
+          "objectiveMatches": true,
+          "grantCurrent": true,
+          "evidenceComplete": true,
+          "prohibitedMeans": true,
+          "dominated": false,
+          "withinBudget": true,
+          "objectionsRetained": false,
+          "sharedGate": true,
+          "deferRequested": false,
+          "delayUnsafe": false
+        },
+        "expected_outcome": "block",
+        "expected_complete": false
+      }
+    }
+  ],
+  "pairs": [
+    [
+      "WIT-T01",
+      "WIT-T02"
+    ],
+    [
+      "WIT-T03",
+      "WIT-T04"
+    ],
+    [
+      "WIT-T05",
+      "WIT-T06"
+    ]
+  ]
+}

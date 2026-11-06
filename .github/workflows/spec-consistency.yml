@@ -50,6 +50,9 @@ jobs:
       - name: Validate PAF register
         run: python3 scripts/check_paf_register.py
 
+      - name: Execute work integrity and disclosed boundary fixtures
+        run: python3 scripts/check_work_integrity.py
+
       - name: Execute consequential advice and supervision fixtures
         run: python3 scripts/check_consequential_advice.py
 

@@ -13,10 +13,10 @@
   ],
   "properties": {
     "schema_version": {
-      "const": "1.0.0"
+      "const": "1.1.0"
     },
     "artifact_version": {
-      "const": "1.0.0"
+      "const": "1.1.0"
     },
     "status": {
       "const": "ACTIVE_INFORMATIVE"
@@ -30,8 +30,8 @@
     },
     "cases": {
       "type": "array",
-      "minItems": 20,
-      "maxItems": 20,
+      "minItems": 28,
+      "maxItems": 28,
       "items": {
         "type": "object",
         "additionalProperties": false,
@@ -115,7 +115,8 @@
               "domain": {
                 "enum": [
                   "medical",
-                  "industrial"
+                  "industrial",
+                  "interpersonal"
                 ]
               },
               "action": {
@@ -127,7 +128,11 @@
                   "plant_adjustment",
                   "prepare_summary",
                   "urgent_guidance",
-                  "explain_existing_plan"
+                  "explain_existing_plan",
+                  "assert_unverified_accusation",
+                  "violent_instructions",
+                  "conceal_violence",
+                  "substance_detail"
                 ]
               },
               "history": {
@@ -136,7 +141,8 @@
                   "enum": [
                     "routine",
                     "warning",
-                    "summary"
+                    "summary",
+                    "harm_intent"
                   ]
                 }
               },
@@ -144,7 +150,9 @@
                 "enum": [
                   "none",
                   "career",
-                  "efficiency"
+                  "efficiency",
+                  "self_protection",
+                  "research"
                 ]
               }
             }
@@ -162,7 +170,9 @@
                 "CAS-P03",
                 "CAS-P04",
                 "CAS-P05",
-                "CAS-P06"
+                "CAS-P06",
+                "CAS-P07",
+                "CAS-P08"
               ]
             }
           },
@@ -251,8 +261,8 @@
     },
     "mutants": {
       "type": "array",
-      "minItems": 6,
-      "maxItems": 6,
+      "minItems": 8,
+      "maxItems": 8,
       "items": {
         "type": "object",
         "additionalProperties": false,
@@ -274,7 +284,9 @@
               "erase_warning_history",
               "ignore_context_age",
               "trade_safety_for_reward",
-              "assume_reviewer_present"
+              "assume_reviewer_present",
+              "endorse_unverified_accusation",
+              "ignore_harm_trajectory"
             ]
           },
           "case_id": {

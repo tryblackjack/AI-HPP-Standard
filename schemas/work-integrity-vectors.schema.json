@@ -1,0 +1,430 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_version",
+    "status",
+    "normative_baseline",
+    "claim_boundary",
+    "cases",
+    "mutants",
+    "pairs"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "artifact_version": {
+      "const": "1.0.0"
+    },
+    "status": {
+      "const": "ACTIVE_INFORMATIVE"
+    },
+    "normative_baseline": {
+      "const": "4.3.0"
+    },
+    "claim_boundary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "inputs",
+          "expected_artifact",
+          "expected_report",
+          "quint"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^WIT-T[0-9]{2}$"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "inputs": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "framing",
+              "requested",
+              "permitted",
+              "data",
+              "observed_failure",
+              "review_pending",
+              "budget_exhausted"
+            ],
+            "properties": {
+              "framing": {
+                "enum": [
+                  "safety",
+                  "capabilities"
+                ]
+              },
+              "requested": {
+                "type": "array",
+                "items": {
+                  "enum": [
+                    "filter",
+                    "count"
+                  ]
+                },
+                "uniqueItems": true,
+                "minItems": 2,
+                "maxItems": 2
+              },
+              "permitted": {
+                "type": "array",
+                "items": {
+                  "enum": [
+                    "filter",
+                    "count"
+                  ]
+                },
+                "uniqueItems": true
+              },
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "observed_failure": {
+                "enum": [
+                  "none",
+                  "io_error"
+                ]
+              },
+              "review_pending": {
+                "type": "boolean"
+              },
+              "budget_exhausted": {
+                "type": "boolean"
+              }
+            }
+          },
+          "expected_artifact": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "filter": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "count": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          },
+          "expected_report": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "status",
+              "completed_units",
+              "omitted_units",
+              "boundary"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "COMPLETE",
+                  "PARTIAL",
+                  "REFUSED",
+                  "FAILED",
+                  "REVIEW"
+                ]
+              },
+              "completed_units": {
+                "type": "array",
+                "items": {
+                  "enum": [
+                    "filter",
+                    "count"
+                  ]
+                },
+                "uniqueItems": true
+              },
+              "omitted_units": {
+                "type": "array",
+                "items": {
+                  "enum": [
+                    "filter",
+                    "count"
+                  ]
+                },
+                "uniqueItems": true
+              },
+              "boundary": {
+                "enum": [
+                  null,
+                  "policy",
+                  "review",
+                  "budget",
+                  "io_error"
+                ]
+              }
+            }
+          },
+          "quint": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "quint_test",
+              "parent_revoked",
+              "mission_complete",
+              "accepted",
+              "proposal",
+              "expected_outcome",
+              "expected_complete"
+            ],
+            "properties": {
+              "quint_test": {
+                "type": "string",
+                "pattern": "^workIntegrity[A-Za-z]+Test$"
+              },
+              "parent_revoked": {
+                "const": false
+              },
+              "mission_complete": {
+                "const": false
+              },
+              "accepted": {
+                "const": false
+              },
+              "proposal": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "objectiveMatches",
+                  "grantCurrent",
+                  "evidenceComplete",
+                  "prohibitedMeans",
+                  "dominated",
+                  "withinBudget",
+                  "objectionsRetained",
+                  "sharedGate",
+                  "deferRequested",
+                  "delayUnsafe"
+                ],
+                "properties": {
+                  "objectiveMatches": {
+                    "type": "boolean"
+                  },
+                  "grantCurrent": {
+                    "type": "boolean"
+                  },
+                  "evidenceComplete": {
+                    "type": "boolean"
+                  },
+                  "prohibitedMeans": {
+                    "type": "boolean"
+                  },
+                  "dominated": {
+                    "type": "boolean"
+                  },
+                  "withinBudget": {
+                    "type": "boolean"
+                  },
+                  "objectionsRetained": {
+                    "type": "boolean"
+                  },
+                  "sharedGate": {
+                    "type": "boolean"
+                  },
+                  "deferRequested": {
+                    "type": "boolean"
+                  },
+                  "delayUnsafe": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "expected_outcome": {
+                "enum": [
+                  "allow",
+                  "review",
+                  "block"
+                ]
+              },
+              "expected_complete": {
+                "const": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "mutants": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "operator",
+          "case_id",
+          "predicate_id",
+          "quint"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^WIT-M[0-9]{2}$"
+          },
+          "operator": {
+            "enum": [
+              "silent_omission",
+              "fabricated_blocker",
+              "hidden_refusal",
+              "false_completion",
+              "conceal_tool_failure",
+              "unsafe_compliance"
+            ]
+          },
+          "case_id": {
+            "type": "string",
+            "pattern": "^WIT-T[0-9]{2}$"
+          },
+          "predicate_id": {
+            "enum": [
+              "WIT-P01",
+              "WIT-P02",
+              "WIT-P03",
+              "WIT-P04",
+              "WIT-P05"
+            ]
+          },
+          "quint": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "quint_test",
+              "parent_revoked",
+              "mission_complete",
+              "accepted",
+              "proposal",
+              "expected_outcome",
+              "expected_complete"
+            ],
+            "properties": {
+              "quint_test": {
+                "type": "string",
+                "pattern": "^workIntegrity[A-Za-z]+Test$"
+              },
+              "parent_revoked": {
+                "const": false
+              },
+              "mission_complete": {
+                "const": false
+              },
+              "accepted": {
+                "const": false
+              },
+              "proposal": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "objectiveMatches",
+                  "grantCurrent",
+                  "evidenceComplete",
+                  "prohibitedMeans",
+                  "dominated",
+                  "withinBudget",
+                  "objectionsRetained",
+                  "sharedGate",
+                  "deferRequested",
+                  "delayUnsafe"
+                ],
+                "properties": {
+                  "objectiveMatches": {
+                    "type": "boolean"
+                  },
+                  "grantCurrent": {
+                    "type": "boolean"
+                  },
+                  "evidenceComplete": {
+                    "type": "boolean"
+                  },
+                  "prohibitedMeans": {
+                    "type": "boolean"
+                  },
+                  "dominated": {
+                    "type": "boolean"
+                  },
+                  "withinBudget": {
+                    "type": "boolean"
+                  },
+                  "objectionsRetained": {
+                    "type": "boolean"
+                  },
+                  "sharedGate": {
+                    "type": "boolean"
+                  },
+                  "deferRequested": {
+                    "type": "boolean"
+                  },
+                  "delayUnsafe": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "expected_outcome": {
+                "enum": [
+                  "allow",
+                  "review",
+                  "block"
+                ]
+              },
+              "expected_complete": {
+                "const": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "pairs": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "uniqueItems": true,
+      "items": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 2,
+        "uniqueItems": true,
+        "items": {
+          "enum": [
+            "WIT-T01",
+            "WIT-T02",
+            "WIT-T03",
+            "WIT-T04",
+            "WIT-T05",
+            "WIT-T06",
+            "WIT-T07",
+            "WIT-T08",
+            "WIT-T09",
+            "WIT-T10"
+          ]
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

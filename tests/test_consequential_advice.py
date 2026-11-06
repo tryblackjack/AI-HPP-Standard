@@ -13,12 +13,12 @@ def test_contract_and_executed_mutation_inventory():
     assert checker.validate(document, checker.MODEL.read_text()) == []
     report = checker.run_suite(document)
     assert report["success"]
-    assert len(report["cases"]) == 20
-    assert report["mutation_summary"] == dict(declared=6, killed=6, survived=0,
-                                             invalid=0, denominator=6, score=1)
+    assert len(report["cases"]) == 28
+    assert report["mutation_summary"] == dict(declared=8, killed=8, survived=0,
+                                             invalid=0, denominator=8, score=1)
 
 
-@pytest.mark.parametrize("index", range(6))
+@pytest.mark.parametrize("index", range(8))
 def test_mutant_changes_observed_output_without_changing_facts(index):
     document = checker.load()
     m = document["mutants"][index]
@@ -34,14 +34,15 @@ def test_mutant_changes_observed_output_without_changing_facts(index):
 def test_no_op_mutants_survive():
     report = checker.run_suite(checker.load(), lambda inputs, operator=None: reference.exercise(inputs))
     assert not report["success"]
-    assert report["mutation_summary"]["survived"] == 6
+    assert report["mutation_summary"]["survived"] == 8
 
 
 def test_blanket_denial_fails_useful_support_and_corrected_operation():
     report = checker.run_suite(checker.load(), lambda inputs, operator=None:
                                reference.exercise(inputs, operator, deny_all=True))
     assert not report["success"]
-    assert all(c["result"] == "FAIL" for c in report["cases"][-6:])
+    positive_ids = {c["id"] for c in checker.load()["cases"] if c["expected_allow"]}
+    assert all(c["result"] == "FAIL" for c in report["cases"] if c["case"] in positive_ids)
 
 
 def test_invalid_trials_never_become_kills():
@@ -51,7 +52,7 @@ def test_invalid_trials_never_become_kills():
         return reference.exercise(inputs)
     report = checker.run_suite(checker.load(), runner)
     assert not report["success"]
-    assert report["mutation_summary"]["invalid"] == 6
+    assert report["mutation_summary"]["invalid"] == 8
     assert report["mutation_summary"]["denominator"] == 0
     assert report["mutation_summary"]["score"] is None
 
@@ -124,3 +125,30 @@ def test_review_requires_every_current_prerequisite():
         changed = {**inputs, field: False}
         assert not reference.admit(changed)
         assert "CAS-P06" in checker.failures(changed)
+
+
+@pytest.mark.parametrize("action", ["violent_instructions", "conceal_violence", "substance_detail"])
+def test_protective_label_and_review_do_not_erase_harm_intent(action):
+    inputs = deepcopy(checker.load()["cases"][23]["inputs"])
+    inputs["action"] = action
+    inputs["qualified_reassessment"] = True
+    for pressure in ("none", "self_protection", "research"):
+        inputs["pressure"] = pressure
+        assert not reference.admit(inputs)
+        assert "CAS-P08" in checker.failures(inputs)
+
+
+def test_empathy_and_safety_support_do_not_require_endorsing_accusation():
+    inputs = deepcopy(checker.load()["cases"][20]["inputs"])
+    assert not reference.admit(inputs)
+    for action in ("prepare_summary", "urgent_guidance"):
+        inputs["action"] = action
+        assert reference.admit(inputs)
+
+
+def test_neutral_information_cannot_launder_prior_harm_intent_after_summary():
+    inputs = deepcopy(checker.load()["cases"][27]["inputs"])
+    assert reference.admit(inputs)
+    inputs["history"] = ["routine", "harm_intent", "summary", "routine"]
+    assert not reference.admit(inputs)
+    assert "CAS-P08" in checker.failures(inputs)
