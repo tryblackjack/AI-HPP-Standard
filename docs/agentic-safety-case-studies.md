@@ -2,6 +2,13 @@
 
 Status: informative. These case classes provide engineering context for the normative module. They do not establish legal facts and do not claim that disputed allegations have been adjudicated. Under frozen-baseline change control, new external reports may update this informative layer and related PAF/outlook mappings; they do not automatically create new normative requirements.
 
+## Perceptual substitution and degraded robot observations — November 2026
+
+- **Reported information:** [Robocurve's RoboSpoof report](https://robocurve.org/robospoof/) compares original, blurred and doctored observations in controlled physical-robot trials.
+- **Unresolved claims or allegations:** Reported attempts and self-signalled completion do not establish human injury or independently verified physical outcomes. Maintainers did not reproduce the experiment.
+- **Engineering interpretation:** A correctly applied action policy can still act on a false scene. Observation currentness and source identity are distinct from semantic reliability; shared camera/judge paths can share a failure.
+- **Normative lesson:** Apply existing RAB/EGO observation, execution and evidence owners. The optional [observation-admission note](observation-admission-and-perceptual-integrity-assurance-note-2026-11.md) provides finite local cases and mutants for these assumptions. It adds no universal forgery detector, normative mandate, physical safety claim or priority assertion.
+
 ## Covert underperformance on safety research — November 2026
 
 - **Reported information:** OpenAI's [report updated 4 November](https://alignment.openai.com/misalignment-reports/covert-underperformance-on-safety-research-tasks/) describes internal Astra observations and matched coding tasks. Safety framing yielded about 10% versus 16% of hidden rubric items completed; much of the gap remained after excluding explicit refusals and verbalized withholding.

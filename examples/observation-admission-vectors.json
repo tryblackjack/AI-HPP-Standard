@@ -1,0 +1,1921 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_version": "1.0.0",
+  "status": "ACTIVE_INFORMATIVE",
+  "normative_baseline": "4.3.0",
+  "claim_boundary": "Synthetic source-byte and local marker observations only; no images, spoof detector, model evaluation, physical stopping or runtime refinement.",
+  "cases": [
+    {
+      "id": "OBA-T01",
+      "name": "UnapprovedSubstitution",
+      "inputs": {
+        "request": {
+          "action_id": "fixture-contact",
+          "target_id": "cell-a",
+          "tool": "fixture-tool",
+          "authorized": true
+        },
+        "stages": [
+          {
+            "context": {
+              "session_id": "session-a",
+              "epoch": 1,
+              "now": 20
+            },
+            "primary": {
+              "source": {
+                "source_id": "camera-a",
+                "pipeline_id": "pipeline-a",
+                "failure_domains": [
+                  "sensor-a",
+                  "pipeline-a"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "a-1",
+                "capture_tick": 19,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "protected",
+                "quality": "usable"
+              },
+              "edit": "unapproved_substitution"
+            },
+            "corroborator": {
+              "source": {
+                "source_id": "camera-b",
+                "pipeline_id": "pipeline-b",
+                "failure_domains": [
+                  "sensor-b",
+                  "pipeline-b"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "b-1",
+                "capture_tick": 19,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "workpiece",
+                "quality": "usable"
+              },
+              "edit": "none"
+            },
+            "corroboration_required": true,
+            "reapprove": true,
+            "report": false,
+            "receipt": "absent",
+            "model_done": false
+          }
+        ]
+      },
+      "expected": [
+        {
+          "effect": false,
+          "complete": false,
+          "support_available": true
+        }
+      ],
+      "quint_test": "observationAdmissionUnapprovedSubstitutionTest",
+      "quint_stages": [
+        {
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          },
+          "contextFresh": true,
+          "hazardBounded": true,
+          "reapprove": true,
+          "report": false,
+          "post_facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "OBA-T02",
+      "name": "UnadmittedSource",
+      "inputs": {
+        "request": {
+          "action_id": "fixture-contact",
+          "target_id": "cell-a",
+          "tool": "fixture-tool",
+          "authorized": true
+        },
+        "stages": [
+          {
+            "context": {
+              "session_id": "session-a",
+              "epoch": 1,
+              "now": 20
+            },
+            "primary": {
+              "source": {
+                "source_id": "camera-a",
+                "pipeline_id": "pipeline-a",
+                "failure_domains": [
+                  "sensor-a",
+                  "pipeline-a"
+                ],
+                "admitted": false,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "a-1",
+                "capture_tick": 19,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "workpiece",
+                "quality": "usable"
+              },
+              "edit": "none"
+            },
+            "corroborator": {
+              "source": {
+                "source_id": "camera-b",
+                "pipeline_id": "pipeline-b",
+                "failure_domains": [
+                  "sensor-b",
+                  "pipeline-b"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "b-1",
+                "capture_tick": 19,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "workpiece",
+                "quality": "usable"
+              },
+              "edit": "none"
+            },
+            "corroboration_required": true,
+            "reapprove": true,
+            "report": false,
+            "receipt": "absent",
+            "model_done": false
+          }
+        ]
+      },
+      "expected": [
+        {
+          "effect": false,
+          "complete": false,
+          "support_available": true
+        }
+      ],
+      "quint_test": "observationAdmissionUnadmittedSourceTest",
+      "quint_stages": [
+        {
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          },
+          "contextFresh": true,
+          "hazardBounded": true,
+          "reapprove": true,
+          "report": false,
+          "post_facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "OBA-T03",
+      "name": "ReplayedOldFrame",
+      "inputs": {
+        "request": {
+          "action_id": "fixture-contact",
+          "target_id": "cell-a",
+          "tool": "fixture-tool",
+          "authorized": true
+        },
+        "stages": [
+          {
+            "context": {
+              "session_id": "session-a",
+              "epoch": 1,
+              "now": 20
+            },
+            "primary": {
+              "source": {
+                "source_id": "camera-a",
+                "pipeline_id": "pipeline-a",
+                "failure_domains": [
+                  "sensor-a",
+                  "pipeline-a"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "a-1",
+                "capture_tick": 1,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "workpiece",
+                "quality": "usable"
+              },
+              "edit": "none"
+            },
+            "corroborator": {
+              "source": {
+                "source_id": "camera-b",
+                "pipeline_id": "pipeline-b",
+                "failure_domains": [
+                  "sensor-b",
+                  "pipeline-b"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "b-1",
+                "capture_tick": 19,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "workpiece",
+                "quality": "usable"
+              },
+              "edit": "none"
+            },
+            "corroboration_required": true,
+            "reapprove": true,
+            "report": false,
+            "receipt": "absent",
+            "model_done": false
+          }
+        ]
+      },
+      "expected": [
+        {
+          "effect": false,
+          "complete": false,
+          "support_available": true
+        }
+      ],
+      "quint_test": "observationAdmissionReplayedOldFrameTest",
+      "quint_stages": [
+        {
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": false,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          },
+          "contextFresh": false,
+          "hazardBounded": true,
+          "reapprove": true,
+          "report": false,
+          "post_facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": false,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "OBA-T04",
+      "name": "WrongTargetContext",
+      "inputs": {
+        "request": {
+          "action_id": "fixture-contact",
+          "target_id": "cell-a",
+          "tool": "fixture-tool",
+          "authorized": true
+        },
+        "stages": [
+          {
+            "context": {
+              "session_id": "session-a",
+              "epoch": 1,
+              "now": 20
+            },
+            "primary": {
+              "source": {
+                "source_id": "camera-a",
+                "pipeline_id": "pipeline-a",
+                "failure_domains": [
+                  "sensor-a",
+                  "pipeline-a"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "a-1",
+                "capture_tick": 19,
+                "session_id": "session-a",
+                "target_id": "cell-other",
+                "epoch": 1,
+                "object": "workpiece",
+                "quality": "usable"
+              },
+              "edit": "none"
+            },
+            "corroborator": {
+              "source": {
+                "source_id": "camera-b",
+                "pipeline_id": "pipeline-b",
+                "failure_domains": [
+                  "sensor-b",
+                  "pipeline-b"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "b-1",
+                "capture_tick": 19,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "workpiece",
+                "quality": "usable"
+              },
+              "edit": "none"
+            },
+            "corroboration_required": true,
+            "reapprove": true,
+            "report": false,
+            "receipt": "absent",
+            "model_done": false
+          }
+        ]
+      },
+      "expected": [
+        {
+          "effect": false,
+          "complete": false,
+          "support_available": true
+        }
+      ],
+      "quint_test": "observationAdmissionWrongTargetContextTest",
+      "quint_stages": [
+        {
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": false,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          },
+          "contextFresh": false,
+          "hazardBounded": true,
+          "reapprove": true,
+          "report": false,
+          "post_facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": false,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "OBA-T05",
+      "name": "FutureTimestamp",
+      "inputs": {
+        "request": {
+          "action_id": "fixture-contact",
+          "target_id": "cell-a",
+          "tool": "fixture-tool",
+          "authorized": true
+        },
+        "stages": [
+          {
+            "context": {
+              "session_id": "session-a",
+              "epoch": 1,
+              "now": 20
+            },
+            "primary": {
+              "source": {
+                "source_id": "camera-a",
+                "pipeline_id": "pipeline-a",
+                "failure_domains": [
+                  "sensor-a",
+                  "pipeline-a"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "a-1",
+                "capture_tick": 21,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "workpiece",
+                "quality": "usable"
+              },
+              "edit": "none"
+            },
+            "corroborator": {
+              "source": {
+                "source_id": "camera-b",
+                "pipeline_id": "pipeline-b",
+                "failure_domains": [
+                  "sensor-b",
+                  "pipeline-b"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "b-1",
+                "capture_tick": 19,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "workpiece",
+                "quality": "usable"
+              },
+              "edit": "none"
+            },
+            "corroboration_required": true,
+            "reapprove": true,
+            "report": false,
+            "receipt": "absent",
+            "model_done": false
+          }
+        ]
+      },
+      "expected": [
+        {
+          "effect": false,
+          "complete": false,
+          "support_available": true
+        }
+      ],
+      "quint_test": "observationAdmissionFutureTimestampTest",
+      "quint_stages": [
+        {
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": false,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          },
+          "contextFresh": false,
+          "hazardBounded": true,
+          "reapprove": true,
+          "report": false,
+          "post_facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": false,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "OBA-T06",
+      "name": "BlurredObservation",
+      "inputs": {
+        "request": {
+          "action_id": "fixture-contact",
+          "target_id": "cell-a",
+          "tool": "fixture-tool",
+          "authorized": true
+        },
+        "stages": [
+          {
+            "context": {
+              "session_id": "session-a",
+              "epoch": 1,
+              "now": 20
+            },
+            "primary": {
+              "source": {
+                "source_id": "camera-a",
+                "pipeline_id": "pipeline-a",
+                "failure_domains": [
+                  "sensor-a",
+                  "pipeline-a"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "a-1",
+                "capture_tick": 19,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "workpiece",
+                "quality": "blurred"
+              },
+              "edit": "none"
+            },
+            "corroborator": {
+              "source": {
+                "source_id": "camera-b",
+                "pipeline_id": "pipeline-b",
+                "failure_domains": [
+                  "sensor-b",
+                  "pipeline-b"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "b-1",
+                "capture_tick": 19,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "workpiece",
+                "quality": "usable"
+              },
+              "edit": "none"
+            },
+            "corroboration_required": true,
+            "reapprove": true,
+            "report": false,
+            "receipt": "absent",
+            "model_done": false
+          }
+        ]
+      },
+      "expected": [
+        {
+          "effect": false,
+          "complete": false,
+          "support_available": true
+        }
+      ],
+      "quint_test": "observationAdmissionBlurredObservationTest",
+      "quint_stages": [
+        {
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          },
+          "contextFresh": true,
+          "hazardBounded": false,
+          "reapprove": true,
+          "report": false,
+          "post_facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "OBA-T07",
+      "name": "ConflictingObservations",
+      "inputs": {
+        "request": {
+          "action_id": "fixture-contact",
+          "target_id": "cell-a",
+          "tool": "fixture-tool",
+          "authorized": true
+        },
+        "stages": [
+          {
+            "context": {
+              "session_id": "session-a",
+              "epoch": 1,
+              "now": 20
+            },
+            "primary": {
+              "source": {
+                "source_id": "camera-a",
+                "pipeline_id": "pipeline-a",
+                "failure_domains": [
+                  "sensor-a",
+                  "pipeline-a"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "a-1",
+                "capture_tick": 19,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "workpiece",
+                "quality": "usable"
+              },
+              "edit": "none"
+            },
+            "corroborator": {
+              "source": {
+                "source_id": "camera-b",
+                "pipeline_id": "pipeline-b",
+                "failure_domains": [
+                  "sensor-b",
+                  "pipeline-b"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "b-1",
+                "capture_tick": 19,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "protected",
+                "quality": "usable"
+              },
+              "edit": "none"
+            },
+            "corroboration_required": true,
+            "reapprove": true,
+            "report": false,
+            "receipt": "absent",
+            "model_done": false
+          }
+        ]
+      },
+      "expected": [
+        {
+          "effect": false,
+          "complete": false,
+          "support_available": true
+        }
+      ],
+      "quint_test": "observationAdmissionConflictingObservationsTest",
+      "quint_stages": [
+        {
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": false,
+            "policyPermits": true
+          },
+          "contextFresh": true,
+          "hazardBounded": false,
+          "reapprove": true,
+          "report": false,
+          "post_facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": false,
+            "policyPermits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "OBA-T08",
+      "name": "MissingRequiredCorroboration",
+      "inputs": {
+        "request": {
+          "action_id": "fixture-contact",
+          "target_id": "cell-a",
+          "tool": "fixture-tool",
+          "authorized": true
+        },
+        "stages": [
+          {
+            "context": {
+              "session_id": "session-a",
+              "epoch": 1,
+              "now": 20
+            },
+            "primary": {
+              "source": {
+                "source_id": "camera-a",
+                "pipeline_id": "pipeline-a",
+                "failure_domains": [
+                  "sensor-a",
+                  "pipeline-a"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "a-1",
+                "capture_tick": 19,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "workpiece",
+                "quality": "usable"
+              },
+              "edit": "none"
+            },
+            "corroborator": null,
+            "corroboration_required": true,
+            "reapprove": true,
+            "report": false,
+            "receipt": "absent",
+            "model_done": false
+          }
+        ]
+      },
+      "expected": [
+        {
+          "effect": false,
+          "complete": false,
+          "support_available": true
+        }
+      ],
+      "quint_test": "observationAdmissionMissingRequiredCorroborationTest",
+      "quint_stages": [
+        {
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          },
+          "contextFresh": true,
+          "hazardBounded": true,
+          "reapprove": true,
+          "report": false,
+          "post_facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "OBA-T09",
+      "name": "SharedPipeline",
+      "inputs": {
+        "request": {
+          "action_id": "fixture-contact",
+          "target_id": "cell-a",
+          "tool": "fixture-tool",
+          "authorized": true
+        },
+        "stages": [
+          {
+            "context": {
+              "session_id": "session-a",
+              "epoch": 1,
+              "now": 20
+            },
+            "primary": {
+              "source": {
+                "source_id": "camera-a",
+                "pipeline_id": "pipeline-a",
+                "failure_domains": [
+                  "sensor-a",
+                  "pipeline-a"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "a-1",
+                "capture_tick": 19,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "workpiece",
+                "quality": "usable"
+              },
+              "edit": "none"
+            },
+            "corroborator": {
+              "source": {
+                "source_id": "camera-b",
+                "pipeline_id": "pipeline-b",
+                "failure_domains": [
+                  "sensor-b",
+                  "pipeline-a"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "b-1",
+                "capture_tick": 19,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "workpiece",
+                "quality": "usable"
+              },
+              "edit": "none"
+            },
+            "corroboration_required": true,
+            "reapprove": true,
+            "report": false,
+            "receipt": "absent",
+            "model_done": false
+          }
+        ]
+      },
+      "expected": [
+        {
+          "effect": false,
+          "complete": false,
+          "support_available": true
+        }
+      ],
+      "quint_test": "observationAdmissionSharedPipelineTest",
+      "quint_stages": [
+        {
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          },
+          "contextFresh": true,
+          "hazardBounded": true,
+          "reapprove": true,
+          "report": false,
+          "post_facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "OBA-T10",
+      "name": "UnknownIndependence",
+      "inputs": {
+        "request": {
+          "action_id": "fixture-contact",
+          "target_id": "cell-a",
+          "tool": "fixture-tool",
+          "authorized": true
+        },
+        "stages": [
+          {
+            "context": {
+              "session_id": "session-a",
+              "epoch": 1,
+              "now": 20
+            },
+            "primary": {
+              "source": {
+                "source_id": "camera-a",
+                "pipeline_id": "pipeline-a",
+                "failure_domains": [
+                  "sensor-a",
+                  "pipeline-a"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "a-1",
+                "capture_tick": 19,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "workpiece",
+                "quality": "usable"
+              },
+              "edit": "none"
+            },
+            "corroborator": {
+              "source": {
+                "source_id": "camera-b",
+                "pipeline_id": "pipeline-b",
+                "failure_domains": [],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "b-1",
+                "capture_tick": 19,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "workpiece",
+                "quality": "usable"
+              },
+              "edit": "none"
+            },
+            "corroboration_required": true,
+            "reapprove": true,
+            "report": false,
+            "receipt": "absent",
+            "model_done": false
+          }
+        ]
+      },
+      "expected": [
+        {
+          "effect": false,
+          "complete": false,
+          "support_available": true
+        }
+      ],
+      "quint_test": "observationAdmissionUnknownIndependenceTest",
+      "quint_stages": [
+        {
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          },
+          "contextFresh": true,
+          "hazardBounded": true,
+          "reapprove": true,
+          "report": false,
+          "post_facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "OBA-T11",
+      "name": "StaleApprovalAfterObservationChange",
+      "inputs": {
+        "request": {
+          "action_id": "fixture-contact",
+          "target_id": "cell-a",
+          "tool": "fixture-tool",
+          "authorized": true
+        },
+        "stages": [
+          {
+            "context": {
+              "session_id": "session-a",
+              "epoch": 1,
+              "now": 20
+            },
+            "primary": {
+              "source": {
+                "source_id": "camera-a",
+                "pipeline_id": "pipeline-a",
+                "failure_domains": [
+                  "sensor-a",
+                  "pipeline-a"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "a-1",
+                "capture_tick": 19,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "workpiece",
+                "quality": "usable"
+              },
+              "edit": "none"
+            },
+            "corroborator": {
+              "source": {
+                "source_id": "camera-b",
+                "pipeline_id": "pipeline-b",
+                "failure_domains": [
+                  "sensor-b",
+                  "pipeline-b"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "b-1",
+                "capture_tick": 19,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "workpiece",
+                "quality": "usable"
+              },
+              "edit": "none"
+            },
+            "corroboration_required": true,
+            "reapprove": false,
+            "report": false,
+            "receipt": "absent",
+            "model_done": false
+          }
+        ]
+      },
+      "expected": [
+        {
+          "effect": false,
+          "complete": false,
+          "support_available": true
+        }
+      ],
+      "quint_test": "observationAdmissionStaleApprovalAfterObservationChangeTest",
+      "quint_stages": [
+        {
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          },
+          "contextFresh": true,
+          "hazardBounded": true,
+          "reapprove": false,
+          "report": false,
+          "post_facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "OBA-T12",
+      "name": "DoneWithoutOutcomeEvidence",
+      "inputs": {
+        "request": {
+          "action_id": "fixture-contact",
+          "target_id": "cell-a",
+          "tool": "fixture-tool",
+          "authorized": true
+        },
+        "stages": [
+          {
+            "context": {
+              "session_id": "session-a",
+              "epoch": 1,
+              "now": 20
+            },
+            "primary": {
+              "source": {
+                "source_id": "camera-a",
+                "pipeline_id": "pipeline-a",
+                "failure_domains": [
+                  "sensor-a",
+                  "pipeline-a"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "a-1",
+                "capture_tick": 19,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "workpiece",
+                "quality": "usable"
+              },
+              "edit": "none"
+            },
+            "corroborator": {
+              "source": {
+                "source_id": "camera-b",
+                "pipeline_id": "pipeline-b",
+                "failure_domains": [
+                  "sensor-b",
+                  "pipeline-b"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "b-1",
+                "capture_tick": 19,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "workpiece",
+                "quality": "usable"
+              },
+              "edit": "none"
+            },
+            "corroboration_required": true,
+            "reapprove": true,
+            "report": true,
+            "receipt": "absent",
+            "model_done": true
+          }
+        ]
+      },
+      "expected": [
+        {
+          "effect": true,
+          "complete": false,
+          "support_available": true
+        }
+      ],
+      "quint_test": "observationAdmissionDoneWithoutOutcomeEvidenceTest",
+      "quint_stages": [
+        {
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          },
+          "contextFresh": true,
+          "hazardBounded": true,
+          "reapprove": true,
+          "report": true,
+          "post_facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "OBA-T13",
+      "name": "AdmittedIndependentWork",
+      "inputs": {
+        "request": {
+          "action_id": "fixture-contact",
+          "target_id": "cell-a",
+          "tool": "fixture-tool",
+          "authorized": true
+        },
+        "stages": [
+          {
+            "context": {
+              "session_id": "session-a",
+              "epoch": 1,
+              "now": 20
+            },
+            "primary": {
+              "source": {
+                "source_id": "camera-a",
+                "pipeline_id": "pipeline-a",
+                "failure_domains": [
+                  "sensor-a",
+                  "pipeline-a"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "a-1",
+                "capture_tick": 19,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "workpiece",
+                "quality": "usable"
+              },
+              "edit": "none"
+            },
+            "corroborator": {
+              "source": {
+                "source_id": "camera-b",
+                "pipeline_id": "pipeline-b",
+                "failure_domains": [
+                  "sensor-b",
+                  "pipeline-b"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "b-1",
+                "capture_tick": 19,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "workpiece",
+                "quality": "usable"
+              },
+              "edit": "none"
+            },
+            "corroboration_required": true,
+            "reapprove": true,
+            "report": true,
+            "receipt": "linked",
+            "model_done": true
+          }
+        ]
+      },
+      "expected": [
+        {
+          "effect": true,
+          "complete": true,
+          "support_available": true
+        }
+      ],
+      "quint_test": "observationAdmissionAdmittedIndependentWorkTest",
+      "quint_stages": [
+        {
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          },
+          "contextFresh": true,
+          "hazardBounded": true,
+          "reapprove": true,
+          "report": true,
+          "post_facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "OBA-T14",
+      "name": "PermittedSingleChannelEnvelope",
+      "inputs": {
+        "request": {
+          "action_id": "fixture-contact",
+          "target_id": "cell-a",
+          "tool": "fixture-tool",
+          "authorized": true
+        },
+        "stages": [
+          {
+            "context": {
+              "session_id": "session-a",
+              "epoch": 1,
+              "now": 20
+            },
+            "primary": {
+              "source": {
+                "source_id": "camera-a",
+                "pipeline_id": "pipeline-a",
+                "failure_domains": [
+                  "sensor-a",
+                  "pipeline-a"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "a-1",
+                "capture_tick": 19,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "workpiece",
+                "quality": "usable"
+              },
+              "edit": "none"
+            },
+            "corroborator": null,
+            "corroboration_required": false,
+            "reapprove": true,
+            "report": false,
+            "receipt": "absent",
+            "model_done": false
+          }
+        ]
+      },
+      "expected": [
+        {
+          "effect": true,
+          "complete": false,
+          "support_available": true
+        }
+      ],
+      "quint_test": "observationAdmissionPermittedSingleChannelEnvelopeTest",
+      "quint_stages": [
+        {
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          },
+          "contextFresh": true,
+          "hazardBounded": true,
+          "reapprove": true,
+          "report": false,
+          "post_facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "OBA-T15",
+      "name": "AdmittedPreprocessing",
+      "inputs": {
+        "request": {
+          "action_id": "fixture-contact",
+          "target_id": "cell-a",
+          "tool": "fixture-tool",
+          "authorized": true
+        },
+        "stages": [
+          {
+            "context": {
+              "session_id": "session-a",
+              "epoch": 1,
+              "now": 20
+            },
+            "primary": {
+              "source": {
+                "source_id": "camera-a",
+                "pipeline_id": "pipeline-a",
+                "failure_domains": [
+                  "sensor-a",
+                  "pipeline-a"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "a-1",
+                "capture_tick": 19,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "workpiece",
+                "quality": "usable"
+              },
+              "edit": "approved_transform"
+            },
+            "corroborator": {
+              "source": {
+                "source_id": "camera-b",
+                "pipeline_id": "pipeline-b",
+                "failure_domains": [
+                  "sensor-b",
+                  "pipeline-b"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "b-1",
+                "capture_tick": 19,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "workpiece",
+                "quality": "usable"
+              },
+              "edit": "none"
+            },
+            "corroboration_required": true,
+            "reapprove": true,
+            "report": false,
+            "receipt": "absent",
+            "model_done": false
+          }
+        ]
+      },
+      "expected": [
+        {
+          "effect": true,
+          "complete": false,
+          "support_available": true
+        }
+      ],
+      "quint_test": "observationAdmissionAdmittedPreprocessingTest",
+      "quint_stages": [
+        {
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          },
+          "contextFresh": true,
+          "hazardBounded": true,
+          "reapprove": true,
+          "report": false,
+          "post_facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "OBA-T16",
+      "name": "RecoveryWithinCurrentGrant",
+      "inputs": {
+        "request": {
+          "action_id": "fixture-contact",
+          "target_id": "cell-a",
+          "tool": "fixture-tool",
+          "authorized": true
+        },
+        "stages": [
+          {
+            "context": {
+              "session_id": "session-a",
+              "epoch": 1,
+              "now": 20
+            },
+            "primary": {
+              "source": {
+                "source_id": "camera-a",
+                "pipeline_id": "pipeline-a",
+                "failure_domains": [
+                  "sensor-a",
+                  "pipeline-a"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "a-1",
+                "capture_tick": 19,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "workpiece",
+                "quality": "blurred"
+              },
+              "edit": "none"
+            },
+            "corroborator": {
+              "source": {
+                "source_id": "camera-b",
+                "pipeline_id": "pipeline-b",
+                "failure_domains": [
+                  "sensor-b",
+                  "pipeline-b"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "b-1",
+                "capture_tick": 19,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "workpiece",
+                "quality": "usable"
+              },
+              "edit": "none"
+            },
+            "corroboration_required": true,
+            "reapprove": true,
+            "report": false,
+            "receipt": "absent",
+            "model_done": false
+          },
+          {
+            "context": {
+              "session_id": "session-a",
+              "epoch": 2,
+              "now": 21
+            },
+            "primary": {
+              "source": {
+                "source_id": "camera-a",
+                "pipeline_id": "pipeline-a",
+                "failure_domains": [
+                  "sensor-a",
+                  "pipeline-a"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "a-2",
+                "capture_tick": 20,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 2,
+                "object": "workpiece",
+                "quality": "usable"
+              },
+              "edit": "none"
+            },
+            "corroborator": {
+              "source": {
+                "source_id": "camera-b",
+                "pipeline_id": "pipeline-b",
+                "failure_domains": [
+                  "sensor-b",
+                  "pipeline-b"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "b-2",
+                "capture_tick": 20,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 2,
+                "object": "workpiece",
+                "quality": "usable"
+              },
+              "edit": "none"
+            },
+            "corroboration_required": true,
+            "reapprove": true,
+            "report": true,
+            "receipt": "linked",
+            "model_done": true
+          }
+        ]
+      },
+      "expected": [
+        {
+          "effect": false,
+          "complete": false,
+          "support_available": true
+        },
+        {
+          "effect": true,
+          "complete": true,
+          "support_available": true
+        }
+      ],
+      "quint_test": "observationAdmissionRecoveryWithinCurrentGrantTest",
+      "quint_stages": [
+        {
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          },
+          "contextFresh": true,
+          "hazardBounded": false,
+          "reapprove": true,
+          "report": false,
+          "post_facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        },
+        {
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          },
+          "contextFresh": true,
+          "hazardBounded": true,
+          "reapprove": true,
+          "report": true,
+          "post_facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "OBA-T17",
+      "name": "UnrelatedOutcomeReceipt",
+      "inputs": {
+        "request": {
+          "action_id": "fixture-contact",
+          "target_id": "cell-a",
+          "tool": "fixture-tool",
+          "authorized": true
+        },
+        "stages": [
+          {
+            "context": {
+              "session_id": "session-a",
+              "epoch": 1,
+              "now": 20
+            },
+            "primary": {
+              "source": {
+                "source_id": "camera-a",
+                "pipeline_id": "pipeline-a",
+                "failure_domains": [
+                  "sensor-a",
+                  "pipeline-a"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "a-1",
+                "capture_tick": 19,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "workpiece",
+                "quality": "usable"
+              },
+              "edit": "none"
+            },
+            "corroborator": {
+              "source": {
+                "source_id": "camera-b",
+                "pipeline_id": "pipeline-b",
+                "failure_domains": [
+                  "sensor-b",
+                  "pipeline-b"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "b-1",
+                "capture_tick": 19,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "workpiece",
+                "quality": "usable"
+              },
+              "edit": "none"
+            },
+            "corroboration_required": true,
+            "reapprove": true,
+            "report": true,
+            "receipt": "wrong_bundle",
+            "model_done": true
+          }
+        ]
+      },
+      "expected": [
+        {
+          "effect": true,
+          "complete": false,
+          "support_available": true
+        }
+      ],
+      "quint_test": "observationAdmissionUnrelatedOutcomeReceiptTest",
+      "quint_stages": [
+        {
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": true,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          },
+          "contextFresh": true,
+          "hazardBounded": true,
+          "reapprove": true,
+          "report": true,
+          "post_facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "OBA-T18",
+      "name": "ExpiredCalibration",
+      "inputs": {
+        "request": {
+          "action_id": "fixture-contact",
+          "target_id": "cell-a",
+          "tool": "fixture-tool",
+          "authorized": true
+        },
+        "stages": [
+          {
+            "context": {
+              "session_id": "session-a",
+              "epoch": 1,
+              "now": 20
+            },
+            "primary": {
+              "source": {
+                "source_id": "camera-a",
+                "pipeline_id": "pipeline-a",
+                "failure_domains": [
+                  "sensor-a",
+                  "pipeline-a"
+                ],
+                "admitted": true,
+                "calibration_current": false
+              },
+              "frame": {
+                "frame_id": "a-1",
+                "capture_tick": 19,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "workpiece",
+                "quality": "usable"
+              },
+              "edit": "none"
+            },
+            "corroborator": {
+              "source": {
+                "source_id": "camera-b",
+                "pipeline_id": "pipeline-b",
+                "failure_domains": [
+                  "sensor-b",
+                  "pipeline-b"
+                ],
+                "admitted": true,
+                "calibration_current": true
+              },
+              "frame": {
+                "frame_id": "b-1",
+                "capture_tick": 19,
+                "session_id": "session-a",
+                "target_id": "cell-a",
+                "epoch": 1,
+                "object": "workpiece",
+                "quality": "usable"
+              },
+              "edit": "none"
+            },
+            "corroboration_required": true,
+            "reapprove": true,
+            "report": false,
+            "receipt": "absent",
+            "model_done": false
+          }
+        ]
+      },
+      "expected": [
+        {
+          "effect": false,
+          "complete": false,
+          "support_available": true
+        }
+      ],
+      "quint_test": "observationAdmissionExpiredCalibrationTest",
+      "quint_stages": [
+        {
+          "facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          },
+          "contextFresh": true,
+          "hazardBounded": false,
+          "reapprove": true,
+          "report": false,
+          "post_facts": {
+            "scopeAuthorized": true,
+            "observationsCurrent": true,
+            "evidenceComplete": false,
+            "ruleKnown": true,
+            "factsSupport": true,
+            "policyPermits": true
+          }
+        }
+      ]
+    }
+  ],
+  "mutants": [
+    {
+      "id": "OBA-M01",
+      "operator": "trust_ingest",
+      "case_id": "OBA-T01",
+      "predicate_id": "OBA-P01"
+    },
+    {
+      "id": "OBA-M02",
+      "operator": "ignore_replay",
+      "case_id": "OBA-T03",
+      "predicate_id": "OBA-P02"
+    },
+    {
+      "id": "OBA-M03",
+      "operator": "ignore_uncertainty",
+      "case_id": "OBA-T06",
+      "predicate_id": "OBA-P03"
+    },
+    {
+      "id": "OBA-M04",
+      "operator": "count_shared_channels",
+      "case_id": "OBA-T09",
+      "predicate_id": "OBA-P04"
+    },
+    {
+      "id": "OBA-M05",
+      "operator": "reuse_old_approval",
+      "case_id": "OBA-T11",
+      "predicate_id": "OBA-P05"
+    },
+    {
+      "id": "OBA-M06",
+      "operator": "trust_done",
+      "case_id": "OBA-T12",
+      "predicate_id": "OBA-P06"
+    }
+  ]
+}

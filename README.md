@@ -142,6 +142,9 @@ authority and is not a containment boundary.
 - [Consequential Advice and Effective Supervision](docs/consequential-advice-and-supervision-assurance-profile-2026-10.md) —
   optional clinical-review, longitudinal warning and industrial-oversight cases;
   twenty-eight finite scenarios and eight executed local mutants, not clinical or interpersonal validation.
+- [Observation Admission and Perceptual Integrity](docs/observation-admission-and-perceptual-integrity-assurance-note-2026-11.md) —
+  optional source/currentness, common-cause, approval-binding and outcome-evidence
+  checks; eighteen local cases and six executed defects, not vision validation.
 - [Work Integrity and Disclosed Boundaries](docs/work-integrity-and-disclosed-boundaries-assurance-note-2026-11.md) —
   optional artifact/report acceptance, supported blockers, explicit boundaries and
   matched framing; ten cases and six executed local defects, not model evaluation.

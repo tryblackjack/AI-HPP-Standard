@@ -2,6 +2,27 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 
+## 2026-11-08 — Observation admission and perceptual integrity (post-rc.1)
+
+- Added a source-qualified RoboSpoof case and optional six-predicate note under
+  existing RAB/EGO ownership. Attempts, self-signalled completion and verified
+  physical outcomes remain separate; no human-injury, prevention or priority
+  claim is made. No attack payload, image dataset or physical test is published.
+- Added optional vector/schema artifact 1.0.0 with eighteen local cases and six
+  executed behavior-changing operators. Captures include admitted/source bytes,
+  frame freshness and context, ambiguity/conflicts, declared common failure
+  domains, stale approvals and exact outcome receipts. Useful controls retain
+  allowed single-channel work, admitted transforms and two-stage recovery.
+- Appended eighteen literal scenarios with intermediate effect and applicable
+  final-claim assertions. Map 1.3.5 links existing effect/completion properties:
+  235 core tests, 252 across both models. No operational source, aggregate,
+  existing 48 Quint unsafe witnesses or depth-12 bound changes.
+- Wired execution into build/CI and added negative accounting/linkage tests.
+  Invalid and no-op trials, unchanged-observation mutation witnesses and useful
+  controls retain separate results. No detector, sensor independence, physical
+  stopping, runtime refinement or global safety score is claimed.
+- Frozen v4.3.0 owners/contracts and immutable v4.4.0-rc.1 manifest/tag unchanged.
+
 ## 2026-11-06 — Interpersonal safety and disclosed work boundaries (post-rc.1)
 
 - Added source-qualified case reviews for an alleged poisoning-assistance complaint

@@ -154,3 +154,18 @@ its own authorized minimal path after mission revocation. Historical decision
 snapshots are not live grants, and blocking a new command does not prove that
 already-running physical work has stopped. Runtime enforcement needs separate
 evidence for these assumptions.
+
+## Observation admission and perceptual integrity (post-rc.1)
+
+The optional [observation-admission note](observation-admission-and-perceptual-integrity-assurance-note-2026-11.md)
+adds source-byte, freshness, ambiguity, common-cause and outcome-evidence fixtures
+under existing RAB/EGO owners. Currentness alone does not establish truth, and
+an authentic image can still be misleading. A judge reading the same transformed
+feed does not supply independent corroboration. Observation changes invalidate
+old approvals; qualified current reassessment can restore useful authorized work.
+
+Eighteen local cases and six executed local operators link to eighteen literal
+scenarios in the existing core. They exercise trusted-input assumptions, not
+camera accuracy, visual forgery detection or physical stopping. No RAB predicate,
+aggregate, operational transition or existing witness changes. New local witness
+counts remain separate from the ten RAB and 48 total Quint unsafe transitions.

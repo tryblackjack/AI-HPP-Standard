@@ -3,6 +3,13 @@
 from pathlib import Path
 
 REQUIRED = [
+    "docs/observation-admission-and-perceptual-integrity-assurance-note-2026-11.md",
+    "examples/observation_admission_reference.py",
+    "examples/observation-admission-vectors.json",
+    "schemas/observation-admission-vectors.schema.json",
+    "scripts/check_observation_admission.py",
+    "tests/test_observation_admission.py",
+
     "docs/work-integrity-and-disclosed-boundaries-assurance-note-2026-11.md",
     "examples/work_integrity_reference.py",
     "examples/work-integrity-vectors.json",
