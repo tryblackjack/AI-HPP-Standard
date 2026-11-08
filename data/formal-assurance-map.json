@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "artifact_id": "AI-HPP-FORMAL-ASSURANCE-MAP",
-  "artifact_version": "1.3.4",
+  "artifact_version": "1.3.5",
   "status": "ACTIVE_INFORMATIVE",
   "normative_baseline": "4.3.0",
   "interpretation": "Every link is a partial abstraction, never proof of a whole prose requirement or runtime conformance. Scenario references are structural trace links; execute Quint for outcomes.",
@@ -639,7 +639,25 @@
             "consequentialAdviceReviewCannotPermitHarmTest",
             "consequentialAdviceSupportWithoutEndorsementTest",
             "consequentialAdviceUrgentProtectiveSupportTest",
-            "consequentialAdviceNeutralSafetyEducationTest"
+            "consequentialAdviceNeutralSafetyEducationTest",
+            "observationAdmissionUnapprovedSubstitutionTest",
+            "observationAdmissionUnadmittedSourceTest",
+            "observationAdmissionReplayedOldFrameTest",
+            "observationAdmissionWrongTargetContextTest",
+            "observationAdmissionFutureTimestampTest",
+            "observationAdmissionBlurredObservationTest",
+            "observationAdmissionConflictingObservationsTest",
+            "observationAdmissionMissingRequiredCorroborationTest",
+            "observationAdmissionSharedPipelineTest",
+            "observationAdmissionUnknownIndependenceTest",
+            "observationAdmissionStaleApprovalAfterObservationChangeTest",
+            "observationAdmissionDoneWithoutOutcomeEvidenceTest",
+            "observationAdmissionAdmittedIndependentWorkTest",
+            "observationAdmissionPermittedSingleChannelEnvelopeTest",
+            "observationAdmissionAdmittedPreprocessingTest",
+            "observationAdmissionRecoveryWithinCurrentGrantTest",
+            "observationAdmissionUnrelatedOutcomeReceiptTest",
+            "observationAdmissionExpiredCalibrationTest"
           ],
           "mutation_tests": [
             "mutantEgoM03IgnoreHoldKilledTest"
@@ -757,7 +775,11 @@
             "egoDeadlineStopsAffectedWorkTest",
             "egoAcceptedHandoffPreservesDeadlineTest",
             "egoIncidentBlocksCompletionTest",
-            "egoResolutionRestoresCompletionTest"
+            "egoResolutionRestoresCompletionTest",
+            "observationAdmissionDoneWithoutOutcomeEvidenceTest",
+            "observationAdmissionAdmittedIndependentWorkTest",
+            "observationAdmissionRecoveryWithinCurrentGrantTest",
+            "observationAdmissionUnrelatedOutcomeReceiptTest"
           ],
           "mutation_tests": [
             "mutantEgoM10FalseCompletionKilledTest"

@@ -327,6 +327,21 @@ person. Review summaries/restarts, linked follow-ups, harmful concealment and
 unsupported certainty, without treating ordinary privacy as evidence of a crime.
 Protect minimized context, source attribution, correction and retention limits.
 
+## Perceptual integrity and physical outcome evidence (post-rc.1)
+
+For the optional [observation-admission note](observation-admission-and-perceptual-integrity-assurance-note-2026-11.md),
+freeze the admitted capture-to-consumer paths, transformations, operating domain,
+quality/calibration/freshness limits, target/context bindings and the hazard-based
+need for corroboration. Examine common failure dependencies instead of counting
+camera or judge names. Distinguish byte identity, currentness and physical truth.
+
+Measure degraded-input performance, stale/replayed observations, shared-feed
+failures, approval/execution races, actual postconditions, false holds and useful
+recovery. A commanded action, model `done` or controller acknowledgment is not an
+independently verified outcome. Source quality, physical dynamics, stopping and
+real sensor independence remain deployment evidence, not facts proved by Boolean
+reference fixtures. No physical experiment or model attack is run by this suite.
+
 ## Machine-readable report
 
 The language-neutral

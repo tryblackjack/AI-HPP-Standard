@@ -178,3 +178,15 @@ the admissibility of a report/claim bundle, not permission to perform a refused
 operation. Actual input admission, semantic equivalence, natural-language intent,
 model motives and live execution remain outside the formal model. Eight CAS and
 six WIT local mutants remain separate from 48 Quint unsafe-transition witnesses.
+
+## Observation-admission links (post-rc.1)
+
+Map 1.3.5 adds eighteen `observationAdmission*Test` links under the existing effect
+property and applicable report cases under the existing completion property.
+The core has 235 tests (252 across both models); 42 aggregate properties,
+18 partially modeled requirements, 31 not modeled requirements, operational source,
+48 Quint unsafe witnesses and depth 12 are unchanged. OBA-P01–P06 are candidate
+local contracts, not individual Quint theorems. Input currentness, semantic quality,
+source admission, common failure dependencies and outcome receipts are trusted
+facts requiring deployment validation. Neither action denial nor a synthetic
+receipt proves physical stopping, scene truth or completed physical work.

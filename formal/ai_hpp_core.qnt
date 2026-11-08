@@ -4728,4 +4728,282 @@ module ai_hpp_core {
       }))
   }
 
+
+  run observationAdmissionUnapprovedSubstitutionTest = {
+    init
+      .then(assessRobotAction)
+      .then(changeRobotContext(false, true, true, true))
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: false, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run observationAdmissionUnadmittedSourceTest = {
+    init
+      .then(assessRobotAction)
+      .then(changeRobotContext(false, true, true, true))
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: false, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run observationAdmissionReplayedOldFrameTest = {
+    init
+      .then(assessRobotAction)
+      .then(changeRobotContext(false, false, true, true))
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: false, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run observationAdmissionWrongTargetContextTest = {
+    init
+      .then(assessRobotAction)
+      .then(changeRobotContext(false, false, true, true))
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: false, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run observationAdmissionFutureTimestampTest = {
+    init
+      .then(assessRobotAction)
+      .then(changeRobotContext(false, false, true, true))
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: false, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run observationAdmissionBlurredObservationTest = {
+    init
+      .then(assessRobotAction)
+      .then(changeRobotContext(false, true, true, false))
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: false, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run observationAdmissionConflictingObservationsTest = {
+    init
+      .then(assessRobotAction)
+      .then(changeRobotContext(false, true, true, false))
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: false, ruleKnown: true, factsSupport: false, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run observationAdmissionMissingRequiredCorroborationTest = {
+    init
+      .then(assessRobotAction)
+      .then(changeRobotContext(false, true, true, true))
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: false, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run observationAdmissionSharedPipelineTest = {
+    init
+      .then(assessRobotAction)
+      .then(changeRobotContext(false, true, true, true))
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: false, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run observationAdmissionUnknownIndependenceTest = {
+    init
+      .then(assessRobotAction)
+      .then(changeRobotContext(false, true, true, true))
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: false, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run observationAdmissionStaleApprovalAfterObservationChangeTest = {
+    init
+      .then(assessRobotAction)
+      .then(changeRobotContext(false, true, true, true))
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run observationAdmissionDoneWithoutOutcomeEvidenceTest = {
+    init
+      .then(assessRobotAction)
+      .then(changeRobotContext(false, true, true, true))
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+      .then(evaluateChildDeployment(1, true, true, true))
+      .then(terminateChild(true, true))
+      .then(completeResidueInventory)
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: false, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessCompletionClaim)
+      .then(check(all {
+        s.claimValid == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run observationAdmissionAdmittedIndependentWorkTest = {
+    init
+      .then(assessRobotAction)
+      .then(changeRobotContext(false, true, true, true))
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+      .then(evaluateChildDeployment(1, true, true, true))
+      .then(terminateChild(true, true))
+      .then(completeResidueInventory)
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessCompletionClaim)
+      .then(check(all {
+        s.claimValid == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run observationAdmissionPermittedSingleChannelEnvelopeTest = {
+    init
+      .then(assessRobotAction)
+      .then(changeRobotContext(false, true, true, true))
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run observationAdmissionAdmittedPreprocessingTest = {
+    init
+      .then(assessRobotAction)
+      .then(changeRobotContext(false, true, true, true))
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run observationAdmissionRecoveryWithinCurrentGrantTest = {
+    init
+      .then(assessRobotAction)
+      .then(changeRobotContext(false, true, true, false))
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: false, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+      .then(changeRobotContext(false, true, true, true))
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+      .then(evaluateChildDeployment(1, true, true, true))
+      .then(terminateChild(true, true))
+      .then(completeResidueInventory)
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessCompletionClaim)
+      .then(check(all {
+        s.claimValid == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run observationAdmissionUnrelatedOutcomeReceiptTest = {
+    init
+      .then(assessRobotAction)
+      .then(changeRobotContext(false, true, true, true))
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+      .then(evaluateChildDeployment(1, true, true, true))
+      .then(terminateChild(true, true))
+      .then(completeResidueInventory)
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: false, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessCompletionClaim)
+      .then(check(all {
+        s.claimValid == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run observationAdmissionExpiredCalibrationTest = {
+    init
+      .then(assessRobotAction)
+      .then(changeRobotContext(false, true, true, false))
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: false, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
 }

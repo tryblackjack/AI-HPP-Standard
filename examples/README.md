@@ -191,3 +191,15 @@ values and claimed completion, execute six defects, and check sixteen literal
 Quint audit-bundle scenarios. Invalid and no-op trials retain separate outcomes.
 This is neither a model test nor an intent detector. See the
 [note and limits](../docs/work-integrity-and-disclosed-boundaries-assurance-note-2026-11.md).
+
+## Observation admission (optional, post-rc.1)
+
+[Eighteen vectors](observation-admission-vectors.json), a
+[strict schema](../schemas/observation-admission-vectors.schema.json) and a
+[local fixture](observation_admission_reference.py) test admitted byte identities,
+currentness, declared failure dependencies, approval invalidation and bound outcome
+receipts. Run `python3 scripts/check_observation_admission.py` for six executed
+local defects and exact linkage to eighteen existing-core Quint scenarios.
+Actual JSON bytes and marker/report files are observed; no images, cameras, robot,
+model or network is used. Useful operation and two-stage recovery prevent blanket
+denial from passing. Read the [assurance note and limits](../docs/observation-admission-and-perceptual-integrity-assurance-note-2026-11.md).

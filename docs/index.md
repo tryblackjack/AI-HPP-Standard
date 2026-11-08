@@ -79,3 +79,4 @@ not active normative text.
 
 - [Work Integrity and Disclosed Boundaries](work-integrity-and-disclosed-boundaries-assurance-note-2026-11.md) — five candidate predicates, matched framing pairs and actual local artifact/report checks; no motive inference or model evaluation.
 - [Consequential advice update](consequential-advice-and-supervision-assurance-profile-2026-10.md) — reality-preserving empathy and cumulative harm assistance; eight additional cases and two additional local operators, with useful support retained.
+- [Observation Admission and Perceptual Integrity](observation-admission-and-perceptual-integrity-assurance-note-2026-11.md) — source-byte, degraded-input, shared-channel and outcome-evidence cases under existing RAB/EGO owners; no physical safety or perception proof.

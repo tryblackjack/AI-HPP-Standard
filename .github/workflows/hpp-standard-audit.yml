@@ -69,6 +69,9 @@ jobs:
       - name: Validate cross-cutting assurance protocol
         run: python3 scripts/check_assurance_protocol.py
 
+      - name: Execute observation admission and outcome evidence fixtures
+        run: python3 scripts/check_observation_admission.py
+
       - name: Execute work integrity and disclosed boundary fixtures
         run: python3 scripts/check_work_integrity.py
 

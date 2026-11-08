@@ -244,3 +244,14 @@ execute Quint for outcomes. [Coverage](../formal/coverage.md) remains
 `PARTIAL_ABSTRACTION`. Finite tests support at most `REFERENCE_TESTED` for the
 declared artifacts; no unbounded liveness, real-world safety or conformance proof
 follows. No real notifications are sent by these tests.
+
+## Observation-admission evidence (post-rc.1)
+
+The optional [observation-admission note](observation-admission-and-perceptual-integrity-assurance-note-2026-11.md)
+links synthetic source-byte captures, context/freshness, declared channel failure
+domains and bound outcome receipts to existing grounding and completion guards.
+A matching digest authenticates neither a physical scene nor a true postcondition.
+Independent corroboration must address relevant common-cause failures; repeated
+judgments on the same input are not independent observations. Eighteen literal
+scenarios preserve the operational core and verification bounds. Their generated
+receipts are reference data, not verified physical outcomes or delivered notices.

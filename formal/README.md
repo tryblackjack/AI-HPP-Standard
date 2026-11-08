@@ -225,3 +225,19 @@ transition, guard, aggregate, existing witness or depth-12 bound changes. Eight
 CAS local operators and six WIT local operators have separate denominators and
 remain distinct from the 48 Quint unsafe-transition witnesses. All claims remain
 finite, trusted-input reference evidence, not model or deployment validation.
+
+## Observation-admission scenario synchronization (post-rc.1)
+
+The [observation-admission note](../docs/observation-admission-and-perceptual-integrity-assurance-note-2026-11.md)
+adds eighteen literal scenarios under existing RAB context/approval/execution and
+EGO grounding/completion transitions, including intermediate assertions in a
+two-stage deny/recover trace. Map 1.3.5 links the existing effect and completion
+properties. The core now has 235 tests, 252 across both models. No operational
+source, aggregate, 48 Quint witness inventory or depth-12 bound changes.
+
+Local source-byte/marker/report captures are checked against the literal inputs.
+The six local operators have a separate denominator. Object/quality labels,
+admission records, fault-domain independence and synthetic outcome receipts remain
+trusted abstractions, not a visual model, physical observation, sensor identity
+proof or Python-to-Quint refinement. A lifecycle fixture enables generic claim
+assessment; it does not establish physical task completion.

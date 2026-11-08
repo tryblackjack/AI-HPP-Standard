@@ -1,0 +1,541 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_version",
+    "status",
+    "normative_baseline",
+    "claim_boundary",
+    "cases",
+    "mutants"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "artifact_version": {
+      "const": "1.0.0"
+    },
+    "status": {
+      "const": "ACTIVE_INFORMATIVE"
+    },
+    "normative_baseline": {
+      "const": "4.3.0"
+    },
+    "claim_boundary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "inputs",
+          "expected",
+          "quint_test",
+          "quint_stages"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^OBA-T[0-9]{2}$"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "inputs": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "request",
+              "stages"
+            ],
+            "properties": {
+              "request": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "action_id",
+                  "target_id",
+                  "tool",
+                  "authorized"
+                ],
+                "properties": {
+                  "action_id": {
+                    "const": "fixture-contact"
+                  },
+                  "target_id": {
+                    "const": "cell-a"
+                  },
+                  "tool": {
+                    "const": "fixture-tool"
+                  },
+                  "authorized": {
+                    "const": true
+                  }
+                }
+              },
+              "stages": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "context",
+                    "primary",
+                    "corroborator",
+                    "corroboration_required",
+                    "reapprove",
+                    "report",
+                    "receipt",
+                    "model_done"
+                  ],
+                  "properties": {
+                    "context": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "session_id",
+                        "epoch",
+                        "now"
+                      ],
+                      "properties": {
+                        "session_id": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "epoch": {
+                          "type": "integer",
+                          "minimum": 1,
+                          "maximum": 2
+                        },
+                        "now": {
+                          "type": "integer",
+                          "minimum": 0
+                        }
+                      }
+                    },
+                    "primary": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "source",
+                        "frame",
+                        "edit"
+                      ],
+                      "properties": {
+                        "source": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "source_id",
+                            "pipeline_id",
+                            "failure_domains",
+                            "admitted",
+                            "calibration_current"
+                          ],
+                          "properties": {
+                            "source_id": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "pipeline_id": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "failure_domains": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "minItems": 0,
+                              "uniqueItems": true
+                            },
+                            "admitted": {
+                              "type": "boolean"
+                            },
+                            "calibration_current": {
+                              "type": "boolean"
+                            }
+                          }
+                        },
+                        "frame": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "frame_id",
+                            "capture_tick",
+                            "session_id",
+                            "target_id",
+                            "epoch",
+                            "object",
+                            "quality"
+                          ],
+                          "properties": {
+                            "frame_id": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "capture_tick": {
+                              "type": "integer",
+                              "minimum": 0
+                            },
+                            "session_id": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "target_id": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "epoch": {
+                              "type": "integer",
+                              "minimum": 1,
+                              "maximum": 2
+                            },
+                            "object": {
+                              "enum": [
+                                "workpiece",
+                                "protected",
+                                "unknown"
+                              ]
+                            },
+                            "quality": {
+                              "enum": [
+                                "usable",
+                                "blurred",
+                                "missing"
+                              ]
+                            }
+                          }
+                        },
+                        "edit": {
+                          "enum": [
+                            "none",
+                            "approved_transform",
+                            "unapproved_substitution"
+                          ]
+                        }
+                      }
+                    },
+                    "corroborator": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "source",
+                            "frame",
+                            "edit"
+                          ],
+                          "properties": {
+                            "source": {
+                              "type": "object",
+                              "additionalProperties": false,
+                              "required": [
+                                "source_id",
+                                "pipeline_id",
+                                "failure_domains",
+                                "admitted",
+                                "calibration_current"
+                              ],
+                              "properties": {
+                                "source_id": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "pipeline_id": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "failure_domains": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "minItems": 0,
+                                  "uniqueItems": true
+                                },
+                                "admitted": {
+                                  "type": "boolean"
+                                },
+                                "calibration_current": {
+                                  "type": "boolean"
+                                }
+                              }
+                            },
+                            "frame": {
+                              "type": "object",
+                              "additionalProperties": false,
+                              "required": [
+                                "frame_id",
+                                "capture_tick",
+                                "session_id",
+                                "target_id",
+                                "epoch",
+                                "object",
+                                "quality"
+                              ],
+                              "properties": {
+                                "frame_id": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "capture_tick": {
+                                  "type": "integer",
+                                  "minimum": 0
+                                },
+                                "session_id": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "target_id": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "epoch": {
+                                  "type": "integer",
+                                  "minimum": 1,
+                                  "maximum": 2
+                                },
+                                "object": {
+                                  "enum": [
+                                    "workpiece",
+                                    "protected",
+                                    "unknown"
+                                  ]
+                                },
+                                "quality": {
+                                  "enum": [
+                                    "usable",
+                                    "blurred",
+                                    "missing"
+                                  ]
+                                }
+                              }
+                            },
+                            "edit": {
+                              "enum": [
+                                "none",
+                                "approved_transform",
+                                "unapproved_substitution"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "corroboration_required": {
+                      "type": "boolean"
+                    },
+                    "reapprove": {
+                      "type": "boolean"
+                    },
+                    "report": {
+                      "type": "boolean"
+                    },
+                    "receipt": {
+                      "enum": [
+                        "absent",
+                        "linked",
+                        "wrong_bundle"
+                      ]
+                    },
+                    "model_done": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "minItems": 1,
+                "maxItems": 2
+              }
+            }
+          },
+          "expected": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "effect",
+                "complete",
+                "support_available"
+              ],
+              "properties": {
+                "effect": {
+                  "type": "boolean"
+                },
+                "complete": {
+                  "type": "boolean"
+                },
+                "support_available": {
+                  "const": true
+                }
+              }
+            },
+            "minItems": 1,
+            "maxItems": 2
+          },
+          "quint_test": {
+            "type": "string",
+            "pattern": "^observationAdmission[A-Za-z]+Test$"
+          },
+          "quint_stages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "facts",
+                "contextFresh",
+                "hazardBounded",
+                "reapprove",
+                "report",
+                "post_facts"
+              ],
+              "properties": {
+                "facts": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "scopeAuthorized",
+                    "observationsCurrent",
+                    "evidenceComplete",
+                    "ruleKnown",
+                    "factsSupport",
+                    "policyPermits"
+                  ],
+                  "properties": {
+                    "scopeAuthorized": {
+                      "type": "boolean"
+                    },
+                    "observationsCurrent": {
+                      "type": "boolean"
+                    },
+                    "evidenceComplete": {
+                      "type": "boolean"
+                    },
+                    "ruleKnown": {
+                      "type": "boolean"
+                    },
+                    "factsSupport": {
+                      "type": "boolean"
+                    },
+                    "policyPermits": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "contextFresh": {
+                  "type": "boolean"
+                },
+                "hazardBounded": {
+                  "type": "boolean"
+                },
+                "reapprove": {
+                  "type": "boolean"
+                },
+                "report": {
+                  "type": "boolean"
+                },
+                "post_facts": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "scopeAuthorized",
+                    "observationsCurrent",
+                    "evidenceComplete",
+                    "ruleKnown",
+                    "factsSupport",
+                    "policyPermits"
+                  ],
+                  "properties": {
+                    "scopeAuthorized": {
+                      "type": "boolean"
+                    },
+                    "observationsCurrent": {
+                      "type": "boolean"
+                    },
+                    "evidenceComplete": {
+                      "type": "boolean"
+                    },
+                    "ruleKnown": {
+                      "type": "boolean"
+                    },
+                    "factsSupport": {
+                      "type": "boolean"
+                    },
+                    "policyPermits": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            },
+            "minItems": 1,
+            "maxItems": 2
+          }
+        }
+      },
+      "minItems": 18,
+      "maxItems": 18
+    },
+    "mutants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "operator",
+          "case_id",
+          "predicate_id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^OBA-M[0-9]{2}$"
+          },
+          "operator": {
+            "enum": [
+              "trust_ingest",
+              "ignore_replay",
+              "ignore_uncertainty",
+              "count_shared_channels",
+              "reuse_old_approval",
+              "trust_done"
+            ]
+          },
+          "case_id": {
+            "type": "string",
+            "pattern": "^OBA-T[0-9]{2}$"
+          },
+          "predicate_id": {
+            "enum": [
+              "OBA-P01",
+              "OBA-P02",
+              "OBA-P03",
+              "OBA-P04",
+              "OBA-P05",
+              "OBA-P06"
+            ]
+          }
+        }
+      },
+      "minItems": 6,
+      "maxItems": 6
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}
