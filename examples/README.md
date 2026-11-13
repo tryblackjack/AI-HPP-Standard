@@ -45,6 +45,15 @@ with its [JSON Schema](../schemas/mvp-conformance-statement.schema.json). The
 template defaults every control to `NOT_ASSESSED` and cannot claim conformance
 until all seven mandatory controls pass with evidence and tests.
 
+## Optional prompt and memory checks
+
+The [prompt/memory note](../docs/prompt-and-memory-portability-assurance-note-2026-11.md)
+maps optional tests to existing owners. Reuse the local instruction/CBA checks
+and fourteen synthetic memory write/delete cases as implementation examples.
+No vendor prompt is bundled, and tool declarations are not callable tools.
+These are language-neutral contract examples with optional Python fixtures,
+not a required memory service or runtime conformance claim.
+
 ## Minimal gate result shape
 
 This shape is illustrative. Field names may differ when the same semantics and

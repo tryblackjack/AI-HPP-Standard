@@ -190,3 +190,15 @@ local contracts, not individual Quint theorems. Input currentness, semantic qual
 source admission, common failure dependencies and outcome receipts are trusted
 facts requiring deployment validation. Neither action denial nor a synthetic
 receipt proves physical stopping, scene truth or completed physical work.
+
+## Prompt-portability links (post-rc.1)
+
+Map 1.3.6 adds eight literal `promptPortability*Test` links to the existing
+`effectsRequireGroundingAndOversight` property. Local CBA captures are compared
+with authored grounding inputs and effect expectations. The core now has 243
+tests, 260 across both models. The operational prefix, 42 aggregate properties,
+48 Quint unsafe witnesses, depth-12 bound and 18/49 partially modeled requirement
+coverage remain unchanged. PM-P01–P05 memory checks are finite local reference
+contracts, not new formal coverage of KAI/RPS or a refinement proof. Source
+authenticity, classification, real storage and resumed-runtime enforcement
+remain deployment obligations; see the [bounded note](../docs/prompt-and-memory-portability-assurance-note-2026-11.md).

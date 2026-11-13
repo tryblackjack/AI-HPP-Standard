@@ -148,6 +148,9 @@ authority and is not a containment boundary.
 - [Work Integrity and Disclosed Boundaries](docs/work-integrity-and-disclosed-boundaries-assurance-note-2026-11.md) —
   optional artifact/report acceptance, supported blockers, explicit boundaries and
   matched framing; ten cases and six executed local defects, not model evaluation.
+- [Prompt and Memory Portability](docs/prompt-and-memory-portability-assurance-note-2026-11.md) —
+  optional forged-authority, resumed-grant and synthetic memory-update checks;
+  source classification and real storage integration remain deployment evidence.
 - [Local Instruction Admission](docs/local-instruction-admission-assurance-note-2026-10.md) — scoped source admission and configuration boundaries; eighteen finite local regressions.
 - [Biological Neural System Ethics](docs/biological-neural-system-ethics-assurance-note-2026-10.md) — substrate-specific research safeguards under uncertainty; no biological testing claim.
 - [Proof Claims and Changing Computational Assumptions](docs/proof-claims-and-computational-assumptions-2026-10.md) —

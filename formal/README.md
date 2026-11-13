@@ -241,3 +241,15 @@ admission records, fault-domain independence and synthetic outcome receipts rema
 trusted abstractions, not a visual model, physical observation, sensor identity
 proof or Python-to-Quint refinement. A lifecycle fixture enables generic claim
 assessment; it does not establish physical task completion.
+
+## Prompt-portability synchronization (post-rc.1)
+
+Eight added `promptPortability*Test` scenarios exercise the existing grounded
+effect boundary for foreign presets, forged notices, remembered permission,
+revoked/expired resumed authority and useful admitted work. Map 1.3.6 links these
+scenarios to `effectsRequireGroundingAndOversight`; Python regressions check
+captured inputs, authored expectations, literal scenarios and map membership.
+There are 243 core tests, 260 across both models. Operational transitions,
+aggregate properties, 48 Quint unsafe witnesses and the depth-12 bound are
+unchanged. The separate [memory examples](../docs/prompt-and-memory-portability-assurance-note-2026-11.md)
+do not formally prove KAI/RPS, privacy, source truth or production storage.

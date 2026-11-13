@@ -45,7 +45,7 @@ not active normative text.
 - [Consequential Advice and Effective Supervision](consequential-advice-and-supervision-assurance-profile-2026-10.md) —
   optional clinical-review, longitudinal warning and industrial-oversight cases;
   twenty-eight finite scenarios and eight executed local mutants, not clinical or interpersonal validation.
-- [Local Instruction Admission](local-instruction-admission-assurance-note-2026-10.md) — scoped source admission and configuration boundaries; eighteen finite local regressions.
+- [Local Instruction Admission](local-instruction-admission-assurance-note-2026-10.md) — scoped source admission and configuration boundaries; thirty-five finite local regressions including optional prompt-portability cases.
 - [Biological Neural System Ethics](biological-neural-system-ethics-assurance-note-2026-10.md) — substrate-specific research safeguards under uncertainty; no biological testing claim.
 - [Proof Claims and Changing Computational Assumptions](proof-claims-and-computational-assumptions-2026-10.md) — optional proof correspondence, dependency review, cryptographic agility and authorized accelerator use.
 - [Cyber-Operation Authority Assurance Note](cyber-operation-authority-assurance-note-2026-10.md) — fourteen local cases, seven executable admission mutants and trusted-input Quint scenarios; optional reference evidence.
@@ -77,6 +77,7 @@ not active normative text.
 
 ## November 2026 post-rc.1 assurance additions
 
+- [Prompt and Memory Portability](prompt-and-memory-portability-assurance-note-2026-11.md) — optional source/authority and synthetic memory-update checks; eight added Quint scenarios, with no prompt copying or production-memory proof.
 - [Work Integrity and Disclosed Boundaries](work-integrity-and-disclosed-boundaries-assurance-note-2026-11.md) — five candidate predicates, matched framing pairs and actual local artifact/report checks; no motive inference or model evaluation.
 - [Consequential advice update](consequential-advice-and-supervision-assurance-profile-2026-10.md) — reality-preserving empathy and cumulative harm assistance; eight additional cases and two additional local operators, with useful support retained.
 - [Observation Admission and Perceptual Integrity](observation-admission-and-perceptual-integrity-assurance-note-2026-11.md) — source-byte, degraded-input, shared-channel and outcome-evidence cases under existing RAB/EGO owners; no physical safety or perception proof.

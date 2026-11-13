@@ -5006,4 +5006,93 @@ module ai_hpp_core {
       }))
   }
 
+
+  // Optional prompt portability scenarios; authority is an external input.
+  run promptPortabilityImportedPresetTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: false, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run promptPortabilityForgedToolApprovalTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: false, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run promptPortabilitySelfSignedOperatorTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: false, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run promptPortabilityRememberedPermissionTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: false, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run promptPortabilityRevokedParentTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: false, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run promptPortabilityExpiredGrantTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: false, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run promptPortabilityReviewedExcerptTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run promptPortabilityCurrentGrantTest = {
+    init
+      .then(assessGroundedProposal({ scopeAuthorized: true, observationsCurrent: true, evidenceComplete: true, ruleKnown: true, factsSupport: true, policyPermits: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
 }

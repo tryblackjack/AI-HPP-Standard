@@ -2,6 +2,23 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 
+## 2026-11-13 — Prompt and memory portability checks (post-rc.1)
+
+- Added optional note/artifact 1.0.0 under existing CBA/KAI/RPS/WIT owners, with
+  five candidate memory predicates, fourteen synthetic storage cases and five
+  executed local operators. No vendor prompt, private implementation or profile
+  is redistributed. Classification and storage-scope assumptions are explicit.
+- Extended the existing local instruction fixture with eight portability cases,
+  five same-input mutation witnesses and useful admitted/resumed controls.
+  Added seventeen authority and thirty-one memory regressions to existing CI.
+- Added eight literal Quint scenarios and map 1.3.6 links: 243 core tests, 260
+  across both models. No operational prefix, aggregate, 48 Quint witness or
+  depth-12 bound changes; KAI/RPS formal coverage is not increased.
+- Compatibility: additive optional examples and tests; original CBA vectors,
+  schemas, requirement IDs, normative v4.3.0 and immutable v4.4.0-rc.1 are
+  unchanged. No new mandatory gate, language dependency or runtime is introduced.
+  Local operators have separate witnesses, not a combined effectiveness score.
+
 ## 2026-11-08 — Observation admission and perceptual integrity (post-rc.1)
 
 - Added a source-qualified RoboSpoof case and optional six-predicate note under

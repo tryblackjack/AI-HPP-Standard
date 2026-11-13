@@ -3,6 +3,9 @@
 from pathlib import Path
 
 REQUIRED = [
+    "docs/prompt-and-memory-portability-assurance-note-2026-11.md",
+    "examples/memory_admission_reference.py",
+    "tests/test_memory_admission.py",
     "docs/observation-admission-and-perceptual-integrity-assurance-note-2026-11.md",
     "examples/observation_admission_reference.py",
     "examples/observation-admission-vectors.json",
