@@ -104,3 +104,13 @@ and disclosure inputs. No operational model transition or formal map changes are
 needed for this finite boundary illustration. This is not an additional formal
 proof or refinement: deployments must test source admission and every actual
 configuration/process/disclosure boundary themselves.
+
+## Prompt portability extension (November 2026)
+
+The optional [prompt/memory note](prompt-and-memory-portability-assurance-note-2026-11.md)
+adds eight source/authority cases and seventeen regressions in the same fixture
+and test file, bringing this file's total to thirty-five tests. Five additional
+local mutation witnesses reuse existing operators with identical captured inputs.
+Eight literal Quint scenarios now link the new CBA captures to the existing
+grounded-effects property. No admission rule or operational transition changes;
+the earlier eighteen regressions and their five witnesses remain intact.
