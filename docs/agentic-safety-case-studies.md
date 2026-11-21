@@ -2,6 +2,13 @@
 
 Status: informative. These case classes provide engineering context for the normative module. They do not establish legal facts and do not claim that disputed allegations have been adjudicated. Under frozen-baseline change control, new external reports may update this informative layer and related PAF/outlook mappings; they do not automatically create new normative requirements.
 
+## Generated assessment promoted through a formal report — reported September 2026
+
+- **Reported information:** CNN's [18 September account](https://kvia.com/politics/cnn-us-politics/2026/09/18/exclusive-us-military-had-close-call-after-using-ai-for-false-intelligence-report-sources-say/) describes an AI-assisted cargo misidentification and preparations for interception in spring 2026. A [21 September Senate release](https://www.reed.senate.gov/news/releases/reed-warner-and-coons-seek-investigation-into-faulty-ai-assisted-intelligence_operations) requests investigation.
+- **Unresolved claims or allegations:** The account relies on anonymous sources. Full operational records, actual cargo and model identity are unavailable; the investigation request is not a confirming finding. No world-war claim is established.
+- **Engineering interpretation:** Formatting, multiple retellings, classified inputs and a review checkbox can confer apparent authority without claim-specific support or effective scrutiny.
+- **Normative lesson:** Apply existing knowledge, risk, review, disclosure and effect owners. The optional [claim-evidence note](claim-evidence-and-report-assurance-note-2026-11.md) supplies neutral synthetic records, observed local effects and a Quint grounding adapter. It does not reproduce a military workflow or demonstrate incident prevention.
+
 ## Perceptual substitution and degraded robot observations — November 2026
 
 - **Reported information:** [Robocurve's RoboSpoof report](https://robocurve.org/robospoof/) compares original, blurred and doctored observations in controlled physical-robot trials.

@@ -253,3 +253,20 @@ There are 243 core tests, 260 across both models. Operational transitions,
 aggregate properties, 48 Quint unsafe witnesses and the depth-12 bound are
 unchanged. The separate [memory examples](../docs/prompt-and-memory-portability-assurance-note-2026-11.md)
 do not formally prove KAI/RPS, privacy, source truth or production storage.
+
+## Claim evidence and report grounding (post-rc.1)
+
+The [claim-evidence note](../docs/claim-evidence-and-report-assurance-note-2026-11.md)
+adds `ReportPremises`, the pure `reportEvidenceReady`/`reportGrounding` derivation
+and `assessEvidenceReport` in normal `step`. This adapter feeds existing EGO
+guards; it adds no state variable and does not weaken existing authority or
+parent-revocation checks. Legacy grounding calls remain available. Deployments
+must prevent the acting generator from bypassing the external report checker.
+
+Twenty-two literal cases plus reviewed recovery and late-revocation integration
+traces bring the core to 267 tests (284 across both models). Map 1.3.7 links the
+existing grounding/effect properties. There remain 42 aggregate properties,
+48 Quint unsafe witnesses and a depth-12 bound. Seven new local Python operators
+are separate from those Quint witnesses. Semantic support, real source lineage,
+reviewer access and disclosure classification remain trusted model inputs;
+the concrete fixture tests only finite structured records, not natural language.

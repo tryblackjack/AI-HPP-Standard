@@ -202,3 +202,20 @@ coverage remain unchanged. PM-P01–P05 memory checks are finite local reference
 contracts, not new formal coverage of KAI/RPS or a refinement proof. Source
 authenticity, classification, real storage and resumed-runtime enforcement
 remain deployment obligations; see the [bounded note](../docs/prompt-and-memory-portability-assurance-note-2026-11.md).
+
+## Claim-evidence report adapter (post-rc.1)
+
+Map 1.3.7 adds twenty-four `claimEvidence*Test` links to existing grounding/effect
+properties. `assessEvidenceReport` derives those premises from a public report
+contract and participates in normal `step`. No persistent state or aggregate
+property is added: 42 aggregate members, 48 Quint unsafe witnesses and 18/49
+partially modeled requirements remain unchanged. The core has 267 tests, 284
+across both models. Unlike the preceding suffix-only additions, this change
+modifies the operational prefix and must pass the full current bounded verifier.
+
+Independent local candidate/oracle implementations check synthetic claims,
+ancestry, source bytes, review binding and actual temporary release markers.
+These are not a semantic entailment engine, authenticated acquisition chain,
+human-competence test, information-flow proof or Python-to-Quint refinement.
+The seven local operators have separate accounting; see the
+[claim-evidence contract](../docs/claim-evidence-and-report-assurance-note-2026-11.md).

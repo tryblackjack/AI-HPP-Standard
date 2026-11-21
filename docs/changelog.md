@@ -2,6 +2,29 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 
+## 2026-11-21 — Claim evidence and report assurance (post-rc.1)
+
+- Added optional artifact/vector/schema 1.0.0 under existing KAI/EGO/WIT/CBA
+  owners. Six candidate predicates cover exact claim support, source ancestry,
+  currentness/contrary evidence, effective bound review, scoped useful work and
+  inherited disclosure. The reported spring incident is attributed to CNN's
+  September account; no world-war, model-identity or prevention claim is made.
+- Added twenty-two authored structured measurement/report cases, two format-only
+  pairs, seven executed local operators and independent DFS/iterative-closure
+  implementations. Invalid seeds/trials, no-ops, changed-input or malformed
+  mutation captures and blanket denial cannot earn optimistic credit.
+- Extended the operational Quint prefix with report-premise types, derivation and
+  an adapter to existing grounded-effect guards, included in normal step. Added
+  twenty-four literal scenarios/integration traces and map 1.3.7: 267 core tests,
+  284 across both models. No persistent state, aggregate property, 48 existing
+  Quint witness inventory or depth-12 bound changes. KAI formal coverage remains
+  partial; a report's truth and effective human review are not proved by flags.
+- Compatibility: additive optional adapter; legacy grounding calls and existing
+  vectors keep their meaning. Existing runtime adopters must wire and test the
+  actual report/evidence boundary rather than reuse a previous Boolean-only
+  result as conformance. Frozen v4.3.0 owners/contracts, tags and v4.4.0-rc.1
+  manifest are unchanged. No mandatory gate/language or private code is added.
+
 ## 2026-11-13 — Prompt and memory portability checks (post-rc.1)
 
 - Added optional note/artifact 1.0.0 under existing CBA/KAI/RPS/WIT owners, with
