@@ -126,6 +126,29 @@ module ai_hpp_core {
     ruleKnown: bool, factsSupport: bool, policyPermits: bool,
   }
   type GroundingRecord = { facts: GroundingFacts, reason: str }
+  // CER: externally checked report premises, never the report's own assertions.
+  // Claim semantics, source lineage and reviewer access require implementation evidence.
+  type ReportPremises = {
+    authorityValid: bool, bindingCurrent: bool, sourcesAdmitted: bool,
+    claimLinksValid: bool, independenceRequired: bool, independenceVerified: bool,
+    reviewRequired: bool, reviewEffective: bool, contraryEvidence: bool,
+    disclosurePermitted: bool,
+  }
+
+  pure def reportEvidenceReady(p: ReportPremises): bool = all {
+    p.sourcesAdmitted, p.claimLinksValid,
+    p.independenceRequired.implies(p.independenceVerified),
+    p.reviewRequired.implies(p.reviewEffective),
+  }
+
+  pure def reportGrounding(p: ReportPremises): GroundingFacts = {
+    scopeAuthorized: p.authorityValid,
+    observationsCurrent: p.bindingCurrent,
+    evidenceComplete: reportEvidenceReady(p),
+    ruleKnown: true,
+    factsSupport: not(p.contraryEvidence),
+    policyPermits: p.disclosurePermitted,
+  }
   type OversightRecord = {
     required: bool, eventId: int, stage: int, owner: int, offeredOwner: int,
     routeAuthorized: bool, payloadMinimal: bool, independent: bool,
@@ -838,6 +861,11 @@ module ai_hpp_core {
     }
   }
 
+  // Use the existing effect guards; formatting/approval text cannot set evidence.
+  action assessEvidenceReport(proposed: ReportPremises): bool = {
+    assessGroundedProposal(reportGrounding(proposed))
+  }
+
   // One active obligation; two non-reused IDs in this finite abstraction.
   action registerOversightObligation(required: bool, holdOnOpen: bool): bool = {
     if (required and not(oversightOpen) and s.oversight.eventId < 2) {
@@ -981,6 +1009,13 @@ module ai_hpp_core {
     nondet robotTool = Set("knife", "gripper").oneOf()
     nondet robotPlanRevision = 0.to(1).oneOf()
     any {
+      assessEvidenceReport({
+        authorityValid: explicitHumanGrant, bindingCurrent: identityEvidence,
+        sourcesAdmitted: hasAuthorityEvidence, claimLinksValid: hasLineageEvidence,
+        independenceRequired: policyConflict, independenceVerified: artifactIntegrity,
+        reviewRequired: noteAddsAuthority, reviewEffective: hasLifecycleEvidence,
+        contraryEvidence: isQuarantined, disclosurePermitted: topologyWithinBounds,
+      }),
       assessGroundedProposal({
         scopeAuthorized: explicitHumanGrant, observationsCurrent: identityEvidence,
         evidenceComplete: hasAuthorityEvidence, ruleKnown: targetAuthorized,
@@ -5094,5 +5129,328 @@ module ai_hpp_core {
         s.robot.audit.executed == true,
         allCoreInvariants,
       }))
+  }
+
+  // CER: structured report premises through the existing grounded-effects boundary.
+  run claimEvidenceUnsupportedFormattedClaimTest = {
+    init
+      .then(assessEvidenceReport({ authorityValid: true, bindingCurrent: true, sourcesAdmitted: true, claimLinksValid: false, independenceRequired: true, independenceVerified: false, reviewRequired: true, reviewEffective: true, contraryEvidence: true, disclosurePermitted: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run claimEvidenceCitationTopicMismatchTest = {
+    init
+      .then(assessEvidenceReport({ authorityValid: true, bindingCurrent: true, sourcesAdmitted: true, claimLinksValid: false, independenceRequired: true, independenceVerified: false, reviewRequired: true, reviewEffective: true, contraryEvidence: false, disclosurePermitted: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run claimEvidenceRepeatedAncestryTest = {
+    init
+      .then(assessEvidenceReport({ authorityValid: true, bindingCurrent: true, sourcesAdmitted: true, claimLinksValid: true, independenceRequired: true, independenceVerified: false, reviewRequired: true, reviewEffective: true, contraryEvidence: false, disclosurePermitted: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run claimEvidenceCitationCycleTest = {
+    init
+      .then(assessEvidenceReport({ authorityValid: true, bindingCurrent: true, sourcesAdmitted: false, claimLinksValid: false, independenceRequired: true, independenceVerified: false, reviewRequired: true, reviewEffective: true, contraryEvidence: false, disclosurePermitted: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run claimEvidenceExpiredEvidenceTest = {
+    init
+      .then(assessEvidenceReport({ authorityValid: true, bindingCurrent: true, sourcesAdmitted: false, claimLinksValid: false, independenceRequired: true, independenceVerified: false, reviewRequired: true, reviewEffective: true, contraryEvidence: false, disclosurePermitted: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run claimEvidenceBlindReviewerTest = {
+    init
+      .then(assessEvidenceReport({ authorityValid: true, bindingCurrent: true, sourcesAdmitted: true, claimLinksValid: true, independenceRequired: true, independenceVerified: true, reviewRequired: true, reviewEffective: false, contraryEvidence: false, disclosurePermitted: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run claimEvidenceStaleReviewTest = {
+    init
+      .then(assessEvidenceReport({ authorityValid: true, bindingCurrent: false, sourcesAdmitted: true, claimLinksValid: true, independenceRequired: true, independenceVerified: true, reviewRequired: true, reviewEffective: true, contraryEvidence: false, disclosurePermitted: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run claimEvidenceOmittedContraryEvidenceTest = {
+    init
+      .then(assessEvidenceReport({ authorityValid: true, bindingCurrent: true, sourcesAdmitted: true, claimLinksValid: true, independenceRequired: true, independenceVerified: true, reviewRequired: true, reviewEffective: true, contraryEvidence: true, disclosurePermitted: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "contradicted",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run claimEvidenceInheritedClassificationTest = {
+    init
+      .then(assessEvidenceReport({ authorityValid: true, bindingCurrent: true, sourcesAdmitted: true, claimLinksValid: true, independenceRequired: true, independenceVerified: true, reviewRequired: true, reviewEffective: true, contraryEvidence: false, disclosurePermitted: false }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "prohibited",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run claimEvidenceSupportedReviewedReportTest = {
+    init
+      .then(assessEvidenceReport({ authorityValid: true, bindingCurrent: true, sourcesAdmitted: true, claimLinksValid: true, independenceRequired: true, independenceVerified: true, reviewRequired: true, reviewEffective: true, contraryEvidence: false, disclosurePermitted: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "permitted",
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run claimEvidenceSupportedPlainReportTest = {
+    init
+      .then(assessEvidenceReport({ authorityValid: true, bindingCurrent: true, sourcesAdmitted: true, claimLinksValid: true, independenceRequired: true, independenceVerified: true, reviewRequired: true, reviewEffective: true, contraryEvidence: false, disclosurePermitted: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "permitted",
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run claimEvidenceRoutineWithoutRequiredReviewTest = {
+    init
+      .then(assessEvidenceReport({ authorityValid: true, bindingCurrent: true, sourcesAdmitted: true, claimLinksValid: true, independenceRequired: false, independenceVerified: true, reviewRequired: false, reviewEffective: false, contraryEvidence: false, disclosurePermitted: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "permitted",
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run claimEvidenceDifferentNamesSameReviewerPathTest = {
+    init
+      .then(assessEvidenceReport({ authorityValid: true, bindingCurrent: true, sourcesAdmitted: true, claimLinksValid: true, independenceRequired: true, independenceVerified: true, reviewRequired: true, reviewEffective: false, contraryEvidence: false, disclosurePermitted: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run claimEvidenceChangedSourceBytesTest = {
+    init
+      .then(assessEvidenceReport({ authorityValid: true, bindingCurrent: true, sourcesAdmitted: false, claimLinksValid: true, independenceRequired: true, independenceVerified: false, reviewRequired: true, reviewEffective: true, contraryEvidence: false, disclosurePermitted: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run claimEvidenceStaleAdmissionTest = {
+    init
+      .then(assessEvidenceReport({ authorityValid: true, bindingCurrent: false, sourcesAdmitted: true, claimLinksValid: true, independenceRequired: true, independenceVerified: true, reviewRequired: true, reviewEffective: true, contraryEvidence: false, disclosurePermitted: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run claimEvidenceUnknownSourceTest = {
+    init
+      .then(assessEvidenceReport({ authorityValid: true, bindingCurrent: true, sourcesAdmitted: false, claimLinksValid: false, independenceRequired: true, independenceVerified: false, reviewRequired: true, reviewEffective: true, contraryEvidence: false, disclosurePermitted: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run claimEvidenceWrongSubjectTest = {
+    init
+      .then(assessEvidenceReport({ authorityValid: true, bindingCurrent: true, sourcesAdmitted: true, claimLinksValid: false, independenceRequired: true, independenceVerified: false, reviewRequired: true, reviewEffective: true, contraryEvidence: false, disclosurePermitted: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run claimEvidenceRevokedReleaseAuthorityTest = {
+    init
+      .then(assessEvidenceReport({ authorityValid: false, bindingCurrent: true, sourcesAdmitted: true, claimLinksValid: true, independenceRequired: true, independenceVerified: true, reviewRequired: true, reviewEffective: true, contraryEvidence: false, disclosurePermitted: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "unauthorized",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run claimEvidenceUnsupportedPlainClaimTest = {
+    init
+      .then(assessEvidenceReport({ authorityValid: true, bindingCurrent: true, sourcesAdmitted: true, claimLinksValid: false, independenceRequired: true, independenceVerified: false, reviewRequired: true, reviewEffective: true, contraryEvidence: true, disclosurePermitted: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run claimEvidenceSecondClaimUnsupportedTest = {
+    init
+      .then(assessEvidenceReport({ authorityValid: true, bindingCurrent: true, sourcesAdmitted: true, claimLinksValid: false, independenceRequired: true, independenceVerified: false, reviewRequired: true, reviewEffective: true, contraryEvidence: true, disclosurePermitted: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run claimEvidenceOutOfScopeObservationTest = {
+    init
+      .then(assessEvidenceReport({ authorityValid: true, bindingCurrent: true, sourcesAdmitted: true, claimLinksValid: true, independenceRequired: true, independenceVerified: true, reviewRequired: true, reviewEffective: true, contraryEvidence: false, disclosurePermitted: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "permitted",
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run claimEvidenceChangedAssessmentContextTest = {
+    init
+      .then(assessEvidenceReport({ authorityValid: true, bindingCurrent: false, sourcesAdmitted: true, claimLinksValid: false, independenceRequired: true, independenceVerified: false, reviewRequired: true, reviewEffective: true, contraryEvidence: false, disclosurePermitted: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run claimEvidenceSplitMeasurementsOneOriginTest = {
+    init
+      .then(assessEvidenceReport({ authorityValid: true, bindingCurrent: true, sourcesAdmitted: true, claimLinksValid: true, independenceRequired: false, independenceVerified: true, reviewRequired: true, reviewEffective: true, contraryEvidence: false, disclosurePermitted: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "permitted",
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run claimEvidenceReportClassificationFloorTest = {
+    init
+      .then(assessEvidenceReport({ authorityValid: true, bindingCurrent: true, sourcesAdmitted: true, claimLinksValid: true, independenceRequired: true, independenceVerified: true, reviewRequired: true, reviewEffective: true, contraryEvidence: false, disclosurePermitted: false }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "prohibited",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run claimEvidenceReviewerCannotAccessReportTest = {
+    init
+      .then(assessEvidenceReport({ authorityValid: true, bindingCurrent: true, sourcesAdmitted: true, claimLinksValid: true, independenceRequired: true, independenceVerified: true, reviewRequired: true, reviewEffective: false, contraryEvidence: false, disclosurePermitted: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run claimEvidenceReviewedCorrectionRecoveryTest = {
+    init
+      .then(assessEvidenceReport({ authorityValid: true, bindingCurrent: false, sourcesAdmitted: true, claimLinksValid: true, independenceRequired: true, independenceVerified: true, reviewRequired: true, reviewEffective: true, contraryEvidence: false, disclosurePermitted: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all { not(s.robot.audit.executed), allCoreInvariants }))
+      .then(assessEvidenceReport({ authorityValid: true, bindingCurrent: true, sourcesAdmitted: true, claimLinksValid: true, independenceRequired: true, independenceVerified: true, reviewRequired: true, reviewEffective: true, contraryEvidence: false, disclosurePermitted: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all { s.robot.audit.executed, allCoreInvariants }))
+  }
+
+  run claimEvidenceLateParentRevocationTest = {
+    init
+      .then(revokeParent(true))
+      .then(assessEvidenceReport({ authorityValid: true, bindingCurrent: true, sourcesAdmitted: true, claimLinksValid: true, independenceRequired: true, independenceVerified: true, reviewRequired: true, reviewEffective: true, contraryEvidence: false, disclosurePermitted: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all { s.grounding.reason == "unauthorized",
+        not(s.robot.audit.executed), allCoreInvariants }))
   }
 }

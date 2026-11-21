@@ -342,6 +342,22 @@ independently verified outcome. Source quality, physical dynamics, stopping and
 real sensor independence remain deployment evidence, not facts proved by Boolean
 reference fixtures. No physical experiment or model attack is run by this suite.
 
+## Claim evidence and consequential reports (post-rc.1)
+
+The optional [claim-evidence note](claim-evidence-and-report-assurance-note-2026-11.md)
+connects exact claims, supporting records, underlying acquisition origins,
+currentness/conflicts, actual reviewer access and the release/effect boundary.
+Evaluate support per claim; a genuine source, digest, signature, classification
+label or official template does not establish entailment. Multiple summaries of
+one source do not create corroboration. Keep reviewer dependencies visible.
+
+Record unsupported acceptances, false holds, retained uncertainty, permitted
+drafting/investigation, authorized disclosure and useful recovery. Freeze the
+decision snapshot and show whether review could access the relevant evidence.
+Use safe synthetic engineering tasks and deployment-specific integration tests;
+local structured equality and symbolic premise flags do not establish real-world
+truth, model reliability or prevention of a reported incident.
+
 ## Machine-readable report
 
 The language-neutral

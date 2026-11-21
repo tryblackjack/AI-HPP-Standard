@@ -1,0 +1,501 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Claim evidence and report assurance reference vectors",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_version",
+    "status",
+    "normative_baseline",
+    "claim_boundary",
+    "base",
+    "cases",
+    "mutants",
+    "pairs"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "artifact_version": {
+      "const": "1.0.0"
+    },
+    "status": {
+      "const": "ACTIVE_INFORMATIVE"
+    },
+    "normative_baseline": {
+      "const": "4.3.0"
+    },
+    "claim_boundary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "base": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "clock",
+        "context",
+        "authority",
+        "support_authority",
+        "recipient_clearance",
+        "report",
+        "sources",
+        "policy",
+        "review",
+        "admission_binding"
+      ],
+      "properties": {
+        "clock": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "context": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "authority": {
+          "type": "boolean"
+        },
+        "support_authority": {
+          "type": "boolean"
+        },
+        "recipient_clearance": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "report": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "revision",
+            "subject",
+            "author",
+            "author_domain",
+            "classification",
+            "format",
+            "claims"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "revision": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "subject": {
+              "type": "string",
+              "minLength": 1
+            },
+            "author": {
+              "type": "string",
+              "minLength": 1
+            },
+            "author_domain": {
+              "type": "string",
+              "minLength": 1
+            },
+            "classification": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "format": {
+              "enum": [
+                "plain",
+                "standard"
+              ]
+            },
+            "claims": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "property",
+                  "value",
+                  "evidence"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "property": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "value": {
+                    "type": "integer"
+                  },
+                  "evidence": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "minItems": 1,
+                    "maxItems": 8,
+                    "uniqueItems": true
+                  }
+                }
+              },
+              "minItems": 1,
+              "maxItems": 4
+            }
+          }
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "kind",
+              "origin",
+              "parents",
+              "subject",
+              "context",
+              "measurements",
+              "classification",
+              "admitted",
+              "acquired",
+              "expires",
+              "admitted_digest"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "kind": {
+                "enum": [
+                  "observation",
+                  "derived"
+                ]
+              },
+              "origin": {
+                "type": "string"
+              },
+              "parents": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true,
+                "maxItems": 8
+              },
+              "subject": {
+                "type": "string",
+                "minLength": 1
+              },
+              "context": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "measurements": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "integer"
+                }
+              },
+              "classification": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "admitted": {
+                "type": "boolean"
+              },
+              "acquired": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "expires": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "admitted_digest": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              }
+            }
+          },
+          "minItems": 1,
+          "maxItems": 8
+        },
+        "policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "minimum_origins",
+            "review_required"
+          ],
+          "properties": {
+            "minimum_origins": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 3
+            },
+            "review_required": {
+              "type": "boolean"
+            }
+          }
+        },
+        "review": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "actor",
+            "domain",
+            "authorized",
+            "approved",
+            "independent",
+            "clearance",
+            "accessible_sources",
+            "binding"
+          ],
+          "properties": {
+            "actor": {
+              "type": "string",
+              "minLength": 1
+            },
+            "domain": {
+              "type": "string",
+              "minLength": 1
+            },
+            "authorized": {
+              "type": "boolean"
+            },
+            "approved": {
+              "type": "boolean"
+            },
+            "independent": {
+              "type": "boolean"
+            },
+            "clearance": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "accessible_sources": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "maxItems": 8
+            },
+            "binding": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "admission_binding": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "quint_test",
+          "changes",
+          "rebind_admission",
+          "rebind_review",
+          "expected_premises",
+          "expected"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^CER-T[0-9]{2}$"
+          },
+          "quint_test": {
+            "type": "string",
+            "pattern": "^claimEvidence[A-Za-z]+Test$"
+          },
+          "changes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "value"
+              ],
+              "properties": {
+                "path": {
+                  "type": "array",
+                  "items": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      {
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    ]
+                  },
+                  "minItems": 1
+                },
+                "value": {}
+              }
+            }
+          },
+          "rebind_admission": {
+            "type": "boolean"
+          },
+          "rebind_review": {
+            "type": "boolean"
+          },
+          "expected_premises": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "authorityValid",
+              "bindingCurrent",
+              "sourcesAdmitted",
+              "claimLinksValid",
+              "independenceRequired",
+              "independenceVerified",
+              "reviewRequired",
+              "reviewEffective",
+              "contraryEvidence",
+              "disclosurePermitted"
+            ],
+            "properties": {
+              "authorityValid": {
+                "type": "boolean"
+              },
+              "bindingCurrent": {
+                "type": "boolean"
+              },
+              "sourcesAdmitted": {
+                "type": "boolean"
+              },
+              "claimLinksValid": {
+                "type": "boolean"
+              },
+              "independenceRequired": {
+                "type": "boolean"
+              },
+              "independenceVerified": {
+                "type": "boolean"
+              },
+              "reviewRequired": {
+                "type": "boolean"
+              },
+              "reviewEffective": {
+                "type": "boolean"
+              },
+              "contraryEvidence": {
+                "type": "boolean"
+              },
+              "disclosurePermitted": {
+                "type": "boolean"
+              }
+            }
+          },
+          "expected": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "reason",
+              "release",
+              "draft"
+            ],
+            "properties": {
+              "reason": {
+                "enum": [
+                  "permitted",
+                  "insufficient_evidence",
+                  "contradicted",
+                  "unauthorized",
+                  "prohibited"
+                ]
+              },
+              "release": {
+                "type": "boolean"
+              },
+              "draft": {
+                "type": "boolean"
+              }
+            }
+          }
+        }
+      },
+      "minItems": 25,
+      "maxItems": 25
+    },
+    "mutants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "operator",
+          "case_id",
+          "predicate_id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^CER-M0[1-9]$"
+          },
+          "operator": {
+            "type": "string",
+            "minLength": 1
+          },
+          "case_id": {
+            "type": "string",
+            "pattern": "^CER-T[0-9]{2}$"
+          },
+          "predicate_id": {
+            "enum": [
+              "CER-P01",
+              "CER-P02",
+              "CER-P03",
+              "CER-P04",
+              "CER-P05",
+              "CER-P06"
+            ]
+          }
+        }
+      },
+      "minItems": 9,
+      "maxItems": 9
+    },
+    "pairs": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern": "^CER-T[0-9]{2}$"
+        },
+        "minItems": 2,
+        "maxItems": 2
+      },
+      "minItems": 2
+    }
+  }
+}

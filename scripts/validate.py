@@ -3,6 +3,12 @@
 from pathlib import Path
 
 REQUIRED = [
+    "docs/claim-evidence-and-report-assurance-note-2026-11.md",
+    "examples/claim_evidence_reference.py",
+    "examples/claim-evidence-vectors.json",
+    "schemas/claim-evidence-vectors.schema.json",
+    "scripts/check_claim_evidence.py",
+    "tests/test_claim_evidence.py",
     "docs/prompt-and-memory-portability-assurance-note-2026-11.md",
     "examples/memory_admission_reference.py",
     "tests/test_memory_admission.py",

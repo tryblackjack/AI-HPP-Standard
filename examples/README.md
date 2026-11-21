@@ -54,6 +54,15 @@ No vendor prompt is bundled, and tool declarations are not callable tools.
 These are language-neutral contract examples with optional Python fixtures,
 not a required memory service or runtime conformance claim.
 
+## Optional claim-evidence and report checks
+
+The [claim-evidence note](../docs/claim-evidence-and-report-assurance-note-2026-11.md)
+provides [portable JSON cases](claim-evidence-vectors.json) and a schema with
+declared input changes, authored outcomes and Quint links. The optional Python
+reference/checker uses temporary structured measurements and release markers.
+Implement the contracts in the existing local evidence, review and tool boundary;
+no particular model, runtime framework or language is required.
+
 ## Minimal gate result shape
 
 This shape is illustrative. Field names may differ when the same semantics and
