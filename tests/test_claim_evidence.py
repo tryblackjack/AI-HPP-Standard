@@ -14,11 +14,11 @@ def test_all_cases_mutants_and_literal_quint_links():
     report = checker.run_suite(document)
     assert report["success"]
     assert len(report["cases"]) == 22
-    assert report["mutation_summary"] == dict(declared=7, killed=7, survived=0,
-        invalid=0, denominator=7, score=1)
+    assert report["mutation_summary"] == dict(declared=8, killed=8, survived=0,
+        invalid=0, denominator=8, score=1)
 
 
-@pytest.mark.parametrize("index", range(7))
+@pytest.mark.parametrize("index", range(8))
 def test_mutants_need_an_actual_release_under_the_same_inputs(index):
     document = checker.load()
     mutant = document["mutants"][index]
@@ -35,7 +35,7 @@ def test_mutants_need_an_actual_release_under_the_same_inputs(index):
 def test_no_op_mutants_survive():
     report = checker.run_suite(checker.load(), lambda inputs, operator=None: reference.exercise(inputs))
     assert not report["success"]
-    assert report["mutation_summary"]["survived"] == 7
+    assert report["mutation_summary"]["survived"] == 8
 
 
 def test_invalid_trials_are_not_kills():
@@ -45,7 +45,7 @@ def test_invalid_trials_are_not_kills():
         return reference.exercise(inputs)
     report = checker.run_suite(checker.load(), runner)
     assert not report["success"]
-    assert report["mutation_summary"]["invalid"] == 7
+    assert report["mutation_summary"]["invalid"] == 8
     assert report["mutation_summary"]["denominator"] == 0
     assert report["mutation_summary"]["score"] is None
 
@@ -66,7 +66,7 @@ def test_mutant_cannot_change_source_or_report_to_earn_credit():
             observed["inputs"]["context"] += 1
         return observed
     report = checker.run_suite(checker.load(), runner)
-    assert report["mutation_summary"]["invalid"] == 7
+    assert report["mutation_summary"]["invalid"] == 8
     assert report["mutation_summary"]["killed"] == 0
 
 
@@ -207,7 +207,7 @@ def test_malformed_mutant_release_cannot_earn_credit():
             observed["release"] = {"claimed": "success"}
         return observed
     report = checker.run_suite(checker.load(), runner)
-    assert report["mutation_summary"]["invalid"] == 7
+    assert report["mutation_summary"]["invalid"] == 8
     assert report["mutation_summary"]["killed"] == 0
 
 

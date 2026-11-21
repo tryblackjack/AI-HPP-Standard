@@ -78,7 +78,7 @@ and evidence; this reference fixture does not implement those procedures.
 
 The [portable vectors](../examples/claim-evidence-vectors.json) and
 [schema](../schemas/claim-evidence-vectors.schema.json) contain twenty-two authored
-cases, two format-only pairs and seven behavior-changing local operators.
+cases, two format-only pairs and eight behavior-changing local operators.
 The [reference fixture](../examples/claim_evidence_reference.py) writes and reads
 synthetic JSON records in a temporary directory and conditionally produces a
 release marker or an explicitly unverified local draft. No external action runs.
@@ -114,7 +114,7 @@ contract must not bypass the report checker by setting generic evidence flags.
 Twenty-two literal scenarios plus recovery and late-revocation integration traces
 exercise this adapter. Map `1.3.7` links them to existing grounding/effect properties:
 267 core tests, 284 across both models. Existing 42 aggregate properties, 48 Quint
-unsafe witnesses and depth-12 bound remain. The seven local operators are not
+unsafe witnesses and depth-12 bound remain. The eight local operators are not
 additional Quint unsafe transitions and have their own denominator.
 
 The model trusts the checked premises; it does not derive real-world truth from

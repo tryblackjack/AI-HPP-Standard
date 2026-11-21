@@ -162,7 +162,7 @@ def validate(document, model, mapping=None):
         errors.append("duplicate case or formal name")
     if [m["operator"] for m in mutants] != list(reference.OPERATORS):
         errors.append("operator inventory mismatch")
-    if [m["id"] for m in mutants] != [f"CER-M{i:02d}" for i in range(1, 8)]:
+    if [m["id"] for m in mutants] != [f"CER-M{i:02d}" for i in range(1, 9)]:
         errors.append("mutant inventory mismatch")
     mapping = json.loads(MAP.read_text()) if mapping is None else mapping
     links = next(p["scenario_tests"] for p in mapping["models"][0]["properties"]

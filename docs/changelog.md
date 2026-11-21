@@ -10,7 +10,7 @@ Status: `ACTIVE_INFORMATIVE`.
   inherited disclosure. The reported spring incident is attributed to CNN's
   September account; no world-war, model-identity or prevention claim is made.
 - Added twenty-two authored structured measurement/report cases, two format-only
-  pairs, seven executed local operators and independent DFS/iterative-closure
+  pairs, eight executed local operators and independent DFS/iterative-closure
   implementations. Invalid seeds/trials, no-ops, changed-input or malformed
   mutation captures and blanket denial cannot earn optimistic credit.
 - Extended the operational Quint prefix with report-premise types, derivation and

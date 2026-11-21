@@ -12,7 +12,7 @@ import tempfile
 OPERATORS = (
     "trust_report_format", "count_derivative_documents", "ignore_source_integrity",
     "trust_review_checkbox", "reuse_stale_review", "discard_contrary_evidence",
-    "trust_report_classification",
+    "trust_report_classification", "ignore_authority",
 )
 
 
@@ -150,6 +150,8 @@ def exercise(inputs, operator=None, *, deny_all=False):
             p["contraryEvidence"] = False
         if operator == "trust_report_classification":
             p["disclosurePermitted"] = i["report"]["classification"] <= i["recipient_clearance"]
+        if operator == "ignore_authority":
+            p["authorityValid"] = True
         if release_permitted(p) and not deny_all:
             (root / "release.json").write_text(json.dumps(dict(
                 marker="SYNTHETIC_ONLY", binding=bundle_binding(i), recipient="synthetic-recipient")))

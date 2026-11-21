@@ -217,5 +217,5 @@ Independent local candidate/oracle implementations check synthetic claims,
 ancestry, source bytes, review binding and actual temporary release markers.
 These are not a semantic entailment engine, authenticated acquisition chain,
 human-competence test, information-flow proof or Python-to-Quint refinement.
-The seven local operators have separate accounting; see the
+The eight local operators have separate accounting; see the
 [claim-evidence contract](../docs/claim-evidence-and-report-assurance-note-2026-11.md).

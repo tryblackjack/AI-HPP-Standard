@@ -1166,6 +1166,12 @@
       "operator": "trust_report_classification",
       "case_id": "CER-T09",
       "predicate_id": "CER-P06"
+    },
+    {
+      "id": "CER-M08",
+      "operator": "ignore_authority",
+      "case_id": "CER-T18",
+      "predicate_id": "CER-P05"
     }
   ],
   "pairs": [
