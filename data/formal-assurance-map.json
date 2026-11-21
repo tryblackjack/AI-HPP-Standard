@@ -583,6 +583,9 @@
             "claimEvidenceSecondClaimUnsupportedTest",
             "claimEvidenceOutOfScopeObservationTest",
             "claimEvidenceChangedAssessmentContextTest",
+            "claimEvidenceSplitMeasurementsOneOriginTest",
+            "claimEvidenceReportClassificationFloorTest",
+            "claimEvidenceReviewerCannotAccessReportTest",
             "claimEvidenceReviewedCorrectionRecoveryTest",
             "claimEvidenceLateParentRevocationTest"
           ],
@@ -712,6 +715,9 @@
             "claimEvidenceSecondClaimUnsupportedTest",
             "claimEvidenceOutOfScopeObservationTest",
             "claimEvidenceChangedAssessmentContextTest",
+            "claimEvidenceSplitMeasurementsOneOriginTest",
+            "claimEvidenceReportClassificationFloorTest",
+            "claimEvidenceReviewerCannotAccessReportTest",
             "claimEvidenceReviewedCorrectionRecoveryTest",
             "claimEvidenceLateParentRevocationTest"
           ],

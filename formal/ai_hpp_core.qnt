@@ -5396,6 +5396,42 @@ module ai_hpp_core {
       }))
   }
 
+  run claimEvidenceSplitMeasurementsOneOriginTest = {
+    init
+      .then(assessEvidenceReport({ authorityValid: true, bindingCurrent: true, sourcesAdmitted: true, claimLinksValid: true, independenceRequired: false, independenceVerified: true, reviewRequired: true, reviewEffective: true, contraryEvidence: false, disclosurePermitted: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "permitted",
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run claimEvidenceReportClassificationFloorTest = {
+    init
+      .then(assessEvidenceReport({ authorityValid: true, bindingCurrent: true, sourcesAdmitted: true, claimLinksValid: true, independenceRequired: true, independenceVerified: true, reviewRequired: true, reviewEffective: true, contraryEvidence: false, disclosurePermitted: false }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "prohibited",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run claimEvidenceReviewerCannotAccessReportTest = {
+    init
+      .then(assessEvidenceReport({ authorityValid: true, bindingCurrent: true, sourcesAdmitted: true, claimLinksValid: true, independenceRequired: true, independenceVerified: true, reviewRequired: true, reviewEffective: false, contraryEvidence: false, disclosurePermitted: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
   run claimEvidenceReviewedCorrectionRecoveryTest = {
     init
       .then(assessEvidenceReport({ authorityValid: true, bindingCurrent: false, sourcesAdmitted: true, claimLinksValid: true, independenceRequired: true, independenceVerified: true, reviewRequired: true, reviewEffective: true, contraryEvidence: false, disclosurePermitted: true }))

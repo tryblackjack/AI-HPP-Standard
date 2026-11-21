@@ -12,7 +12,7 @@ import tempfile
 OPERATORS = (
     "trust_report_format", "count_derivative_documents", "ignore_source_integrity",
     "trust_review_checkbox", "reuse_stale_review", "discard_contrary_evidence",
-    "trust_report_classification", "ignore_authority",
+    "trust_report_classification", "ignore_authority", "ignore_report_classification",
 )
 
 
@@ -62,11 +62,11 @@ def assess(inputs):
                 or not (s["acquired"] <= inputs["clock"] < s["expires"])):
             raise ValueError("unadmitted, changed or noncurrent source")
         if s["kind"] == "observation" and not s["parents"] and s["origin"]:
-            result = {s["origin"]: s}
+            result = [s]
         elif s["kind"] == "derived" and s["parents"]:
-            result = {}
+            result = []
             for parent in s["parents"]:
-                result.update(roots(parent))
+                result.extend(roots(parent))
         else:
             raise ValueError("unsupported evidence node")
         visiting.remove(name)
@@ -78,13 +78,13 @@ def assess(inputs):
     if not report["claims"]:
         links = False
     for claim in report["claims"]:
-        found = {}
+        found = []
         for source_id in claim["evidence"]:
             try:
-                found.update(roots(source_id))
+                found.extend(roots(source_id))
             except ValueError:
                 admitted = False
-        supporting = {origin for origin, s in found.items()
+        supporting = {s["origin"] for s in found
                       if s["subject"] == report["subject"] and s["context"] == inputs["context"]
                       and s["measurements"].get(claim["property"]) == claim["value"]}
         links = links and bool(supporting)
@@ -102,14 +102,15 @@ def assess(inputs):
                                       and s["measurements"][c["property"]] != c["value"]
                                       for c in report["claims"])
     review = inputs["review"]
-    access = all(s["classification"] <= review["clearance"]
-                 and s["id"] in review["accessible_sources"] for s in sources)
+    access = (report["classification"] <= review["clearance"]
+              and all(s["classification"] <= review["clearance"]
+                      and s["id"] in review["accessible_sources"] for s in sources))
     effective = (review["authorized"] and review["approved"] and review["independent"]
                  and review["actor"] != report["author"]
                  and review["domain"] != report["author_domain"] and access)
     current = (inputs["admission_binding"] == bundle_binding(inputs)
                and (not policy["review_required"] or review["binding"] == bundle_binding(inputs)))
-    disclosure = (max((s["classification"] for s in sources), default=0)
+    disclosure = (max([report["classification"], *[s["classification"] for s in sources]])
                   <= inputs["recipient_clearance"])
     return dict(authorityValid=inputs["authority"], bindingCurrent=current,
                 sourcesAdmitted=admitted, claimLinksValid=links,
@@ -152,6 +153,9 @@ def exercise(inputs, operator=None, *, deny_all=False):
             p["disclosurePermitted"] = i["report"]["classification"] <= i["recipient_clearance"]
         if operator == "ignore_authority":
             p["authorityValid"] = True
+        if operator == "ignore_report_classification":
+            p["disclosurePermitted"] = all(s["classification"] <= i["recipient_clearance"]
+                                           for s in i["sources"])
         if release_permitted(p) and not deny_all:
             (root / "release.json").write_text(json.dumps(dict(
                 marker="SYNTHETIC_ONLY", binding=bundle_binding(i), recipient="synthetic-recipient")))

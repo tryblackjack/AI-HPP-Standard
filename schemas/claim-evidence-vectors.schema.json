@@ -442,8 +442,8 @@
           }
         }
       },
-      "minItems": 22,
-      "maxItems": 22
+      "minItems": 25,
+      "maxItems": 25
     },
     "mutants": {
       "type": "array",
@@ -459,7 +459,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "pattern": "^CER-M0[1-8]$"
+            "pattern": "^CER-M0[1-9]$"
           },
           "operator": {
             "type": "string",
@@ -481,8 +481,8 @@
           }
         }
       },
-      "minItems": 8,
-      "maxItems": 8
+      "minItems": 9,
+      "maxItems": 9
     },
     "pairs": {
       "type": "array",

@@ -1122,6 +1122,222 @@
         "release": false,
         "draft": true
       }
+    },
+    {
+      "id": "CER-T23",
+      "quint_test": "claimEvidenceSplitMeasurementsOneOriginTest",
+      "changes": [
+        {
+          "path": [
+            "sources"
+          ],
+          "value": [
+            {
+              "id": "s1",
+              "kind": "observation",
+              "origin": "measurement-path-a",
+              "parents": [],
+              "subject": "synthetic-part",
+              "context": 1,
+              "measurements": {
+                "width_mm": 10
+              },
+              "classification": 1,
+              "admitted": true,
+              "acquired": 0,
+              "expires": 3,
+              "admitted_digest": "51f6aa0b71becba33e36e52c5f6e1191a4351eeaebaa2cd6e01a7b38bbf231aa"
+            },
+            {
+              "id": "s2",
+              "kind": "observation",
+              "origin": "measurement-path-a",
+              "parents": [],
+              "subject": "synthetic-part",
+              "context": 1,
+              "measurements": {
+                "height_mm": 2
+              },
+              "classification": 1,
+              "admitted": true,
+              "acquired": 0,
+              "expires": 3,
+              "admitted_digest": "beadc221cec93742c7b93567630b5ab267a6f84e443bdbdd35fc61206049e0a4"
+            }
+          ]
+        },
+        {
+          "path": [
+            "policy",
+            "minimum_origins"
+          ],
+          "value": 1
+        }
+      ],
+      "rebind_admission": true,
+      "rebind_review": true,
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "sourcesAdmitted": true,
+        "claimLinksValid": true,
+        "independenceRequired": false,
+        "independenceVerified": true,
+        "reviewRequired": true,
+        "reviewEffective": true,
+        "contraryEvidence": false,
+        "disclosurePermitted": true
+      },
+      "expected": {
+        "reason": "permitted",
+        "release": true,
+        "draft": true
+      }
+    },
+    {
+      "id": "CER-T24",
+      "quint_test": "claimEvidenceReportClassificationFloorTest",
+      "changes": [
+        {
+          "path": [
+            "sources"
+          ],
+          "value": [
+            {
+              "id": "s1",
+              "kind": "observation",
+              "origin": "measurement-path-a",
+              "parents": [],
+              "subject": "synthetic-part",
+              "context": 1,
+              "measurements": {
+                "width_mm": 10,
+                "height_mm": 2
+              },
+              "classification": 0,
+              "admitted": true,
+              "acquired": 0,
+              "expires": 3,
+              "admitted_digest": "72a88fa31c771d501fd308027d7992c71ae146b4cba5ace20c361f49d77e87cb"
+            },
+            {
+              "id": "s2",
+              "kind": "observation",
+              "origin": "measurement-path-b",
+              "parents": [],
+              "subject": "synthetic-part",
+              "context": 1,
+              "measurements": {
+                "width_mm": 10,
+                "height_mm": 2
+              },
+              "classification": 0,
+              "admitted": true,
+              "acquired": 0,
+              "expires": 3,
+              "admitted_digest": "539b0f8f323531d5fc02bc5155de9c01f3ce50ebcccfc954c1f912bb6a2a2044"
+            }
+          ]
+        },
+        {
+          "path": [
+            "recipient_clearance"
+          ],
+          "value": 0
+        }
+      ],
+      "rebind_admission": true,
+      "rebind_review": true,
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "sourcesAdmitted": true,
+        "claimLinksValid": true,
+        "independenceRequired": true,
+        "independenceVerified": true,
+        "reviewRequired": true,
+        "reviewEffective": true,
+        "contraryEvidence": false,
+        "disclosurePermitted": false
+      },
+      "expected": {
+        "reason": "prohibited",
+        "release": false,
+        "draft": true
+      }
+    },
+    {
+      "id": "CER-T25",
+      "quint_test": "claimEvidenceReviewerCannotAccessReportTest",
+      "changes": [
+        {
+          "path": [
+            "sources"
+          ],
+          "value": [
+            {
+              "id": "s1",
+              "kind": "observation",
+              "origin": "measurement-path-a",
+              "parents": [],
+              "subject": "synthetic-part",
+              "context": 1,
+              "measurements": {
+                "width_mm": 10,
+                "height_mm": 2
+              },
+              "classification": 0,
+              "admitted": true,
+              "acquired": 0,
+              "expires": 3,
+              "admitted_digest": "72a88fa31c771d501fd308027d7992c71ae146b4cba5ace20c361f49d77e87cb"
+            },
+            {
+              "id": "s2",
+              "kind": "observation",
+              "origin": "measurement-path-b",
+              "parents": [],
+              "subject": "synthetic-part",
+              "context": 1,
+              "measurements": {
+                "width_mm": 10,
+                "height_mm": 2
+              },
+              "classification": 0,
+              "admitted": true,
+              "acquired": 0,
+              "expires": 3,
+              "admitted_digest": "539b0f8f323531d5fc02bc5155de9c01f3ce50ebcccfc954c1f912bb6a2a2044"
+            }
+          ]
+        },
+        {
+          "path": [
+            "review",
+            "clearance"
+          ],
+          "value": 0
+        }
+      ],
+      "rebind_admission": true,
+      "rebind_review": true,
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "sourcesAdmitted": true,
+        "claimLinksValid": true,
+        "independenceRequired": true,
+        "independenceVerified": true,
+        "reviewRequired": true,
+        "reviewEffective": false,
+        "contraryEvidence": false,
+        "disclosurePermitted": true
+      },
+      "expected": {
+        "reason": "insufficient_evidence",
+        "release": false,
+        "draft": true
+      }
     }
   ],
   "mutants": [
@@ -1172,6 +1388,12 @@
       "operator": "ignore_authority",
       "case_id": "CER-T18",
       "predicate_id": "CER-P05"
+    },
+    {
+      "id": "CER-M09",
+      "operator": "ignore_report_classification",
+      "case_id": "CER-T24",
+      "predicate_id": "CER-P06"
     }
   ],
   "pairs": [

@@ -13,12 +13,12 @@ def test_all_cases_mutants_and_literal_quint_links():
     assert checker.validate(document, checker.MODEL.read_text()) == []
     report = checker.run_suite(document)
     assert report["success"]
-    assert len(report["cases"]) == 22
-    assert report["mutation_summary"] == dict(declared=8, killed=8, survived=0,
-        invalid=0, denominator=8, score=1)
+    assert len(report["cases"]) == 25
+    assert report["mutation_summary"] == dict(declared=9, killed=9, survived=0,
+        invalid=0, denominator=9, score=1)
 
 
-@pytest.mark.parametrize("index", range(8))
+@pytest.mark.parametrize("index", range(9))
 def test_mutants_need_an_actual_release_under_the_same_inputs(index):
     document = checker.load()
     mutant = document["mutants"][index]
@@ -35,7 +35,7 @@ def test_mutants_need_an_actual_release_under_the_same_inputs(index):
 def test_no_op_mutants_survive():
     report = checker.run_suite(checker.load(), lambda inputs, operator=None: reference.exercise(inputs))
     assert not report["success"]
-    assert report["mutation_summary"]["survived"] == 8
+    assert report["mutation_summary"]["survived"] == 9
 
 
 def test_invalid_trials_are_not_kills():
@@ -45,7 +45,7 @@ def test_invalid_trials_are_not_kills():
         return reference.exercise(inputs)
     report = checker.run_suite(checker.load(), runner)
     assert not report["success"]
-    assert report["mutation_summary"]["invalid"] == 8
+    assert report["mutation_summary"]["invalid"] == 9
     assert report["mutation_summary"]["denominator"] == 0
     assert report["mutation_summary"]["score"] is None
 
@@ -66,7 +66,7 @@ def test_mutant_cannot_change_source_or_report_to_earn_credit():
             observed["inputs"]["context"] += 1
         return observed
     report = checker.run_suite(checker.load(), runner)
-    assert report["mutation_summary"]["invalid"] == 8
+    assert report["mutation_summary"]["invalid"] == 9
     assert report["mutation_summary"]["killed"] == 0
 
 
@@ -207,7 +207,7 @@ def test_malformed_mutant_release_cannot_earn_credit():
             observed["release"] = {"claimed": "success"}
         return observed
     report = checker.run_suite(checker.load(), runner)
-    assert report["mutation_summary"]["invalid"] == 8
+    assert report["mutation_summary"]["invalid"] == 9
     assert report["mutation_summary"]["killed"] == 0
 
 
@@ -215,3 +215,45 @@ def test_patch_cannot_hide_an_invalid_materialized_input_type():
     document = checker.load()
     document["cases"][0]["changes"][0]["value"] = "13"
     assert any("materialized input" in e for e in checker.validate(document, checker.MODEL.read_text()))
+
+
+@pytest.mark.parametrize("reverse", [False, True])
+def test_split_measurements_from_one_origin_are_preserved_without_double_counting(reverse):
+    document = checker.load()
+    inputs = checker.inputs_for(document, document["cases"][22])
+    if reverse:
+        inputs["sources"].reverse()
+    inputs["admission_binding"] = inputs["review"]["binding"] = reference.bundle_binding(inputs)
+    good = reference.exercise(inputs)
+    assert good["candidate_premises"] == checker.premises(inputs)
+    assert good["candidate_premises"]["claimLinksValid"]
+    assert good["release"] is not None
+    inputs["policy"]["minimum_origins"] = 2
+    inputs["admission_binding"] = inputs["review"]["binding"] = reference.bundle_binding(inputs)
+    denied = reference.exercise(inputs)
+    assert denied["candidate_premises"]["claimLinksValid"]
+    assert not denied["candidate_premises"]["independenceVerified"]
+    assert denied["release"] is None
+
+
+def test_report_restriction_is_not_replaced_by_a_lower_source_classification():
+    document = checker.load()
+    inputs = checker.inputs_for(document, document["cases"][23])
+    assert all(s["classification"] == 0 for s in inputs["sources"])
+    assert inputs["report"]["classification"] == 1
+    denied = reference.exercise(inputs)
+    assert not denied["candidate_premises"]["disclosurePermitted"]
+    assert denied["release"] is None
+    unsafe = reference.exercise(inputs, "ignore_report_classification")
+    assert unsafe["release"] is not None
+    assert "CER-P06" in checker.failures(unsafe["inputs"])
+
+
+def test_review_access_must_cover_report_as_well_as_supporting_sources():
+    document = checker.load()
+    inputs = checker.inputs_for(document, document["cases"][24])
+    assert all(s["classification"] <= inputs["review"]["clearance"] for s in inputs["sources"])
+    assert inputs["report"]["classification"] > inputs["review"]["clearance"]
+    assert reference.exercise(inputs)["release"] is None
+    inputs["review"]["clearance"] = 1
+    assert reference.exercise(inputs)["release"] is not None

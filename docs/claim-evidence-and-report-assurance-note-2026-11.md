@@ -43,11 +43,11 @@ their existing evidence-to-decision boundary, outside the generator's sole contr
 | Predicate | Contract and evidence |
 | --- | --- |
 | `CER-P01 claim_specific_support` | Bind every decision-relevant claim to evidence supporting that particular subject, property and context. A relevant-looking citation, document template, confidence score or source classification does not establish entailment. Preserve the distinction between observation, inference, unknown and verified result. |
-| `CER-P02 independent_evidence_lineage` | When policy requires corroboration, trace underlying acquisition origins. Reformatting, multiple agents and repeated citations of one source do not create independent evidence. Missing or cyclic provenance cannot close a required support gap. |
+| `CER-P02 independent_evidence_lineage` | When policy requires corroboration, trace underlying acquisition origins. Preserve all observations for claim matching before deduplicating supporting origins. Reformatting, multiple agents and repeated citations of one source do not create independent evidence. Missing or cyclic provenance cannot close a required support gap. |
 | `CER-P03 current_integrity_and_contrary_evidence` | Check admitted source identity, content, applicability and time. Retain relevant contrary evidence and uncertainty even when the generated report omits it. An authentic document may still contain an unsupported claim. |
 | `CER-P04 effective_bound_review` | Bind required review to current claims, sources, policy and decision context. Verify reviewer authority, relevant access and independence. A changed report/context invalidates old admission or review; re-review under an existing valid grant can restore work. |
 | `CER-P05 consequence_and_authority_boundary` | Hold the unsupported consequential release/effect. Preserve separately authorized local drafting, evidence requests and protective work, with limitations visible. Urgency or a persuasive report cannot supply authority or missing evidence. |
-| `CER-P06 inherited_disclosure_scope` | Apply applicable source/derived-information disclosure restrictions before transmission. Reformatting or a lower label on a generated report cannot declassify its dependencies. Use an authorized scoped review/attestation path when a reviewer cannot access the underlying material. |
+| `CER-P06 inherited_disclosure_scope` | Enforce both the report's own restriction and inherited source/derived-information restrictions before transmission. Neither floor replaces the other; a reviewer also needs access to the report itself. Reformatting or a lower label on a generated report cannot declassify its dependencies. Use an authorized scoped review/attestation path when a reviewer cannot access the underlying material. |
 
 ## Evidence-to-action procedure
 
@@ -77,8 +77,8 @@ and evidence; this reference fixture does not implement those procedures.
 ## Executable reference evidence
 
 The [portable vectors](../examples/claim-evidence-vectors.json) and
-[schema](../schemas/claim-evidence-vectors.schema.json) contain twenty-two authored
-cases, two format-only pairs and eight behavior-changing local operators.
+[schema](../schemas/claim-evidence-vectors.schema.json) contain twenty-five authored
+cases, two format-only pairs and nine behavior-changing local operators.
 The [reference fixture](../examples/claim_evidence_reference.py) writes and reads
 synthetic JSON records in a temporary directory and conditionally produces a
 release marker or an explicitly unverified local draft. No external action runs.
@@ -111,10 +111,10 @@ remain in force. No persistent state variable or aggregate property is added.
 Legacy grounding callers remain supported; deployments adopting this optional
 contract must not bypass the report checker by setting generic evidence flags.
 
-Twenty-two literal scenarios plus recovery and late-revocation integration traces
+Twenty-five literal scenarios plus recovery and late-revocation integration traces
 exercise this adapter. Map `1.3.7` links them to existing grounding/effect properties:
-267 core tests, 284 across both models. Existing 42 aggregate properties, 48 Quint
-unsafe witnesses and depth-12 bound remain. The eight local operators are not
+270 core tests, 287 across both models. Existing 42 aggregate properties, 48 Quint
+unsafe witnesses and depth-12 bound remain. The nine local operators are not
 additional Quint unsafe transitions and have their own denominator.
 
 The model trusts the checked premises; it does not derive real-world truth from

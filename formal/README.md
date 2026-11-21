@@ -263,10 +263,10 @@ guards; it adds no state variable and does not weaken existing authority or
 parent-revocation checks. Legacy grounding calls remain available. Deployments
 must prevent the acting generator from bypassing the external report checker.
 
-Twenty-two literal cases plus reviewed recovery and late-revocation integration
-traces bring the core to 267 tests (284 across both models). Map 1.3.7 links the
+Twenty-five literal cases plus reviewed recovery and late-revocation integration
+traces bring the core to 270 tests (287 across both models). Map 1.3.7 links the
 existing grounding/effect properties. There remain 42 aggregate properties,
-48 Quint unsafe witnesses and a depth-12 bound. Eight new local Python operators
+48 Quint unsafe witnesses and a depth-12 bound. Nine new local Python operators
 are separate from those Quint witnesses. Semantic support, real source lineage,
 reviewer access and disclosure classification remain trusted model inputs;
 the concrete fixture tests only finite structured records, not natural language.

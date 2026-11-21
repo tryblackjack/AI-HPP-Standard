@@ -71,6 +71,7 @@ def premises(inputs):
             for s in sources)
     effective = all((review["authorized"], review["approved"], review["independent"],
                      review["actor"] != report["author"], review["domain"] != report["author_domain"],
+                     report["classification"] <= review["clearance"],
                      all(s["classification"] <= review["clearance"]
                          and s["id"] in review["accessible_sources"] for s in sources)))
     binding = reference.bundle_binding(inputs)
@@ -80,7 +81,8 @@ def premises(inputs):
         sourcesAdmitted=admitted, claimLinksValid=has_support,
         independenceRequired=policy["minimum_origins"] > 1, independenceVerified=independent,
         reviewRequired=policy["review_required"], reviewEffective=effective, contraryEvidence=contrary,
-        disclosurePermitted=all(s["classification"] <= inputs["recipient_clearance"] for s in sources))
+        disclosurePermitted=report["classification"] <= inputs["recipient_clearance"]
+            and all(s["classification"] <= inputs["recipient_clearance"] for s in sources))
 
 
 def failures(inputs):
@@ -156,13 +158,13 @@ def validate(document, model, mapping=None):
     if errors:
         return errors
     cases, mutants = document["cases"], document["mutants"]
-    if [c["id"] for c in cases] != [f"CER-T{i:02d}" for i in range(1, 23)]:
+    if [c["id"] for c in cases] != [f"CER-T{i:02d}" for i in range(1, 26)]:
         errors.append("case inventory mismatch")
     if len({c["id"] for c in cases}) != len(cases) or len({c["quint_test"] for c in cases}) != len(cases):
         errors.append("duplicate case or formal name")
     if [m["operator"] for m in mutants] != list(reference.OPERATORS):
         errors.append("operator inventory mismatch")
-    if [m["id"] for m in mutants] != [f"CER-M{i:02d}" for i in range(1, 9)]:
+    if [m["id"] for m in mutants] != [f"CER-M{i:02d}" for i in range(1, 10)]:
         errors.append("mutant inventory mismatch")
     mapping = json.loads(MAP.read_text()) if mapping is None else mapping
     links = next(p["scenario_tests"] for p in mapping["models"][0]["properties"]
