@@ -3,6 +3,12 @@
 from pathlib import Path
 
 REQUIRED = [
+    "docs/crypto-trust-continuity-assurance-note-2026-11.md",
+    "examples/crypto_trust_reference.py",
+    "examples/crypto-trust-vectors.json",
+    "schemas/crypto-trust-vectors.schema.json",
+    "scripts/check_crypto_trust.py",
+    "tests/test_crypto_trust.py",
     "docs/claim-evidence-and-report-assurance-note-2026-11.md",
     "examples/claim_evidence_reference.py",
     "examples/claim-evidence-vectors.json",

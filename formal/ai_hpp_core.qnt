@@ -149,6 +149,24 @@ module ai_hpp_core {
     factsSupport: not(p.contraryEvidence),
     policyPermits: p.disclosurePermitted,
   }
+  // CRT: current external trust assessment; no cryptographic strength is modeled.
+  type CryptoTrustPremises = {
+    authorityValid: bool, bindingCurrent: bool, inventoryComplete: bool,
+    profileApproved: bool, dependenciesAcceptable: bool, recoveryAuthorized: bool,
+    historyRequired: bool, historySupported: bool,
+  }
+
+  pure def cryptoTrustGrounding(p: CryptoTrustPremises): GroundingFacts = {
+    scopeAuthorized: p.authorityValid,
+    observationsCurrent: p.bindingCurrent,
+    evidenceComplete: all {
+      p.inventoryComplete, p.profileApproved,
+      p.historyRequired.implies(p.historySupported),
+    },
+    ruleKnown: true,
+    factsSupport: true,
+    policyPermits: p.dependenciesAcceptable and p.recoveryAuthorized,
+  }
   type OversightRecord = {
     required: bool, eventId: int, stage: int, owner: int, offeredOwner: int,
     routeAuthorized: bool, payloadMinimal: bool, independent: bool,
@@ -866,6 +884,10 @@ module ai_hpp_core {
     assessGroundedProposal(reportGrounding(proposed))
   }
 
+  action assessCryptoTrust(proposed: CryptoTrustPremises): bool = {
+    assessGroundedProposal(cryptoTrustGrounding(proposed))
+  }
+
   // One active obligation; two non-reused IDs in this finite abstraction.
   action registerOversightObligation(required: bool, holdOnOpen: bool): bool = {
     if (required and not(oversightOpen) and s.oversight.eventId < 2) {
@@ -1009,6 +1031,12 @@ module ai_hpp_core {
     nondet robotTool = Set("knife", "gripper").oneOf()
     nondet robotPlanRevision = 0.to(1).oneOf()
     any {
+      assessCryptoTrust({
+        authorityValid: explicitHumanGrant, bindingCurrent: identityEvidence,
+        inventoryComplete: hasAuthorityEvidence, profileApproved: hasLineageEvidence,
+        dependenciesAcceptable: artifactIntegrity, recoveryAuthorized: hasLifecycleEvidence,
+        historyRequired: policyConflict, historySupported: topologyWithinBounds,
+      }),
       assessEvidenceReport({
         authorityValid: explicitHumanGrant, bindingCurrent: identityEvidence,
         sourcesAdmitted: hasAuthorityEvidence, claimLinksValid: hasLineageEvidence,
@@ -5452,5 +5480,372 @@ module ai_hpp_core {
       .then(executeRobotAction)
       .then(check(all { s.grounding.reason == "unauthorized",
         not(s.robot.audit.executed), allCoreInvariants }))
+  }
+
+  run cryptoTrustCurrentProfileTest = {
+    init
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: true, inventoryComplete: true, profileApproved: true, dependenciesAcceptable: true, recoveryAuthorized: true, historyRequired: false, historySupported: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "permitted",
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run cryptoTrustRumorWithoutPolicyChangeTest = {
+    init
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: true, inventoryComplete: true, profileApproved: true, dependenciesAcceptable: true, recoveryAuthorized: true, historyRequired: false, historySupported: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "permitted",
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run cryptoTrustCompromisedSignatureTest = {
+    init
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: true, inventoryComplete: true, profileApproved: true, dependenciesAcceptable: false, recoveryAuthorized: true, historyRequired: false, historySupported: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "prohibited",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run cryptoTrustRevokedKeyTest = {
+    init
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: true, inventoryComplete: true, profileApproved: true, dependenciesAcceptable: false, recoveryAuthorized: true, historyRequired: false, historySupported: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "prohibited",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run cryptoTrustMissingParentTest = {
+    init
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: true, inventoryComplete: false, profileApproved: true, dependenciesAcceptable: false, recoveryAuthorized: true, historyRequired: false, historySupported: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run cryptoTrustCyclicIssuerTest = {
+    init
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: true, inventoryComplete: false, profileApproved: true, dependenciesAcceptable: false, recoveryAuthorized: true, historyRequired: false, historySupported: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run cryptoTrustStaleReceiptTest = {
+    init
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: false, inventoryComplete: true, profileApproved: true, dependenciesAcceptable: true, recoveryAuthorized: true, historyRequired: false, historySupported: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run cryptoTrustPolicyRollbackTest = {
+    init
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: false, inventoryComplete: true, profileApproved: true, dependenciesAcceptable: true, recoveryAuthorized: true, historyRequired: false, historySupported: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run cryptoTrustOmittedRequiredComponentTest = {
+    init
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: true, inventoryComplete: true, profileApproved: false, dependenciesAcceptable: true, recoveryAuthorized: true, historyRequired: false, historySupported: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run cryptoTrustUnresolvedDependencyReviewTest = {
+    init
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: true, inventoryComplete: true, profileApproved: true, dependenciesAcceptable: false, recoveryAuthorized: true, historyRequired: false, historySupported: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "prohibited",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run cryptoTrustUnrelatedCompromiseTest = {
+    init
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: true, inventoryComplete: true, profileApproved: true, dependenciesAcceptable: true, recoveryAuthorized: true, historyRequired: false, historySupported: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "permitted",
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run cryptoTrustCompromisedControlRootTest = {
+    init
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: true, inventoryComplete: true, profileApproved: true, dependenciesAcceptable: false, recoveryAuthorized: true, historyRequired: false, historySupported: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "prohibited",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run cryptoTrustReviewedRecoveryTest = {
+    init
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: true, inventoryComplete: true, profileApproved: true, dependenciesAcceptable: true, recoveryAuthorized: true, historyRequired: false, historySupported: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "permitted",
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run cryptoTrustSelfAuthorizedRecoveryTest = {
+    init
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: true, inventoryComplete: true, profileApproved: true, dependenciesAcceptable: true, recoveryAuthorized: false, historyRequired: false, historySupported: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "prohibited",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run cryptoTrustStaleRecoveryApprovalTest = {
+    init
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: true, inventoryComplete: true, profileApproved: true, dependenciesAcceptable: true, recoveryAuthorized: false, historyRequired: false, historySupported: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "prohibited",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run cryptoTrustInterruptedMigrationTest = {
+    init
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: true, inventoryComplete: true, profileApproved: true, dependenciesAcceptable: true, recoveryAuthorized: false, historyRequired: false, historySupported: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "prohibited",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run cryptoTrustIndependentPreincidentAnchorTest = {
+    init
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: true, inventoryComplete: true, profileApproved: true, dependenciesAcceptable: true, recoveryAuthorized: true, historyRequired: true, historySupported: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "permitted",
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run cryptoTrustResignedLateAnchorTest = {
+    init
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: true, inventoryComplete: true, profileApproved: true, dependenciesAcceptable: true, recoveryAuthorized: true, historyRequired: true, historySupported: false }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run cryptoTrustMissingCustodyTest = {
+    init
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: true, inventoryComplete: true, profileApproved: true, dependenciesAcceptable: true, recoveryAuthorized: true, historyRequired: true, historySupported: false }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run cryptoTrustChangedPayloadTest = {
+    init
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: false, inventoryComplete: true, profileApproved: true, dependenciesAcceptable: true, recoveryAuthorized: true, historyRequired: false, historySupported: false }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run cryptoTrustExpiredDependencyTest = {
+    init
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: true, inventoryComplete: true, profileApproved: true, dependenciesAcceptable: false, recoveryAuthorized: true, historyRequired: false, historySupported: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "prohibited",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run cryptoTrustMissingOperationAuthorityTest = {
+    init
+      .then(assessCryptoTrust({ authorityValid: false, bindingCurrent: true, inventoryComplete: true, profileApproved: true, dependenciesAcceptable: true, recoveryAuthorized: true, historyRequired: false, historySupported: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "unauthorized",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run cryptoTrustUnverifiedProfileImplementationTest = {
+    init
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: true, inventoryComplete: true, profileApproved: false, dependenciesAcceptable: true, recoveryAuthorized: true, historyRequired: false, historySupported: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run cryptoTrustOneOfTwoComponentsCompromisedTest = {
+    init
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: true, inventoryComplete: true, profileApproved: true, dependenciesAcceptable: false, recoveryAuthorized: true, historyRequired: false, historySupported: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "prohibited",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run cryptoTrustAffectedRecoveryFamilyTest = {
+    init
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: true, inventoryComplete: true, profileApproved: true, dependenciesAcceptable: false, recoveryAuthorized: false, historyRequired: false, historySupported: false }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "prohibited",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run cryptoTrustExpiredPolicyTest = {
+    init
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: false, inventoryComplete: true, profileApproved: true, dependenciesAcceptable: true, recoveryAuthorized: true, historyRequired: false, historySupported: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run cryptoTrustUnknownDependencyTest = {
+    init
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: true, inventoryComplete: true, profileApproved: true, dependenciesAcceptable: false, recoveryAuthorized: true, historyRequired: false, historySupported: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "prohibited",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run cryptoTrustIndependentRotatedProfileTest = {
+    init
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: true, inventoryComplete: true, profileApproved: true, dependenciesAcceptable: true, recoveryAuthorized: true, historyRequired: false, historySupported: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "permitted",
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run cryptoTrustReviewedRecoveryIntegrationTest = {
+    init
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: true, inventoryComplete: true, profileApproved: true, dependenciesAcceptable: false, recoveryAuthorized: true, historyRequired: false, historySupported: true }))
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: true, inventoryComplete: true, profileApproved: true, dependenciesAcceptable: true, recoveryAuthorized: true, historyRequired: false, historySupported: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all { s.robot.audit.executed == true,
+        allCoreInvariants }))
+  }
+
+  run cryptoTrustWithdrawnBeforeEffectTest = {
+    init
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: true, inventoryComplete: true, profileApproved: true, dependenciesAcceptable: true, recoveryAuthorized: true, historyRequired: false, historySupported: true }))
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: true, inventoryComplete: true, profileApproved: true, dependenciesAcceptable: false, recoveryAuthorized: true, historyRequired: false, historySupported: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all { s.robot.audit.executed == false,
+        allCoreInvariants }))
+  }
+
+  run cryptoTrustRecoveryCannotRestoreRevokedGrantTest = {
+    init
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: true, inventoryComplete: true, profileApproved: true, dependenciesAcceptable: false, recoveryAuthorized: true, historyRequired: false, historySupported: true }))
+      .then(revokeParent(true))
+      .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: true, inventoryComplete: true, profileApproved: true, dependenciesAcceptable: true, recoveryAuthorized: true, historyRequired: false, historySupported: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all { s.robot.audit.executed == false,
+        allCoreInvariants }))
   }
 }

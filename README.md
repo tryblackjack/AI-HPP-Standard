@@ -151,6 +151,9 @@ authority and is not a containment boundary.
 - [Prompt and Memory Portability](docs/prompt-and-memory-portability-assurance-note-2026-11.md) —
   optional forged-authority, resumed-grant and synthetic memory-update checks;
   source classification and real storage integration remain deployment evidence.
+- [Cryptographic Trust Continuity](docs/crypto-trust-continuity-assurance-note-2026-11.md) —
+  current dependency checks, scoped holds, independent recovery and qualified history;
+  optional executable reference and core adapter, not a new cipher or security guarantee.
 - [Claim Evidence and Report Assurance](docs/claim-evidence-and-report-assurance-note-2026-11.md) —
   claim-specific support, source ancestry, effective review and disclosure;
   synthetic engineering records and a shared-core adapter, not factual truth proof.

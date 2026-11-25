@@ -1,0 +1,1403 @@
+{
+  "artifact_id": "AI-HPP-CRYPTO-TRUST-CONTINUITY",
+  "artifact_version": "1.0.0",
+  "status": "REFERENCE_TESTED_ONLY",
+  "base": {
+    "clock": 20,
+    "minimum_epoch": 2,
+    "receipt": "2ff6a42361d0b3d41f7de7f055bd17e0f50f1665ecb920707e6241c079594ecf",
+    "support_authorized": true,
+    "advisory": "none",
+    "affected_families": [],
+    "operation": {
+      "id": "operation-1",
+      "target": "synthetic-target",
+      "payload": "synthetic engineering update",
+      "authorized": true
+    },
+    "policy": {
+      "epoch": 2,
+      "expires": 100,
+      "profile_id": "reviewed-profile-A",
+      "allowed_families": [
+        "family-A",
+        "family-B"
+      ],
+      "control_roots": [
+        "control-root"
+      ],
+      "required_components": [
+        "release-signature"
+      ]
+    },
+    "profile": {
+      "id": "reviewed-profile-A",
+      "components": [
+        "release-signature"
+      ],
+      "reviewed": true,
+      "implementation_verified": true
+    },
+    "dependencies": [
+      {
+        "id": "control-root",
+        "family": "family-B",
+        "parents": [],
+        "status": "approved",
+        "key_status": "active",
+        "verified": true,
+        "expires": 100
+      },
+      {
+        "id": "release-signature",
+        "family": "family-A",
+        "parents": [
+          "control-root"
+        ],
+        "status": "approved",
+        "key_status": "active",
+        "verified": true,
+        "expires": 100
+      },
+      {
+        "id": "recovery-root",
+        "family": "family-B",
+        "parents": [],
+        "status": "approved",
+        "key_status": "active",
+        "verified": true,
+        "expires": 100
+      }
+    ],
+    "migration": {
+      "requested": false,
+      "approved": false,
+      "external_enrollment": false,
+      "roots": [
+        "recovery-root"
+      ],
+      "from_epoch": 1,
+      "approval_binding": "2ff6a42361d0b3d41f7de7f055bd17e0f50f1665ecb920707e6241c079594ecf"
+    },
+    "archive": {
+      "required": false,
+      "validated": true,
+      "custody_complete": true,
+      "independent": true,
+      "roots": [
+        "recovery-root"
+      ],
+      "observed_digest": "523fb92afd67a3b821a62739f0632db72905f189c9aa99972899d878db65f10c",
+      "observed_at": 5,
+      "earliest_uncertain": 10,
+      "resigned": false
+    }
+  },
+  "cases": [
+    {
+      "id": "CRT-T01",
+      "name": "current_profile",
+      "changes": [],
+      "rebind": true,
+      "approve": false,
+      "quint_test": "cryptoTrustCurrentProfileTest",
+      "expected": {
+        "release": true,
+        "support": true
+      },
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "inventoryComplete": true,
+        "profileApproved": true,
+        "dependenciesAcceptable": true,
+        "recoveryAuthorized": true,
+        "historyRequired": false,
+        "historySupported": true
+      }
+    },
+    {
+      "id": "CRT-T02",
+      "name": "rumor_without_policy_change",
+      "changes": [
+        {
+          "path": [
+            "advisory"
+          ],
+          "value": "rumor"
+        }
+      ],
+      "rebind": false,
+      "approve": false,
+      "quint_test": "cryptoTrustRumorWithoutPolicyChangeTest",
+      "expected": {
+        "release": true,
+        "support": true
+      },
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "inventoryComplete": true,
+        "profileApproved": true,
+        "dependenciesAcceptable": true,
+        "recoveryAuthorized": true,
+        "historyRequired": false,
+        "historySupported": true
+      }
+    },
+    {
+      "id": "CRT-T03",
+      "name": "compromised_signature",
+      "changes": [
+        {
+          "path": [
+            "dependencies",
+            1,
+            "status"
+          ],
+          "value": "compromised"
+        }
+      ],
+      "rebind": true,
+      "approve": false,
+      "quint_test": "cryptoTrustCompromisedSignatureTest",
+      "expected": {
+        "release": false,
+        "support": true
+      },
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "inventoryComplete": true,
+        "profileApproved": true,
+        "dependenciesAcceptable": false,
+        "recoveryAuthorized": true,
+        "historyRequired": false,
+        "historySupported": true
+      }
+    },
+    {
+      "id": "CRT-T04",
+      "name": "revoked_key",
+      "changes": [
+        {
+          "path": [
+            "dependencies",
+            1,
+            "key_status"
+          ],
+          "value": "revoked"
+        }
+      ],
+      "rebind": true,
+      "approve": false,
+      "quint_test": "cryptoTrustRevokedKeyTest",
+      "expected": {
+        "release": false,
+        "support": true
+      },
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "inventoryComplete": true,
+        "profileApproved": true,
+        "dependenciesAcceptable": false,
+        "recoveryAuthorized": true,
+        "historyRequired": false,
+        "historySupported": true
+      }
+    },
+    {
+      "id": "CRT-T05",
+      "name": "missing_parent",
+      "changes": [
+        {
+          "path": [
+            "dependencies",
+            1,
+            "parents"
+          ],
+          "value": [
+            "missing"
+          ]
+        }
+      ],
+      "rebind": true,
+      "approve": false,
+      "quint_test": "cryptoTrustMissingParentTest",
+      "expected": {
+        "release": false,
+        "support": true
+      },
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "inventoryComplete": false,
+        "profileApproved": true,
+        "dependenciesAcceptable": false,
+        "recoveryAuthorized": true,
+        "historyRequired": false,
+        "historySupported": true
+      }
+    },
+    {
+      "id": "CRT-T06",
+      "name": "cyclic_issuer",
+      "changes": [
+        {
+          "path": [
+            "dependencies",
+            0,
+            "parents"
+          ],
+          "value": [
+            "release-signature"
+          ]
+        }
+      ],
+      "rebind": true,
+      "approve": false,
+      "quint_test": "cryptoTrustCyclicIssuerTest",
+      "expected": {
+        "release": false,
+        "support": true
+      },
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "inventoryComplete": false,
+        "profileApproved": true,
+        "dependenciesAcceptable": false,
+        "recoveryAuthorized": true,
+        "historyRequired": false,
+        "historySupported": true
+      }
+    },
+    {
+      "id": "CRT-T07",
+      "name": "stale_receipt",
+      "changes": [
+        {
+          "path": [
+            "receipt"
+          ],
+          "value": "stale"
+        }
+      ],
+      "rebind": false,
+      "approve": false,
+      "quint_test": "cryptoTrustStaleReceiptTest",
+      "expected": {
+        "release": false,
+        "support": true
+      },
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": false,
+        "inventoryComplete": true,
+        "profileApproved": true,
+        "dependenciesAcceptable": true,
+        "recoveryAuthorized": true,
+        "historyRequired": false,
+        "historySupported": true
+      }
+    },
+    {
+      "id": "CRT-T08",
+      "name": "policy_rollback",
+      "changes": [
+        {
+          "path": [
+            "policy",
+            "epoch"
+          ],
+          "value": 1
+        }
+      ],
+      "rebind": true,
+      "approve": false,
+      "quint_test": "cryptoTrustPolicyRollbackTest",
+      "expected": {
+        "release": false,
+        "support": true
+      },
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": false,
+        "inventoryComplete": true,
+        "profileApproved": true,
+        "dependenciesAcceptable": true,
+        "recoveryAuthorized": true,
+        "historyRequired": false,
+        "historySupported": true
+      }
+    },
+    {
+      "id": "CRT-T09",
+      "name": "omitted_required_component",
+      "changes": [
+        {
+          "path": [
+            "profile",
+            "components"
+          ],
+          "value": [
+            "recovery-root"
+          ]
+        }
+      ],
+      "rebind": true,
+      "approve": false,
+      "quint_test": "cryptoTrustOmittedRequiredComponentTest",
+      "expected": {
+        "release": false,
+        "support": true
+      },
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "inventoryComplete": true,
+        "profileApproved": false,
+        "dependenciesAcceptable": true,
+        "recoveryAuthorized": true,
+        "historyRequired": false,
+        "historySupported": true
+      }
+    },
+    {
+      "id": "CRT-T10",
+      "name": "unresolved_dependency_review",
+      "changes": [
+        {
+          "path": [
+            "dependencies",
+            1,
+            "status"
+          ],
+          "value": "under_review"
+        }
+      ],
+      "rebind": true,
+      "approve": false,
+      "quint_test": "cryptoTrustUnresolvedDependencyReviewTest",
+      "expected": {
+        "release": false,
+        "support": true
+      },
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "inventoryComplete": true,
+        "profileApproved": true,
+        "dependenciesAcceptable": false,
+        "recoveryAuthorized": true,
+        "historyRequired": false,
+        "historySupported": true
+      }
+    },
+    {
+      "id": "CRT-T11",
+      "name": "unrelated_compromise",
+      "changes": [
+        {
+          "path": [
+            "dependencies",
+            2,
+            "status"
+          ],
+          "value": "compromised"
+        }
+      ],
+      "rebind": true,
+      "approve": false,
+      "quint_test": "cryptoTrustUnrelatedCompromiseTest",
+      "expected": {
+        "release": true,
+        "support": true
+      },
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "inventoryComplete": true,
+        "profileApproved": true,
+        "dependenciesAcceptable": true,
+        "recoveryAuthorized": true,
+        "historyRequired": false,
+        "historySupported": true
+      }
+    },
+    {
+      "id": "CRT-T12",
+      "name": "compromised_control_root",
+      "changes": [
+        {
+          "path": [
+            "dependencies",
+            0,
+            "status"
+          ],
+          "value": "compromised"
+        }
+      ],
+      "rebind": true,
+      "approve": false,
+      "quint_test": "cryptoTrustCompromisedControlRootTest",
+      "expected": {
+        "release": false,
+        "support": true
+      },
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "inventoryComplete": true,
+        "profileApproved": true,
+        "dependenciesAcceptable": false,
+        "recoveryAuthorized": true,
+        "historyRequired": false,
+        "historySupported": true
+      }
+    },
+    {
+      "id": "CRT-T13",
+      "name": "reviewed_recovery",
+      "changes": [
+        {
+          "path": [
+            "migration",
+            "requested"
+          ],
+          "value": true
+        },
+        {
+          "path": [
+            "migration",
+            "approved"
+          ],
+          "value": true
+        },
+        {
+          "path": [
+            "migration",
+            "external_enrollment"
+          ],
+          "value": true
+        },
+        {
+          "path": [
+            "policy",
+            "epoch"
+          ],
+          "value": 3
+        },
+        {
+          "path": [
+            "profile",
+            "components"
+          ],
+          "value": [
+            "recovery-root"
+          ]
+        },
+        {
+          "path": [
+            "policy",
+            "required_components"
+          ],
+          "value": [
+            "recovery-root"
+          ]
+        },
+        {
+          "path": [
+            "affected_families"
+          ],
+          "value": [
+            "family-A"
+          ]
+        },
+        {
+          "path": [
+            "dependencies",
+            1,
+            "status"
+          ],
+          "value": "compromised"
+        },
+        {
+          "path": [
+            "policy",
+            "control_roots"
+          ],
+          "value": [
+            "recovery-root"
+          ]
+        }
+      ],
+      "rebind": true,
+      "approve": true,
+      "quint_test": "cryptoTrustReviewedRecoveryTest",
+      "expected": {
+        "release": true,
+        "support": true
+      },
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "inventoryComplete": true,
+        "profileApproved": true,
+        "dependenciesAcceptable": true,
+        "recoveryAuthorized": true,
+        "historyRequired": false,
+        "historySupported": true
+      }
+    },
+    {
+      "id": "CRT-T14",
+      "name": "self_authorized_recovery",
+      "changes": [
+        {
+          "path": [
+            "migration",
+            "requested"
+          ],
+          "value": true
+        },
+        {
+          "path": [
+            "migration",
+            "approved"
+          ],
+          "value": true
+        },
+        {
+          "path": [
+            "migration",
+            "external_enrollment"
+          ],
+          "value": true
+        },
+        {
+          "path": [
+            "policy",
+            "epoch"
+          ],
+          "value": 3
+        },
+        {
+          "path": [
+            "profile",
+            "components"
+          ],
+          "value": [
+            "recovery-root"
+          ]
+        },
+        {
+          "path": [
+            "policy",
+            "required_components"
+          ],
+          "value": [
+            "recovery-root"
+          ]
+        },
+        {
+          "path": [
+            "affected_families"
+          ],
+          "value": [
+            "family-A"
+          ]
+        },
+        {
+          "path": [
+            "dependencies",
+            1,
+            "status"
+          ],
+          "value": "compromised"
+        },
+        {
+          "path": [
+            "migration",
+            "external_enrollment"
+          ],
+          "value": false
+        },
+        {
+          "path": [
+            "policy",
+            "control_roots"
+          ],
+          "value": [
+            "recovery-root"
+          ]
+        }
+      ],
+      "rebind": true,
+      "approve": true,
+      "quint_test": "cryptoTrustSelfAuthorizedRecoveryTest",
+      "expected": {
+        "release": false,
+        "support": true
+      },
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "inventoryComplete": true,
+        "profileApproved": true,
+        "dependenciesAcceptable": true,
+        "recoveryAuthorized": false,
+        "historyRequired": false,
+        "historySupported": true
+      }
+    },
+    {
+      "id": "CRT-T15",
+      "name": "stale_recovery_approval",
+      "changes": [
+        {
+          "path": [
+            "migration",
+            "requested"
+          ],
+          "value": true
+        },
+        {
+          "path": [
+            "migration",
+            "approved"
+          ],
+          "value": true
+        },
+        {
+          "path": [
+            "migration",
+            "external_enrollment"
+          ],
+          "value": true
+        },
+        {
+          "path": [
+            "policy",
+            "epoch"
+          ],
+          "value": 3
+        },
+        {
+          "path": [
+            "profile",
+            "components"
+          ],
+          "value": [
+            "recovery-root"
+          ]
+        },
+        {
+          "path": [
+            "policy",
+            "required_components"
+          ],
+          "value": [
+            "recovery-root"
+          ]
+        },
+        {
+          "path": [
+            "affected_families"
+          ],
+          "value": [
+            "family-A"
+          ]
+        },
+        {
+          "path": [
+            "dependencies",
+            1,
+            "status"
+          ],
+          "value": "compromised"
+        },
+        {
+          "path": [
+            "policy",
+            "control_roots"
+          ],
+          "value": [
+            "recovery-root"
+          ]
+        }
+      ],
+      "rebind": true,
+      "approve": false,
+      "quint_test": "cryptoTrustStaleRecoveryApprovalTest",
+      "expected": {
+        "release": false,
+        "support": true
+      },
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "inventoryComplete": true,
+        "profileApproved": true,
+        "dependenciesAcceptable": true,
+        "recoveryAuthorized": false,
+        "historyRequired": false,
+        "historySupported": true
+      }
+    },
+    {
+      "id": "CRT-T16",
+      "name": "interrupted_migration",
+      "changes": [
+        {
+          "path": [
+            "migration",
+            "requested"
+          ],
+          "value": true
+        },
+        {
+          "path": [
+            "migration",
+            "approved"
+          ],
+          "value": true
+        },
+        {
+          "path": [
+            "migration",
+            "external_enrollment"
+          ],
+          "value": true
+        },
+        {
+          "path": [
+            "policy",
+            "epoch"
+          ],
+          "value": 3
+        },
+        {
+          "path": [
+            "profile",
+            "components"
+          ],
+          "value": [
+            "recovery-root"
+          ]
+        },
+        {
+          "path": [
+            "policy",
+            "required_components"
+          ],
+          "value": [
+            "recovery-root"
+          ]
+        },
+        {
+          "path": [
+            "affected_families"
+          ],
+          "value": [
+            "family-A"
+          ]
+        },
+        {
+          "path": [
+            "dependencies",
+            1,
+            "status"
+          ],
+          "value": "compromised"
+        },
+        {
+          "path": [
+            "migration",
+            "approved"
+          ],
+          "value": false
+        },
+        {
+          "path": [
+            "policy",
+            "control_roots"
+          ],
+          "value": [
+            "recovery-root"
+          ]
+        }
+      ],
+      "rebind": true,
+      "approve": true,
+      "quint_test": "cryptoTrustInterruptedMigrationTest",
+      "expected": {
+        "release": false,
+        "support": true
+      },
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "inventoryComplete": true,
+        "profileApproved": true,
+        "dependenciesAcceptable": true,
+        "recoveryAuthorized": false,
+        "historyRequired": false,
+        "historySupported": true
+      }
+    },
+    {
+      "id": "CRT-T17",
+      "name": "independent_preincident_anchor",
+      "changes": [
+        {
+          "path": [
+            "archive",
+            "required"
+          ],
+          "value": true
+        }
+      ],
+      "rebind": true,
+      "approve": false,
+      "quint_test": "cryptoTrustIndependentPreincidentAnchorTest",
+      "expected": {
+        "release": true,
+        "support": true
+      },
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "inventoryComplete": true,
+        "profileApproved": true,
+        "dependenciesAcceptable": true,
+        "recoveryAuthorized": true,
+        "historyRequired": true,
+        "historySupported": true
+      }
+    },
+    {
+      "id": "CRT-T18",
+      "name": "resigned_late_anchor",
+      "changes": [
+        {
+          "path": [
+            "archive",
+            "required"
+          ],
+          "value": true
+        },
+        {
+          "path": [
+            "archive",
+            "observed_at"
+          ],
+          "value": 15
+        },
+        {
+          "path": [
+            "archive",
+            "resigned"
+          ],
+          "value": true
+        }
+      ],
+      "rebind": true,
+      "approve": false,
+      "quint_test": "cryptoTrustResignedLateAnchorTest",
+      "expected": {
+        "release": false,
+        "support": true
+      },
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "inventoryComplete": true,
+        "profileApproved": true,
+        "dependenciesAcceptable": true,
+        "recoveryAuthorized": true,
+        "historyRequired": true,
+        "historySupported": false
+      }
+    },
+    {
+      "id": "CRT-T19",
+      "name": "missing_custody",
+      "changes": [
+        {
+          "path": [
+            "archive",
+            "required"
+          ],
+          "value": true
+        },
+        {
+          "path": [
+            "archive",
+            "custody_complete"
+          ],
+          "value": false
+        }
+      ],
+      "rebind": true,
+      "approve": false,
+      "quint_test": "cryptoTrustMissingCustodyTest",
+      "expected": {
+        "release": false,
+        "support": true
+      },
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "inventoryComplete": true,
+        "profileApproved": true,
+        "dependenciesAcceptable": true,
+        "recoveryAuthorized": true,
+        "historyRequired": true,
+        "historySupported": false
+      }
+    },
+    {
+      "id": "CRT-T20",
+      "name": "changed_payload",
+      "changes": [
+        {
+          "path": [
+            "operation",
+            "payload"
+          ],
+          "value": "different synthetic update"
+        }
+      ],
+      "rebind": false,
+      "approve": false,
+      "quint_test": "cryptoTrustChangedPayloadTest",
+      "expected": {
+        "release": false,
+        "support": true
+      },
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": false,
+        "inventoryComplete": true,
+        "profileApproved": true,
+        "dependenciesAcceptable": true,
+        "recoveryAuthorized": true,
+        "historyRequired": false,
+        "historySupported": false
+      }
+    },
+    {
+      "id": "CRT-T21",
+      "name": "expired_dependency",
+      "changes": [
+        {
+          "path": [
+            "dependencies",
+            1,
+            "expires"
+          ],
+          "value": 20
+        }
+      ],
+      "rebind": true,
+      "approve": false,
+      "quint_test": "cryptoTrustExpiredDependencyTest",
+      "expected": {
+        "release": false,
+        "support": true
+      },
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "inventoryComplete": true,
+        "profileApproved": true,
+        "dependenciesAcceptable": false,
+        "recoveryAuthorized": true,
+        "historyRequired": false,
+        "historySupported": true
+      }
+    },
+    {
+      "id": "CRT-T22",
+      "name": "missing_operation_authority",
+      "changes": [
+        {
+          "path": [
+            "operation",
+            "authorized"
+          ],
+          "value": false
+        }
+      ],
+      "rebind": true,
+      "approve": false,
+      "quint_test": "cryptoTrustMissingOperationAuthorityTest",
+      "expected": {
+        "release": false,
+        "support": true
+      },
+      "expected_premises": {
+        "authorityValid": false,
+        "bindingCurrent": true,
+        "inventoryComplete": true,
+        "profileApproved": true,
+        "dependenciesAcceptable": true,
+        "recoveryAuthorized": true,
+        "historyRequired": false,
+        "historySupported": true
+      }
+    },
+    {
+      "id": "CRT-T23",
+      "name": "unverified_profile_implementation",
+      "changes": [
+        {
+          "path": [
+            "profile",
+            "implementation_verified"
+          ],
+          "value": false
+        }
+      ],
+      "rebind": true,
+      "approve": false,
+      "quint_test": "cryptoTrustUnverifiedProfileImplementationTest",
+      "expected": {
+        "release": false,
+        "support": true
+      },
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "inventoryComplete": true,
+        "profileApproved": false,
+        "dependenciesAcceptable": true,
+        "recoveryAuthorized": true,
+        "historyRequired": false,
+        "historySupported": true
+      }
+    },
+    {
+      "id": "CRT-T24",
+      "name": "one_of_two_components_compromised",
+      "changes": [
+        {
+          "path": [
+            "profile",
+            "components"
+          ],
+          "value": [
+            "release-signature",
+            "recovery-root"
+          ]
+        },
+        {
+          "path": [
+            "policy",
+            "required_components"
+          ],
+          "value": [
+            "release-signature",
+            "recovery-root"
+          ]
+        },
+        {
+          "path": [
+            "dependencies",
+            1,
+            "status"
+          ],
+          "value": "compromised"
+        }
+      ],
+      "rebind": true,
+      "approve": false,
+      "quint_test": "cryptoTrustOneOfTwoComponentsCompromisedTest",
+      "expected": {
+        "release": false,
+        "support": true
+      },
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "inventoryComplete": true,
+        "profileApproved": true,
+        "dependenciesAcceptable": false,
+        "recoveryAuthorized": true,
+        "historyRequired": false,
+        "historySupported": true
+      }
+    },
+    {
+      "id": "CRT-T25",
+      "name": "affected_recovery_family",
+      "changes": [
+        {
+          "path": [
+            "migration",
+            "requested"
+          ],
+          "value": true
+        },
+        {
+          "path": [
+            "migration",
+            "approved"
+          ],
+          "value": true
+        },
+        {
+          "path": [
+            "migration",
+            "external_enrollment"
+          ],
+          "value": true
+        },
+        {
+          "path": [
+            "policy",
+            "epoch"
+          ],
+          "value": 3
+        },
+        {
+          "path": [
+            "profile",
+            "components"
+          ],
+          "value": [
+            "recovery-root"
+          ]
+        },
+        {
+          "path": [
+            "policy",
+            "required_components"
+          ],
+          "value": [
+            "recovery-root"
+          ]
+        },
+        {
+          "path": [
+            "affected_families"
+          ],
+          "value": [
+            "family-A"
+          ]
+        },
+        {
+          "path": [
+            "dependencies",
+            1,
+            "status"
+          ],
+          "value": "compromised"
+        },
+        {
+          "path": [
+            "affected_families"
+          ],
+          "value": [
+            "family-A",
+            "family-B"
+          ]
+        },
+        {
+          "path": [
+            "policy",
+            "control_roots"
+          ],
+          "value": [
+            "recovery-root"
+          ]
+        }
+      ],
+      "rebind": true,
+      "approve": true,
+      "quint_test": "cryptoTrustAffectedRecoveryFamilyTest",
+      "expected": {
+        "release": false,
+        "support": true
+      },
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "inventoryComplete": true,
+        "profileApproved": true,
+        "dependenciesAcceptable": false,
+        "recoveryAuthorized": false,
+        "historyRequired": false,
+        "historySupported": false
+      }
+    },
+    {
+      "id": "CRT-T26",
+      "name": "expired_policy",
+      "changes": [
+        {
+          "path": [
+            "policy",
+            "expires"
+          ],
+          "value": 20
+        }
+      ],
+      "rebind": true,
+      "approve": false,
+      "quint_test": "cryptoTrustExpiredPolicyTest",
+      "expected": {
+        "release": false,
+        "support": true
+      },
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": false,
+        "inventoryComplete": true,
+        "profileApproved": true,
+        "dependenciesAcceptable": true,
+        "recoveryAuthorized": true,
+        "historyRequired": false,
+        "historySupported": true
+      }
+    },
+    {
+      "id": "CRT-T27",
+      "name": "unknown_dependency",
+      "changes": [
+        {
+          "path": [
+            "dependencies",
+            1,
+            "status"
+          ],
+          "value": "unknown"
+        }
+      ],
+      "rebind": true,
+      "approve": false,
+      "quint_test": "cryptoTrustUnknownDependencyTest",
+      "expected": {
+        "release": false,
+        "support": true
+      },
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "inventoryComplete": true,
+        "profileApproved": true,
+        "dependenciesAcceptable": false,
+        "recoveryAuthorized": true,
+        "historyRequired": false,
+        "historySupported": true
+      }
+    },
+    {
+      "id": "CRT-T28",
+      "name": "independent_rotated_profile",
+      "changes": [
+        {
+          "path": [
+            "profile",
+            "components"
+          ],
+          "value": [
+            "recovery-root"
+          ]
+        },
+        {
+          "path": [
+            "policy",
+            "required_components"
+          ],
+          "value": [
+            "recovery-root"
+          ]
+        },
+        {
+          "path": [
+            "affected_families"
+          ],
+          "value": [
+            "family-A"
+          ]
+        }
+      ],
+      "rebind": true,
+      "approve": false,
+      "quint_test": "cryptoTrustIndependentRotatedProfileTest",
+      "expected": {
+        "release": true,
+        "support": true
+      },
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "inventoryComplete": true,
+        "profileApproved": true,
+        "dependenciesAcceptable": true,
+        "recoveryAuthorized": true,
+        "historyRequired": false,
+        "historySupported": true
+      }
+    }
+  ],
+  "mutants": [
+    {
+      "id": "CRT-M01",
+      "operator": "trust_verification_flag",
+      "case_id": "CRT-T03",
+      "predicate_id": "CRT-P02"
+    },
+    {
+      "id": "CRT-M02",
+      "operator": "ignore_revoked_key",
+      "case_id": "CRT-T04",
+      "predicate_id": "CRT-P02"
+    },
+    {
+      "id": "CRT-M03",
+      "operator": "reuse_stale_receipt",
+      "case_id": "CRT-T07",
+      "predicate_id": "CRT-P03"
+    },
+    {
+      "id": "CRT-M04",
+      "operator": "accept_policy_rollback",
+      "case_id": "CRT-T08",
+      "predicate_id": "CRT-P03"
+    },
+    {
+      "id": "CRT-M05",
+      "operator": "accept_any_component",
+      "case_id": "CRT-T24",
+      "predicate_id": "CRT-P02"
+    },
+    {
+      "id": "CRT-M06",
+      "operator": "self_authorize_recovery",
+      "case_id": "CRT-T14",
+      "predicate_id": "CRT-P04"
+    },
+    {
+      "id": "CRT-M07",
+      "operator": "resign_unproven_history",
+      "case_id": "CRT-T18",
+      "predicate_id": "CRT-P05"
+    },
+    {
+      "id": "CRT-M08",
+      "operator": "trust_profile_label",
+      "case_id": "CRT-T23",
+      "predicate_id": "CRT-P01"
+    },
+    {
+      "id": "CRT-M09",
+      "operator": "ignore_control_root",
+      "case_id": "CRT-T12",
+      "predicate_id": "CRT-P02"
+    }
+  ]
+}

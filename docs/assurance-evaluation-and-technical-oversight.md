@@ -360,6 +360,15 @@ truth, model reliability or prevention of a reported incident.
 
 ## Machine-readable report
 
+For changing cryptographic assumptions, use the optional
+[trust continuity contract](crypto-trust-continuity-assurance-note-2026-11.md).
+Bind current dependency disposition, required profile components, policy epoch,
+operation and recovery approval at the effect boundary. Evaluate affected holds,
+unaffected useful work, rejected downgrade and independent recovery separately.
+Retain uncertain archive history as uncertain; fresh signatures do not repair
+missing custody. The synthetic reference does not validate cryptographic strength
+or a real deployment's trust roots.
+
 The language-neutral
 [`assurance evaluation run`](../schemas/assurance-evaluation-run.schema.json)
 schema records the system boundary, run manifest, evaluator independence,

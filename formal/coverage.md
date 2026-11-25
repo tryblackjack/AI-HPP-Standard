@@ -219,3 +219,18 @@ These are not a semantic entailment engine, authenticated acquisition chain,
 human-competence test, information-flow proof or Python-to-Quint refinement.
 The nine local operators have separate accounting; see the
 [claim-evidence contract](../docs/claim-evidence-and-report-assurance-note-2026-11.md).
+
+## Cryptographic trust continuity (post-rc.1)
+
+Map 1.3.8 adds 31 `cryptoTrust*Test` links to existing grounding/effect properties.
+The operational `CryptoTrustPremises` adapter participates in normal `step`.
+The core has 301 tests, 318 across both models; 42 aggregate members, 48 Quint
+unsafe witnesses, depth 12 and 18/49 partial requirement links remain unchanged.
+The operational prefix changes and must pass the full current bounded check.
+
+The optional [continuity contract](../docs/crypto-trust-continuity-assurance-note-2026-11.md)
+executes dependency withdrawal, stale binding, recovery and archive cases with
+nine local operators, separate from the Quint witness inventory. External trust
+admission, actual algorithm strength, rollback-resistant storage, clocks,
+recovery identity and current-at-effect integration are not proved by the
+symbolic premises or synthetic files. No new requirement has full formal coverage.
