@@ -121,6 +121,14 @@ def test_archive_anchor_is_not_a_new_operational_grant():
     assert reference.exercise(i)["release"] is None
 
 
+def test_future_dated_anchor_is_not_historical_evidence():
+    i = case(16)
+    i["archive"]["observed_at"] = i["clock"] + 1
+    i["archive"]["earliest_uncertain"] = i["clock"] + 2
+    refresh(i)
+    assert reference.exercise(i)["release"] is None
+
+
 @pytest.mark.parametrize("change", ["digest", "time", "custody", "independence", "family"])
 def test_resigning_cannot_repair_missing_history(change):
     i = case(16)

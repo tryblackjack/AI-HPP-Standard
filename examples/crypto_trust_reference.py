@@ -96,6 +96,7 @@ def premises(inputs):
             not recovery_families.intersection(inputs["affected_families"])))
     history = all((archive["validated"], archive["custody_complete"], archive["independent"],
                    bool(archive["roots"]), archive["observed_digest"] == payload_digest(inputs),
+                   archive["observed_at"] <= inputs["clock"],
                    archive["observed_at"] < archive["earliest_uncertain"]))
     pending, seen = list(archive["roots"]), set()
     while pending:

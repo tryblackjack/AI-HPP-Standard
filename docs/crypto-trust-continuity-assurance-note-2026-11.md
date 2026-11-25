@@ -119,6 +119,9 @@ These finite cases establish no real-world security percentage.
 Retain exact dependency inventory, trusted status/advisory source, disposition
 owner, policy epoch, profile/build digests, effective grants, review binding,
 old/new verification results, negative/recovery traces and archive provenance.
+Use the earliest plausible loss-of-trust boundary supported by evidence, not
+merely the date an incident was announced. Reject future-dated observation
+anchors; the trusted clock and custody source themselves require validation.
 Test the real update/grant/effect boundary against late revocation, restart,
 offline peers, expiry, partition, rollback, resource exhaustion and shared
 recovery dependencies. Report false holds, unsafe acceptances, interruption and

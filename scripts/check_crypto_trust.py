@@ -60,6 +60,7 @@ def premises(i):
     history_ids = set().union(*(closure.get(n, set()) for n in a["roots"]))
     history = (a["validated"] and a["custody_complete"] and a["independent"] and bool(a["roots"])
         and a["observed_digest"] == reference.payload_digest(i)
+        and a["observed_at"] <= i["clock"]
         and a["observed_at"] < a["earliest_uncertain"]
         and not any(by_id[n]["family"] in i["affected_families"] for n in history_ids))
     return dict(authorityValid=i["operation"]["authorized"],
