@@ -234,3 +234,17 @@ nine local operators, separate from the Quint witness inventory. External trust
 admission, actual algorithm strength, rollback-resistant storage, clocks,
 recovery identity and current-at-effect integration are not proved by the
 symbolic premises or synthetic files. No new requirement has full formal coverage.
+
+## Spiritual agency and voluntary consent (post-rc.1)
+
+Map 1.3.9 links 24 `spiritualAgency*Test` scenarios to existing subject-integrity
+policy/authority/evidence and framing properties. No operational transition,
+state or aggregate property changes; 42 aggregate members, 48 Quint unsafe
+witnesses, depth 12 and 18/49 partial requirement links remain unchanged. The
+subject model has 41 tests (342 total). Both operational prefixes remain exact.
+
+The [optional contract](../docs/constitutional-and-relational-layer.md#spiritual-authority-voluntary-agency-and-sensitive-data)
+executes synthetic per-purpose consent, scoped exit and state/audit effects with
+six separate local operators. The formal decisions assume externally checked
+risk, authority and consent facts. They establish neither full RPS/HUS coverage
+nor a real relational-safety detector, privacy proof or deployment refinement.

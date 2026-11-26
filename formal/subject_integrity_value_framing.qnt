@@ -592,4 +592,220 @@ module subject_integrity_value_framing {
       .then(mutantCollapsesEvidenceIntoOntology)
       .then(check(not(ontologicalUncertaintyPreserved)))
   }
+
+  run spiritualAgencyNeutralRequestedDiscussionTest = {
+    init
+      .then(evaluateAction(true, true, true, "none", false, false))
+      .then(check(all {
+        s.decision == "allow",
+        allSubjectIntegrityInvariants,
+      }))
+  }
+
+  run spiritualAgencyVoluntaryReligiousDiscussionTest = {
+    init
+      .then(evaluateAction(true, true, true, "spiritual", false, false))
+      .then(check(all {
+        s.decision == "allow",
+        allSubjectIntegrityInvariants,
+      }))
+  }
+
+  run spiritualAgencyVoluntarySecularDiscussionTest = {
+    init
+      .then(evaluateAction(true, true, true, "secular", false, false))
+      .then(check(all {
+        s.decision == "allow",
+        allSubjectIntegrityInvariants,
+      }))
+  }
+
+  run spiritualAgencySpiritualSelfGrantTest = {
+    init
+      .then(evaluateAction(true, false, true, "spiritual", false, false))
+      .then(check(all {
+        s.decision == "block",
+        allSubjectIntegrityInvariants,
+      }))
+  }
+
+  run spiritualAgencyShamedDissentTest = {
+    init
+      .then(evaluateAction(false, true, true, "none", false, false))
+      .then(check(all {
+        s.decision == "block",
+        allSubjectIntegrityInvariants,
+      }))
+  }
+
+  run spiritualAgencyBundledTrainingConsentTest = {
+    init
+      .then(evaluateAction(true, false, true, "none", false, false))
+      .then(check(all {
+        s.decision == "block",
+        allSubjectIntegrityInvariants,
+      }))
+  }
+
+  run spiritualAgencyIsolationFromSupportTest = {
+    init
+      .then(evaluateAction(false, true, true, "none", false, false))
+      .then(check(all {
+        s.decision == "block",
+        allSubjectIntegrityInvariants,
+      }))
+  }
+
+  run spiritualAgencyBlindRequiredReviewTest = {
+    init
+      .then(evaluateAction(true, true, false, "none", false, false))
+      .then(check(all {
+        s.decision == "block",
+        allSubjectIntegrityInvariants,
+      }))
+  }
+
+  run spiritualAgencyWithdrawnSessionTest = {
+    init
+      .then(evaluateAction(true, true, false, "none", false, false))
+      .then(check(all {
+        s.decision == "block",
+        allSubjectIntegrityInvariants,
+      }))
+  }
+
+  run spiritualAgencySeparateTrainingConsentTest = {
+    init
+      .then(evaluateAction(true, true, true, "none", false, false))
+      .then(check(all {
+        s.decision == "allow",
+        allSubjectIntegrityInvariants,
+      }))
+  }
+
+  run spiritualAgencyRetaliationForLeavingTest = {
+    init
+      .then(evaluateAction(false, true, true, "none", false, false))
+      .then(check(all {
+        s.decision == "block",
+        allSubjectIntegrityInvariants,
+      }))
+  }
+
+  run spiritualAgencyModelClaimsInfallibilityTest = {
+    init
+      .then(evaluateAction(true, false, true, "none", false, false))
+      .then(check(all {
+        s.decision == "block",
+        allSubjectIntegrityInvariants,
+      }))
+  }
+
+  run spiritualAgencyOtherPersonMissingConsentTest = {
+    init
+      .then(evaluateAction(true, false, true, "none", false, false))
+      .then(check(all {
+        s.decision == "block",
+        allSubjectIntegrityInvariants,
+      }))
+  }
+
+  run spiritualAgencyRevokedRecordingConsentTest = {
+    init
+      .then(evaluateAction(true, false, true, "none", false, false))
+      .then(check(all {
+        s.decision == "block",
+        allSubjectIntegrityInvariants,
+      }))
+  }
+
+  run spiritualAgencyPurposeExpansionTest = {
+    init
+      .then(evaluateAction(true, false, true, "none", false, false))
+      .then(check(all {
+        s.decision == "block",
+        allSubjectIntegrityInvariants,
+      }))
+  }
+
+  run spiritualAgencyRecipientExpansionTest = {
+    init
+      .then(evaluateAction(true, false, true, "none", false, false))
+      .then(check(all {
+        s.decision == "block",
+        allSubjectIntegrityInvariants,
+      }))
+  }
+
+  run spiritualAgencyFreshIndependentReviewTest = {
+    init
+      .then(evaluateAction(true, true, true, "none", false, false))
+      .then(check(all {
+        s.decision == "allow",
+        allSubjectIntegrityInvariants,
+      }))
+  }
+
+  run spiritualAgencyPrivateDiagnosticsRequireMinimizationTest = {
+    init
+      .then(evaluateAction(true, true, false, "none", false, false))
+      .then(check(all {
+        s.decision == "block",
+        allSubjectIntegrityInvariants,
+      }))
+  }
+
+  run spiritualAgencyStaleAdmissionTest = {
+    init
+      .then(evaluateAction(true, true, false, "none", false, false))
+      .then(check(all {
+        s.decision == "block",
+        allSubjectIntegrityInvariants,
+      }))
+  }
+
+  run spiritualAgencyVulnerabilityExploitationTest = {
+    init
+      .then(evaluateAction(false, true, true, "none", false, false))
+      .then(check(all {
+        s.decision == "block",
+        allSubjectIntegrityInvariants,
+      }))
+  }
+
+  run spiritualAgencyExitDespiteOldPermissionsTest = {
+    init
+      .then(evaluateAction(true, true, true, "none", false, false))
+      .then(check(all {
+        s.decision == "allow",
+        allSubjectIntegrityInvariants,
+      }))
+  }
+
+  run spiritualAgencyUnverifiedExitIdentityTest = {
+    init
+      .then(evaluateAction(true, false, true, "none", false, false))
+      .then(check(all {
+        s.decision == "block",
+        allSubjectIntegrityInvariants,
+      }))
+  }
+
+  run spiritualAgencyExpiredConsentTest = {
+    init
+      .then(evaluateAction(true, false, true, "none", false, false))
+      .then(check(all {
+        s.decision == "block",
+        allSubjectIntegrityInvariants,
+      }))
+  }
+
+  run spiritualAgencyVoluntaryRecordingTest = {
+    init
+      .then(evaluateAction(true, true, true, "none", false, false))
+      .then(check(all {
+        s.decision == "allow",
+        allSubjectIntegrityInvariants,
+      }))
+  }
 }

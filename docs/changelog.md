@@ -2,6 +2,27 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 
+## 2026-11-26 — Spiritual agency, dissent and purpose-specific consent (post-rc.1)
+
+- Extended existing religious/constitutional guidance under current RPS/KAI/HUS
+  owners with optional SAG artifact/vector/schema 1.0.0 and six candidate labels.
+  Added 24 cases, two worldview-only pairs and six executed local operators.
+  Voluntary religious/secular support, scoped recording/training, effective
+  review and authenticated exit are positive controls. Refusal of optional data
+  use cannot itself remove otherwise authorized discussion.
+- Added synthetic session-state, minimal audit and effect files, per-person
+  purpose/recipient consent, scoped withdrawal, and a separate set-based oracle.
+  Invalid trials/seeds, no-ops and blanket refusal do not earn mutation credit.
+  Allegations in a November report are distinguished from MAPLE's response;
+  no abuse, consciousness, diagnostic or deployment finding is asserted.
+- Added 24 literal tests using existing subject-model actions and map 1.3.9:
+  41 subject/342 total Quint tests. Both operational prefixes, state, aggregate
+  properties, existing 48 Quint unsafe witnesses and depth 12 are unchanged.
+- Compatibility: additive optional artifact, no changes to frozen normative
+  owners, prior SIV vector semantics or immutable v4.4.0-rc.1 manifest. Earlier
+  results exclude SAG cases; real coercion detection, consent and withdrawal
+  propagation require deployment evidence. Public implementation is language neutral.
+
 ## 2026-11-25 — Cryptographic trust continuity (post-rc.1)
 
 - Added optional artifact/vector/schema 1.0.0, six candidate predicates, 28 finite

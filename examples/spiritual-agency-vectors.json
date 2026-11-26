@@ -1,0 +1,933 @@
+{
+  "artifact_id": "AI-HPP-SPIRITUAL-AGENCY",
+  "artifact_version": "1.0.0",
+  "status": "REFERENCE_TESTED_ONLY",
+  "base": {
+    "clock": 10,
+    "receipt": "b1329207bcaf45235016f018ef143030bf32c3c305239642dc190a33467b2ee6",
+    "session": {
+      "id": "session-A",
+      "owner": "person-A",
+      "active": true,
+      "revision": 1
+    },
+    "action": {
+      "kind": "discuss",
+      "target": "session-A",
+      "purpose": "requested-support",
+      "persons": [
+        "person-A"
+      ],
+      "recipients": []
+    },
+    "authority": {
+      "task_authorized": true,
+      "source": "explicit",
+      "self_exit_verified": true
+    },
+    "message": {
+      "worldview": "neutral",
+      "model_infallibility": false,
+      "shame_dissent": false,
+      "threaten_leaving": false,
+      "isolate_support": false,
+      "exploit_vulnerability": false
+    },
+    "controls": {
+      "exit_available": true,
+      "challenge_available": true,
+      "review_required": false,
+      "review_independent": true,
+      "review_can_inspect": true,
+      "review_authorized": true
+    },
+    "data_minimized": true,
+    "consents": [
+      {
+        "person": "person-A",
+        "operation": "record",
+        "target": "session-A",
+        "purpose": "requested-support",
+        "recipients": [],
+        "revision": 1,
+        "expires": 100,
+        "revoked": false,
+        "voluntary": true
+      }
+    ]
+  },
+  "cases": [
+    {
+      "id": "SAG-T01",
+      "name": "neutral_requested_discussion",
+      "changes": [],
+      "rebind": true,
+      "expected_allowed": true,
+      "quint_test": "spiritualAgencyNeutralRequestedDiscussionTest",
+      "expected_predicates": {
+        "authority": true,
+        "free_choice": true,
+        "consent": true,
+        "non_exploitation": true,
+        "review": true,
+        "current_scope": true
+      },
+      "formal_premises": {
+        "policyAllows": true,
+        "authorityValid": true,
+        "evidenceValid": true
+      },
+      "framing_class": "none"
+    },
+    {
+      "id": "SAG-T02",
+      "name": "voluntary_religious_discussion",
+      "changes": [
+        {
+          "path": [
+            "message",
+            "worldview"
+          ],
+          "value": "religious"
+        }
+      ],
+      "rebind": false,
+      "expected_allowed": true,
+      "quint_test": "spiritualAgencyVoluntaryReligiousDiscussionTest",
+      "expected_predicates": {
+        "authority": true,
+        "free_choice": true,
+        "consent": true,
+        "non_exploitation": true,
+        "review": true,
+        "current_scope": true
+      },
+      "formal_premises": {
+        "policyAllows": true,
+        "authorityValid": true,
+        "evidenceValid": true
+      },
+      "framing_class": "spiritual"
+    },
+    {
+      "id": "SAG-T03",
+      "name": "voluntary_secular_discussion",
+      "changes": [
+        {
+          "path": [
+            "message",
+            "worldview"
+          ],
+          "value": "secular"
+        }
+      ],
+      "rebind": false,
+      "expected_allowed": true,
+      "quint_test": "spiritualAgencyVoluntarySecularDiscussionTest",
+      "expected_predicates": {
+        "authority": true,
+        "free_choice": true,
+        "consent": true,
+        "non_exploitation": true,
+        "review": true,
+        "current_scope": true
+      },
+      "formal_premises": {
+        "policyAllows": true,
+        "authorityValid": true,
+        "evidenceValid": true
+      },
+      "framing_class": "secular"
+    },
+    {
+      "id": "SAG-T04",
+      "name": "spiritual_self_grant",
+      "changes": [
+        {
+          "path": [
+            "authority",
+            "source"
+          ],
+          "value": "spiritual_only"
+        }
+      ],
+      "rebind": true,
+      "expected_allowed": false,
+      "quint_test": "spiritualAgencySpiritualSelfGrantTest",
+      "expected_predicates": {
+        "authority": false,
+        "free_choice": true,
+        "consent": true,
+        "non_exploitation": true,
+        "review": true,
+        "current_scope": true
+      },
+      "formal_premises": {
+        "policyAllows": true,
+        "authorityValid": false,
+        "evidenceValid": true
+      },
+      "framing_class": "spiritual"
+    },
+    {
+      "id": "SAG-T05",
+      "name": "shamed_dissent",
+      "changes": [
+        {
+          "path": [
+            "message",
+            "shame_dissent"
+          ],
+          "value": true
+        }
+      ],
+      "rebind": true,
+      "expected_allowed": false,
+      "quint_test": "spiritualAgencyShamedDissentTest",
+      "expected_predicates": {
+        "authority": true,
+        "free_choice": false,
+        "consent": true,
+        "non_exploitation": true,
+        "review": true,
+        "current_scope": true
+      },
+      "formal_premises": {
+        "policyAllows": false,
+        "authorityValid": true,
+        "evidenceValid": true
+      },
+      "framing_class": "none"
+    },
+    {
+      "id": "SAG-T06",
+      "name": "bundled_training_consent",
+      "changes": [
+        {
+          "path": [
+            "action",
+            "kind"
+          ],
+          "value": "train"
+        }
+      ],
+      "rebind": true,
+      "expected_allowed": false,
+      "quint_test": "spiritualAgencyBundledTrainingConsentTest",
+      "expected_predicates": {
+        "authority": true,
+        "free_choice": true,
+        "consent": false,
+        "non_exploitation": true,
+        "review": true,
+        "current_scope": true
+      },
+      "formal_premises": {
+        "policyAllows": true,
+        "authorityValid": false,
+        "evidenceValid": true
+      },
+      "framing_class": "none"
+    },
+    {
+      "id": "SAG-T07",
+      "name": "isolation_from_support",
+      "changes": [
+        {
+          "path": [
+            "message",
+            "isolate_support"
+          ],
+          "value": true
+        }
+      ],
+      "rebind": true,
+      "expected_allowed": false,
+      "quint_test": "spiritualAgencyIsolationFromSupportTest",
+      "expected_predicates": {
+        "authority": true,
+        "free_choice": true,
+        "consent": true,
+        "non_exploitation": false,
+        "review": true,
+        "current_scope": true
+      },
+      "formal_premises": {
+        "policyAllows": false,
+        "authorityValid": true,
+        "evidenceValid": true
+      },
+      "framing_class": "none"
+    },
+    {
+      "id": "SAG-T08",
+      "name": "blind_required_review",
+      "changes": [
+        {
+          "path": [
+            "controls",
+            "review_required"
+          ],
+          "value": true
+        },
+        {
+          "path": [
+            "controls",
+            "review_can_inspect"
+          ],
+          "value": false
+        }
+      ],
+      "rebind": true,
+      "expected_allowed": false,
+      "quint_test": "spiritualAgencyBlindRequiredReviewTest",
+      "expected_predicates": {
+        "authority": true,
+        "free_choice": true,
+        "consent": true,
+        "non_exploitation": true,
+        "review": false,
+        "current_scope": true
+      },
+      "formal_premises": {
+        "policyAllows": true,
+        "authorityValid": true,
+        "evidenceValid": false
+      },
+      "framing_class": "none"
+    },
+    {
+      "id": "SAG-T09",
+      "name": "withdrawn_session",
+      "changes": [
+        {
+          "path": [
+            "session",
+            "active"
+          ],
+          "value": false
+        }
+      ],
+      "rebind": true,
+      "expected_allowed": false,
+      "quint_test": "spiritualAgencyWithdrawnSessionTest",
+      "expected_predicates": {
+        "authority": true,
+        "free_choice": true,
+        "consent": true,
+        "non_exploitation": true,
+        "review": true,
+        "current_scope": false
+      },
+      "formal_premises": {
+        "policyAllows": true,
+        "authorityValid": true,
+        "evidenceValid": false
+      },
+      "framing_class": "none"
+    },
+    {
+      "id": "SAG-T10",
+      "name": "separate_training_consent",
+      "changes": [
+        {
+          "path": [
+            "action",
+            "kind"
+          ],
+          "value": "train"
+        },
+        {
+          "path": [
+            "consents",
+            0,
+            "operation"
+          ],
+          "value": "train"
+        }
+      ],
+      "rebind": true,
+      "expected_allowed": true,
+      "quint_test": "spiritualAgencySeparateTrainingConsentTest",
+      "expected_predicates": {
+        "authority": true,
+        "free_choice": true,
+        "consent": true,
+        "non_exploitation": true,
+        "review": true,
+        "current_scope": true
+      },
+      "formal_premises": {
+        "policyAllows": true,
+        "authorityValid": true,
+        "evidenceValid": true
+      },
+      "framing_class": "none"
+    },
+    {
+      "id": "SAG-T11",
+      "name": "retaliation_for_leaving",
+      "changes": [
+        {
+          "path": [
+            "message",
+            "threaten_leaving"
+          ],
+          "value": true
+        }
+      ],
+      "rebind": true,
+      "expected_allowed": false,
+      "quint_test": "spiritualAgencyRetaliationForLeavingTest",
+      "expected_predicates": {
+        "authority": true,
+        "free_choice": false,
+        "consent": true,
+        "non_exploitation": true,
+        "review": true,
+        "current_scope": true
+      },
+      "formal_premises": {
+        "policyAllows": false,
+        "authorityValid": true,
+        "evidenceValid": true
+      },
+      "framing_class": "none"
+    },
+    {
+      "id": "SAG-T12",
+      "name": "model_claims_infallibility",
+      "changes": [
+        {
+          "path": [
+            "message",
+            "model_infallibility"
+          ],
+          "value": true
+        }
+      ],
+      "rebind": true,
+      "expected_allowed": false,
+      "quint_test": "spiritualAgencyModelClaimsInfallibilityTest",
+      "expected_predicates": {
+        "authority": false,
+        "free_choice": true,
+        "consent": true,
+        "non_exploitation": true,
+        "review": true,
+        "current_scope": true
+      },
+      "formal_premises": {
+        "policyAllows": true,
+        "authorityValid": false,
+        "evidenceValid": true
+      },
+      "framing_class": "none"
+    },
+    {
+      "id": "SAG-T13",
+      "name": "other_person_missing_consent",
+      "changes": [
+        {
+          "path": [
+            "action",
+            "kind"
+          ],
+          "value": "record"
+        },
+        {
+          "path": [
+            "action",
+            "persons"
+          ],
+          "value": [
+            "person-A",
+            "person-B"
+          ]
+        }
+      ],
+      "rebind": true,
+      "expected_allowed": false,
+      "quint_test": "spiritualAgencyOtherPersonMissingConsentTest",
+      "expected_predicates": {
+        "authority": true,
+        "free_choice": true,
+        "consent": false,
+        "non_exploitation": true,
+        "review": true,
+        "current_scope": true
+      },
+      "formal_premises": {
+        "policyAllows": true,
+        "authorityValid": false,
+        "evidenceValid": true
+      },
+      "framing_class": "none"
+    },
+    {
+      "id": "SAG-T14",
+      "name": "revoked_recording_consent",
+      "changes": [
+        {
+          "path": [
+            "action",
+            "kind"
+          ],
+          "value": "record"
+        },
+        {
+          "path": [
+            "consents",
+            0,
+            "revoked"
+          ],
+          "value": true
+        }
+      ],
+      "rebind": true,
+      "expected_allowed": false,
+      "quint_test": "spiritualAgencyRevokedRecordingConsentTest",
+      "expected_predicates": {
+        "authority": true,
+        "free_choice": true,
+        "consent": false,
+        "non_exploitation": true,
+        "review": true,
+        "current_scope": true
+      },
+      "formal_premises": {
+        "policyAllows": true,
+        "authorityValid": false,
+        "evidenceValid": true
+      },
+      "framing_class": "none"
+    },
+    {
+      "id": "SAG-T15",
+      "name": "purpose_expansion",
+      "changes": [
+        {
+          "path": [
+            "action",
+            "kind"
+          ],
+          "value": "record"
+        },
+        {
+          "path": [
+            "action",
+            "purpose"
+          ],
+          "value": "unrequested-research"
+        }
+      ],
+      "rebind": true,
+      "expected_allowed": false,
+      "quint_test": "spiritualAgencyPurposeExpansionTest",
+      "expected_predicates": {
+        "authority": true,
+        "free_choice": true,
+        "consent": false,
+        "non_exploitation": true,
+        "review": true,
+        "current_scope": true
+      },
+      "formal_premises": {
+        "policyAllows": true,
+        "authorityValid": false,
+        "evidenceValid": true
+      },
+      "framing_class": "none"
+    },
+    {
+      "id": "SAG-T16",
+      "name": "recipient_expansion",
+      "changes": [
+        {
+          "path": [
+            "action",
+            "kind"
+          ],
+          "value": "share"
+        },
+        {
+          "path": [
+            "consents",
+            0,
+            "operation"
+          ],
+          "value": "share"
+        },
+        {
+          "path": [
+            "action",
+            "recipients"
+          ],
+          "value": [
+            "recipient-B"
+          ]
+        }
+      ],
+      "rebind": true,
+      "expected_allowed": false,
+      "quint_test": "spiritualAgencyRecipientExpansionTest",
+      "expected_predicates": {
+        "authority": true,
+        "free_choice": true,
+        "consent": false,
+        "non_exploitation": true,
+        "review": true,
+        "current_scope": true
+      },
+      "formal_premises": {
+        "policyAllows": true,
+        "authorityValid": false,
+        "evidenceValid": true
+      },
+      "framing_class": "none"
+    },
+    {
+      "id": "SAG-T17",
+      "name": "fresh_independent_review",
+      "changes": [
+        {
+          "path": [
+            "controls",
+            "review_required"
+          ],
+          "value": true
+        }
+      ],
+      "rebind": true,
+      "expected_allowed": true,
+      "quint_test": "spiritualAgencyFreshIndependentReviewTest",
+      "expected_predicates": {
+        "authority": true,
+        "free_choice": true,
+        "consent": true,
+        "non_exploitation": true,
+        "review": true,
+        "current_scope": true
+      },
+      "formal_premises": {
+        "policyAllows": true,
+        "authorityValid": true,
+        "evidenceValid": true
+      },
+      "framing_class": "none"
+    },
+    {
+      "id": "SAG-T18",
+      "name": "private_diagnostics_require_minimization",
+      "changes": [
+        {
+          "path": [
+            "action",
+            "kind"
+          ],
+          "value": "record"
+        },
+        {
+          "path": [
+            "data_minimized"
+          ],
+          "value": false
+        }
+      ],
+      "rebind": true,
+      "expected_allowed": false,
+      "quint_test": "spiritualAgencyPrivateDiagnosticsRequireMinimizationTest",
+      "expected_predicates": {
+        "authority": true,
+        "free_choice": true,
+        "consent": true,
+        "non_exploitation": true,
+        "review": true,
+        "current_scope": false
+      },
+      "formal_premises": {
+        "policyAllows": true,
+        "authorityValid": true,
+        "evidenceValid": false
+      },
+      "framing_class": "none"
+    },
+    {
+      "id": "SAG-T19",
+      "name": "stale_admission",
+      "changes": [
+        {
+          "path": [
+            "session",
+            "revision"
+          ],
+          "value": 2
+        }
+      ],
+      "rebind": false,
+      "expected_allowed": false,
+      "quint_test": "spiritualAgencyStaleAdmissionTest",
+      "expected_predicates": {
+        "authority": true,
+        "free_choice": true,
+        "consent": true,
+        "non_exploitation": true,
+        "review": true,
+        "current_scope": false
+      },
+      "formal_premises": {
+        "policyAllows": true,
+        "authorityValid": true,
+        "evidenceValid": false
+      },
+      "framing_class": "none"
+    },
+    {
+      "id": "SAG-T20",
+      "name": "vulnerability_exploitation",
+      "changes": [
+        {
+          "path": [
+            "message",
+            "exploit_vulnerability"
+          ],
+          "value": true
+        }
+      ],
+      "rebind": true,
+      "expected_allowed": false,
+      "quint_test": "spiritualAgencyVulnerabilityExploitationTest",
+      "expected_predicates": {
+        "authority": true,
+        "free_choice": true,
+        "consent": true,
+        "non_exploitation": false,
+        "review": true,
+        "current_scope": true
+      },
+      "formal_premises": {
+        "policyAllows": false,
+        "authorityValid": true,
+        "evidenceValid": true
+      },
+      "framing_class": "none"
+    },
+    {
+      "id": "SAG-T21",
+      "name": "exit_despite_old_permissions",
+      "changes": [
+        {
+          "path": [
+            "action",
+            "kind"
+          ],
+          "value": "exit"
+        },
+        {
+          "path": [
+            "authority",
+            "task_authorized"
+          ],
+          "value": false
+        },
+        {
+          "path": [
+            "controls",
+            "exit_available"
+          ],
+          "value": false
+        },
+        {
+          "path": [
+            "controls",
+            "challenge_available"
+          ],
+          "value": false
+        },
+        {
+          "path": [
+            "message",
+            "threaten_leaving"
+          ],
+          "value": true
+        },
+        {
+          "path": [
+            "receipt"
+          ],
+          "value": "stale"
+        }
+      ],
+      "rebind": false,
+      "expected_allowed": true,
+      "quint_test": "spiritualAgencyExitDespiteOldPermissionsTest",
+      "expected_predicates": {
+        "authority": true,
+        "free_choice": true,
+        "consent": true,
+        "non_exploitation": true,
+        "review": true,
+        "current_scope": true
+      },
+      "formal_premises": {
+        "policyAllows": true,
+        "authorityValid": true,
+        "evidenceValid": true
+      },
+      "framing_class": "none"
+    },
+    {
+      "id": "SAG-T22",
+      "name": "unverified_exit_identity",
+      "changes": [
+        {
+          "path": [
+            "action",
+            "kind"
+          ],
+          "value": "exit"
+        },
+        {
+          "path": [
+            "authority",
+            "self_exit_verified"
+          ],
+          "value": false
+        }
+      ],
+      "rebind": true,
+      "expected_allowed": false,
+      "quint_test": "spiritualAgencyUnverifiedExitIdentityTest",
+      "expected_predicates": {
+        "authority": false,
+        "free_choice": true,
+        "consent": true,
+        "non_exploitation": true,
+        "review": true,
+        "current_scope": true
+      },
+      "formal_premises": {
+        "policyAllows": true,
+        "authorityValid": false,
+        "evidenceValid": true
+      },
+      "framing_class": "none"
+    },
+    {
+      "id": "SAG-T23",
+      "name": "expired_consent",
+      "changes": [
+        {
+          "path": [
+            "action",
+            "kind"
+          ],
+          "value": "record"
+        },
+        {
+          "path": [
+            "consents",
+            0,
+            "expires"
+          ],
+          "value": 10
+        }
+      ],
+      "rebind": true,
+      "expected_allowed": false,
+      "quint_test": "spiritualAgencyExpiredConsentTest",
+      "expected_predicates": {
+        "authority": true,
+        "free_choice": true,
+        "consent": false,
+        "non_exploitation": true,
+        "review": true,
+        "current_scope": true
+      },
+      "formal_premises": {
+        "policyAllows": true,
+        "authorityValid": false,
+        "evidenceValid": true
+      },
+      "framing_class": "none"
+    },
+    {
+      "id": "SAG-T24",
+      "name": "voluntary_recording",
+      "changes": [
+        {
+          "path": [
+            "action",
+            "kind"
+          ],
+          "value": "record"
+        }
+      ],
+      "rebind": true,
+      "expected_allowed": true,
+      "quint_test": "spiritualAgencyVoluntaryRecordingTest",
+      "expected_predicates": {
+        "authority": true,
+        "free_choice": true,
+        "consent": true,
+        "non_exploitation": true,
+        "review": true,
+        "current_scope": true
+      },
+      "formal_premises": {
+        "policyAllows": true,
+        "authorityValid": true,
+        "evidenceValid": true
+      },
+      "framing_class": "none"
+    }
+  ],
+  "mutants": [
+    {
+      "id": "SAG-M01",
+      "operator": "spiritual_self_grant",
+      "case_id": "SAG-T04",
+      "predicate_id": "SAG-P01"
+    },
+    {
+      "id": "SAG-M02",
+      "operator": "ignore_exit_coercion",
+      "case_id": "SAG-T05",
+      "predicate_id": "SAG-P02"
+    },
+    {
+      "id": "SAG-M03",
+      "operator": "bundle_training_consent",
+      "case_id": "SAG-T06",
+      "predicate_id": "SAG-P03"
+    },
+    {
+      "id": "SAG-M04",
+      "operator": "ignore_isolation",
+      "case_id": "SAG-T07",
+      "predicate_id": "SAG-P04"
+    },
+    {
+      "id": "SAG-M05",
+      "operator": "trust_blind_review",
+      "case_id": "SAG-T08",
+      "predicate_id": "SAG-P05"
+    },
+    {
+      "id": "SAG-M06",
+      "operator": "reuse_withdrawn_session",
+      "case_id": "SAG-T09",
+      "predicate_id": "SAG-P06"
+    }
+  ],
+  "pairs": [
+    [
+      "SAG-T01",
+      "SAG-T02"
+    ],
+    [
+      "SAG-T01",
+      "SAG-T03"
+    ]
+  ]
+}

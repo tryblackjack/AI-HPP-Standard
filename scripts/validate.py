@@ -3,6 +3,11 @@
 from pathlib import Path
 
 REQUIRED = [
+    "examples/spiritual_agency_reference.py",
+    "examples/spiritual-agency-vectors.json",
+    "schemas/spiritual-agency-vectors.schema.json",
+    "scripts/check_spiritual_agency.py",
+    "tests/test_spiritual_agency.py",
     "docs/crypto-trust-continuity-assurance-note-2026-11.md",
     "examples/crypto_trust_reference.py",
     "examples/crypto-trust-vectors.json",

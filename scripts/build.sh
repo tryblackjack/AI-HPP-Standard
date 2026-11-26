@@ -18,6 +18,7 @@ python3 scripts/check_cyber_authority.py
 python3 scripts/check_consequential_advice.py
 python3 scripts/check_work_integrity.py
 python3 scripts/check_observation_admission.py
+python3 scripts/check_spiritual_agency.py
 python3 scripts/check_crypto_trust.py
 python3 scripts/check_claim_evidence.py
 python3 scripts/check_release.py

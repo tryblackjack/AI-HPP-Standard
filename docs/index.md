@@ -77,6 +77,7 @@ not active normative text.
 
 ## November 2026 post-rc.1 assurance additions
 
+- [Spiritual authority and voluntary agency](constitutional-and-relational-layer.md#spiritual-authority-voluntary-agency-and-sensitive-data) — optional consent, dissent, exit and review predicates; 24 synthetic cases and six local operators, without diagnosis or theological judgment.
 - [Cryptographic Trust Continuity](crypto-trust-continuity-assurance-note-2026-11.md) — optional dependency withdrawal, stale admission, independent recovery and archive-continuity checks; synthetic reference, not cryptographic-strength proof.
 - [Claim Evidence and Report Assurance](claim-evidence-and-report-assurance-note-2026-11.md) — six candidate predicates, twenty-five structured report cases, nine local operators and a shared-core grounding adapter; no model or operational intelligence evaluation.
 - [Prompt and Memory Portability](prompt-and-memory-portability-assurance-note-2026-11.md) — optional source/authority and synthetic memory-update checks; eight added Quint scenarios, with no prompt copying or production-memory proof.

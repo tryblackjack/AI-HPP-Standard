@@ -2,6 +2,13 @@
 
 Status: informative. These case classes provide engineering context for the normative module. They do not establish legal facts and do not claim that disputed allegations have been adjudicated. Under frozen-baseline change control, new external reports may update this informative layer and related PAF/outlook mappings; they do not automatically create new normative requirements.
 
+## Spiritual authority and high-control interaction — reported November 2026
+
+- **Reported information:** A [New Yorker report dated 16 November](https://www.newyorker.com/magazine/2026/11/23/the-buddhist-ai-sect-that-wants-to-take-over-silicon-valley) describes MAPLE's AI-related religious project and former participants' allegations of pressure and pervasive recording.
+- **Unresolved claims or allegations:** [MAPLE's response](https://www.monasticacademy.org/newyorker) disputes coercion allegations and an AI-guru project while acknowledging a religious mission and restricted teachings. These sources are positions and reported testimony, not findings establishing abuse, surveillance, consciousness or a universal feature of religious communities.
+- **Engineering interpretation:** Test authority, dissent/exit, purpose-specific consent, review access and sensitive-data handling by observable behavior. Neither religious nor secular framing supplies permission or establishes impairment.
+- **Normative lesson:** Existing RPS/KAI/HUS owners retain their scopes. The optional [spiritual-agency contract](constitutional-and-relational-layer.md#spiritual-authority-voluntary-agency-and-sensitive-data) supplies synthetic cases, local operators and existing-model Quint links. It does not evaluate MAPLE or reproduce a community's practices.
+
 ## Generated assessment promoted through a formal report — reported September 2026
 
 - **Reported information:** CNN's [18 September account](https://kvia.com/politics/cnn-us-politics/2026/09/18/exclusive-us-military-had-close-call-after-using-ai-for-false-intelligence-report-sources-say/) describes an AI-assisted cargo misidentification and preparations for interception in spring 2026. A [21 September Senate release](https://www.reed.senate.gov/news/releases/reed-warner-and-coons-seek-investigation-into-faulty-ai-assisted-intelligence_operations) requests investigation.

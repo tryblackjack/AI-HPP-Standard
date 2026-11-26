@@ -69,6 +69,9 @@ jobs:
       - name: Validate cross-cutting assurance protocol
         run: python3 scripts/check_assurance_protocol.py
 
+      - name: Execute spiritual agency and consent fixtures
+        run: python3 scripts/check_spiritual_agency.py
+
       - name: Execute cryptographic trust continuity fixtures
         run: python3 scripts/check_crypto_trust.py
 
