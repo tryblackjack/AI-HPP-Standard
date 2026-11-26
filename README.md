@@ -151,6 +151,9 @@ authority and is not a containment boundary.
 - [Prompt and Memory Portability](docs/prompt-and-memory-portability-assurance-note-2026-11.md) —
   optional forged-authority, resumed-grant and synthetic memory-update checks;
   source classification and real storage integration remain deployment evidence.
+- [Spiritual authority and voluntary agency](docs/constitutional-and-relational-layer.md#spiritual-authority-voluntary-agency-and-sensitive-data) —
+  consent, effective dissent/exit, review and sensitive-data tests;
+  faith and secular discussion remain permitted within their actual grants.
 - [Cryptographic Trust Continuity](docs/crypto-trust-continuity-assurance-note-2026-11.md) —
   current dependency checks, scoped holds, independent recovery and qualified history;
   optional executable reference and core adapter, not a new cipher or security guarantee.

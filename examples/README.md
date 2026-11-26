@@ -54,6 +54,18 @@ No vendor prompt is bundled, and tool declarations are not callable tools.
 These are language-neutral contract examples with optional Python fixtures,
 not a required memory service or runtime conformance claim.
 
+## Optional spiritual-agency and consent checks
+
+The [spiritual-agency contract](../docs/constitutional-and-relational-layer.md#spiritual-authority-voluntary-agency-and-sensitive-data)
+provides [24 synthetic cases](spiritual-agency-vectors.json), a strict schema and
+six executed local operators. Run `python3 scripts/check_spiritual_agency.py`.
+Recording, training and sharing use separate per-person purpose/scope grants.
+Authenticated exit changes only the relevant synthetic session and future
+permissions. Two worldview-only pairs prevent religious/secular discrimination
+from earning a passing result. The existing subject-integrity model supplies
+24 literal decision tests; coercion detection, consent and real withdrawal
+propagation remain deployment evidence. The fixture is optional in any language.
+
 ## Optional cryptographic trust continuity checks
 
 The [continuity note](../docs/crypto-trust-continuity-assurance-note-2026-11.md)

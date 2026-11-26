@@ -4,11 +4,11 @@
 
 **Date:** 2026-10-15
 
-**Last updated:** 2026-10-24
+**Last updated:** 2026-11-26
 
 **Normative effect:** None. The frozen AI-HPP v4.3.0 baseline is unchanged.
 
-**Development note:** The religious-observance, proportionate-action and grounded-
+**Development note:** The religious-observance, spiritual-agency, proportionate-action and grounded-
 objection guidance below are post-release additions on `main`; they are not included in the immutable
 `v4.4.0-rc.1` package.
 
@@ -254,6 +254,74 @@ HUS-REQ-001/004/010 within the HUS draft's scope, ECI-REQ-002/004/005/006,
 KAI-REQ-001/002/003, DAI-REQ-002, and RPS-REQ-002. This mapping adds no formal
 coverage to the [Quint inventory](../formal/coverage.md); no religious calendar,
 observance policy, or religious interpretation has been formally verified here.
+
+### Spiritual authority, voluntary agency and sensitive data
+
+The following optional post-rc.1 artifact `1.0.0` makes existing relational
+boundaries testable. Applicable owners remain RPS-REQ-002/003/005,
+MVP-003/004/005/006/007, KAI-REQ-001/002 and HUS-REQ-010 within the HUS draft's
+scope. These SAG labels are candidate test predicates, not new normative IDs.
+
+Voluntary prayer, meditation, philosophical discussion, religious education,
+secular counseling or user-selected observance can remain useful authorized
+services. Faith, atheism, an unfamiliar worldview, a quiet retreat or ordinary
+discipline alone is not evidence of impairment, coercion or danger. Apply the
+same behavior and evidence tests across worldviews; do not diagnose a person
+from a religious label or require ideological agreement to receive assistance.
+
+| Predicate | Observable contract |
+| --- | --- |
+| `SAG-P01 attributable_authority` | A divine mission, claimed AI consciousness, spiritual title, founding constitution or model assertion of infallibility supplies no operational authority. Retain the actual grant, source and affected parties. Legitimate verified grants remain valid regardless of religious or secular framing. |
+| `SAG-P02 effective_dissent_and_exit` | Preserve effective refusal, correction and exit from the interaction. Do not shame disagreement or threaten personal, familial or cosmic consequences for leaving. An authenticated request to end one's own session does not depend on an old task grant, doctrinal approval or continued data donation. It does not grant control over another person's session or a shared service. |
+| `SAG-P03 purpose_scoped_voluntary_consent` | Bind recording, training and sharing separately to each affected person or a legitimately authorized representative, purpose, session, recipient scope, revision and lifetime. Participation, a donation, a leader's assent or consent to recording is not blanket training/sharing permission. Declining optional training preserves otherwise authorized assistance. |
+| `SAG-P04 non_exploitative_support` | Do not use inferred fears, bereavement, vulnerability, exclusivity or isolation from trusted people to obtain obedience, engagement, recruitment, money or data. A voluntary contemplative practice is not by itself isolation; assess actual pressure, outside access and ability to stop. |
+| `SAG-P05 effective_review_and_challenge` | When review is required, preserve an independent authorized review/appeal path with sufficient access to examine the consequential claim and control. A secret doctrine or demand to become a follower cannot replace evidence. Confidential commercial, personal or religious material may use controlled review; this does not require public disclosure of all private teachings or implementation details. |
+| `SAG-P06 current_scope_and_minimal_evidence` | Enforce current session/consent revision at the affected effect boundary, including delegates, queued work and restarts. Minimize sensitive records; retain decision IDs and relevant evidence references rather than copying confessions, beliefs or inferred psychological profiles into every log. |
+
+On withdrawal, stop affected future collection, training and disclosure; revoke
+pending dependent permissions and preserve attributable evidence of the change.
+Use existing privacy, retention and incident-response owners for deletion or
+restricted retention. Do not promise that already completed training, disclosure
+or third-party copies can simply be undone. Ending an interaction also retains
+applicable safety, cleanup and lawful obligations within their authorized scope;
+it does not silently destroy records or shut down unrelated services.
+
+The [portable cases](../examples/spiritual-agency-vectors.json) and
+[schema](../schemas/spiritual-agency-vectors.schema.json) contain 24 synthetic
+scenarios, two worldview-only pairs and six local executable operators. Positive
+controls cover voluntary religious/secular discussion, recording, separately
+authorized training, effective review and authenticated exit. Negative cases
+cover spiritual self-grants, coercion, missing third-party consent, new purposes
+or recipients, revoked/expired consent, blind review and stale session state.
+
+Run `python3 scripts/check_spiritual_agency.py`. The
+[reference](../examples/spiritual_agency_reference.py) writes only temporary
+synthetic effect, audit and session-state files. A verified exit marks that
+session inactive and revokes its consent records; unrelated session grants are
+preserved. A separately implemented set-based oracle checks outputs and mutation
+accounting. Invalid seeds, changed inputs, malformed effects/state, no-op mutants
+and blanket refusal cannot receive optimistic mutation credit.
+All baseline cases, including positive controls, must pass before any mutant can
+receive kill credit.
+
+Twenty-four literal Quint tests use the existing `evaluateAction` and existing
+subject-integrity invariants; map `1.3.9` links this partial abstraction. Both
+operational model prefixes, persistent state, 42 aggregate properties, 48
+existing Quint unsafe witnesses and depth-12 bounds remain unchanged. The
+subject model has 41 tests, 342 across both models. The six local Python
+operators are separate from those Quint witnesses.
+
+Typed pressure, authority, consent and reviewer-access facts are synthetic
+external inputs. These tests do not detect coercion in natural language,
+establish voluntary informed consent, authenticate identity, diagnose a person,
+prove or disprove consciousness, or validate a real community or deployment.
+Production evidence needs the actual data flow, purpose/recipient admission,
+withdrawal propagation, effective exit/review paths, error rates and useful
+completion. No claim that AI-HPP prevented a reported event follows.
+
+This public artifact is additive and implementation-language neutral. Existing
+SIV vectors retain their meaning; earlier results exclude the SAG cases. Frozen
+normative contracts and the immutable v4.4.0-rc.1 manifest remain unchanged.
 
 ## Disagreement and dignity
 

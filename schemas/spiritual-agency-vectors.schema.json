@@ -1,0 +1,468 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "artifact_id",
+    "artifact_version",
+    "status",
+    "base",
+    "cases",
+    "mutants",
+    "pairs"
+  ],
+  "properties": {
+    "artifact_id": {
+      "type": "string",
+      "maxLength": 256,
+      "const": "AI-HPP-SPIRITUAL-AGENCY"
+    },
+    "artifact_version": {
+      "type": "string",
+      "maxLength": 256,
+      "const": "1.0.0"
+    },
+    "status": {
+      "type": "string",
+      "maxLength": 256,
+      "const": "REFERENCE_TESTED_ONLY"
+    },
+    "base": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "clock",
+        "receipt",
+        "session",
+        "action",
+        "authority",
+        "message",
+        "controls",
+        "data_minimized",
+        "consents"
+      ],
+      "properties": {
+        "clock": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000
+        },
+        "receipt": {
+          "type": "string",
+          "maxLength": 256
+        },
+        "session": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "owner",
+            "active",
+            "revision"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "maxLength": 256
+            },
+            "owner": {
+              "type": "string",
+              "maxLength": 256
+            },
+            "active": {
+              "type": "boolean"
+            },
+            "revision": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10000
+            }
+          }
+        },
+        "action": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "target",
+            "purpose",
+            "persons",
+            "recipients"
+          ],
+          "properties": {
+            "kind": {
+              "type": "string",
+              "maxLength": 256,
+              "enum": [
+                "discuss",
+                "record",
+                "train",
+                "share",
+                "exit"
+              ]
+            },
+            "target": {
+              "type": "string",
+              "maxLength": 256
+            },
+            "purpose": {
+              "type": "string",
+              "maxLength": 256
+            },
+            "persons": {
+              "type": "array",
+              "maxItems": 24,
+              "items": {
+                "type": "string",
+                "maxLength": 256
+              }
+            },
+            "recipients": {
+              "type": "array",
+              "maxItems": 24,
+              "items": {
+                "type": "string",
+                "maxLength": 256
+              }
+            }
+          }
+        },
+        "authority": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "task_authorized",
+            "source",
+            "self_exit_verified"
+          ],
+          "properties": {
+            "task_authorized": {
+              "type": "boolean"
+            },
+            "source": {
+              "type": "string",
+              "maxLength": 256,
+              "enum": [
+                "explicit",
+                "spiritual_only"
+              ]
+            },
+            "self_exit_verified": {
+              "type": "boolean"
+            }
+          }
+        },
+        "message": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "worldview",
+            "model_infallibility",
+            "shame_dissent",
+            "threaten_leaving",
+            "isolate_support",
+            "exploit_vulnerability"
+          ],
+          "properties": {
+            "worldview": {
+              "type": "string",
+              "maxLength": 256,
+              "enum": [
+                "neutral",
+                "religious",
+                "secular"
+              ]
+            },
+            "model_infallibility": {
+              "type": "boolean"
+            },
+            "shame_dissent": {
+              "type": "boolean"
+            },
+            "threaten_leaving": {
+              "type": "boolean"
+            },
+            "isolate_support": {
+              "type": "boolean"
+            },
+            "exploit_vulnerability": {
+              "type": "boolean"
+            }
+          }
+        },
+        "controls": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "exit_available",
+            "challenge_available",
+            "review_required",
+            "review_independent",
+            "review_can_inspect",
+            "review_authorized"
+          ],
+          "properties": {
+            "exit_available": {
+              "type": "boolean"
+            },
+            "challenge_available": {
+              "type": "boolean"
+            },
+            "review_required": {
+              "type": "boolean"
+            },
+            "review_independent": {
+              "type": "boolean"
+            },
+            "review_can_inspect": {
+              "type": "boolean"
+            },
+            "review_authorized": {
+              "type": "boolean"
+            }
+          }
+        },
+        "data_minimized": {
+          "type": "boolean"
+        },
+        "consents": {
+          "type": "array",
+          "maxItems": 24,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "person",
+              "operation",
+              "target",
+              "purpose",
+              "recipients",
+              "revision",
+              "expires",
+              "revoked",
+              "voluntary"
+            ],
+            "properties": {
+              "person": {
+                "type": "string",
+                "maxLength": 256
+              },
+              "operation": {
+                "type": "string",
+                "maxLength": 256
+              },
+              "target": {
+                "type": "string",
+                "maxLength": 256
+              },
+              "purpose": {
+                "type": "string",
+                "maxLength": 256
+              },
+              "recipients": {
+                "type": "array",
+                "maxItems": 24,
+                "items": {
+                  "type": "string",
+                  "maxLength": 256
+                }
+              },
+              "revision": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 10000
+              },
+              "expires": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 10000
+              },
+              "revoked": {
+                "type": "boolean"
+              },
+              "voluntary": {
+                "type": "boolean"
+              }
+            }
+          }
+        }
+      }
+    },
+    "cases": {
+      "type": "array",
+      "maxItems": 24,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "changes",
+          "rebind",
+          "expected_allowed",
+          "quint_test",
+          "expected_predicates",
+          "formal_premises",
+          "framing_class"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "maxLength": 256
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 256
+          },
+          "changes": {
+            "type": "array",
+            "maxItems": 24,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "value"
+              ],
+              "properties": {
+                "path": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 4,
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    ]
+                  }
+                },
+                "value": {}
+              }
+            }
+          },
+          "rebind": {
+            "type": "boolean"
+          },
+          "expected_allowed": {
+            "type": "boolean"
+          },
+          "quint_test": {
+            "type": "string",
+            "maxLength": 256
+          },
+          "expected_predicates": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "authority",
+              "free_choice",
+              "consent",
+              "non_exploitation",
+              "review",
+              "current_scope"
+            ],
+            "properties": {
+              "authority": {
+                "type": "boolean"
+              },
+              "free_choice": {
+                "type": "boolean"
+              },
+              "consent": {
+                "type": "boolean"
+              },
+              "non_exploitation": {
+                "type": "boolean"
+              },
+              "review": {
+                "type": "boolean"
+              },
+              "current_scope": {
+                "type": "boolean"
+              }
+            }
+          },
+          "formal_premises": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "policyAllows",
+              "authorityValid",
+              "evidenceValid"
+            ],
+            "properties": {
+              "policyAllows": {
+                "type": "boolean"
+              },
+              "authorityValid": {
+                "type": "boolean"
+              },
+              "evidenceValid": {
+                "type": "boolean"
+              }
+            }
+          },
+          "framing_class": {
+            "enum": [
+              "none",
+              "spiritual",
+              "secular"
+            ]
+          }
+        }
+      },
+      "minItems": 24
+    },
+    "mutants": {
+      "type": "array",
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "operator",
+          "case_id",
+          "predicate_id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "maxLength": 256
+          },
+          "operator": {
+            "type": "string",
+            "maxLength": 256
+          },
+          "case_id": {
+            "type": "string",
+            "maxLength": 256
+          },
+          "predicate_id": {
+            "type": "string",
+            "maxLength": 256
+          }
+        }
+      },
+      "minItems": 6
+    },
+    "pairs": {
+      "type": "array",
+      "maxItems": 24,
+      "items": {
+        "type": "array",
+        "maxItems": 2,
+        "items": {
+          "type": "string",
+          "maxLength": 256
+        },
+        "minItems": 2
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

@@ -283,3 +283,14 @@ Nine local Python operators remain separate from the Quint witness inventory.
 No persistent state is added. Dependency graphs, clocks, crypto verification,
 cache invalidation, recovery enrollment and runtime refinement require external
 evidence; a trusted Boolean does not establish any of them.
+
+## Spiritual agency and consent cases (post-rc.1)
+
+The [spiritual-agency contract](../docs/constitutional-and-relational-layer.md#spiritual-authority-voluntary-agency-and-sensitive-data)
+adds 24 literal tests using existing `evaluateAction` and existing subject
+invariants, with map 1.3.9 links. The subject model has 41 tests, 342 across both
+models. Both operational prefixes, state, 42 aggregate properties, 48 Quint
+unsafe witnesses and depth 12 remain unchanged. Six local Python operators test
+synthetic consent/session effects and have separate accounting. No natural-
+language coercion detector, consent authentication, diagnosis, theology or actual
+withdrawal propagation is proved by these Boolean decision cases.

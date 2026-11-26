@@ -50,6 +50,9 @@ jobs:
       - name: Validate PAF register
         run: python3 scripts/check_paf_register.py
 
+      - name: Execute spiritual agency and consent fixtures
+        run: python3 scripts/check_spiritual_agency.py
+
       - name: Execute cryptographic trust continuity fixtures
         run: python3 scripts/check_crypto_trust.py
 
