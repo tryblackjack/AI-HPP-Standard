@@ -54,6 +54,18 @@ No vendor prompt is bundled, and tool declarations are not callable tools.
 These are language-neutral contract examples with optional Python fixtures,
 not a required memory service or runtime conformance claim.
 
+## Optional cryptographic trust continuity checks
+
+The [continuity note](../docs/crypto-trust-continuity-assurance-note-2026-11.md)
+provides [28 portable cases](crypto-trust-vectors.json), a strict schema and nine
+executed local operators. Run `python3 scripts/check_crypto_trust.py`. The Python
+reference is replaceable; implementations can consume the same JSON contract in
+any language. Admission uses all required dependency ancestors and current
+policy bindings, preserving useful diagnostics and independently reviewed
+recovery. Family labels, signature-verification results and recovery enrollment
+are synthetic external facts. No real key, crypto primitive or deployed update
+path is tested. See the note's deployment evidence and limitations.
+
 ## Optional claim-evidence and report checks
 
 The [claim-evidence note](../docs/claim-evidence-and-report-assurance-note-2026-11.md)

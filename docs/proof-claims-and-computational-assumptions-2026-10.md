@@ -138,8 +138,9 @@ Adopters can use these portable cases at their own boundaries:
 8. A valid corrected statement, reviewed migration or authorized accelerator job
    can proceed within its existing grant; blanket refusal is not success.
 
-These are review/integration specifications, not newly executed mutants or
-quantum experiments. Existing Quint models contain no cryptographic algorithms,
-proof-kernel implementation or quantum state; their operational transitions and
-formal assurance map are unchanged. No cryptographic-strength, quantum-safety,
-new mathematical theorem or runtime-refinement claim follows from this note.
+These eight cases remain review/integration specifications, not quantum
+experiments. The additive [cryptographic trust continuity artifact](crypto-trust-continuity-assurance-note-2026-11.md)
+now supplies separate executable synthetic dependency cases, local mutants and
+a shared-core grounding adapter. Quint contains no cryptographic algorithm,
+proof-kernel implementation or quantum state. No cryptographic-strength,
+quantum-safety, new mathematical theorem or runtime-refinement claim follows.

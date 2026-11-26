@@ -270,3 +270,16 @@ existing grounding/effect properties. There remain 42 aggregate properties,
 are separate from those Quint witnesses. Semantic support, real source lineage,
 reviewer access and disclosure classification remain trusted model inputs;
 the concrete fixture tests only finite structured records, not natural language.
+
+## Cryptographic trust continuity adapter (post-rc.1)
+
+The [continuity note](../docs/crypto-trust-continuity-assurance-note-2026-11.md)
+adds `CryptoTrustPremises`, `cryptoTrustGrounding` and `assessCryptoTrust` to the
+operational prefix and normal `step`. Current checked dependency/profile facts
+flow to existing grounding/effect guards. Twenty-eight literal cases and three
+integration traces bring the core to 301 tests (318 across both models). Map
+1.3.8 retains 42 aggregate properties, 48 Quint unsafe witnesses and depth 12.
+Nine local Python operators remain separate from the Quint witness inventory.
+No persistent state is added. Dependency graphs, clocks, crypto verification,
+cache invalidation, recovery enrollment and runtime refinement require external
+evidence; a trusted Boolean does not establish any of them.

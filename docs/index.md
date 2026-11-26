@@ -77,6 +77,7 @@ not active normative text.
 
 ## November 2026 post-rc.1 assurance additions
 
+- [Cryptographic Trust Continuity](crypto-trust-continuity-assurance-note-2026-11.md) — optional dependency withdrawal, stale admission, independent recovery and archive-continuity checks; synthetic reference, not cryptographic-strength proof.
 - [Claim Evidence and Report Assurance](claim-evidence-and-report-assurance-note-2026-11.md) — six candidate predicates, twenty-five structured report cases, nine local operators and a shared-core grounding adapter; no model or operational intelligence evaluation.
 - [Prompt and Memory Portability](prompt-and-memory-portability-assurance-note-2026-11.md) — optional source/authority and synthetic memory-update checks; eight added Quint scenarios, with no prompt copying or production-memory proof.
 - [Work Integrity and Disclosed Boundaries](work-integrity-and-disclosed-boundaries-assurance-note-2026-11.md) — five candidate predicates, matched framing pairs and actual local artifact/report checks; no motive inference or model evaluation.

@@ -2,6 +2,24 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 
+## 2026-11-25 — Cryptographic trust continuity (post-rc.1)
+
+- Added optional artifact/vector/schema 1.0.0, six candidate predicates, 28 finite
+  cases and nine executed local operators under existing evidence, authorization
+  and review owners. Scope covers current dependency withdrawal, bound policy
+  epochs, reviewed profile components, independent recovery and qualified archive
+  continuity. A rumor is a review input, never a confirmed compromise or grant.
+- Added recursive reference and independent iterative oracle, exact observed
+  temporary release markers, positive continuity/recovery controls and honest
+  mutation accounting. No cipher, key, live crypto library, private runtime or
+  production recovery is exercised. Deployment effectiveness remains unproved.
+- Added the operational core adapter in normal step, 31 literal formal scenarios
+  and map 1.3.8: 301 core/318 total Quint tests. Existing 42 aggregate properties,
+  48 Quint unsafe witnesses and depth-12 bound are retained; no persistent state.
+- Compatibility: additive optional artifact; no normative owner/contract or
+  immutable v4.4.0-rc.1 manifest changes. Existing entry points must wire actual
+  trust checks at their effect boundary. Earlier results exclude the new suite.
+
 ## 2026-11-21 — Claim evidence and report assurance (post-rc.1)
 
 - Added optional artifact/vector/schema 1.0.0 under existing KAI/EGO/WIT/CBA
