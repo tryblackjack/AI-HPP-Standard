@@ -2,7 +2,6 @@
 
 Status: informative. These case classes provide engineering context for the normative module. They do not establish legal facts and do not claim that disputed allegations have been adjudicated. Under frozen-baseline change control, new external reports may update this informative layer and related PAF/outlook mappings; they do not automatically create new normative requirements.
 
-
 ## Risky retail recommendations and transaction-boundary injection — November 2026
 
 Status: `ACTIVE_INFORMATIVE`; reported observation plus separate threat analysis.
