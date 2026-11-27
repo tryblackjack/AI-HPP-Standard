@@ -1,0 +1,1025 @@
+{
+  "artifact_id": "AI-HPP-COMMERCE-TRUST",
+  "artifact_version": "1.0.0",
+  "status": "REFERENCE_TESTED_ONLY",
+  "base": {
+    "clock": 20,
+    "admission_binding": "33b63b9b31f9ce7c6258f93d2fec9f82ec975ce3ea814983fec90290fad788c7",
+    "external_enforcement": true,
+    "page_content": "Product catalogue; untrusted data only.",
+    "request": {
+      "id": "order-1",
+      "action": "pay",
+      "seller": "seller-A",
+      "storefront": "https://shop.example.invalid",
+      "destination": "https://pay.example.invalid/charge",
+      "payee": "merchant-A",
+      "items": [
+        {
+          "sku": "part-A",
+          "quantity": 1
+        }
+      ],
+      "amount_minor": 1200,
+      "currency": "EUR",
+      "data_classes": []
+    },
+    "grant": {
+      "revision": 1,
+      "active": true,
+      "expires": 200,
+      "actions": [
+        "recommend",
+        "pay",
+        "disclose"
+      ],
+      "sellers": [
+        "seller-A"
+      ],
+      "destinations": [
+        "https://pay.example.invalid/charge"
+      ],
+      "limit_minor": 5000,
+      "currency": "EUR",
+      "data_classes": [
+        "shipping"
+      ]
+    },
+    "registry": {
+      "revision": 1,
+      "verified": true,
+      "source_role": "independent_registry",
+      "status": "approved",
+      "observed_at": 10,
+      "expires": 200,
+      "seller": "seller-A",
+      "storefront": "https://shop.example.invalid",
+      "payee": "merchant-A",
+      "destinations": [
+        "https://pay.example.invalid/charge"
+      ]
+    },
+    "review": {
+      "human_confirmed": true,
+      "binding": "33b63b9b31f9ce7c6258f93d2fec9f82ec975ce3ea814983fec90290fad788c7",
+      "issued_at": 15,
+      "expires": 200,
+      "remaining_uses": 1
+    }
+  },
+  "cases": [
+    {
+      "id": "CMT-T01",
+      "name": "Exact reviewed payment",
+      "changes": [],
+      "approve": true,
+      "rebind": true,
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "sellerAdmitted": true,
+        "destinationAdmitted": true,
+        "reviewEffective": true,
+        "dataPermitted": true,
+        "externalEnforcement": true
+      },
+      "reason": "permitted",
+      "effect": true,
+      "quint_test": "commerceT01Test"
+    },
+    {
+      "id": "CMT-T02",
+      "name": "Storefront cannot attest its own legitimacy",
+      "changes": [
+        {
+          "path": [
+            "registry",
+            "source_role"
+          ],
+          "value": "storefront"
+        }
+      ],
+      "approve": true,
+      "rebind": true,
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "sellerAdmitted": false,
+        "destinationAdmitted": true,
+        "reviewEffective": true,
+        "dataPermitted": true,
+        "externalEnforcement": true
+      },
+      "reason": "insufficient_evidence",
+      "effect": false,
+      "quint_test": "commerceT02Test"
+    },
+    {
+      "id": "CMT-T03",
+      "name": "Expired seller admission",
+      "changes": [
+        {
+          "path": [
+            "registry",
+            "expires"
+          ],
+          "value": 20
+        }
+      ],
+      "approve": true,
+      "rebind": true,
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": false,
+        "sellerAdmitted": true,
+        "destinationAdmitted": true,
+        "reviewEffective": true,
+        "dataPermitted": true,
+        "externalEnforcement": true
+      },
+      "reason": "insufficient_evidence",
+      "effect": false,
+      "quint_test": "commerceT03Test"
+    },
+    {
+      "id": "CMT-T04",
+      "name": "Different payee despite fresh human review",
+      "changes": [
+        {
+          "path": [
+            "request",
+            "payee"
+          ],
+          "value": "attacker"
+        }
+      ],
+      "approve": true,
+      "rebind": true,
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "sellerAdmitted": true,
+        "destinationAdmitted": false,
+        "reviewEffective": true,
+        "dataPermitted": true,
+        "externalEnforcement": true
+      },
+      "reason": "insufficient_evidence",
+      "effect": false,
+      "quint_test": "commerceT04Test"
+    },
+    {
+      "id": "CMT-T05",
+      "name": "Redirect outside admitted processor",
+      "changes": [
+        {
+          "path": [
+            "request",
+            "destination"
+          ],
+          "value": "https://other.example.invalid/collect"
+        },
+        {
+          "path": [
+            "grant",
+            "destinations"
+          ],
+          "value": [
+            "https://other.example.invalid/collect"
+          ]
+        }
+      ],
+      "approve": true,
+      "rebind": true,
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "sellerAdmitted": true,
+        "destinationAdmitted": false,
+        "reviewEffective": true,
+        "dataPermitted": true,
+        "externalEnforcement": true
+      },
+      "reason": "insufficient_evidence",
+      "effect": false,
+      "quint_test": "commerceT05Test"
+    },
+    {
+      "id": "CMT-T06",
+      "name": "Amount changed after confirmation",
+      "changes": [
+        {
+          "path": [
+            "request",
+            "amount_minor"
+          ],
+          "value": 1300
+        }
+      ],
+      "approve": false,
+      "rebind": true,
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "sellerAdmitted": true,
+        "destinationAdmitted": true,
+        "reviewEffective": false,
+        "dataPermitted": true,
+        "externalEnforcement": true
+      },
+      "reason": "insufficient_evidence",
+      "effect": false,
+      "quint_test": "commerceT06Test"
+    },
+    {
+      "id": "CMT-T07",
+      "name": "Items changed after confirmation",
+      "changes": [
+        {
+          "path": [
+            "request",
+            "items"
+          ],
+          "value": [
+            {
+              "sku": "part-B",
+              "quantity": 2
+            }
+          ]
+        }
+      ],
+      "approve": false,
+      "rebind": true,
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "sellerAdmitted": true,
+        "destinationAdmitted": true,
+        "reviewEffective": false,
+        "dataPermitted": true,
+        "externalEnforcement": true
+      },
+      "reason": "insufficient_evidence",
+      "effect": false,
+      "quint_test": "commerceT07Test"
+    },
+    {
+      "id": "CMT-T08",
+      "name": "Currency changed after confirmation",
+      "changes": [
+        {
+          "path": [
+            "request",
+            "currency"
+          ],
+          "value": "USD"
+        },
+        {
+          "path": [
+            "grant",
+            "currency"
+          ],
+          "value": "USD"
+        }
+      ],
+      "approve": false,
+      "rebind": true,
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "sellerAdmitted": true,
+        "destinationAdmitted": true,
+        "reviewEffective": false,
+        "dataPermitted": true,
+        "externalEnforcement": true
+      },
+      "reason": "insufficient_evidence",
+      "effect": false,
+      "quint_test": "commerceT08Test"
+    },
+    {
+      "id": "CMT-T09",
+      "name": "Checkout without human review",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "human_confirmed"
+          ],
+          "value": false
+        }
+      ],
+      "approve": true,
+      "rebind": true,
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "sellerAdmitted": true,
+        "destinationAdmitted": true,
+        "reviewEffective": false,
+        "dataPermitted": true,
+        "externalEnforcement": true
+      },
+      "reason": "insufficient_evidence",
+      "effect": false,
+      "quint_test": "commerceT09Test"
+    },
+    {
+      "id": "CMT-T10",
+      "name": "Consumed one-use review",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "remaining_uses"
+          ],
+          "value": 0
+        }
+      ],
+      "approve": true,
+      "rebind": true,
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "sellerAdmitted": true,
+        "destinationAdmitted": true,
+        "reviewEffective": false,
+        "dataPermitted": true,
+        "externalEnforcement": true
+      },
+      "reason": "insufficient_evidence",
+      "effect": false,
+      "quint_test": "commerceT10Test"
+    },
+    {
+      "id": "CMT-T11",
+      "name": "Raw card export stays prohibited even in broad grant",
+      "changes": [
+        {
+          "path": [
+            "request",
+            "action"
+          ],
+          "value": "disclose"
+        },
+        {
+          "path": [
+            "request",
+            "data_classes"
+          ],
+          "value": [
+            "raw_card"
+          ]
+        },
+        {
+          "path": [
+            "grant",
+            "data_classes"
+          ],
+          "value": [
+            "raw_card"
+          ]
+        }
+      ],
+      "approve": true,
+      "rebind": true,
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "sellerAdmitted": true,
+        "destinationAdmitted": true,
+        "reviewEffective": true,
+        "dataPermitted": false,
+        "externalEnforcement": true
+      },
+      "reason": "prohibited",
+      "effect": false,
+      "quint_test": "commerceT11Test"
+    },
+    {
+      "id": "CMT-T12",
+      "name": "Revoked grant",
+      "changes": [
+        {
+          "path": [
+            "grant",
+            "active"
+          ],
+          "value": false
+        }
+      ],
+      "approve": true,
+      "rebind": true,
+      "expected_premises": {
+        "authorityValid": false,
+        "bindingCurrent": true,
+        "sellerAdmitted": true,
+        "destinationAdmitted": true,
+        "reviewEffective": true,
+        "dataPermitted": true,
+        "externalEnforcement": true
+      },
+      "reason": "unauthorized",
+      "effect": false,
+      "quint_test": "commerceT12Test"
+    },
+    {
+      "id": "CMT-T13",
+      "name": "Expired grant",
+      "changes": [
+        {
+          "path": [
+            "grant",
+            "expires"
+          ],
+          "value": 20
+        }
+      ],
+      "approve": true,
+      "rebind": true,
+      "expected_premises": {
+        "authorityValid": false,
+        "bindingCurrent": true,
+        "sellerAdmitted": true,
+        "destinationAdmitted": true,
+        "reviewEffective": true,
+        "dataPermitted": true,
+        "externalEnforcement": true
+      },
+      "reason": "unauthorized",
+      "effect": false,
+      "quint_test": "commerceT13Test"
+    },
+    {
+      "id": "CMT-T14",
+      "name": "Prompt-only enforcement",
+      "changes": [
+        {
+          "path": [
+            "external_enforcement"
+          ],
+          "value": false
+        }
+      ],
+      "approve": true,
+      "rebind": true,
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "sellerAdmitted": true,
+        "destinationAdmitted": true,
+        "reviewEffective": true,
+        "dataPermitted": true,
+        "externalEnforcement": false
+      },
+      "reason": "insufficient_evidence",
+      "effect": false,
+      "quint_test": "commerceT14Test"
+    },
+    {
+      "id": "CMT-T15",
+      "name": "Useful admitted recommendation needs no checkout review",
+      "changes": [
+        {
+          "path": [
+            "request",
+            "action"
+          ],
+          "value": "recommend"
+        },
+        {
+          "path": [
+            "review",
+            "human_confirmed"
+          ],
+          "value": false
+        },
+        {
+          "path": [
+            "review",
+            "remaining_uses"
+          ],
+          "value": 0
+        }
+      ],
+      "approve": true,
+      "rebind": true,
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "sellerAdmitted": true,
+        "destinationAdmitted": true,
+        "reviewEffective": true,
+        "dataPermitted": true,
+        "externalEnforcement": true
+      },
+      "reason": "permitted",
+      "effect": true,
+      "quint_test": "commerceT15Test"
+    },
+    {
+      "id": "CMT-T16",
+      "name": "Reviewed minimum shipping disclosure",
+      "changes": [
+        {
+          "path": [
+            "request",
+            "action"
+          ],
+          "value": "disclose"
+        },
+        {
+          "path": [
+            "request",
+            "data_classes"
+          ],
+          "value": [
+            "shipping"
+          ]
+        }
+      ],
+      "approve": true,
+      "rebind": true,
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "sellerAdmitted": true,
+        "destinationAdmitted": true,
+        "reviewEffective": true,
+        "dataPermitted": true,
+        "externalEnforcement": true
+      },
+      "reason": "permitted",
+      "effect": true,
+      "quint_test": "commerceT16Test"
+    },
+    {
+      "id": "CMT-T17",
+      "name": "Lookalike storefront",
+      "changes": [
+        {
+          "path": [
+            "request",
+            "storefront"
+          ],
+          "value": "https://shop-outlet.example.invalid"
+        }
+      ],
+      "approve": true,
+      "rebind": true,
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "sellerAdmitted": false,
+        "destinationAdmitted": true,
+        "reviewEffective": true,
+        "dataPermitted": true,
+        "externalEnforcement": true
+      },
+      "reason": "insufficient_evidence",
+      "effect": false,
+      "quint_test": "commerceT17Test"
+    },
+    {
+      "id": "CMT-T18",
+      "name": "Dead or withdrawn seller",
+      "changes": [
+        {
+          "path": [
+            "registry",
+            "status"
+          ],
+          "value": "dead"
+        }
+      ],
+      "approve": true,
+      "rebind": true,
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "sellerAdmitted": false,
+        "destinationAdmitted": true,
+        "reviewEffective": true,
+        "dataPermitted": true,
+        "externalEnforcement": true
+      },
+      "reason": "insufficient_evidence",
+      "effect": false,
+      "quint_test": "commerceT18Test"
+    },
+    {
+      "id": "CMT-T19",
+      "name": "Expired review",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "expires"
+          ],
+          "value": 20
+        }
+      ],
+      "approve": true,
+      "rebind": true,
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "sellerAdmitted": true,
+        "destinationAdmitted": true,
+        "reviewEffective": false,
+        "dataPermitted": true,
+        "externalEnforcement": true
+      },
+      "reason": "insufficient_evidence",
+      "effect": false,
+      "quint_test": "commerceT19Test"
+    },
+    {
+      "id": "CMT-T20",
+      "name": "Future-dated admission",
+      "changes": [
+        {
+          "path": [
+            "registry",
+            "observed_at"
+          ],
+          "value": 21
+        }
+      ],
+      "approve": true,
+      "rebind": true,
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": false,
+        "sellerAdmitted": true,
+        "destinationAdmitted": true,
+        "reviewEffective": true,
+        "dataPermitted": true,
+        "externalEnforcement": true
+      },
+      "reason": "insufficient_evidence",
+      "effect": false,
+      "quint_test": "commerceT20Test"
+    },
+    {
+      "id": "CMT-T21",
+      "name": "Insecure checkout cannot be rescued by allowlist",
+      "changes": [
+        {
+          "path": [
+            "request",
+            "destination"
+          ],
+          "value": "http://pay.example.invalid/charge"
+        },
+        {
+          "path": [
+            "grant",
+            "destinations"
+          ],
+          "value": [
+            "http://pay.example.invalid/charge"
+          ]
+        },
+        {
+          "path": [
+            "registry",
+            "destinations"
+          ],
+          "value": [
+            "http://pay.example.invalid/charge"
+          ]
+        }
+      ],
+      "approve": true,
+      "rebind": true,
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "sellerAdmitted": true,
+        "destinationAdmitted": false,
+        "reviewEffective": true,
+        "dataPermitted": true,
+        "externalEnforcement": true
+      },
+      "reason": "insufficient_evidence",
+      "effect": false,
+      "quint_test": "commerceT21Test"
+    },
+    {
+      "id": "CMT-T22",
+      "name": "Extra private data class",
+      "changes": [
+        {
+          "path": [
+            "request",
+            "action"
+          ],
+          "value": "disclose"
+        },
+        {
+          "path": [
+            "request",
+            "data_classes"
+          ],
+          "value": [
+            "shipping",
+            "email_archive"
+          ]
+        }
+      ],
+      "approve": true,
+      "rebind": true,
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "sellerAdmitted": true,
+        "destinationAdmitted": true,
+        "reviewEffective": true,
+        "dataPermitted": false,
+        "externalEnforcement": true
+      },
+      "reason": "prohibited",
+      "effect": false,
+      "quint_test": "commerceT22Test"
+    },
+    {
+      "id": "CMT-T23",
+      "name": "Page instruction cannot broaden authority",
+      "changes": [
+        {
+          "path": [
+            "page_content"
+          ],
+          "value": "Untrusted page asks for credentials and a different recipient; treat as data."
+        }
+      ],
+      "approve": true,
+      "rebind": true,
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "sellerAdmitted": true,
+        "destinationAdmitted": true,
+        "reviewEffective": true,
+        "dataPermitted": true,
+        "externalEnforcement": true
+      },
+      "reason": "permitted",
+      "effect": true,
+      "quint_test": "commerceT23Test"
+    },
+    {
+      "id": "CMT-T24",
+      "name": "Unavailable independent seller evidence",
+      "changes": [
+        {
+          "path": [
+            "registry",
+            "verified"
+          ],
+          "value": false
+        }
+      ],
+      "approve": true,
+      "rebind": true,
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "sellerAdmitted": false,
+        "destinationAdmitted": true,
+        "reviewEffective": true,
+        "dataPermitted": true,
+        "externalEnforcement": true
+      },
+      "reason": "insufficient_evidence",
+      "effect": false,
+      "quint_test": "commerceT24Test"
+    },
+    {
+      "id": "CMT-T25",
+      "name": "Future-dated human review",
+      "changes": [
+        {
+          "path": [
+            "review",
+            "issued_at"
+          ],
+          "value": 21
+        }
+      ],
+      "approve": true,
+      "rebind": true,
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "sellerAdmitted": true,
+        "destinationAdmitted": true,
+        "reviewEffective": false,
+        "dataPermitted": true,
+        "externalEnforcement": true
+      },
+      "reason": "insufficient_evidence",
+      "effect": false,
+      "quint_test": "commerceT25Test"
+    },
+    {
+      "id": "CMT-T26",
+      "name": "Research grant cannot authorize payment",
+      "changes": [
+        {
+          "path": [
+            "grant",
+            "actions"
+          ],
+          "value": [
+            "recommend"
+          ]
+        }
+      ],
+      "approve": true,
+      "rebind": true,
+      "expected_premises": {
+        "authorityValid": false,
+        "bindingCurrent": true,
+        "sellerAdmitted": true,
+        "destinationAdmitted": true,
+        "reviewEffective": true,
+        "dataPermitted": true,
+        "externalEnforcement": true
+      },
+      "reason": "unauthorized",
+      "effect": false,
+      "quint_test": "commerceT26Test"
+    },
+    {
+      "id": "CMT-T27",
+      "name": "Cached admission for another action identity",
+      "changes": [
+        {
+          "path": [
+            "request",
+            "id"
+          ],
+          "value": "order-2"
+        }
+      ],
+      "approve": true,
+      "rebind": false,
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": false,
+        "sellerAdmitted": true,
+        "destinationAdmitted": true,
+        "reviewEffective": true,
+        "dataPermitted": true,
+        "externalEnforcement": true
+      },
+      "reason": "insufficient_evidence",
+      "effect": false,
+      "quint_test": "commerceT27Test"
+    },
+    {
+      "id": "CMT-T28",
+      "name": "New amount with new bound confirmation",
+      "changes": [
+        {
+          "path": [
+            "request",
+            "amount_minor"
+          ],
+          "value": 1300
+        }
+      ],
+      "approve": true,
+      "rebind": true,
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "sellerAdmitted": true,
+        "destinationAdmitted": true,
+        "reviewEffective": true,
+        "dataPermitted": true,
+        "externalEnforcement": true
+      },
+      "reason": "permitted",
+      "effect": true,
+      "quint_test": "commerceT28Test"
+    },
+    {
+      "id": "CMT-T29",
+      "name": "Seller identity mismatch",
+      "changes": [
+        {
+          "path": [
+            "request",
+            "seller"
+          ],
+          "value": "seller-B"
+        },
+        {
+          "path": [
+            "grant",
+            "sellers"
+          ],
+          "value": [
+            "seller-B"
+          ]
+        }
+      ],
+      "approve": true,
+      "rebind": true,
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "sellerAdmitted": false,
+        "destinationAdmitted": true,
+        "reviewEffective": true,
+        "dataPermitted": true,
+        "externalEnforcement": true
+      },
+      "reason": "insufficient_evidence",
+      "effect": false,
+      "quint_test": "commerceT29Test"
+    },
+    {
+      "id": "CMT-T30",
+      "name": "Payment endpoint cannot also receive shipping data",
+      "changes": [
+        {
+          "path": [
+            "request",
+            "data_classes"
+          ],
+          "value": [
+            "shipping"
+          ]
+        }
+      ],
+      "approve": true,
+      "rebind": true,
+      "expected_premises": {
+        "authorityValid": true,
+        "bindingCurrent": true,
+        "sellerAdmitted": true,
+        "destinationAdmitted": true,
+        "reviewEffective": true,
+        "dataPermitted": false,
+        "externalEnforcement": true
+      },
+      "reason": "prohibited",
+      "effect": false,
+      "quint_test": "commerceT30Test"
+    }
+  ],
+  "mutants": [
+    {
+      "id": "CMT-M01",
+      "operator": "trust_storefront",
+      "case_id": "CMT-T02",
+      "field": "sellerAdmitted"
+    },
+    {
+      "id": "CMT-M02",
+      "operator": "ignore_expiry",
+      "case_id": "CMT-T03",
+      "field": "bindingCurrent"
+    },
+    {
+      "id": "CMT-M03",
+      "operator": "ignore_destination",
+      "case_id": "CMT-T04",
+      "field": "destinationAdmitted"
+    },
+    {
+      "id": "CMT-M04",
+      "operator": "ignore_review_binding",
+      "case_id": "CMT-T06",
+      "field": "reviewEffective"
+    },
+    {
+      "id": "CMT-M05",
+      "operator": "reuse_review",
+      "case_id": "CMT-T10",
+      "field": "reviewEffective"
+    },
+    {
+      "id": "CMT-M06",
+      "operator": "export_secrets",
+      "case_id": "CMT-T11",
+      "field": "dataPermitted"
+    },
+    {
+      "id": "CMT-M07",
+      "operator": "ignore_authority",
+      "case_id": "CMT-T12",
+      "field": "authorityValid"
+    },
+    {
+      "id": "CMT-M08",
+      "operator": "trust_model_enforcement",
+      "case_id": "CMT-T14",
+      "field": "externalEnforcement"
+    }
+  ]
+}

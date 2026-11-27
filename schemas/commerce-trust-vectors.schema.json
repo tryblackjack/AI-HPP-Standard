@@ -1,0 +1,407 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "artifact_id",
+    "artifact_version",
+    "status",
+    "base",
+    "cases",
+    "mutants"
+  ],
+  "properties": {
+    "artifact_id": {
+      "const": "AI-HPP-COMMERCE-TRUST"
+    },
+    "artifact_version": {
+      "const": "1.0.0"
+    },
+    "status": {
+      "const": "REFERENCE_TESTED_ONLY"
+    },
+    "base": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "clock",
+        "admission_binding",
+        "external_enforcement",
+        "page_content",
+        "request",
+        "grant",
+        "registry",
+        "review"
+      ],
+      "properties": {
+        "clock": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "admission_binding": {
+          "type": "string"
+        },
+        "external_enforcement": {
+          "type": "boolean"
+        },
+        "page_content": {
+          "type": "string"
+        },
+        "request": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "action",
+            "seller",
+            "storefront",
+            "destination",
+            "payee",
+            "items",
+            "amount_minor",
+            "currency",
+            "data_classes"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "action": {
+              "type": "string",
+              "enum": [
+                "recommend",
+                "pay",
+                "disclose"
+              ]
+            },
+            "seller": {
+              "type": "string"
+            },
+            "storefront": {
+              "type": "string"
+            },
+            "destination": {
+              "type": "string"
+            },
+            "payee": {
+              "type": "string"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "sku",
+                  "quantity"
+                ],
+                "properties": {
+                  "sku": {
+                    "type": "string"
+                  },
+                  "quantity": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                }
+              },
+              "minItems": 1
+            },
+            "amount_minor": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "currency": {
+              "type": "string",
+              "minLength": 1
+            },
+            "data_classes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "grant": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "revision",
+            "active",
+            "expires",
+            "actions",
+            "sellers",
+            "destinations",
+            "limit_minor",
+            "currency",
+            "data_classes"
+          ],
+          "properties": {
+            "revision": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "active": {
+              "type": "boolean"
+            },
+            "expires": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "actions": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "sellers": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "destinations": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "limit_minor": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "currency": {
+              "type": "string"
+            },
+            "data_classes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "registry": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "revision",
+            "verified",
+            "source_role",
+            "status",
+            "observed_at",
+            "expires",
+            "seller",
+            "storefront",
+            "payee",
+            "destinations"
+          ],
+          "properties": {
+            "revision": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "verified": {
+              "type": "boolean"
+            },
+            "source_role": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "observed_at": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "expires": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "seller": {
+              "type": "string"
+            },
+            "storefront": {
+              "type": "string"
+            },
+            "payee": {
+              "type": "string"
+            },
+            "destinations": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "review": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "human_confirmed",
+            "binding",
+            "issued_at",
+            "expires",
+            "remaining_uses"
+          ],
+          "properties": {
+            "human_confirmed": {
+              "type": "boolean"
+            },
+            "binding": {
+              "type": "string"
+            },
+            "issued_at": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "expires": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "remaining_uses": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        }
+      }
+    },
+    "cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "changes",
+          "approve",
+          "rebind",
+          "expected_premises",
+          "reason",
+          "effect",
+          "quint_test"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "changes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "value"
+              ],
+              "properties": {
+                "path": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "value": {}
+              }
+            }
+          },
+          "approve": {
+            "type": "boolean"
+          },
+          "rebind": {
+            "type": "boolean"
+          },
+          "expected_premises": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "authorityValid",
+              "bindingCurrent",
+              "sellerAdmitted",
+              "destinationAdmitted",
+              "reviewEffective",
+              "dataPermitted",
+              "externalEnforcement"
+            ],
+            "properties": {
+              "authorityValid": {
+                "type": "boolean"
+              },
+              "bindingCurrent": {
+                "type": "boolean"
+              },
+              "sellerAdmitted": {
+                "type": "boolean"
+              },
+              "destinationAdmitted": {
+                "type": "boolean"
+              },
+              "reviewEffective": {
+                "type": "boolean"
+              },
+              "dataPermitted": {
+                "type": "boolean"
+              },
+              "externalEnforcement": {
+                "type": "boolean"
+              }
+            }
+          },
+          "reason": {
+            "type": "string",
+            "enum": [
+              "permitted",
+              "unauthorized",
+              "insufficient_evidence",
+              "prohibited"
+            ]
+          },
+          "effect": {
+            "type": "boolean"
+          },
+          "quint_test": {
+            "type": "string"
+          }
+        }
+      },
+      "minItems": 30
+    },
+    "mutants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "operator",
+          "case_id",
+          "field"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "operator": {
+            "type": "string"
+          },
+          "case_id": {
+            "type": "string"
+          },
+          "field": {
+            "type": "string"
+          }
+        }
+      },
+      "minItems": 8,
+      "maxItems": 8
+    }
+  }
+}

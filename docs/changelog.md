@@ -2,6 +2,25 @@
 
 Status: `ACTIVE_INFORMATIVE`.
 
+## 2026-11-27 — Commerce trust and transaction admission (post-rc.1)
+
+- Added optional artifact/vector/schema 1.0.0 and six candidate predicates under
+  existing KAI/MVP/ECI owners. The Podqi answer-content study is distinguished from
+  the separate injection/exfiltration threat; no observed theft is inferred.
+- Thirty authored cases check seller/source admission, expiry, exact payee and
+  destination, grant scope, bound human confirmation, one-use review, data
+  minimization and external enforcement. Eight actual local operators have a
+  separate denominator; invalid/no-op captures and blanket refusal cannot pass.
+- Added CommercePremises/commerceGrounding/assessCommerce in the existing core's
+  normal step and 33 literal/integration scenarios; formal map 1.3.9 has 334
+  core/351 total scenarios. No state, aggregate invariant, 48 existing Quint
+  unsafe witnesses, depth-12 bound or partial requirement coverage changes.
+- Compatibility: additive optional contract; immutable v4.3.0 owners, spec
+  contracts, published tags and v4.4.0-rc.1 manifest remain unchanged. Earlier
+  results exclude this suite. Real integrations must intercept the existing
+  effect boundary, authenticate registry/review inputs and atomically consume
+  approvals. Finite reference tests do not establish that wiring or safety.
+
 ## 2026-11-25 — Cryptographic trust continuity (post-rc.1)
 
 - Added optional artifact/vector/schema 1.0.0, six candidate predicates, 28 finite

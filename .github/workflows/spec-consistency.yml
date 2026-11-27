@@ -50,6 +50,9 @@ jobs:
       - name: Validate PAF register
         run: python3 scripts/check_paf_register.py
 
+      - name: Execute commerce trust and transaction fixtures
+        run: python3 scripts/check_commerce_trust.py
+
       - name: Execute cryptographic trust continuity fixtures
         run: python3 scripts/check_crypto_trust.py
 
