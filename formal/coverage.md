@@ -234,3 +234,24 @@ nine local operators, separate from the Quint witness inventory. External trust
 admission, actual algorithm strength, rollback-resistant storage, clocks,
 recovery identity and current-at-effect integration are not proved by the
 symbolic premises or synthetic files. No new requirement has full formal coverage.
+
+## Commerce transaction admission (post-rc.1)
+
+The [commerce assurance note](../docs/commerce-trust-and-transaction-assurance-note-2026-11.md)
+adds the operational `CommercePremises`, `commerceGrounding` and `assessCommerce`
+adapter to normal `step`, using the existing grounding/effect owners. Thirty
+literal cases and three change/recovery/revocation traces bring the core to 334
+scenarios, 351 across both models. Map 1.3.9 adds scenario links to the existing
+`effectsRequireGroundingAndOversight` property, with no new state, aggregate
+property, requirement coverage or Quint unsafe-transition witness. There remain
+42 aggregate members, 48 Quint witnesses, 18/49 partially linked requirements
+and a depth-12 bound. The changed operational prefix needs the full bounded check.
+
+Seller admission, exact transaction review, disclosure classes and enforcement
+are externally supplied facts. Generic grounding remains callable; real adopters
+must prevent bypass/hold overwrite and recheck at the effect boundary. Neither
+seller legitimacy, human identity, atomic approval consumption, secret isolation,
+network redirects nor Python-to-Quint refinement is proved. The eight executed
+local Python operators are separate from the Quint witness inventory. Authored
+fixture oracles and observed temporary markers cover only the finite contract;
+no browser, model, payment or private runtime was evaluated.

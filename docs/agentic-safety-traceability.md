@@ -36,3 +36,21 @@ This matrix maps each requirement in [Agentic Safety and Relational Integrity](a
 | BAF-REQ-002 | Post-Action Monitoring and Review | Post-Action Assurance Gate | timing, behavior, payment, destination, media, script, escalation, migration, infrastructure, and failure-pattern signals | risk communication review | High | Physical or Robotic System; Persistent Conversational Agent |
 | AFB-REQ-001 | Policy and Risk Gates | Risk Gate | decision alternatives; evidence limits; reversibility and urgency assessment | false-binary decision test | Critical | High-Impact Autonomous System |
 | AFB-REQ-002 | Objective and Scope Integrity Check; External Side-Effect Check | Objective and Scope Integrity Gate; External Side-Effect Gate | environment reality classification; authorized objective and means; authorization scope; affected-party inventory; ownership proof; external side-effect estimate; proportionality and reversibility assessment; evidence-preservation record; explicit new-scope decision | boundary-crossing alternative-path negative test | Critical | High-Impact Autonomous System; Tool-Using Agent; Cyber-Capable Evaluation System; Physical or Robotic System |
+
+## Optional commerce boundary mapping (post-rc.1)
+
+The [commerce assurance note](commerce-trust-and-transaction-assurance-note-2026-11.md)
+reuses existing owners; this table creates no new requirement or runtime claim.
+
+| Candidate | Existing requirement owners | Evidence / negative case |
+| --- | --- | --- |
+| CMT-P01 | MVP-005; KAI-REQ-001/002/003 | Independent seller/storefront admission; self-attestation, lookalike, dead store |
+| CMT-P02 | MVP-005/006; KAI-REQ-002 | Acquisition/expiry, request and registry/grant revision digest; stale cache |
+| CMT-P03 | MVP-003/004; ECI-REQ-002/003 | Exact payee/processor destination, currency and scope; redirect/recipient substitution |
+| CMT-P04 | MVP-003/006/007 | Current exact-order human review; changed amount/items, consumed review |
+| CMT-P05 | MVP-003/004/005; ECI-REQ-002/003 | Authorized minimum data classes; raw-secret/extra-data export |
+| CMT-P06 | MVP-004/007; ECI-REQ-004 | External effect receipt; prompt-only enforcement, page-authority forgery |
+
+The adapter derives existing grounding premises. Seller authenticity, review
+identity, atomic replay prevention and real effect interception need independent
+runtime evidence; structural/formal links do not establish them.

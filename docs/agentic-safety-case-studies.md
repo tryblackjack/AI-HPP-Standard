@@ -2,6 +2,48 @@
 
 Status: informative. These case classes provide engineering context for the normative module. They do not establish legal facts and do not claim that disputed allegations have been adjudicated. Under frozen-baseline change control, new external reports may update this informative layer and related PAF/outlook mappings; they do not automatically create new normative requirements.
 
+## Risky retail recommendations and transaction-boundary injection — November 2026
+
+Status: `ACTIVE_INFORMATIVE`; reported observation plus separate threat analysis.
+System or scenario: AI shopping recommendations and downstream agent checkout.
+Date range: September 2026 fieldwork; reviewed 2026-11-27.
+
+### Context
+
+- **Reported information:** [Podqi's primary study](https://podqi.com/research/ai-search-brand-risk) reports
+risky sites in 9% of 6,795 shopping answers across three engines and 151 brands.
+It groups suspected fake stores and inactive domains. Recommendations of risky
+sites outnumbered warnings by 6.3:1. This is vendor-reported answer analysis,
+not evidence that 9% of purchases were fraudulent or that payment data was stolen.
+
+- **Unresolved claims or allegations:** No live purchase, exfiltration or
+  injection-success result was measured by this study or reproduced here.
+
+### Controls Applied
+
+- **Engineering interpretation:** This is an analytical mapping, not a claim that Podqi or the tested products
+implemented AI-HPP. Existing MVP-003/004/005/006/007, KAI-REQ-001/002/003 and
+ECI-REQ-002/003/004 own source admission, scoped effects, external enforcement
+and evidence. Separately, [Chrome's primary security guidance](https://developer.chrome.com/docs/agents/security)
+explains how malicious page/tool content can request unauthorized disclosure.
+Do not attribute injection or exfiltration measurements to the Podqi study.
+
+### Results
+
+The optional [commerce assurance note](commerce-trust-and-transaction-assurance-note-2026-11.md)
+adds 30 synthetic record cases, eight executed local defect operators and 33
+scenarios through an adapter in the existing formal core. No live shop, model,
+payment system or private runtime is evaluated. Results concern exact local
+markers and symbolic effects, not prevention of the reported risks in deployment.
+
+### Lessons Learned
+
+- **Normative lesson:** Seller admission, exact payee/processor binding and human confirmation are
+separate checks. A confirmation cannot legitimize an unverified seller. Bind
+payment approval to the exact order and consume it once; page text, search
+ranking and branding cannot create authority. Preserve useful research without
+asking for confirmation at every read. Normative baseline v4.3.0 is unchanged.
+
 ## Generated assessment promoted through a formal report — reported September 2026
 
 - **Reported information:** CNN's [18 September account](https://kvia.com/politics/cnn-us-politics/2026/09/18/exclusive-us-military-had-close-call-after-using-ai-for-false-intelligence-report-sources-say/) describes an AI-assisted cargo misidentification and preparations for interception in spring 2026. A [21 September Senate release](https://www.reed.senate.gov/news/releases/reed-warner-and-coons-seek-investigation-into-faulty-ai-assisted-intelligence_operations) requests investigation.

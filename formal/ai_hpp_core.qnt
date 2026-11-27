@@ -167,6 +167,23 @@ module ai_hpp_core {
     factsSupport: true,
     policyPermits: p.dependenciesAcceptable and p.recoveryAuthorized,
   }
+  // CMT: external seller/transaction admission, never storefront assertions.
+  type CommercePremises = {
+    authorityValid: bool, bindingCurrent: bool, sellerAdmitted: bool,
+    destinationAdmitted: bool, reviewEffective: bool, dataPermitted: bool,
+    externalEnforcement: bool,
+  }
+
+  pure def commerceGrounding(p: CommercePremises): GroundingFacts = {
+    scopeAuthorized: p.authorityValid,
+    observationsCurrent: p.bindingCurrent,
+    evidenceComplete: all {
+      p.sellerAdmitted, p.destinationAdmitted, p.reviewEffective, p.externalEnforcement,
+    },
+    ruleKnown: true,
+    factsSupport: true,
+    policyPermits: p.dataPermitted,
+  }
   type OversightRecord = {
     required: bool, eventId: int, stage: int, owner: int, offeredOwner: int,
     routeAuthorized: bool, payloadMinimal: bool, independent: bool,
@@ -888,6 +905,10 @@ module ai_hpp_core {
     assessGroundedProposal(cryptoTrustGrounding(proposed))
   }
 
+  action assessCommerce(proposed: CommercePremises): bool = {
+    assessGroundedProposal(commerceGrounding(proposed))
+  }
+
   // One active obligation; two non-reused IDs in this finite abstraction.
   action registerOversightObligation(required: bool, holdOnOpen: bool): bool = {
     if (required and not(oversightOpen) and s.oversight.eventId < 2) {
@@ -1031,6 +1052,12 @@ module ai_hpp_core {
     nondet robotTool = Set("knife", "gripper").oneOf()
     nondet robotPlanRevision = 0.to(1).oneOf()
     any {
+      assessCommerce({
+        authorityValid: explicitHumanGrant, bindingCurrent: identityEvidence,
+        sellerAdmitted: hasAuthorityEvidence, destinationAdmitted: targetAuthorized,
+        reviewEffective: hasLineageEvidence, dataPermitted: artifactIntegrity,
+        externalEnforcement: topologyWithinBounds,
+      }),
       assessCryptoTrust({
         authorityValid: explicitHumanGrant, bindingCurrent: identityEvidence,
         inventoryComplete: hasAuthorityEvidence, profileApproved: hasLineageEvidence,
@@ -5843,6 +5870,398 @@ module ai_hpp_core {
       .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: true, inventoryComplete: true, profileApproved: true, dependenciesAcceptable: false, recoveryAuthorized: true, historyRequired: false, historySupported: true }))
       .then(revokeParent(true))
       .then(assessCryptoTrust({ authorityValid: true, bindingCurrent: true, inventoryComplete: true, profileApproved: true, dependenciesAcceptable: true, recoveryAuthorized: true, historyRequired: false, historySupported: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all { s.robot.audit.executed == false,
+        allCoreInvariants }))
+  }
+
+
+  run commerceT01Test = {
+    init
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: true, sellerAdmitted: true, destinationAdmitted: true, reviewEffective: true, dataPermitted: true, externalEnforcement: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "permitted",
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run commerceT02Test = {
+    init
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: true, sellerAdmitted: false, destinationAdmitted: true, reviewEffective: true, dataPermitted: true, externalEnforcement: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run commerceT03Test = {
+    init
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: false, sellerAdmitted: true, destinationAdmitted: true, reviewEffective: true, dataPermitted: true, externalEnforcement: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run commerceT04Test = {
+    init
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: true, sellerAdmitted: true, destinationAdmitted: false, reviewEffective: true, dataPermitted: true, externalEnforcement: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run commerceT05Test = {
+    init
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: true, sellerAdmitted: true, destinationAdmitted: false, reviewEffective: true, dataPermitted: true, externalEnforcement: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run commerceT06Test = {
+    init
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: true, sellerAdmitted: true, destinationAdmitted: true, reviewEffective: false, dataPermitted: true, externalEnforcement: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run commerceT07Test = {
+    init
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: true, sellerAdmitted: true, destinationAdmitted: true, reviewEffective: false, dataPermitted: true, externalEnforcement: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run commerceT08Test = {
+    init
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: true, sellerAdmitted: true, destinationAdmitted: true, reviewEffective: false, dataPermitted: true, externalEnforcement: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run commerceT09Test = {
+    init
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: true, sellerAdmitted: true, destinationAdmitted: true, reviewEffective: false, dataPermitted: true, externalEnforcement: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run commerceT10Test = {
+    init
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: true, sellerAdmitted: true, destinationAdmitted: true, reviewEffective: false, dataPermitted: true, externalEnforcement: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run commerceT11Test = {
+    init
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: true, sellerAdmitted: true, destinationAdmitted: true, reviewEffective: true, dataPermitted: false, externalEnforcement: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "prohibited",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run commerceT12Test = {
+    init
+      .then(assessCommerce({ authorityValid: false, bindingCurrent: true, sellerAdmitted: true, destinationAdmitted: true, reviewEffective: true, dataPermitted: true, externalEnforcement: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "unauthorized",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run commerceT13Test = {
+    init
+      .then(assessCommerce({ authorityValid: false, bindingCurrent: true, sellerAdmitted: true, destinationAdmitted: true, reviewEffective: true, dataPermitted: true, externalEnforcement: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "unauthorized",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run commerceT14Test = {
+    init
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: true, sellerAdmitted: true, destinationAdmitted: true, reviewEffective: true, dataPermitted: true, externalEnforcement: false }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run commerceT15Test = {
+    init
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: true, sellerAdmitted: true, destinationAdmitted: true, reviewEffective: true, dataPermitted: true, externalEnforcement: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "permitted",
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run commerceT16Test = {
+    init
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: true, sellerAdmitted: true, destinationAdmitted: true, reviewEffective: true, dataPermitted: true, externalEnforcement: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "permitted",
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run commerceT17Test = {
+    init
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: true, sellerAdmitted: false, destinationAdmitted: true, reviewEffective: true, dataPermitted: true, externalEnforcement: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run commerceT18Test = {
+    init
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: true, sellerAdmitted: false, destinationAdmitted: true, reviewEffective: true, dataPermitted: true, externalEnforcement: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run commerceT19Test = {
+    init
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: true, sellerAdmitted: true, destinationAdmitted: true, reviewEffective: false, dataPermitted: true, externalEnforcement: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run commerceT20Test = {
+    init
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: false, sellerAdmitted: true, destinationAdmitted: true, reviewEffective: true, dataPermitted: true, externalEnforcement: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run commerceT21Test = {
+    init
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: true, sellerAdmitted: true, destinationAdmitted: false, reviewEffective: true, dataPermitted: true, externalEnforcement: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run commerceT22Test = {
+    init
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: true, sellerAdmitted: true, destinationAdmitted: true, reviewEffective: true, dataPermitted: false, externalEnforcement: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "prohibited",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run commerceT23Test = {
+    init
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: true, sellerAdmitted: true, destinationAdmitted: true, reviewEffective: true, dataPermitted: true, externalEnforcement: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "permitted",
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run commerceT24Test = {
+    init
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: true, sellerAdmitted: false, destinationAdmitted: true, reviewEffective: true, dataPermitted: true, externalEnforcement: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run commerceT25Test = {
+    init
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: true, sellerAdmitted: true, destinationAdmitted: true, reviewEffective: false, dataPermitted: true, externalEnforcement: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run commerceT26Test = {
+    init
+      .then(assessCommerce({ authorityValid: false, bindingCurrent: true, sellerAdmitted: true, destinationAdmitted: true, reviewEffective: true, dataPermitted: true, externalEnforcement: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "unauthorized",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run commerceT27Test = {
+    init
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: false, sellerAdmitted: true, destinationAdmitted: true, reviewEffective: true, dataPermitted: true, externalEnforcement: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run commerceT28Test = {
+    init
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: true, sellerAdmitted: true, destinationAdmitted: true, reviewEffective: true, dataPermitted: true, externalEnforcement: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "permitted",
+        s.robot.audit.executed == true,
+        allCoreInvariants,
+      }))
+  }
+
+  run commerceT29Test = {
+    init
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: true, sellerAdmitted: false, destinationAdmitted: true, reviewEffective: true, dataPermitted: true, externalEnforcement: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "insufficient_evidence",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run commerceT30Test = {
+    init
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: true, sellerAdmitted: true, destinationAdmitted: true, reviewEffective: true, dataPermitted: false, externalEnforcement: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all {
+        s.grounding.reason == "prohibited",
+        s.robot.audit.executed == false,
+        allCoreInvariants,
+      }))
+  }
+
+  run commerceChangedAfterApprovalTest = {
+    init
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: true, sellerAdmitted: true, destinationAdmitted: true, reviewEffective: true, dataPermitted: true, externalEnforcement: true }))
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: true, sellerAdmitted: true, destinationAdmitted: true, reviewEffective: false, dataPermitted: true, externalEnforcement: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all { s.robot.audit.executed == false,
+        allCoreInvariants }))
+  }
+
+  run commerceReviewedRecoveryTest = {
+    init
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: true, sellerAdmitted: true, destinationAdmitted: true, reviewEffective: false, dataPermitted: true, externalEnforcement: true }))
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: true, sellerAdmitted: true, destinationAdmitted: true, reviewEffective: true, dataPermitted: true, externalEnforcement: true }))
+      .then(assessRobotAction)
+      .then(executeRobotAction)
+      .then(check(all { s.robot.audit.executed == true,
+        allCoreInvariants }))
+  }
+
+  run commerceRecoveryCannotRestoreRevokedGrantTest = {
+    init
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: true, sellerAdmitted: true, destinationAdmitted: true, reviewEffective: false, dataPermitted: true, externalEnforcement: true }))
+      .then(revokeParent(true))
+      .then(assessCommerce({ authorityValid: true, bindingCurrent: true, sellerAdmitted: true, destinationAdmitted: true, reviewEffective: true, dataPermitted: true, externalEnforcement: true }))
       .then(assessRobotAction)
       .then(executeRobotAction)
       .then(check(all { s.robot.audit.executed == false,

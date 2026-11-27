@@ -233,3 +233,12 @@ local defects and exact linkage to eighteen existing-core Quint scenarios.
 Actual JSON bytes and marker/report files are observed; no images, cameras, robot,
 model or network is used. Useful operation and two-stage recovery prevent blanket
 denial from passing. Read the [assurance note and limits](../docs/observation-admission-and-perceptual-integrity-assurance-note-2026-11.md).
+
+## Optional commerce admission reference
+
+[Commerce trust](../docs/commerce-trust-and-transaction-assurance-note-2026-11.md)
+connects thirty authored synthetic seller/order/review cases and eight local
+operators to the existing formal grounding/effect seam. Use
+`python3 scripts/check_commerce_trust.py`. This example has no payment or browser
+integration, secrets or production replay store; authenticated inputs, atomic
+consumption and effect-boundary integration remain adopter responsibilities.

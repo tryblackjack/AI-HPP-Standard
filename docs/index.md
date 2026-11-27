@@ -31,6 +31,8 @@ not active normative text.
 
 ## Active informative material
 
+- [Commerce Trust and Transaction Assurance](commerce-trust-and-transaction-assurance-note-2026-11.md) — independent seller admission, exact transaction confirmation, minimum disclosure and 30 finite cases through the existing formal core; optional reference evidence.
+
 - [Generated Artifact Disclosure Assurance Profile — October 2026](generated-artifact-disclosure-assurance-profile-2026-10.md) — post-rc.1 candidate release gate, eight predicates, thirteen executable disclosure mutants and four useful-access controls; no normative or whole-application proof claim.
 - [Architecture](architecture.md) and [Glossary](glossary.md)
 - [Formal Core Invariants](../formal/README.md) — executable Quint models of replication, persistence, authority, evidence, and subject-integrity assurance; informative, not a runtime implementation.
